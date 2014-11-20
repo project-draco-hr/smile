@@ -1,0 +1,3 @@
+{
+  return String.format("t-distribution(%d)",nu);
+}

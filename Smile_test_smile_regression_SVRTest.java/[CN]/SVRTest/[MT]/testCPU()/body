@@ -1,0 +1,30 @@
+{
+  System.out.println("CPU");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(6);
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/cpu.arff"));
+    double[] datay=data.toArray(new double[data.size()]);
+    double[][] datax=data.toArray(new double[data.size()][]);
+    Math.normalize(datax);
+    int n=datax.length;
+    int k=10;
+    CrossValidation cv=new CrossValidation(n,k);
+    double rss=0.0;
+    for (int i=0; i < k; i++) {
+      double[][] trainx=Math.slice(datax,cv.train[i]);
+      double[] trainy=Math.slice(datay,cv.train[i]);
+      double[][] testx=Math.slice(datax,cv.test[i]);
+      double[] testy=Math.slice(datay,cv.test[i]);
+      SVR<double[]> svr=new SVR<double[]>(trainx,trainy,new PolynomialKernel(3,1.0,1.0),0.1,1.0);
+      for (int j=0; j < testx.length; j++) {
+        double r=testy[j] - svr.predict(testx[j]);
+        rss+=r * r;
+      }
+    }
+    System.out.println("10-CV RMSE = " + Math.sqrt(rss / n));
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

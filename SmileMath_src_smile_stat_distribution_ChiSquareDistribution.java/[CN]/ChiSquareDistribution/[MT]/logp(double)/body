@@ -1,0 +1,8 @@
+{
+  if (x <= 0) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return -0.5 * (x - (nu - 2.0) * Math.log(x)) - fac;
+  }
+}

@@ -1,0 +1,3 @@
+MercerKernel<T> kernel
+double eps
+double C

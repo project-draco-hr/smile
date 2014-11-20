@@ -1,0 +1,7 @@
+int d
+double epsBest
+double epsNeighbor
+int maxEdgeAge
+int lambda
+double alpha
+double beta

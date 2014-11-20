@@ -1,0 +1,5 @@
+int[] set
+int inputIndex
+int[] sofar
+int[][] sets
+int outputIndex

@@ -1,0 +1,6 @@
+{
+  this.bucket=bucket;
+  this.index=index;
+  this.key=x;
+  this.data=data;
+}

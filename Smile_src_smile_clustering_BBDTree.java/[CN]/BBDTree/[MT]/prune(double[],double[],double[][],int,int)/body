@@ -1,0 +1,20 @@
+{
+  if (bestIndex == testIndex) {
+    return false;
+  }
+  int d=centroids[0].length;
+  double[] best=centroids[bestIndex];
+  double[] test=centroids[testIndex];
+  double lhs=0.0, rhs=0.0;
+  for (int i=0; i < d; i++) {
+    double diff=test[i] - best[i];
+    lhs+=diff * diff;
+    if (diff > 0) {
+      rhs+=(center[i] + radius[i] - best[i]) * diff;
+    }
+ else {
+      rhs+=(center[i] - radius[i] - best[i]) * diff;
+    }
+  }
+  return (lhs >= 2 * rhs);
+}

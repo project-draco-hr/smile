@@ -1,0 +1,3 @@
+{
+  this(dataset,distance,1.3);
+}

@@ -1,0 +1,42 @@
+{
+  if (a < 0.0 || x < 0.0 || x < a + 1) {
+    throw new IllegalArgumentException(String.format("Invalid a = %f, x = %f",a,x));
+  }
+  int i=0;
+  double ii=0.0;
+  double igf=0.0;
+  boolean check=true;
+  double loggamma=logGamma(a);
+  double numer=0.0;
+  double incr=0.0;
+  double denom=x - a + 1.0;
+  double first=1.0 / denom;
+  double term=1.0 / FPMIN;
+  double prod=first;
+  while (check) {
+    ++i;
+    ii=(double)i;
+    numer=-ii * (ii - a);
+    denom+=2.0D;
+    first=numer * first + denom;
+    if (Math.abs(first) < FPMIN) {
+      first=FPMIN;
+    }
+    term=denom + numer / term;
+    if (Math.abs(term) < FPMIN) {
+      term=FPMIN;
+    }
+    first=1.0D / first;
+    incr=first * term;
+    prod*=incr;
+    if (Math.abs(incr - 1.0D) < INCOMPLETE_GAMMA_EPSILON) {
+      check=false;
+    }
+    if (i >= INCOMPLETE_GAMMA_MAX_ITERATIONS) {
+      check=false;
+      System.err.println("Maximum number of iterations wes exceeded");
+    }
+  }
+  igf=1.0 - Math.exp(-x + a * Math.log(x) - loggamma) * prod;
+  return igf;
+}

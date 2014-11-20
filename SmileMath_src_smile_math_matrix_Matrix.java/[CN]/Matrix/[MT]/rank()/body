@@ -1,0 +1,4 @@
+{
+  svd();
+  return rank;
+}

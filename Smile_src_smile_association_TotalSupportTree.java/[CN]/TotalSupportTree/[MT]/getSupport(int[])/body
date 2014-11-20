@@ -1,0 +1,8 @@
+{
+  if (root.children != null) {
+    return getSupport(itemset,itemset.length - 1,root);
+  }
+ else {
+    return 0;
+  }
+}

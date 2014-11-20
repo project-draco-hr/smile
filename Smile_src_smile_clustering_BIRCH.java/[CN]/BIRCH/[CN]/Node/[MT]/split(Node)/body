@@ -1,0 +1,56 @@
+{
+  double farest=0.0;
+  int c1=0, c2=0;
+  double[][] dist=new double[numChildren + 1][numChildren + 1];
+  for (int i=0; i < numChildren; i++) {
+    for (int j=i + 1; j < numChildren; j++) {
+      dist[i][j]=children[i].distance(children[j]);
+      dist[j][i]=dist[i][j];
+      if (farest < dist[i][j]) {
+        c1=i;
+        c2=j;
+        farest=dist[i][j];
+      }
+    }
+    dist[i][numChildren]=children[i].distance(node);
+    dist[numChildren][i]=dist[i][numChildren];
+    if (farest < dist[i][numChildren]) {
+      c1=i;
+      c2=numChildren;
+      farest=dist[i][numChildren];
+    }
+  }
+  int nc=numChildren;
+  Node[] child=children;
+  numChildren=0;
+  n=0;
+  Arrays.fill(sum,0.0);
+  Node brother=new Node();
+  for (int i=0; i < nc; i++) {
+    if (dist[i][c1] < dist[i][c2]) {
+      add(child[i]);
+    }
+ else {
+      brother.add(child[i]);
+    }
+  }
+  if (dist[nc][c1] < dist[nc][c2]) {
+    add(node);
+  }
+ else {
+    brother.add(node);
+  }
+  for (int i=0; i < numChildren; i++) {
+    n+=children[i].n;
+    for (int j=0; j < d; j++) {
+      sum[j]+=children[i].sum[j];
+    }
+  }
+  for (int i=0; i < brother.numChildren; i++) {
+    brother.n+=brother.children[i].n;
+    for (int j=0; j < d; j++) {
+      brother.sum[j]+=brother.children[i].sum[j];
+    }
+  }
+  return brother;
+}

@@ -1,0 +1,29 @@
+{
+  int n=data.length;
+  medoids=(T[])java.lang.reflect.Array.newInstance(data.getClass().getComponentType(),k);
+  T[] newMedoids=medoids.clone();
+  y=new int[n];
+  int[] newY=new int[n];
+  double[] d=new double[n];
+  double[] newD=new double[n];
+  distortion=seed(distance,data,medoids,y,d);
+  System.arraycopy(medoids,0,newMedoids,0,k);
+  System.arraycopy(y,0,newY,0,n);
+  System.arraycopy(d,0,newD,0,n);
+  for (int neighborCount=1; neighborCount <= maxNeighbor; neighborCount++) {
+    double randomNeighborDistortion=getRandomNeighbor(data,newMedoids,newY,newD);
+    if (randomNeighborDistortion < distortion) {
+      neighborCount=0;
+      distortion=randomNeighborDistortion;
+      System.arraycopy(newMedoids,0,medoids,0,k);
+      System.arraycopy(newY,0,y,0,n);
+      System.arraycopy(newD,0,d,0,n);
+    }
+ else {
+      System.arraycopy(medoids,0,newMedoids,0,k);
+      System.arraycopy(y,0,newY,0,n);
+      System.arraycopy(d,0,newD,0,n);
+    }
+  }
+  return this;
+}

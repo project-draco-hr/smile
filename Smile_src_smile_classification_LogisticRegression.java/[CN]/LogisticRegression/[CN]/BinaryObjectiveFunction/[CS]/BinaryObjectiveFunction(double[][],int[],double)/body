@@ -1,0 +1,25 @@
+{
+  this.x=x;
+  this.y=y;
+  this.lambda=lambda;
+  int n=x.length;
+  int m=MulticoreExecutor.getThreadPoolSize();
+  if (n >= 1000 && m >= 2) {
+    ftasks=new ArrayList<FTask>(m + 1);
+    gtasks=new ArrayList<GTask>(m + 1);
+    int step=n / m;
+    if (step < 100) {
+      step=100;
+    }
+    int start=0;
+    int end=step;
+    for (int i=0; i < m - 1; i++) {
+      ftasks.add(new FTask(start,end));
+      gtasks.add(new GTask(start,end));
+      start+=step;
+      end+=step;
+    }
+    ftasks.add(new FTask(start,n));
+    gtasks.add(new GTask(start,n));
+  }
+}

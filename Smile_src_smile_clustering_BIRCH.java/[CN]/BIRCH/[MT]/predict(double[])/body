@@ -1,0 +1,7 @@
+{
+  if (centroids == null) {
+    throw new IllegalStateException("Call partition() first!");
+  }
+  Leaf leaf=root.search(x);
+  return leaf.y;
+}

@@ -1,0 +1,8 @@
+{
+  Datum<SparseArray> datum=data.remove(i);
+  n-=datum.x.size();
+  for (  SparseArray.Entry item : datum.x) {
+    colSize[item.i]--;
+  }
+  return datum;
+}

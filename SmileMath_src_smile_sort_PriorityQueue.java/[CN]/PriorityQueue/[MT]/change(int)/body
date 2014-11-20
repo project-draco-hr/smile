@@ -1,0 +1,4 @@
+{
+  swim(qp[k]);
+  sink(qp[k],n);
+}

@@ -1,0 +1,43 @@
+{
+  int n=x.length;
+  int N=(int)Math.round(n * f);
+  int[] y2=new int[n];
+  for (int i=0; i < n; i++) {
+    if (y[i] == 1) {
+      y2[i]=1;
+    }
+ else {
+      y2[i]=-1;
+    }
+  }
+  y=y2;
+  double[] h=new double[n];
+  double[] response=new double[n];
+  double mu=Math.mean(y);
+  b=0.5 * Math.log((1 + mu) / (1 - mu));
+  for (int i=0; i < n; i++) {
+    h[i]=b;
+  }
+  int[][] order=SmileUtils.sort(attributes,x);
+  RegressionTree.NodeOutput output=new L2NodeOutput(response);
+  trees=new RegressionTree[T];
+  int[] perm=new int[n];
+  int[] samples=new int[n];
+  for (int i=0; i < n; i++) {
+    perm[i]=i;
+  }
+  for (int m=0; m < T; m++) {
+    Arrays.fill(samples,0);
+    Math.permutate(perm);
+    for (int i=0; i < N; i++) {
+      samples[perm[i]]=1;
+    }
+    for (int i=0; i < n; i++) {
+      response[i]=2.0 * y[i] / (1 + Math.exp(2 * y[i] * h[i]));
+    }
+    trees[m]=new RegressionTree(attributes,x,response,J,order,samples,output);
+    for (int i=0; i < n; i++) {
+      h[i]+=shrinkage * trees[m].predict(x[i]);
+    }
+  }
+}

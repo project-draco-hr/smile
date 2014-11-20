@@ -1,0 +1,8 @@
+{
+  this.data=data;
+  this.k=centroids.length;
+  this.y=y;
+  this.centroids=centroids;
+  this.start=start;
+  this.end=end;
+}

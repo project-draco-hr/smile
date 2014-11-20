@@ -1,0 +1,7 @@
+{
+  System.out.println("bandwidth");
+  KernelDensity instance=new KernelDensity(x);
+  double expResult=1.1933;
+  double result=instance.bandwidth();
+  assertEquals(expResult,result,1E-4);
+}

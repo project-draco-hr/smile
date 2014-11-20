@@ -1,0 +1,3 @@
+{
+  return Math.exp(-gamma * Math.squaredDistance(x,y));
+}

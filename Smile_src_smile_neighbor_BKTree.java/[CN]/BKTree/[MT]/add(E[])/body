@@ -1,0 +1,5 @@
+{
+  for (  E datum : data) {
+    add(datum);
+  }
+}

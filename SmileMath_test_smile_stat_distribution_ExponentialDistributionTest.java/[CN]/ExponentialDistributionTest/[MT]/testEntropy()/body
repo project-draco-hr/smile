@@ -1,0 +1,15 @@
+{
+  System.out.println("entropy");
+  ExponentialDistribution instance=new ExponentialDistribution(1.0);
+  instance.rand();
+  assertEquals(1.0,instance.entropy(),1E-7);
+  instance=new ExponentialDistribution(2.0);
+  instance.rand();
+  assertEquals(1 - Math.log(2),instance.entropy(),1E-7);
+  instance=new ExponentialDistribution(3.0);
+  instance.rand();
+  assertEquals(1 - Math.log(3),instance.entropy(),1E-7);
+  instance=new ExponentialDistribution(4.0);
+  instance.rand();
+  assertEquals(1 - Math.log(4),instance.entropy(),1E-7);
+}

@@ -1,0 +1,21 @@
+{
+  Component componentToSplit=null;
+  double maxSigma=0.0;
+  for (  Component c : mixture) {
+    if (c.distribution.sd() > maxSigma) {
+      maxSigma=c.distribution.sd();
+      componentToSplit=c;
+    }
+  }
+  double delta=componentToSplit.distribution.sd();
+  double mu=componentToSplit.distribution.mean();
+  Component c=new Component();
+  c.priori=componentToSplit.priori / 2;
+  c.distribution=new GaussianDistribution(mu + delta / 2,delta);
+  mixture.add(c);
+  c=new Component();
+  c.priori=componentToSplit.priori / 2;
+  c.distribution=new GaussianDistribution(mu - delta / 2,delta);
+  mixture.add(c);
+  mixture.remove(componentToSplit);
+}

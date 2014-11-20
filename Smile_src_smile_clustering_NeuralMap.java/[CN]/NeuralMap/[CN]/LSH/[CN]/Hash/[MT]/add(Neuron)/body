@@ -1,0 +1,8 @@
+{
+  int bucket=hash(neuron.w);
+  int i=bucket % H;
+  if (table[i] == null) {
+    table[i]=new LinkedList<Item>();
+  }
+  table[i].add(new Item(bucket,neuron));
+}

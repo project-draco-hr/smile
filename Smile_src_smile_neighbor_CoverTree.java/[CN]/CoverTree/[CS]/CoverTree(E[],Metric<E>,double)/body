@@ -1,0 +1,10 @@
+{
+  if (dataset.length == 0) {
+    throw new IllegalArgumentException("Empty dataset");
+  }
+  this.data=dataset;
+  this.distance=distance;
+  this.base=base;
+  invLogBase=1.0 / Math.log(base);
+  buildCoverTree();
+}

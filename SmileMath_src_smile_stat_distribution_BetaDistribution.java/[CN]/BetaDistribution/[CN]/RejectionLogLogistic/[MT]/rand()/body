@@ -1,0 +1,91 @@
+{
+  double X=0.0;
+  double u1, u2, v, w, y, z, r, s, t;
+switch (method) {
+case BB:
+    while (true) {
+      u1=Math.random();
+      u2=Math.random();
+      v=be * Math.log(u1 / (1.0 - u1));
+      w=am * Math.exp(v);
+      z=u1 * u1 * u2;
+      r=ga * v - 1.386294361;
+      s=am + r - w;
+      if (s + 2.609437912 < 5.0 * z) {
+        t=Math.log(z);
+        if (s < t) {
+          if (r + al * Math.log(al / (bm + w)) < t) {
+            continue;
+          }
+        }
+      }
+      X=Math.equals(am,alpha) ? w / (bm + w) : bm / (bm + w);
+      break;
+    }
+  break;
+case BC:
+while (true) {
+  u1=Math.random();
+  u2=Math.random();
+  if (u1 < 0.5) {
+    y=u1 * u2;
+    z=u1 * y;
+    if ((0.25 * u2 - y + z) >= rk1) {
+      continue;
+    }
+    v=be * Math.log(u1 / (1.0 - u1));
+    if (v > 80.0) {
+      if (alnam < Math.log(z)) {
+        continue;
+      }
+      X=Math.equals(am,alpha) ? 1.0 : 0.0;
+      break;
+    }
+ else {
+      w=am * Math.exp(v);
+      if ((al * (Math.log(al / (bm + w)) + v) - 1.386294361) < Math.log(z)) {
+        continue;
+      }
+      X=!Math.equals(am,alpha) ? bm / (bm + w) : w / (bm + w);
+      break;
+    }
+  }
+ else {
+    z=u1 * u1 * u2;
+    if (z < 0.25) {
+      v=be * Math.log(u1 / (1.0 - u1));
+      if (v > 80.0) {
+        X=Math.equals(am,alpha) ? 1.0 : 0.0;
+        break;
+      }
+      w=am * Math.exp(v);
+      X=!Math.equals(am,alpha) ? bm / (bm + w) : w / (bm + w);
+      break;
+    }
+ else {
+      if (z >= rk2) {
+        continue;
+      }
+      v=be * Math.log(u1 / (1.0 - u1));
+      if (v > 80.0) {
+        if (alnam < Math.log(z)) {
+          continue;
+        }
+        X=Math.equals(am,alpha) ? 1.0 : 0.0;
+        break;
+      }
+      w=am * Math.exp(v);
+      if ((al * (Math.log(al / (bm + w)) + v) - 1.386294361) < Math.log(z)) {
+        continue;
+      }
+      X=!Math.equals(am,alpha) ? bm / (bm + w) : w / (bm + w);
+      break;
+    }
+  }
+}
+break;
+default :
+throw new IllegalStateException();
+}
+return X;
+}

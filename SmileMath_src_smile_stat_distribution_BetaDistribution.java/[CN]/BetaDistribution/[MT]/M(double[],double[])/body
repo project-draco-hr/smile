@@ -1,0 +1,21 @@
+{
+  double weight=0.0;
+  double mu=0.0;
+  double v=0.0;
+  for (int i=0; i < x.length; i++) {
+    weight+=posteriori[i];
+    mu+=x[i] * posteriori[i];
+  }
+  mu/=weight;
+  for (int i=0; i < x.length; i++) {
+    double d=x[i] - mu;
+    v+=d * d * posteriori[i];
+  }
+  v=v / weight;
+  double a=mu * (mu * (1 - mu) / v - 1);
+  double b=(1 - mu) * (mu * (1 - mu) / v - 1);
+  Mixture.Component c=new Mixture.Component();
+  c.priori=weight;
+  c.distribution=new BetaDistribution(a,b);
+  return c;
+}

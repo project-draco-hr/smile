@@ -1,0 +1,6 @@
+{
+  if (components.isEmpty())   throw new IllegalStateException("Mixture is empty!");
+  double variance=0.0;
+  for (  Component c : components)   variance+=c.priori * c.priori * c.distribution.var();
+  return variance;
+}

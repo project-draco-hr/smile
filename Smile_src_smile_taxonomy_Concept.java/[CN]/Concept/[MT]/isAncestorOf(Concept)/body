@@ -1,0 +1,12 @@
+{
+  Concept p=concept.parent;
+  while (p != null) {
+    if (p == this) {
+      return true;
+    }
+ else {
+      p=p.parent;
+    }
+  }
+  return false;
+}

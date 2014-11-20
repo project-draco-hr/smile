@@ -1,0 +1,46 @@
+{
+  if (B.length != QR.length) {
+    throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but B is %d x %d",QR.length,QR.length,B.length,B[0].length));
+  }
+  if (X.length != QR[0].length) {
+    throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but X is %d x %d",QR.length,QR.length,X.length,X[0].length));
+  }
+  if (B[0].length != X[0].length) {
+    throw new IllegalArgumentException(String.format("B and X column dimension do not agree: B is %d x %d, but X is %d x %d",B.length,B[0].length,X.length,X[0].length));
+  }
+  if (!isFullColumnRank()) {
+    throw new RuntimeException("Matrix is rank deficient.");
+  }
+  if (X[0].length != B[0].length) {
+    throw new IllegalArgumentException("B and X dimensions do not agree.");
+  }
+  int m=QR.length;
+  int n=QR[0].length;
+  int nx=B[0].length;
+  double[][] Y=B;
+  if (B != X) {
+    Y=Math.clone(B);
+  }
+  for (int k=0; k < n; k++) {
+    for (int j=0; j < nx; j++) {
+      double s=0.0;
+      for (int i=k; i < m; i++) {
+        s+=QR[i][k] * Y[i][j];
+      }
+      s=-s / QR[k][k];
+      for (int i=k; i < m; i++) {
+        Y[i][j]+=s * QR[i][k];
+      }
+    }
+  }
+  for (int k=n - 1; k >= 0; k--) {
+    for (int j=0; j < nx; j++) {
+      X[k][j]=Y[k][j] / Rdiagonal[k];
+    }
+    for (int i=0; i < k; i++) {
+      for (int j=0; j < nx; j++) {
+        Y[i][j]-=X[k][j] * QR[i][k];
+      }
+    }
+  }
+}

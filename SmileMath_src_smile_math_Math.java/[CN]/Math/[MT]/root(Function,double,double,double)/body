@@ -1,0 +1,3 @@
+{
+  return root(func,x1,x2,tol,100);
+}

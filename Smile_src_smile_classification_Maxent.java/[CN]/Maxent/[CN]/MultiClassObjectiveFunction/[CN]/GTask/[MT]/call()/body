@@ -1,0 +1,23 @@
+{
+  double f=0.0;
+  double[] prob=new double[k];
+  double[] g=new double[w.length + 1];
+  for (int i=start; i < end; i++) {
+    for (int j=0; j < k; j++) {
+      prob[j]=dot(x[i],w,j,p);
+    }
+    softmax(prob);
+    f-=log(prob[y[i]]);
+    double yi=0.0;
+    for (int j=0; j < k; j++) {
+      yi=(y[i] == j ? 1.0 : 0.0) - prob[j];
+      int pos=j * (p + 1);
+      for (      int l : x[i]) {
+        g[pos + l]-=yi;
+      }
+      g[pos + p]-=yi;
+    }
+  }
+  g[w.length]=f;
+  return g;
+}

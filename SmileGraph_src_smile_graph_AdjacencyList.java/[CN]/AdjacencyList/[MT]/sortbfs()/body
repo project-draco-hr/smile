@@ -1,0 +1,30 @@
+{
+  if (!digraph) {
+    throw new UnsupportedOperationException("Topological sort is only meaningful for digraph.");
+  }
+  int[] in=new int[n];
+  int[] ts=new int[n];
+  for (int i=0; i < n; i++) {
+    ts[i]=-1;
+    for (    Edge edge : graph[i]) {
+      in[edge.v2]++;
+    }
+  }
+  Queue<Integer> queue=new LinkedList<Integer>();
+  for (int i=0; i < n; i++) {
+    if (in[i] == 0) {
+      queue.offer(i);
+    }
+  }
+  for (int i=0; queue.size() > 0; i++) {
+    int t=queue.poll();
+    ts[i]=t;
+    for (    Edge edge : graph[t]) {
+      int v=edge.v2;
+      if (--in[v] == 0) {
+        queue.offer(v);
+      }
+    }
+  }
+  return ts;
+}

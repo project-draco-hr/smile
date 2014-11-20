@@ -1,0 +1,11 @@
+{
+  System.out.println("p");
+  BinomialDistribution instance=new BinomialDistribution(100,0.3);
+  instance.rand();
+  assertEquals(3.234477e-16,instance.p(0),1E-20);
+  assertEquals(1.386204e-14,instance.p(1),1E-18);
+  assertEquals(1.170418e-06,instance.p(10),1E-10);
+  assertEquals(0.007575645,instance.p(20),1E-7);
+  assertEquals(0.08678386,instance.p(30),1E-7);
+  assertEquals(5.153775e-53,instance.p(100),1E-58);
+}

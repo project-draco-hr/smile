@@ -1,0 +1,53 @@
+{
+  final int MAXITER=500;
+  final double EPS=3.0E-7;
+  double aplusb=alpha + beta;
+  double aplus1=alpha + 1.0;
+  double aminus1=alpha - 1.0;
+  double c=1.0;
+  double d=1.0 - aplusb * x / aplus1;
+  if (Math.abs(d) < FPMIN) {
+    d=FPMIN;
+  }
+  d=1.0 / d;
+  double h=d;
+  double aa=0.0;
+  double del=0.0;
+  int i=1, i2=0;
+  boolean test=true;
+  while (test) {
+    i2=2 * i;
+    aa=i * (beta - i) * x / ((aminus1 + i2) * (alpha + i2));
+    d=1.0 + aa * d;
+    if (Math.abs(d) < FPMIN) {
+      d=FPMIN;
+    }
+    c=1.0 + aa / c;
+    if (Math.abs(c) < FPMIN) {
+      c=FPMIN;
+    }
+    d=1.0 / d;
+    h*=d * c;
+    aa=-(alpha + i) * (aplusb + i) * x / ((alpha + i2) * (aplus1 + i2));
+    d=1.0 + aa * d;
+    if (Math.abs(d) < FPMIN) {
+      d=FPMIN;
+    }
+    c=1.0 + aa / c;
+    if (Math.abs(c) < FPMIN) {
+      c=FPMIN;
+    }
+    d=1.0 / d;
+    del=d * c;
+    h*=del;
+    i++;
+    if (Math.abs(del - 1.0) < EPS) {
+      test=false;
+    }
+    if (i > MAXITER) {
+      test=false;
+      System.err.println("Maximum number of iterations wes exceeded");
+    }
+  }
+  return h;
+}

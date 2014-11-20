@@ -1,0 +1,8 @@
+{
+  if (k < 0 || k > n) {
+    return 0.0;
+  }
+ else {
+    return Math.floor(0.5 + Math.exp(Math.logFactorial(n) - Math.logFactorial(k) - Math.logFactorial(n - k))) * Math.pow(p,k) * Math.pow(1.0 - p,n - k);
+  }
+}

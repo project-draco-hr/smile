@@ -1,0 +1,3 @@
+{
+  return java.lang.Math.sinh(x);
+}

@@ -1,0 +1,15 @@
+{
+  System.out.println("p");
+  GaussianDistribution instance=new GaussianDistribution(4.0,3.0);
+  instance.rand();
+  assertEquals(2.482015e-06,instance.p(-10),1E-10);
+  assertEquals(0.01799699,instance.p(-2),1E-7);
+  assertEquals(0.1064827,instance.p(2),1E-7);
+  assertEquals(0.1257944,instance.p(3),1E-7);
+  assertEquals(0.1329808,instance.p(4),1E-7);
+  assertEquals(0.1257944,instance.p(5),1E-7);
+  assertEquals(0.1064827,instance.p(6),1E-7);
+  assertEquals(0.0806569,instance.p(7),1E-7);
+  assertEquals(0.01799699,instance.p(10),1E-7);
+  assertEquals(8.85434e-08,instance.p(20),1E-12);
+}

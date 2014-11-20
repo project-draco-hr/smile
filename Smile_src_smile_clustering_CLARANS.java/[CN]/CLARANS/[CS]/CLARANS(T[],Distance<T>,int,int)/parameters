@@ -1,0 +1,4 @@
+T[] data
+Distance<T> distance
+int k
+int maxNeighbor

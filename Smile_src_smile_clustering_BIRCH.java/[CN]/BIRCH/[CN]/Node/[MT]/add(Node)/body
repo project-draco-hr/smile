@@ -1,0 +1,24 @@
+{
+  if (numChildren < B) {
+    children[numChildren++]=node;
+    node.parent=this;
+  }
+ else {
+    if (parent == null) {
+      parent=new Node();
+      parent.add(this);
+      root=parent;
+    }
+ else {
+      parent.n=0;
+      Arrays.fill(parent.sum,0.0);
+    }
+    parent.add(split(node));
+    for (int i=0; i < parent.numChildren; i++) {
+      parent.n+=parent.children[i].n;
+      for (int j=0; j < d; j++) {
+        parent.sum[j]+=parent.children[i].sum[j];
+      }
+    }
+  }
+}

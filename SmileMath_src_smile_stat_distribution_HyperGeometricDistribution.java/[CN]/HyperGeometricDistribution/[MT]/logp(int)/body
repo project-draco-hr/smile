@@ -1,0 +1,8 @@
+{
+  if (k < Math.max(0,m + n - N) || k > Math.min(m,n)) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return Math.logChoose(m,k) + Math.logChoose(N - m,n - k) - Math.logChoose(N,n);
+  }
+}

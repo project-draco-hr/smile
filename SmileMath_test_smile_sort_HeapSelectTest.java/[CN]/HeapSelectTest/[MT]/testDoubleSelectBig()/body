@@ -1,0 +1,10 @@
+{
+  System.out.println("DoubleHeapSelect Big");
+  DoubleHeapSelect instance=new DoubleHeapSelect(10);
+  for (int i=0; i < 100000000; i++) {
+    instance.add(Math.random());
+  }
+  for (int j=0; j < 10; j++) {
+    System.out.println(instance.get(j));
+  }
+}

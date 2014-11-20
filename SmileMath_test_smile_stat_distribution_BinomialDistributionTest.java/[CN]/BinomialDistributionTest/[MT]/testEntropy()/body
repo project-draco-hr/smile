@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  BinomialDistribution instance=new BinomialDistribution(100,0.3);
+  instance.rand();
+  assertEquals(2.9412,instance.entropy(),1E-4);
+}

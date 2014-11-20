@@ -1,0 +1,7 @@
+double[] alf
+double[] bet
+double[] eta
+double[] oldeta
+int step
+double rnm
+double eps

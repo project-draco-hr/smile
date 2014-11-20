@@ -1,0 +1,6 @@
+{
+  if (elitism < 0 || elitism >= size) {
+    throw new IllegalArgumentException("Invalid elitism: " + elitism);
+  }
+  this.elitism=elitism;
+}

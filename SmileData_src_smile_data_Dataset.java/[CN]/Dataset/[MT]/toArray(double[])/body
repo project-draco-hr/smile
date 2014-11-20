@@ -1,0 +1,19 @@
+{
+  if (response == null) {
+    throw new IllegalArgumentException("The dataset has no response values.");
+  }
+  if (response.type != Attribute.Type.NUMERIC) {
+    throw new IllegalArgumentException("The response variable is not numeric.");
+  }
+  int n=data.size();
+  if (a.length < n) {
+    a=new double[n];
+  }
+  for (int i=0; i < n; i++) {
+    a[i]=get(i).y;
+  }
+  for (int i=n; i < a.length; i++) {
+    a[i]=Double.NaN;
+  }
+  return a;
+}

@@ -1,0 +1,13 @@
+{
+  System.out.println("quantile");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(0.008255493,instance.quantile(0.001),1E-5);
+  assertEquals(0.09259526,instance.quantile(0.1),1E-5);
+  assertEquals(0.1398807,instance.quantile(0.2),1E-5);
+  assertEquals(0.1818035,instance.quantile(0.3),1E-5);
+  assertEquals(0.2225835,instance.quantile(0.4),1E-5);
+  assertEquals(0.26445,instance.quantile(0.5),1E-5);
+  assertEquals(0.5103163,instance.quantile(0.9),1E-5);
+  assertEquals(0.7056863,instance.quantile(0.99),1E-5);
+}

@@ -1,0 +1,17 @@
+{
+  if (parent == null) {
+    throw new NullPointerException("Parent concept cannot be null.");
+  }
+  this.parent=parent;
+  synset=new TreeSet<String>();
+  synset.add(keyword);
+  if (parent.children == null) {
+    parent.children=new ArrayList<Concept>();
+  }
+  parent.children.add(this);
+  taxonomy=parent.taxonomy;
+  if (taxonomy.concepts.containsKey(keyword)) {
+    throw new IllegalArgumentException(String.format("Concept %s already exists.",keyword));
+  }
+  taxonomy.concepts.put(keyword,this);
+}

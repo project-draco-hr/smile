@@ -1,0 +1,185 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (lambda <= 0.0) {
+    throw new IllegalArgumentException("Invalid shrinkage/regularization parameter lambda = " + lambda);
+  }
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invalid tolerance: " + tol);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  final int MU=2;
+  final double ALPHA=0.01;
+  final double BETA=0.5;
+  final int MAX_LS_ITER=100;
+  final int pcgmaxi=5000;
+  final double eta=1E-3;
+  int pitr=0;
+  int n=x.length;
+  p=x[0].length;
+  double[][] X=x;
+  double[] Y=y;
+  if (n > p) {
+    center=Math.colMean(x);
+    X=new double[n][p];
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < p; j++) {
+        X[i][j]=x[i][j] - center[j];
+      }
+    }
+    scale=new double[p];
+    for (int j=0; j < p; j++) {
+      for (int i=0; i < n; i++) {
+        scale[j]+=Math.sqr(X[i][j]);
+      }
+      scale[j]=Math.sqrt(scale[j] / n);
+    }
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < p; j++) {
+        X[i][j]/=scale[j];
+      }
+    }
+    Y=new double[n];
+    ym=Math.mean(y);
+    for (int i=0; i < n; i++) {
+      Y[i]=y[i] - ym;
+    }
+  }
+  double t=Math.min(Math.max(1.0,1.0 / lambda),2 * p / 1e-3);
+  double pobj=0.0;
+  double dobj=Double.NEGATIVE_INFINITY;
+  double s=Double.POSITIVE_INFINITY;
+  w=new double[p];
+  double[] u=new double[p];
+  double[] z=new double[n];
+  double[][] f=new double[2][p];
+  Arrays.fill(u,1.0);
+  for (int i=0; i < p; i++) {
+    f[0][i]=w[i] - u[i];
+    f[1][i]=-w[i] - u[i];
+  }
+  double[] neww=new double[p];
+  double[] newu=new double[p];
+  double[] newz=new double[n];
+  double[][] newf=new double[2][p];
+  double[] dx=new double[p];
+  double[] du=new double[p];
+  double[] dxu=new double[2 * p];
+  double[] grad=new double[2 * p];
+  double[] diagxtx=new double[p];
+  Arrays.fill(diagxtx,2.0);
+  double[] nu=new double[n];
+  double[] xnu=new double[p];
+  double[] q1=new double[p];
+  double[] q2=new double[p];
+  double[] d1=new double[p];
+  double[] d2=new double[p];
+  double[][] gradphi=new double[2][p];
+  double[] prb=new double[p];
+  double[] prs=new double[p];
+  IMatrix pcg=new PCGMatrix(X,d1,d2,prb,prs);
+  int ntiter=0;
+  for (; ntiter <= maxIter; ntiter++) {
+    Math.ax(X,w,z);
+    for (int i=0; i < n; i++) {
+      z[i]-=Y[i];
+      nu[i]=2 * z[i];
+    }
+    Math.atx(X,nu,xnu);
+    double maxXnu=Math.normInf(xnu);
+    if (maxXnu > lambda) {
+      double lnu=lambda / maxXnu;
+      for (int i=0; i < n; i++) {
+        nu[i]*=lnu;
+      }
+    }
+    pobj=Math.dot(z,z) + lambda * Math.norm1(w);
+    dobj=Math.max(-0.25 * Math.dot(nu,nu) - Math.dot(nu,Y),dobj);
+    if (ntiter % 10 == 0) {
+      System.out.format("LASSO: primal and dual objective function value after %3d iterations: %.5g\t%.5g\n",ntiter,pobj,dobj);
+    }
+    double gap=pobj - dobj;
+    if (gap / dobj < tol) {
+      System.out.format("LASSO: primal and dual objective function value after %3d iterations: %.5g\t%.5g\n",ntiter,pobj,dobj);
+      break;
+    }
+    if (s >= 0.5) {
+      t=Math.max(Math.min(2 * p * MU / gap,MU * t),t);
+    }
+    for (int i=0; i < p; i++) {
+      double q1i=1.0 / (u[i] + w[i]);
+      double q2i=1.0 / (u[i] - w[i]);
+      q1[i]=q1i;
+      q2[i]=q2i;
+      d1[i]=(q1i * q1i + q2i * q2i) / t;
+      d2[i]=(q1i * q1i - q2i * q2i) / t;
+    }
+    Math.atx(X,z,gradphi[0]);
+    for (int i=0; i < p; i++) {
+      gradphi[0][i]=2 * gradphi[0][i] - (q1[i] - q2[i]) / t;
+      gradphi[1][i]=lambda - (q1[i] + q2[i]) / t;
+      grad[i]=-gradphi[0][i];
+      grad[i + p]=-gradphi[1][i];
+    }
+    for (int i=0; i < p; i++) {
+      prb[i]=diagxtx[i] + d1[i];
+      prs[i]=prb[i] * d1[i] - d2[i] * d2[i];
+    }
+    double normg=Math.norm(grad);
+    double pcgtol=Math.min(0.1,eta * gap / Math.min(1.0,normg));
+    if (ntiter != 0 && pitr == 0) {
+      pcgtol=pcgtol * 0.1;
+    }
+    double error=Math.solve(pcg,grad,dxu,pcgtol,1,pcgmaxi);
+    if (error > pcgtol) {
+      pitr=pcgmaxi;
+    }
+    for (int i=0; i < p; i++) {
+      dx[i]=dxu[i];
+      du[i]=dxu[i + p];
+    }
+    double phi=Math.dot(z,z) + lambda * Math.sum(u) - sumlogneg(f) / t;
+    s=1.0;
+    double gdx=Math.dot(grad,dxu);
+    int lsiter=0;
+    for (; lsiter < MAX_LS_ITER; lsiter++) {
+      for (int i=0; i < p; i++) {
+        neww[i]=w[i] + s * dx[i];
+        newu[i]=u[i] + s * du[i];
+        newf[0][i]=neww[i] - newu[i];
+        newf[1][i]=-neww[i] - newu[i];
+      }
+      if (Math.max(newf) < 0.0) {
+        Math.ax(X,neww,newz);
+        for (int i=0; i < n; i++) {
+          newz[i]-=Y[i];
+        }
+        double newphi=Math.dot(newz,newz) + lambda * Math.sum(newu) - sumlogneg(newf) / t;
+        if (newphi - phi <= ALPHA * s * gdx) {
+          break;
+        }
+      }
+      s=BETA * s;
+    }
+    if (lsiter == MAX_LS_ITER) {
+      System.err.println("LASSO: Too many iterations of line search.");
+      break;
+    }
+    System.arraycopy(neww,0,w,0,p);
+    System.arraycopy(newu,0,u,0,p);
+    System.arraycopy(newf[0],0,f[0],0,p);
+    System.arraycopy(newf[1],0,f[1],0,p);
+  }
+  if (ntiter == maxIter) {
+    System.err.println("LASSO: Too many iterations.");
+  }
+  if (n > p) {
+    for (int j=0; j < p; j++) {
+      w[j]/=scale[j];
+    }
+    b=ym - Math.dot(w,center);
+  }
+}

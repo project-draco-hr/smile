@@ -1,0 +1,29 @@
+{
+  if (components.size() == 0) {
+    throw new IllegalStateException("Mixture is empty!");
+  }
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  int xl, xu, inc=1;
+  int x=(int)mean();
+  if (p < cdf(x)) {
+    do {
+      x-=inc;
+      inc*=2;
+    }
+ while (p < cdf(x));
+    xl=x;
+    xu=x + inc / 2;
+  }
+ else {
+    do {
+      x+=inc;
+      inc*=2;
+    }
+ while (p > cdf(x));
+    xu=x;
+    xl=x - inc / 2;
+  }
+  return quantile(p,xl,xu);
+}

@@ -1,0 +1,16 @@
+{
+  if (h <= 0.0) {
+    throw new IllegalArgumentException("Invalid bin width: " + h);
+  }
+  if (min > max) {
+    throw new IllegalArgumentException("Invalid lower and upper bounds: " + min + " > "+ max);
+  }
+  int k=(int)Math.ceil((max - min) / h);
+  double[] breaks=new double[k + 1];
+  breaks[0]=min - (h * k - (max - min)) / 2;
+  breaks[k]=max + (h * k - (max - min)) / 2;
+  for (int i=1; i < k; i++) {
+    breaks[i]=breaks[i - 1] + h;
+  }
+  return breaks;
+}

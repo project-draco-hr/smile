@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(3.5,instance.var(),1E-7);
+}

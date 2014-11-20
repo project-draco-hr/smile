@@ -1,0 +1,8 @@
+{
+  ax(A,x,ax);
+  Math.atx(A,ax,atax);
+  for (int i=0; i < p; i++) {
+    y[i]=2 * atax[i] + d1[i] * x[i] + d2[i] * x[i + p];
+    y[i + p]=d2[i] * x[i] + d1[i] * x[i + p];
+  }
+}

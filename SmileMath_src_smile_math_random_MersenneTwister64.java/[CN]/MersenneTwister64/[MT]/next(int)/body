@@ -1,0 +1,11 @@
+{
+  if (bitState) {
+    bits64=nextLong();
+    bitState=false;
+    return (int)(bits64 >>> (64 - numbits));
+  }
+ else {
+    bitState=true;
+    return ((int)bits64) >>> (32 - numbits);
+  }
+}

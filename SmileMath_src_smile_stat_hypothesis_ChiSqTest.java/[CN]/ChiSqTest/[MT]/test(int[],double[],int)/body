@@ -1,0 +1,22 @@
+{
+  int nbins=bins.length;
+  int df=nbins - constraints;
+  int n=0;
+  for (int i=0; i < nbins; i++)   n+=bins[i];
+  double chisq=0.0;
+  for (int j=0; j < nbins; j++) {
+    if (prob[j] < 0.0 || prob[j] > 1.0 || (prob[j] == 0.0 && bins[j] > 0)) {
+      throw new IllegalArgumentException("Bad expected number");
+    }
+    if (prob[j] == 0.0 && bins[j] == 0) {
+      --df;
+    }
+ else {
+      double nj=n * prob[j];
+      double temp=bins[j] - nj;
+      chisq+=temp * temp / nj;
+    }
+  }
+  double p=Gamma.regularizedUpperIncompleteGamma(0.5 * df,0.5 * chisq);
+  return new ChiSqTest(chisq,df,p);
+}

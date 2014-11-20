@@ -1,0 +1,16 @@
+{
+  sorted=false;
+  if (n < k) {
+    heap[n++]=datum;
+    if (n == k) {
+      heapify(heap);
+    }
+  }
+ else {
+    n++;
+    if (datum.compareTo(heap[0]) < 0) {
+      heap[0]=datum;
+      SortUtils.siftDown(heap,0,k - 1);
+    }
+  }
+}

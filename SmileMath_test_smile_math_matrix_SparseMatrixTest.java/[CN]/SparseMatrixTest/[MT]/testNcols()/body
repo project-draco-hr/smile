@@ -1,0 +1,4 @@
+{
+  System.out.println("ncols");
+  assertEquals(3,sm.ncols());
+}

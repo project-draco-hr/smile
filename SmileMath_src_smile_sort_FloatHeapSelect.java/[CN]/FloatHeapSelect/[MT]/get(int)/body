@@ -1,0 +1,13 @@
+{
+  if (i > Math.min(k,n) - 1) {
+    throw new IllegalArgumentException("HeapSelect i is greater than the number of data received so far.");
+  }
+  if (i == k - 1) {
+    return heap[0];
+  }
+  if (!sorted) {
+    sort(heap,Math.min(k,n));
+    sorted=true;
+  }
+  return heap[k - 1 - i];
+}

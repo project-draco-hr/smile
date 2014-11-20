@@ -1,0 +1,6 @@
+RegressionTrainer<double[]> trainer
+RegressionMeasure measure
+double[][] x
+double[] y
+double[][] testx
+double[] testy

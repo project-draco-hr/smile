@@ -1,0 +1,5 @@
+int idx
+double maxDist
+double parentDist
+ArrayList<Node> children
+int scale

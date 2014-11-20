@@ -1,0 +1,19 @@
+{
+  if (components.isEmpty()) {
+    throw new IllegalStateException("MultivariateMixture is empty!");
+  }
+  double w=components.get(0).priori;
+  double[] m=components.get(0).distribution.mean();
+  double[] mu=new double[m.length];
+  for (int i=0; i < m.length; i++) {
+    mu[i]=w * m[i];
+  }
+  for (int k=1; k < components.size(); k++) {
+    w=components.get(0).priori;
+    m=components.get(0).distribution.mean();
+    for (int i=0; i < m.length; i++) {
+      mu[i]+=w * m[i];
+    }
+  }
+  return mu;
+}

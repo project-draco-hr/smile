@@ -1,0 +1,12 @@
+{
+  double[][] inv=eye(A[0].length,A.length);
+  if (A.length == A[0].length) {
+    LUDecomposition lu=new LUDecomposition(A,false);
+    lu.solve(inv);
+  }
+ else {
+    QRDecomposition qr=new QRDecomposition(A,false);
+    qr.solve(inv);
+  }
+  return inv;
+}

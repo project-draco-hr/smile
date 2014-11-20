@@ -1,0 +1,7 @@
+{
+  if (dest == null || dest.length < size()) {
+    dest=new int[size];
+  }
+  System.arraycopy(data,0,dest,0,size);
+  return dest;
+}

@@ -1,0 +1,8 @@
+{
+  if (k < 0) {
+    return 0.0;
+  }
+ else {
+    return Gamma.gamma(r + k) / (Math.factorial(k) * Gamma.gamma(r)) * Math.pow(p,r) * Math.pow(1 - p,k);
+  }
+}

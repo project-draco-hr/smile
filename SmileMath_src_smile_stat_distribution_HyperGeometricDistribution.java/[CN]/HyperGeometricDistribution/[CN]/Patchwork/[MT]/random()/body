@@ -1,0 +1,76 @@
+{
+  int Dk, X, V;
+  double U, Y, W;
+  while (true) {
+    if ((U=Math.random() * p6) < p2) {
+      if ((W=U - p1) < 0.) {
+        return (k2 + (int)(U / f2));
+      }
+      if ((Y=W / dl) < f1) {
+        return (k1 + (int)(W / f1));
+      }
+      Dk=(int)(dl * Math.random()) + 1;
+      if (Y <= f2 - Dk * (f2 - f2 / r2)) {
+        return (k2 - Dk);
+      }
+      if ((W=f2 + f2 - Y) < 1.) {
+        V=k2 + Dk;
+        if (W <= f2 + Dk * (1. - f2) / (dl + 1.)) {
+          return (V);
+        }
+        if (Math.log(W) <= cPm - lnpk(V,L,m,n)) {
+          return (V);
+        }
+      }
+      X=k2 - Dk;
+    }
+ else     if (U < p4) {
+      if ((W=U - p3) < 0.) {
+        return (k4 - (int)((U - p2) / f4));
+      }
+      if ((Y=W / dr) < f5) {
+        return (k5 - (int)(W / f5));
+      }
+      Dk=(int)(dr * Math.random()) + 1;
+      if (Y <= f4 - Dk * (f4 - f4 * r4)) {
+        return (k4 + Dk);
+      }
+      if ((W=f4 + f4 - Y) < 1.) {
+        V=k4 - Dk;
+        if (W <= f4 + Dk * (1. - f4) / dr) {
+          return V;
+        }
+        if (Math.log(W) <= cPm - lnpk(V,L,m,n)) {
+          return (V);
+        }
+      }
+      X=k4 + Dk;
+    }
+ else {
+      Y=Math.random();
+      if (U < p5) {
+        Dk=(int)(1. - Math.log(Y) / ll);
+        if ((X=k1 - Dk) < 0) {
+          continue;
+        }
+        Y*=(U - p4) * ll;
+        if (Y <= f1 - Dk * (f1 - f1 / r1)) {
+          return X;
+        }
+      }
+ else {
+        Dk=(int)(1. - Math.log(Y) / lr);
+        if ((X=k5 + Dk) > n) {
+          continue;
+        }
+        Y*=(U - p5) * lr;
+        if (Y <= f5 - Dk * (f5 - f5 * r5)) {
+          return X;
+        }
+      }
+    }
+    if (Math.log(Y) <= cPm - lnpk(X,L,m,n)) {
+      return (X);
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  if (scaling != Scaling.NONE && scaling != Scaling.LOGARITHM) {
+    throw new IllegalArgumentException("Invalid scaling operation without training data: " + scaling);
+  }
+  this.attributes=attributes;
+  this.scaling=scaling;
+  int p=0;
+  for (  Attribute attribute : attributes) {
+    if (attribute instanceof NumericAttribute) {
+      p++;
+    }
+  }
+  features=new Attribute[p];
+  map=new int[p];
+  for (int i=0, j=0; j < attributes.length; j++) {
+    Attribute attribute=attributes[j];
+    if (attribute instanceof NumericAttribute) {
+      if (scaling == Scaling.NONE) {
+        features[i]=attribute;
+      }
+ else {
+        features[i]=new NumericAttribute(attribute.name + "_" + scaling,attribute.description,attribute.weight);
+      }
+      map[i++]=j;
+    }
+  }
+}

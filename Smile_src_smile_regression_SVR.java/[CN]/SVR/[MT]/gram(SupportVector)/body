@@ -1,0 +1,37 @@
+{
+  int n=sv.size();
+  int m=MulticoreExecutor.getThreadPoolSize();
+  i.kcache=new DoubleArrayList(n);
+  if (n < 100 || m < 2) {
+    for (    SupportVector v : sv) {
+      i.kcache.add(kernel.k(i.x,v.x));
+    }
+  }
+ else {
+    List<KernelTask> tasks=new ArrayList<KernelTask>(m + 1);
+    int step=n / m;
+    if (step < 100) {
+      step=100;
+    }
+    int start=0;
+    int end=step;
+    for (int l=0; l < m - 1; l++) {
+      tasks.add(new KernelTask(i,start,end));
+      start+=step;
+      end+=step;
+    }
+    tasks.add(new KernelTask(i,start,n));
+    try {
+      for (      double[] ki : MulticoreExecutor.run(tasks)) {
+        for (        double kij : ki) {
+          i.kcache.add(kij);
+        }
+      }
+    }
+ catch (    Exception ex) {
+      for (      SupportVector v : sv) {
+        i.kcache.add(kernel.k(i.x,v.x));
+      }
+    }
+  }
+}

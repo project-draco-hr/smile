@@ -1,0 +1,11 @@
+{
+  System.out.println("logP");
+  ExponentialDistribution instance=new ExponentialDistribution(2.0);
+  instance.rand();
+  assertTrue(Double.isInfinite(instance.logp(-0.1)));
+  assertEquals(0.6931472,instance.logp(0.0),1E-6);
+  assertEquals(-1.306853,instance.logp(1.0),1E-6);
+  assertEquals(-3.306853,instance.logp(2.0),1E-6);
+  assertEquals(-5.306853,instance.logp(3.0),1E-6);
+  assertEquals(-7.306853,instance.logp(4.0),1E-6);
+}

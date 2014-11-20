@@ -1,0 +1,4 @@
+{
+  double scale=re * re + im * im;
+  return new Complex(re / scale,-im / scale);
+}

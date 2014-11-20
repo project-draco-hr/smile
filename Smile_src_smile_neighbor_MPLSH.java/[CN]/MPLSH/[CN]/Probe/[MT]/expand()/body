@@ -1,0 +1,8 @@
+{
+  Probe p=new Probe(range);
+  p.last=last;
+  System.arraycopy(bucket,0,p.bucket,0,bucket.length);
+  p.last++;
+  p.bucket[last]=1;
+  return p;
+}

@@ -1,0 +1,13 @@
+{
+  if (A.length == A[0].length) {
+    LUDecomposition lu=new LUDecomposition(A,true);
+    lu.solve(B);
+    return B;
+  }
+ else {
+    double[][] X=new double[A[0].length][B[0].length];
+    QRDecomposition qr=new QRDecomposition(A,false);
+    qr.solve(B,X);
+    return X;
+  }
+}

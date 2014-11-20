@@ -1,0 +1,7 @@
+{
+  int t=Math.max(FKP[k + ZERO_K][p] + 1,FKP[k - 1 + ZERO_K][p],FKP[k + 1 + ZERO_K][p] + 1);
+  while (t < Math.min(x.length,y.length - k) && x[t] == y[t + k]) {
+    t++;
+  }
+  FKP[k + ZERO_K][p + 1]=t;
+}

@@ -1,0 +1,9 @@
+{
+  if (x.length != p) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,p));
+  }
+  double[] y=new double[scaling[0].length];
+  Math.atx(scaling,x,y);
+  Math.minus(y,smean);
+  return y;
+}

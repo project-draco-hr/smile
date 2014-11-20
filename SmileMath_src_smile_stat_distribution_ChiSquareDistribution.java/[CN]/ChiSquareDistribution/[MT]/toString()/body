@@ -1,0 +1,3 @@
+{
+  return String.format("ChiSquare Distribution(%d)",nu);
+}

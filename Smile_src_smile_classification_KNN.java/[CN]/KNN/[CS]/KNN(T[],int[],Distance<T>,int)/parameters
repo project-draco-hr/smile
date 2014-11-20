@@ -1,0 +1,4 @@
+T[] x
+int[] y
+Distance<T> distance
+int k

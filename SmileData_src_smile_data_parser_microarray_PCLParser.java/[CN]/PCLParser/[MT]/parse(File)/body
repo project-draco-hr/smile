@@ -1,0 +1,3 @@
+{
+  return parse(file.getPath(),new FileInputStream(file));
+}

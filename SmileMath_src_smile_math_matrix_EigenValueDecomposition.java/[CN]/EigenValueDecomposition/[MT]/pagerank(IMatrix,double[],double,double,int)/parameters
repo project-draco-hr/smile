@@ -1,0 +1,5 @@
+IMatrix A
+double[] v
+double damping
+double tol
+int maxIter

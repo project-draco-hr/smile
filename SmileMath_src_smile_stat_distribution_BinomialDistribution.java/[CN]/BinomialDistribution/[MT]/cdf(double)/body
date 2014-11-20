@@ -1,0 +1,11 @@
+{
+  if (k < 0) {
+    return 0.0;
+  }
+ else   if (k >= n) {
+    return 1.0;
+  }
+ else {
+    return Beta.regularizedIncompleteBetaFunction(n - k,k + 1,1 - p);
+  }
+}

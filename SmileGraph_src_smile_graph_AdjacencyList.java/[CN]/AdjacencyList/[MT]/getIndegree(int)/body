@@ -1,0 +1,9 @@
+{
+  int degree=0;
+  for (int i=0; i < n; i++) {
+    if (hasEdge(i,vertex)) {
+      degree++;
+    }
+  }
+  return degree;
+}

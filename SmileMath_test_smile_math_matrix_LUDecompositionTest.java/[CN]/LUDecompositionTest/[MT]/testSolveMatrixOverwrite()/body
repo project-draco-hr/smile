@@ -1,0 +1,13 @@
+{
+  System.out.println("solve in place");
+  LUDecomposition result=new LUDecomposition(A,true);
+  double[][] x=B2;
+  result.solve(B2,x);
+  assertEquals(X2.length,x.length);
+  assertEquals(X2[0].length,x[0].length);
+  for (int i=0; i < X2.length; i++) {
+    for (int j=0; j < X2[i].length; j++) {
+      assertEquals(X2[i][j],x[i][j],1E-7);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (components.size() == 0) {
+    throw new IllegalStateException("Mixture is empty!");
+  }
+  int f=0;
+  for (int i=0; i < components.size(); i++) {
+    f+=components.get(i).distribution.npara();
+  }
+  return f;
+}

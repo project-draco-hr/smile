@@ -1,0 +1,14 @@
+{
+  if (p < 1 || p > n) {
+    throw new IllegalArgumentException("Invalid dimension of feature space: " + p);
+  }
+  this.p=p;
+  projection=new double[p][n];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < p; j++) {
+      projection[j][i]=eigvectors[i][j];
+    }
+  }
+  pmu=new double[p];
+  Math.ax(projection,mu,pmu);
+}

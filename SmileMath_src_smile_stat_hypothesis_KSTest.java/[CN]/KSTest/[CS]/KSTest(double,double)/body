@@ -1,0 +1,4 @@
+{
+  this.d=d;
+  this.pvalue=pvalue;
+}

@@ -1,0 +1,45 @@
+{
+  int m=A.length;
+  int n=A[0].length;
+  Rdiagonal=new double[n];
+  QR=A;
+  if (!overwrite) {
+    QR=new double[m][n];
+    for (int i=0; i < m; i++) {
+      System.arraycopy(A[i],0,QR[i],0,n);
+    }
+  }
+  for (int k=0; k < n; k++) {
+    double nrm=0.0;
+    for (int i=k; i < m; i++) {
+      nrm=Math.hypot(nrm,QR[i][k]);
+    }
+    if (nrm != 0.0) {
+      if (QR[k][k] < 0) {
+        nrm=-nrm;
+      }
+      for (int i=k; i < m; i++) {
+        QR[i][k]/=nrm;
+      }
+      QR[k][k]+=1.0;
+      for (int j=k + 1; j < n; j++) {
+        double s=0.0;
+        for (int i=k; i < m; i++) {
+          s+=QR[i][k] * QR[i][j];
+        }
+        s=-s / QR[k][k];
+        for (int i=k; i < m; i++) {
+          QR[i][j]+=s * QR[i][k];
+        }
+      }
+    }
+    Rdiagonal[k]=-nrm;
+  }
+  singular=false;
+  for (int j=0; j < Rdiagonal.length; j++) {
+    if (Rdiagonal[j] == 0) {
+      singular=true;
+      break;
+    }
+  }
+}

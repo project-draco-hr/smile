@@ -1,0 +1,25 @@
+{
+  int[] cc=new int[n];
+  Arrays.fill(cc,-1);
+  int id=0;
+  for (int i=0; i < n; i++) {
+    if (cc[i] == -1) {
+      dfs(i,cc,id++);
+    }
+  }
+  int[] size=new int[id];
+  for (int i=0; i < n; i++) {
+    size[cc[i]]++;
+  }
+  int[][] components=new int[id][];
+  for (int i=0; i < id; i++) {
+    components[i]=new int[size[i]];
+    for (int j=0, k=0; j < n; j++) {
+      if (cc[j] == i) {
+        components[i][k++]=j;
+      }
+    }
+    Arrays.sort(components[i]);
+  }
+  return components;
+}

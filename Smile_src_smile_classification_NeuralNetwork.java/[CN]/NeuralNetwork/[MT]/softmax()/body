@@ -1,0 +1,17 @@
+{
+  double max=Double.NEGATIVE_INFINITY;
+  for (int i=0; i < outputLayer.units; i++) {
+    if (outputLayer.output[i] > max) {
+      max=outputLayer.output[i];
+    }
+  }
+  double sum=0.0;
+  for (int i=0; i < outputLayer.units; i++) {
+    double out=Math.exp(outputLayer.output[i] - max);
+    outputLayer.output[i]=out;
+    sum+=out;
+  }
+  for (int i=0; i < outputLayer.units; i++) {
+    outputLayer.output[i]/=sum;
+  }
+}

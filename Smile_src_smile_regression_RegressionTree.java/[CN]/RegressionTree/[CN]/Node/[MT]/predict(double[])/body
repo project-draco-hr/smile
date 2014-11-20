@@ -1,0 +1,26 @@
+{
+  if (trueChild == null && falseChild == null) {
+    return output;
+  }
+ else {
+    if (attributes[splitFeature].type == Attribute.Type.NOMINAL) {
+      if (Math.equals(x[splitFeature],splitValue)) {
+        return trueChild.predict(x);
+      }
+ else {
+        return falseChild.predict(x);
+      }
+    }
+ else     if (attributes[splitFeature].type == Attribute.Type.NUMERIC) {
+      if (x[splitFeature] <= splitValue) {
+        return trueChild.predict(x);
+      }
+ else {
+        return falseChild.predict(x);
+      }
+    }
+ else {
+      throw new IllegalStateException("Unsupported attribute type: " + attributes[splitFeature].type);
+    }
+  }
+}

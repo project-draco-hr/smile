@@ -1,0 +1,45 @@
+{
+  int p=0;
+  ArrayList<int[]> x=new ArrayList<int[]>();
+  ArrayList<Integer> y=new ArrayList<Integer>();
+  BufferedReader input=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(resource)));
+  try {
+    String[] words=input.readLine().split(" ");
+    int nseq=Integer.valueOf(words[0]);
+    int k=Integer.valueOf(words[1]);
+    p=Integer.valueOf(words[2]);
+    String line=null;
+    while ((line=input.readLine()) != null) {
+      words=line.split(" ");
+      int seqid=Integer.valueOf(words[0]);
+      int pos=Integer.valueOf(words[1]);
+      int len=Integer.valueOf(words[2]);
+      int[] feature=new int[len];
+      for (int i=0; i < len; i++) {
+        feature[i]=Integer.valueOf(words[i + 3]);
+      }
+      x.add(feature);
+      y.add(Integer.valueOf(words[len + 3]));
+    }
+  }
+ catch (  IOException ex) {
+    System.err.println(ex);
+  }
+ finally {
+    try {
+      input.close();
+    }
+ catch (    IOException e) {
+      System.err.println(e);
+    }
+  }
+  Dataset dataset=new Dataset();
+  dataset.p=p;
+  dataset.x=new int[x.size()][];
+  dataset.y=new int[y.size()];
+  for (int i=0; i < dataset.x.length; i++) {
+    dataset.x[i]=x.get(i);
+    dataset.y[i]=y.get(i);
+  }
+  return dataset;
+}

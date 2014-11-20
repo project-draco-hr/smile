@@ -1,0 +1,16 @@
+{
+  if (A.length != A[0].length) {
+    throw new IllegalArgumentException(String.format("Matrix is not square: %d x %d",A.length,A[0].length));
+  }
+  if (symmetric && positive) {
+    if (cholesky == null) {
+      cholesky();
+    }
+  }
+ else {
+    if (lu == null) {
+      LU();
+    }
+  }
+  return det;
+}

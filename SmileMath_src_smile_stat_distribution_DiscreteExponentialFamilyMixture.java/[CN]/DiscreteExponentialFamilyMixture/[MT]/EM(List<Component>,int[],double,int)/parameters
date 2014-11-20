@@ -1,0 +1,4 @@
+List<Component> components
+int[] x
+double gamma
+int maxIter

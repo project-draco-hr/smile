@@ -1,0 +1,4 @@
+{
+  if (p <= 0)   throw new IllegalArgumentException(String.format("The order p has to be larger than 0: p = d",p));
+  this.p=p;
+}

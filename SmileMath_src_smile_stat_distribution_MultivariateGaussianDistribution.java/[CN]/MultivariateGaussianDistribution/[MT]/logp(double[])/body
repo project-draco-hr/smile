@@ -1,0 +1,9 @@
+{
+  if (x.length != dim) {
+    throw new IllegalArgumentException("Sample has different dimension.");
+  }
+  double[] v=x.clone();
+  Math.minus(v,mu);
+  double result=Math.xax(sigmaInv,v) / -2.0;
+  return result - pdfConstant;
+}

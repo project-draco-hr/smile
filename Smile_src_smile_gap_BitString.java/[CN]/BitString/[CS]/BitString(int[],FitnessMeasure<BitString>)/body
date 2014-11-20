@@ -1,0 +1,5 @@
+{
+  this.bits=bits;
+  this.length=bits.length;
+  this.measure=measure;
+}

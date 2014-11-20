@@ -1,0 +1,6 @@
+{
+  if (!full) {
+    throw new IllegalStateException("This is not a FULL singular value decomposition.");
+  }
+  return (s[0] <= 0.0 || s[n - 1] <= 0.0) ? Double.POSITIVE_INFINITY : s[0] / s[n - 1];
+}

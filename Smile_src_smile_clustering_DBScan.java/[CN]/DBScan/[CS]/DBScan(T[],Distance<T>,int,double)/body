@@ -1,0 +1,3 @@
+{
+  this(data,new LinearSearch<T>(data,distance),minPts,radius);
+}

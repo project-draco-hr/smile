@@ -1,0 +1,25 @@
+{
+  System.out.println("USPS");
+  DelimitedTextParser parser=new DelimitedTextParser();
+  parser.setResponseIndex(new NominalAttribute("class"),0);
+  try {
+    AttributeDataset train=parser.parse("USPS Train",this.getClass().getResourceAsStream("/smile/data/usps/zip.train"));
+    AttributeDataset test=parser.parse("USPS Test",this.getClass().getResourceAsStream("/smile/data/usps/zip.test"));
+    double[][] x=train.toArray(new double[train.size()][]);
+    int[] y=train.toArray(new int[train.size()]);
+    double[][] testx=test.toArray(new double[test.size()][]);
+    int[] testy=test.toArray(new int[test.size()]);
+    DecisionTree tree=new DecisionTree(x,y,350,DecisionTree.SplitRule.ENTROPY);
+    int error=0;
+    for (int i=0; i < testx.length; i++) {
+      if (tree.predict(testx[i]) != testy[i]) {
+        error++;
+      }
+    }
+    System.out.format("USPS error rate = %.2f%%\n",100.0 * error / testx.length);
+    assertEquals(328,error);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

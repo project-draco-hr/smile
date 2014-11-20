@@ -1,0 +1,3 @@
+T[] x
+T[] centers
+Metric<T> distance

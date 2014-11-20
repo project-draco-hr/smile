@@ -1,0 +1,14 @@
+{
+  if (i < k) {
+    int n=data.length;
+    int d=data[0].length;
+    Arrays.fill(centroids[i],0.0);
+    for (int j=0; j < d; j++) {
+      for (int m=0; m < n; m++) {
+        centroids[i][j]+=data[m][j] * posteriori[m][i];
+      }
+      centroids[i][j]/=(n * priori[i]);
+    }
+  }
+  return this;
+}

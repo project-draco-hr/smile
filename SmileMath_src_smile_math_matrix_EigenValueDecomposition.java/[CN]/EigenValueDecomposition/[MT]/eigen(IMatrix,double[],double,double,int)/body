@@ -1,0 +1,30 @@
+{
+  if (A.nrows() != A.ncols()) {
+    throw new IllegalArgumentException("Matrix is not square.");
+  }
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invalid tolerance: " + tol);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int n=A.nrows();
+  tol=Math.max(tol,Math.EPSILON * n);
+  double[] z=new double[n];
+  double lambda=ax(A,v,z,p);
+  for (int iter=1; iter <= maxIter; iter++) {
+    double l=lambda;
+    lambda=ax(A,v,z,p);
+    double eps=Math.abs(lambda - l);
+    if (iter % 10 == 0) {
+      System.out.format("Largest eigenvalue after %3d power iterations: %.5f\n",iter,lambda + p);
+    }
+    if (eps < tol) {
+      System.out.format("Largest eigenvalue after %3d power iterations: %.5f\n",iter,lambda + p);
+      return lambda + p;
+    }
+  }
+  System.out.format("Largest eigenvalue after %3d power iterations: %.5f\n",maxIter,lambda + p);
+  System.err.println("Power iteration exceeded the maximum number of iterations.");
+  return lambda + p;
+}

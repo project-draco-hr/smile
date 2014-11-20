@@ -1,0 +1,5 @@
+{
+  this.y=y;
+  x1terp=new LinearInterpolation(x1,x1);
+  x2terp=new LinearInterpolation(x2,x2);
+}

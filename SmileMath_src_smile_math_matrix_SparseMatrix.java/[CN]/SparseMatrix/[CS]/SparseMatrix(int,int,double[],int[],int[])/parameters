@@ -1,0 +1,5 @@
+int nrows
+int ncols
+double[] x
+int[] rowIndex
+int[] colIndex

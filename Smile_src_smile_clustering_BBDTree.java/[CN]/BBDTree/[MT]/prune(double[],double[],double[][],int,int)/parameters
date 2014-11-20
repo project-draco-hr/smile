@@ -1,0 +1,5 @@
+double[] center
+double[] radius
+double[][] centroids
+int bestIndex
+int testIndex

@@ -1,0 +1,6 @@
+{
+  System.out.println("mean");
+  NegativeBinomialDistribution instance=new NegativeBinomialDistribution(3,0.3);
+  instance.rand();
+  assertEquals(7,instance.mean(),1E-7);
+}

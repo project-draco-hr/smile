@@ -1,0 +1,6 @@
+{
+  graph[source][target]=weight;
+  if (!digraph) {
+    graph[target][source]=weight;
+  }
+}

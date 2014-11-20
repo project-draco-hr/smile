@@ -1,0 +1,8 @@
+{
+  if (data != null) {
+    return new SIB(data,k,maxIter);
+  }
+ else {
+    return new SIB(sparse,k,maxIter);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  System.out.println("distance");
+  double[] x={-2.1968219,-0.9559913,-0.0431738,1.0567679,0.3853515};
+  double[] y={-1.7781325,-0.6659839,0.9526148,-0.9460919,-0.3925300};
+  MinkowskiDistance m3=new MinkowskiDistance(3);
+  MinkowskiDistance m4=new MinkowskiDistance(4);
+  assertEquals(2.124599,m3.d(x,y),1E-6);
+  assertEquals(2.044696,m4.d(x,y),1E-6);
+}

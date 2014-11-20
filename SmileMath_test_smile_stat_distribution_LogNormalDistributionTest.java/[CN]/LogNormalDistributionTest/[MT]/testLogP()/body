@@ -1,0 +1,11 @@
+{
+  System.out.println("logP");
+  LogNormalDistribution instance=new LogNormalDistribution(1.0,1.0);
+  instance.rand();
+  assertEquals(Math.log(6.006101e-06),instance.logp(0.01),1E-5);
+  assertEquals(Math.log(0.01707931),instance.logp(0.1),1E-5);
+  assertEquals(Math.log(0.2419707),instance.logp(1.0),1E-5);
+  assertEquals(Math.log(0.1902978),instance.logp(2.0),1E-5);
+  assertEquals(Math.log(0.06626564),instance.logp(5.0),1E-5);
+  assertEquals(Math.log(0.01707931),instance.logp(10.0),1E-5);
+}

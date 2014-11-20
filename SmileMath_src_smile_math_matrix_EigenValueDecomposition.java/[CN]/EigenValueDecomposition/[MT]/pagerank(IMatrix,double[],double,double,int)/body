@@ -1,0 +1,34 @@
+{
+  if (A.nrows() != A.ncols()) {
+    throw new IllegalArgumentException("Matrix is not square.");
+  }
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invalid tolerance: " + tol);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int n=A.nrows();
+  tol=Math.max(tol,Math.EPSILON * n);
+  double[] z=new double[n];
+  double[] p=Arrays.copyOf(v,n);
+  for (int iter=1; iter <= maxIter; iter++) {
+    A.ax(p,z);
+    double beta=1.0 - damping * Math.norm1(z);
+    double delta=0.0;
+    for (int i=0; i < n; i++) {
+      double q=damping * z[i] + beta * v[i];
+      delta+=Math.abs(q - p[i]);
+      p[i]=q;
+    }
+    if (iter % 10 == 0) {
+      System.out.format("PageRank residual after %3d power iterations: %.7f\n",iter,delta);
+    }
+    if (delta < tol) {
+      System.out.format("PageRank residual after %3d power iterations: %.7f\n",iter,delta);
+      return p;
+    }
+  }
+  System.err.println("PageRank iteration exceeded the maximum number of iterations.");
+  return p;
+}

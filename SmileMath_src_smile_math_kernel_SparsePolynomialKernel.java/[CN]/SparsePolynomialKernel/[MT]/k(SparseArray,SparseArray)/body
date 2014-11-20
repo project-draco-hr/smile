@@ -1,0 +1,4 @@
+{
+  double dot=Math.dot(x,y);
+  return Math.pow(scale * dot + offset,degree);
+}

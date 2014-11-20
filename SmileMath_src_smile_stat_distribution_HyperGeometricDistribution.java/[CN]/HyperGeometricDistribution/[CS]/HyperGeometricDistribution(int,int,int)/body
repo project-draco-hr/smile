@@ -1,0 +1,14 @@
+{
+  if (N < 0) {
+    throw new IllegalArgumentException("Invalid N: " + N);
+  }
+  if (m < 0 || m > N) {
+    throw new IllegalArgumentException("Invalid m: " + m);
+  }
+  if (n < 0 || n > N) {
+    throw new IllegalArgumentException("Invalid n: " + n);
+  }
+  this.N=N;
+  this.m=m;
+  this.n=n;
+}

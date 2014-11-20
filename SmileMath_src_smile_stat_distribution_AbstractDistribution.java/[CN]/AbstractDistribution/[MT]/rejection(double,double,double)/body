@@ -1,0 +1,10 @@
+{
+  double x;
+  double y;
+  do {
+    x=xmin + Math.random() * (xmax - xmin);
+    y=Math.random() * pmax;
+  }
+ while (p(x) < y);
+  return x;
+}

@@ -1,0 +1,32 @@
+{
+  if (node.isLeaf()) {
+    for (int idx=node.index; idx < node.index + node.count; idx++) {
+      if (q == keys[index[idx]] && identicalExcluded) {
+        continue;
+      }
+      double distance=Math.squaredDistance(q,keys[index[idx]]);
+      if (distance < neighbor.distance) {
+        neighbor.key=keys[index[idx]];
+        neighbor.value=data[index[idx]];
+        neighbor.index=index[idx];
+        neighbor.distance=distance;
+      }
+    }
+  }
+ else {
+    Node nearer, further;
+    double diff=q[node.split] - node.cutoff;
+    if (diff < 0) {
+      nearer=node.lower;
+      further=node.upper;
+    }
+ else {
+      nearer=node.upper;
+      further=node.lower;
+    }
+    search(q,nearer,neighbor);
+    if (neighbor.distance >= diff * diff) {
+      search(q,further,neighbor);
+    }
+  }
+}

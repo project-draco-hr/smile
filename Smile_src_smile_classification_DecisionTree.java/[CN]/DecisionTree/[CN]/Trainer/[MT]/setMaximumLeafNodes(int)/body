@@ -1,0 +1,6 @@
+{
+  if (J < 2) {
+    throw new IllegalArgumentException("Invalid number of leaf nodes: " + J);
+  }
+  this.J=J;
+}

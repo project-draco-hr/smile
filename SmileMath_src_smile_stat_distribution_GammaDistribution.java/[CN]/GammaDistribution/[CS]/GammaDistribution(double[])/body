@@ -1,0 +1,21 @@
+{
+  for (int i=0; i < data.length; i++) {
+    if (data[i] <= 0) {
+      throw new IllegalArgumentException("Samples contain non-positive values.");
+    }
+  }
+  double mu=0.0;
+  double s=0.0;
+  for (  double x : data) {
+    mu+=x;
+    s+=Math.log(x);
+  }
+  mu/=data.length;
+  s=Math.log(mu) - s / data.length;
+  k=(3 - s + Math.sqrt((Math.sqr(s - 3) + 24 * s))) / (12 * s);
+  theta=mu / k;
+  logTheta=Math.log(theta);
+  thetaGammaK=theta * Gamma.gamma(k);
+  logGammaK=Gamma.logGamma(k);
+  entropy=k + Math.log(theta) + Gamma.logGamma(k)+ (1 - k) * Gamma.digamma(k);
+}

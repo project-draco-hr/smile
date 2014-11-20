@@ -1,0 +1,27 @@
+{
+  this.attributes=attributes;
+  int p=0;
+  for (  Attribute attribute : attributes) {
+    if (attribute instanceof NominalAttribute) {
+      NominalAttribute nominal=(NominalAttribute)attribute;
+      p+=nominal.size();
+    }
+  }
+  features=new Attribute[p];
+  map=new int[p];
+  value=new int[p];
+  for (int i=0, j=0; j < attributes.length; j++) {
+    Attribute attribute=attributes[j];
+    if (attribute instanceof NominalAttribute) {
+      NominalAttribute nominal=(NominalAttribute)attribute;
+      double weight=nominal.weight;
+      String name=nominal.name;
+      String description=nominal.description;
+      for (int k=0; k < nominal.size(); k++, i++) {
+        features[i]=new NumericAttribute(name + "_" + k,description,weight);
+        map[i]=j;
+        value[i]=k;
+      }
+    }
+  }
+}

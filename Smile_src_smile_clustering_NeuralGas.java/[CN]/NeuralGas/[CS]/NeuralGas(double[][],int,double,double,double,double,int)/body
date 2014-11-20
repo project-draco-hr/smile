@@ -1,0 +1,81 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  if (lambda_i <= 0.0) {
+    throw new IllegalArgumentException("Invalid initial value of lambda: " + lambda_i);
+  }
+  if (lambda_f <= 0.0) {
+    throw new IllegalArgumentException("Invalid final value of lambda: " + lambda_i);
+  }
+  if (lambda_f >= lambda_i) {
+    throw new IllegalArgumentException("lambda_f is NOT less than lambda_i.");
+  }
+  if (eps_i <= 0.0 || eps_i > 1.0) {
+    throw new IllegalArgumentException("Invalid initial value of epsilon: " + eps_i);
+  }
+  if (eps_f <= 0.0 || eps_f > 1.0) {
+    throw new IllegalArgumentException("Invalid final value of epsilon: " + eps_i);
+  }
+  if (eps_f >= eps_i) {
+    throw new IllegalArgumentException("eps_f is NOT less than eps_i.");
+  }
+  int n=data.length;
+  int d=data[0].length;
+  this.k=k;
+  y=seed(data,k,DistanceMethod.EUCLIDEAN);
+  size=new int[k];
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+  }
+  centroids=new double[k][d];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[y[i]][j]+=data[i][j];
+    }
+  }
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[i][j]/=size[i];
+    }
+  }
+  Neuron[] nodes=new Neuron[k];
+  for (int i=0; i < k; i++) {
+    nodes[i]=new Neuron(centroids[i]);
+  }
+  for (int t=0; t < steps; t++) {
+    double tf=(double)t / steps;
+    double lambda=lambda_i * Math.pow(lambda_f / lambda_i,tf);
+    double eps=eps_i * Math.pow(eps_f / eps_i,tf);
+    for (    double[] signal : data) {
+      for (      Neuron node : nodes) {
+        node.dist=Math.squaredDistance(node.w,signal);
+      }
+      Arrays.sort(nodes);
+      for (int i=0; i < k; i++) {
+        double delta=eps * Math.exp(-i / lambda);
+        if (delta > 0) {
+          for (int j=0; j < d; j++) {
+            nodes[i].w[j]+=delta * (signal[j] - nodes[i].w[j]);
+          }
+        }
+      }
+    }
+  }
+  distortion=0.0;
+  for (int i=0; i < n; i++) {
+    double nearest=Double.MAX_VALUE;
+    for (int j=0; j < k; j++) {
+      double dist=Math.squaredDistance(data[i],centroids[j]);
+      if (nearest > dist) {
+        y[i]=j;
+        nearest=dist;
+      }
+    }
+    distortion+=nearest;
+  }
+  Arrays.fill(size,0);
+  for (int i=0; i < data.length; i++) {
+    size[y[i]]++;
+  }
+}

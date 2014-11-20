@@ -1,0 +1,18 @@
+{
+  TrellisNode[][] trellis=new TrellisNode[sequence.length][numClasses];
+  for (int i=0; i < numClasses; i++) {
+    trellis[0][i]=new TrellisNode(true);
+    trellis[0][i].sparseSamples[0]=featureset(sequence[0],numClasses);
+  }
+  for (int t=1; t < sequence.length; t++) {
+    trellis[t][0]=new TrellisNode(true);
+    for (int j=0; j < numClasses; j++) {
+      trellis[t][0].sparseSamples[j]=featureset(sequence[t],j);
+    }
+    for (int i=1; i < numClasses; i++) {
+      trellis[t][i]=new TrellisNode(true);
+      System.arraycopy(trellis[t][0].sparseSamples,0,trellis[t][i].sparseSamples,0,numClasses);
+    }
+  }
+  return trellis;
+}

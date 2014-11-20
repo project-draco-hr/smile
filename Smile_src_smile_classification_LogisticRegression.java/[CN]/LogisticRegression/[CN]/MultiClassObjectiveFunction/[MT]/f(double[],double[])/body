@@ -1,0 +1,55 @@
+{
+  double f=Double.NaN;
+  int p=x[0].length;
+  double[] prob=new double[k];
+  Arrays.fill(g,0.0);
+  if (gtasks != null) {
+    for (    GTask task : gtasks) {
+      task.w=w;
+    }
+    try {
+      f=0.0;
+      for (      double[] gi : MulticoreExecutor.run(gtasks)) {
+        f+=gi[w.length];
+        for (int i=0; i < w.length; i++) {
+          g[i]+=gi[i];
+        }
+      }
+    }
+ catch (    Exception ex) {
+      System.err.println(ex);
+      f=Double.NaN;
+    }
+  }
+  if (Double.isNaN(f)) {
+    f=0.0;
+    int n=x.length;
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < k; j++) {
+        prob[j]=dot(x[i],w,j * (p + 1));
+      }
+      softmax(prob);
+      f-=log(prob[y[i]]);
+      double yi=0.0;
+      for (int j=0; j < k; j++) {
+        yi=(y[i] == j ? 1.0 : 0.0) - prob[j];
+        for (int l=0, pos=j * (p + 1); l < p; l++) {
+          g[pos + l]-=yi * x[i][l];
+        }
+        g[j * (p + 1) + p]-=yi;
+      }
+    }
+  }
+  if (lambda != 0.0) {
+    double w2=0.0;
+    for (int i=0; i < k; i++) {
+      for (int j=0; j < p; j++) {
+        int pos=i * (p + 1) + j;
+        w2+=w[pos] * w[pos];
+        g[pos]+=lambda * w[pos];
+      }
+    }
+    f+=0.5 * lambda * w2;
+  }
+  return f;
+}

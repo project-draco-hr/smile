@@ -1,0 +1,12 @@
+{
+  double minDist=Double.MAX_VALUE;
+  int bestCluster=0;
+  for (int i=0; i < k; i++) {
+    double dist=Math.squaredDistance(x,centroids[i]);
+    if (dist < minDist) {
+      minDist=dist;
+      bestCluster=i;
+    }
+  }
+  return bestCluster;
+}

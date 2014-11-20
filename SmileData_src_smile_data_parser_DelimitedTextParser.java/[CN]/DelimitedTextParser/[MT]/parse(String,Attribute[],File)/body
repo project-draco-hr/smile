@@ -1,0 +1,5 @@
+{
+  AttributeDataset data=new AttributeDataset(name,attributes);
+  parse(data,new BufferedReader(new InputStreamReader(new FileInputStream(file))));
+  return data;
+}

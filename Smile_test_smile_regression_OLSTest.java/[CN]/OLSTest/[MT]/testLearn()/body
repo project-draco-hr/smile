@@ -1,0 +1,28 @@
+{
+  System.out.println("learn");
+  OLS model=new OLS(longley,y);
+  System.out.println(model);
+  assertEquals(12.8440,model.RSS(),1E-4);
+  assertEquals(1.1946,model.error(),1E-4);
+  assertEquals(9,model.df());
+  assertEquals(0.9926,model.RSquared(),1E-4);
+  assertEquals(0.9877,model.adjustedRSquared(),1E-4);
+  assertEquals(202.5094,model.ftest(),1E-4);
+  assertEquals(4.42579E-9,model.pvalue(),1E-14);
+  for (int i=0; i < w.length; i++) {
+    for (int j=0; j < 4; j++) {
+      assertEquals(w[i][j],model.ttest()[i][j],1E-3);
+    }
+  }
+  int n=longley.length;
+  LOOCV loocv=new LOOCV(n);
+  double rss=0.0;
+  for (int i=0; i < n; i++) {
+    double[][] trainx=Math.slice(longley,loocv.train[i]);
+    double[] trainy=Math.slice(y,loocv.train[i]);
+    OLS linear=new OLS(trainx,trainy);
+    double r=y[loocv.test[i]] - linear.predict(longley[loocv.test[i]]);
+    rss+=r * r;
+  }
+  System.out.println("MSE = " + rss / n);
+}

@@ -1,0 +1,34 @@
+{
+  if (x.isEmpty()) {
+    throw new IllegalArgumentException("List x is empty.");
+  }
+  if (y.isEmpty()) {
+    throw new IllegalArgumentException("List y is empty.");
+  }
+  Iterator<SparseArray.Entry> iterX=x.iterator();
+  Iterator<SparseArray.Entry> iterY=y.iterator();
+  SparseArray.Entry a=iterX.hasNext() ? iterX.next() : null;
+  SparseArray.Entry b=iterY.hasNext() ? iterY.next() : null;
+  boolean intersection=false;
+  double kl=0.0;
+  while (a != null && b != null) {
+    if (a.i < b.i) {
+      a=iterX.hasNext() ? iterX.next() : null;
+    }
+ else     if (a.i > b.i) {
+      b=iterY.hasNext() ? iterY.next() : null;
+    }
+ else {
+      intersection=true;
+      kl+=a.x * Math.log(a.x / b.x);
+      a=iterX.hasNext() ? iterX.next() : null;
+      b=iterY.hasNext() ? iterY.next() : null;
+    }
+  }
+  if (intersection) {
+    return kl;
+  }
+ else {
+    return Double.POSITIVE_INFINITY;
+  }
+}

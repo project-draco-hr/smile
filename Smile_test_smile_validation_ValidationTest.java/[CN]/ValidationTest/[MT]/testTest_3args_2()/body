@@ -1,0 +1,34 @@
+{
+  System.out.println("test");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(6);
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/cpu.arff"));
+    double[] datay=data.toArray(new double[data.size()]);
+    double[][] datax=data.toArray(new double[data.size()][]);
+    Math.normalize(datax);
+    int n=datax.length;
+    int m=3 * n / 4;
+    double[][] x=new double[m][];
+    double[] y=new double[m];
+    double[][] testx=new double[n - m][];
+    double[] testy=new double[n - m];
+    int[] index=Math.permutate(n);
+    for (int i=0; i < m; i++) {
+      x[i]=datax[index[i]];
+      y[i]=datay[index[i]];
+    }
+    for (int i=m; i < n; i++) {
+      testx[i - m]=datax[index[i]];
+      testy[i - m]=datay[index[i]];
+    }
+    double[][] centers=new double[20][];
+    RadialBasisFunction[] rbf=SmileUtils.learnGaussianRadialBasis(x,centers,2);
+    RBFNetwork<double[]> rkhs=new RBFNetwork<double[]>(x,y,new EuclideanDistance(),rbf,centers);
+    double rmse=Validation.test(rkhs,testx,testy);
+    System.out.println("RMSE = " + rmse);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

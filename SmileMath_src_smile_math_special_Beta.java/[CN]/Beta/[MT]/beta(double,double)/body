@@ -1,0 +1,3 @@
+{
+  return Math.exp(Gamma.logGamma(x) + Gamma.logGamma(y) - Gamma.logGamma(x + y));
+}

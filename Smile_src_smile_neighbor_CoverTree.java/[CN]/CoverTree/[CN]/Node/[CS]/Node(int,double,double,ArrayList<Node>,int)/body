@@ -1,0 +1,7 @@
+{
+  this.idx=idx;
+  this.maxDist=maxDist;
+  this.parentDist=parentDist;
+  this.children=children;
+  this.scale=scale;
+}

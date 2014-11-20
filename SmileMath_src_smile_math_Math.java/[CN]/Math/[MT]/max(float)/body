@@ -1,0 +1,9 @@
+{
+  float m=Float.NEGATIVE_INFINITY;
+  for (  float n : x) {
+    if (n > m) {
+      m=n;
+    }
+  }
+  return m;
+}

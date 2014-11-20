@@ -1,0 +1,14 @@
+{
+  if (posteriori.length != k) {
+    throw new IllegalArgumentException(String.format("Invalid posteriori vector size: %d, expected: %d",posteriori.length,k));
+  }
+  int[] y=new int[k];
+  for (  DecisionTree tree : trees) {
+    y[tree.predict(x)]++;
+  }
+  double n=trees.size();
+  for (int i=0; i < k; i++) {
+    posteriori[i]=y[i] / n;
+  }
+  return Math.whichMax(y);
+}

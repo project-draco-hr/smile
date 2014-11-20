@@ -1,0 +1,5 @@
+{
+  int[][] sets=new int[getPowerSetSize(set.length)][];
+  getPowerSet(set,0,null,sets,0);
+  return sets;
+}

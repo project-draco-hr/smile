@@ -1,0 +1,6 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException();
+  }
+  return mu + scale * Math.log(p / (1.0 - p));
+}

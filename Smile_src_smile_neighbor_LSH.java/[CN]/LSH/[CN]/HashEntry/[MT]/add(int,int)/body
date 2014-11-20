@@ -1,0 +1,11 @@
+{
+  for (  BucketEntry b : entry) {
+    if (b.bucket == bucket) {
+      b.add(point);
+      return;
+    }
+  }
+  BucketEntry b=new BucketEntry(bucket);
+  b.add(point);
+  entry.add(b);
+}

@@ -1,0 +1,20 @@
+{
+  visitor.visit(v);
+  cc[v]=id;
+  Queue<Integer> queue=new LinkedList<Integer>();
+  queue.offer(v);
+  while (queue.size() > 0) {
+    int t=queue.poll();
+    for (    Edge edge : graph[t]) {
+      int i=edge.v2;
+      if (!digraph && i == t) {
+        i=edge.v1;
+      }
+      if (cc[i] == -1) {
+        visitor.visit(i);
+        queue.offer(i);
+        cc[i]=id;
+      }
+    }
+  }
+}

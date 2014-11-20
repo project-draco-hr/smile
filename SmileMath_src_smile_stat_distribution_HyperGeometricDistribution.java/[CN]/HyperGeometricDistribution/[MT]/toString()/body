@@ -1,0 +1,3 @@
+{
+  return String.format("Hypergeometric Distribution(%d, %d, %d)",N,m,n);
+}

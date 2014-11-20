@@ -1,0 +1,50 @@
+{
+  System.out.println("CPU");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(6);
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/cpu.arff"));
+    double[] datay=data.toArray(new double[data.size()]);
+    double[][] datax=data.toArray(new double[data.size()][]);
+    Math.normalize(datax);
+    int n=datax.length;
+    int k=10;
+    CrossValidation cv=new CrossValidation(n,k);
+    double rss=0.0;
+    double sparseRSS30=0.0;
+    double nystromRSS30=0.0;
+    for (int i=0; i < k; i++) {
+      double[][] trainx=Math.slice(datax,cv.train[i]);
+      double[] trainy=Math.slice(datay,cv.train[i]);
+      double[][] testx=Math.slice(datax,cv.test[i]);
+      double[] testy=Math.slice(datay,cv.test[i]);
+      GaussianProcessRegression<double[]> rkhs=new GaussianProcessRegression<double[]>(trainx,trainy,new GaussianKernel(47.02),0.1);
+      KMeans kmeans=new KMeans(trainx,30,10);
+      double[][] centers=kmeans.centroids();
+      double r0=0.0;
+      for (int l=0; l < centers.length; l++) {
+        for (int j=0; j < l; j++) {
+          r0+=Math.distance(centers[l],centers[j]);
+        }
+      }
+      r0/=(2 * centers.length);
+      System.out.println("Kernel width = " + r0);
+      GaussianProcessRegression<double[]> sparse30=new GaussianProcessRegression<double[]>(trainx,trainy,centers,new GaussianKernel(r0),0.1);
+      GaussianProcessRegression<double[]> nystrom30=new GaussianProcessRegression<double[]>(trainx,trainy,centers,new GaussianKernel(r0),0.1,true);
+      for (int j=0; j < testx.length; j++) {
+        double r=testy[j] - rkhs.predict(testx[j]);
+        rss+=r * r;
+        r=testy[j] - sparse30.predict(testx[j]);
+        sparseRSS30+=r * r;
+        r=testy[j] - nystrom30.predict(testx[j]);
+        nystromRSS30+=r * r;
+      }
+    }
+    System.out.println("Regular 10-CV MSE = " + rss / n);
+    System.out.println("Sparse (30) 10-CV MSE = " + sparseRSS30 / n);
+    System.out.println("Nystrom (30) 10-CV MSE = " + nystromRSS30 / n);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

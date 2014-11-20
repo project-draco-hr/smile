@@ -1,0 +1,31 @@
+{
+  System.out.println("iris");
+  try {
+    ArffParser arffParser=new ArffParser();
+    arffParser.setResponseIndex(4);
+    AttributeDataset iris=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/iris.arff"));
+    double[][] x=iris.toArray(new double[iris.size()][]);
+    int[] y=iris.toArray(new int[iris.size()]);
+    assertEquals(Attribute.Type.NOMINAL,iris.response().type);
+    for (    Attribute attribute : iris.attributes()) {
+      assertEquals(Attribute.Type.NUMERIC,attribute.type);
+    }
+    assertEquals(150,iris.size());
+    assertEquals(4,iris.attributes().length);
+    assertEquals("Iris-setosa",iris.response().toString(y[0]));
+    assertEquals("Iris-setosa",iris.response().toString(y[1]));
+    assertEquals("Iris-setosa",iris.response().toString(y[2]));
+    assertEquals(5.1,x[0][0],1E-7);
+    assertEquals(3.5,x[0][1],1E-7);
+    assertEquals(1.4,x[0][2],1E-7);
+    assertEquals(0.2,x[0][3],1E-7);
+    assertEquals("Iris-virginica",iris.response().toString(y[149]));
+    assertEquals(5.9,x[149][0],1E-7);
+    assertEquals(3.0,x[149][1],1E-7);
+    assertEquals(5.1,x[149][2],1E-7);
+    assertEquals(1.8,x[149][3],1E-7);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

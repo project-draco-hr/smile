@@ -1,0 +1,11 @@
+{
+  System.out.println("cdf");
+  BinomialDistribution instance=new BinomialDistribution(100,0.3);
+  instance.rand();
+  assertEquals(3.234477e-16,instance.cdf(0),1E-20);
+  assertEquals(1.418549e-14,instance.cdf(1),1E-18);
+  assertEquals(1.555566e-06,instance.cdf(10),1E-10);
+  assertEquals(0.01646285,instance.cdf(20),1E-7);
+  assertEquals(0.5491236,instance.cdf(30),1E-7);
+  assertEquals(1.0,instance.cdf(100),1E-7);
+}

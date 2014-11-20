@@ -1,0 +1,6 @@
+{
+  if (radius != (int)radius) {
+    throw new IllegalArgumentException("The parameter radius has to be an integer: " + radius);
+  }
+  search(root,q,(int)radius,neighbors);
+}

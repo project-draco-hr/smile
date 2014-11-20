@@ -1,0 +1,17 @@
+{
+  if (x.isEmpty()) {
+    throw new IllegalArgumentException("List x is empty.");
+  }
+  Iterator<SparseArray.Entry> iter=x.iterator();
+  double js=0.0;
+  while (iter.hasNext()) {
+    SparseArray.Entry b=iter.next();
+    int i=b.i;
+    double mi=(b.x + y[i]) / 2;
+    js+=b.x * Math.log(b.x / mi);
+    if (y[i] > 0) {
+      js+=y[i] * Math.log(y[i] / mi);
+    }
+  }
+  return js / 2;
+}

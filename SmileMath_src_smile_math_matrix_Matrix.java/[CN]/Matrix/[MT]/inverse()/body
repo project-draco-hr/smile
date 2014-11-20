@@ -1,0 +1,3 @@
+{
+  return solve(Math.eye(ncols(),nrows()));
+}

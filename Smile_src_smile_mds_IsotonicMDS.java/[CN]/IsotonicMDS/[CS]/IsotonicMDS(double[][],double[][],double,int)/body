@@ -1,0 +1,55 @@
+{
+  if (proximity.length != proximity[0].length) {
+    throw new IllegalArgumentException("The proximity matrix is not square.");
+  }
+  if (proximity.length != init.length) {
+    throw new IllegalArgumentException("The proximity matrix and the initial coordinates are of different size.");
+  }
+  coordinates=Math.clone(init);
+  int nr=proximity.length;
+  int nc=coordinates[0].length;
+  int n=nr * (nr - 1) / 2;
+  double[] d=new double[n];
+  for (int i=0, l=0; i < nr; i++) {
+    for (int j=i + 1; j < nr; j++, l++) {
+      d[l]=proximity[j][i];
+    }
+  }
+  double[] x=new double[nr * nc];
+  for (int i=0, l=0; i < nr; i++) {
+    for (int j=0; j < nc; j++, l++) {
+      x[l]=coordinates[i][j];
+    }
+  }
+  int[] ord=QuickSort.sort(d);
+  int[] ord2=QuickSort.sort(ord.clone());
+  ObjectiveFunction func=new ObjectiveFunction(nr,nc,d,ord,ord2);
+  stress=0.0;
+  try {
+    stress=Math.min(func,5,x,tol,maxIter);
+  }
+ catch (  Exception ex) {
+    stress=Math.min(func,x,tol,maxIter);
+  }
+  if (stress == 0.0) {
+    System.out.format("Isotonic MDS: error = %.1f%%. The fit is perfect.\n",100 * stress);
+  }
+ else   if (stress <= 0.025) {
+    System.out.format("Isotonic MDS: error = %.1f%%. The fit is excellent.\n",100 * stress);
+  }
+ else   if (stress <= 0.05) {
+    System.out.format("Isotonic MDS: error = %.1f%%. The fit is good.\n",100 * stress);
+  }
+ else   if (stress <= 0.10) {
+    System.out.format("Isotonic MDS: error = %.1f%%. The fit is fair.\n",100 * stress);
+  }
+ else {
+    System.out.format("Isotonic MDS: error = %.1f%%. The fit may be poor.\n",100 * stress);
+  }
+  coordinates=new double[nr][nc];
+  for (int i=0, l=0; i < nr; i++) {
+    for (int j=0; j < nc; j++, l++) {
+      coordinates[i][j]=x[l];
+    }
+  }
+}

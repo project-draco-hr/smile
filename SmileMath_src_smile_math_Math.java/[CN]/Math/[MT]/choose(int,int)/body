@@ -1,0 +1,9 @@
+{
+  if (n < 0 || k < 0) {
+    throw new IllegalArgumentException(String.format("Invalid n = %d, k = %d",n,k));
+  }
+  if (n < k) {
+    return 0.0;
+  }
+  return Math.floor(0.5 + Math.exp(logChoose(n,k)));
+}

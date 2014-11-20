@@ -1,0 +1,12 @@
+{
+  double f=0.0;
+  double[] prob=new double[k];
+  for (int i=start; i < end; i++) {
+    for (int j=0; j < k; j++) {
+      prob[j]=dot(x[i],w,j,p);
+    }
+    softmax(prob);
+    f-=log(prob[y[i]]);
+  }
+  return f;
+}

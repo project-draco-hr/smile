@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(Math.sqrt(3.5),instance.sd(),1E-7);
+}

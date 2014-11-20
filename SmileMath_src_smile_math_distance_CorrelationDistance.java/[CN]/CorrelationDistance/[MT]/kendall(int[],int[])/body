@@ -1,0 +1,4 @@
+{
+  if (x.length != y.length)   throw new IllegalArgumentException(String.format("Arrays have different length: x[%d], y[%d]",x.length,y.length));
+  return 1 - Math.kendall(x,y);
+}

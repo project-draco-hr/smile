@@ -1,0 +1,40 @@
+{
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  ArrayList<DistanceNode> currentCoverSet=new ArrayList<DistanceNode>();
+  ArrayList<DistanceNode> zeroSet=new ArrayList<DistanceNode>();
+  double d=distance.d(root.getObject(),q);
+  currentCoverSet.add(new DistanceNode(d,root));
+  while (currentCoverSet.size() > 0) {
+    ArrayList<DistanceNode> nextCoverSet=new ArrayList<DistanceNode>();
+    for (int i=0; i < currentCoverSet.size(); i++) {
+      DistanceNode par=currentCoverSet.get(i);
+      Node parent=currentCoverSet.get(i).node;
+      for (int c=0; c < parent.children.size(); c++) {
+        Node child=parent.children.get(c);
+        if (c == 0) {
+          d=par.dist;
+        }
+ else {
+          d=distance.d(child.getObject(),q);
+        }
+        if (d <= (radius + child.maxDist)) {
+          if (child.children != null) {
+            nextCoverSet.add(new DistanceNode(d,child));
+          }
+ else           if (d <= radius) {
+            zeroSet.add(new DistanceNode(d,child));
+          }
+        }
+      }
+    }
+    currentCoverSet=nextCoverSet;
+  }
+  for (int i=0; i < zeroSet.size(); i++) {
+    DistanceNode ds=zeroSet.get(i);
+    if (!identicalExcluded || ds.node.getObject() != q) {
+      neighbors.add(new Neighbor<E,E>(ds.node.getObject(),ds.node.getObject(),ds.node.idx,ds.dist));
+    }
+  }
+}

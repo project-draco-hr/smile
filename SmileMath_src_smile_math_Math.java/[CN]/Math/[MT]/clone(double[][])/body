@@ -1,0 +1,7 @@
+{
+  double[][] matrix=new double[x.length][];
+  for (int i=0; i < x.length; i++) {
+    matrix[i]=x[i].clone();
+  }
+  return matrix;
+}

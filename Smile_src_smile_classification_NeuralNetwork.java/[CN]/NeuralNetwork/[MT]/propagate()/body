@@ -1,0 +1,5 @@
+{
+  for (int l=0; l < net.length - 1; l++) {
+    propagate(net[l],net[l + 1]);
+  }
+}

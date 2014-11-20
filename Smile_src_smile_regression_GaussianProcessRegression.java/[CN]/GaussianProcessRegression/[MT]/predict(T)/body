@@ -1,0 +1,7 @@
+{
+  double f=0.0;
+  for (int i=0; i < knots.length; i++) {
+    f+=w[i] * kernel.k(x,knots[i]);
+  }
+  return f;
+}

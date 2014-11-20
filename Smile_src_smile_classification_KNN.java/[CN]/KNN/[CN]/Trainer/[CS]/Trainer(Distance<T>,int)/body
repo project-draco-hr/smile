@@ -1,0 +1,7 @@
+{
+  if (k < 1) {
+    throw new IllegalArgumentException("Invalid k of k-NN: " + k);
+  }
+  this.distance=distance;
+  this.k=k;
+}

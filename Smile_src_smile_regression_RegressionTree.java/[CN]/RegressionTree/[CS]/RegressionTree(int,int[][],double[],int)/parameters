@@ -1,0 +1,4 @@
+int numFeatures
+int[][] x
+double[] y
+int J

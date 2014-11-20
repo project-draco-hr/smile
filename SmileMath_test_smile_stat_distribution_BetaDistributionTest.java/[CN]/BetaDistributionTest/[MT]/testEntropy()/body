@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(-0.4845307,instance.entropy(),1E-7);
+}

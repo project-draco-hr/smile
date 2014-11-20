@@ -1,0 +1,8 @@
+{
+  if (x < 0) {
+    return 0.0;
+  }
+ else {
+    return lambda * Math.exp(-lambda * x);
+  }
+}

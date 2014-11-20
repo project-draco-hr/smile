@@ -1,0 +1,11 @@
+{
+  int m=matrix[0][0];
+  for (  int[] x : matrix) {
+    for (    int y : x) {
+      if (m > y) {
+        m=y;
+      }
+    }
+  }
+  return m;
+}

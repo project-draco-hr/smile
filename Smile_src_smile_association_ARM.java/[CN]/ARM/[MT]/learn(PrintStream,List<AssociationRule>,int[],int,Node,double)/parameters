@@ -1,0 +1,6 @@
+PrintStream out
+List<AssociationRule> list
+int[] itemset
+int size
+Node node
+double confidence

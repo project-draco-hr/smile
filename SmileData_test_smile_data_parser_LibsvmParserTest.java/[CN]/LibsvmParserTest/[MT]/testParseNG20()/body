@@ -1,0 +1,36 @@
+{
+  System.out.println("NG20");
+  LibsvmParser parser=new LibsvmParser();
+  try {
+    SparseDataset train=parser.parse("NG20 Train",this.getClass().getResourceAsStream("/smile/data/libsvm/news20.dat"));
+    SparseDataset test=parser.parse("NG20 Test",this.getClass().getResourceAsStream("/smile/data/libsvm/news20.t.dat"));
+    int[] y=train.toArray(new int[train.size()]);
+    int[] testy=test.toArray(new int[test.size()]);
+    assertEquals(train.size(),15935);
+    assertEquals(y[0],0);
+    assertEquals(train.get(0,0),0.0,1E-7);
+    assertEquals(train.get(0,1),0.0,1E-7);
+    assertEquals(train.get(0,196),2.0,1E-7);
+    assertEquals(train.get(0,320),3.0,1E-7);
+    assertEquals(train.get(0,20504),0.0,1E-7);
+    assertEquals(train.get(0,20505),1.0,1E-7);
+    assertEquals(train.get(0,20506),1.0,1E-7);
+    assertEquals(train.get(0,20507),0.0,1E-7);
+    assertEquals(y[y.length - 1],16);
+    assertEquals(train.get(y.length - 1,0),1.0,1E-7);
+    assertEquals(train.get(y.length - 1,1),0.0,1E-7);
+    assertEquals(train.get(y.length - 1,9),1.0,1E-7);
+    assertEquals(train.get(y.length - 1,10),0.0,1E-7);
+    assertEquals(train.get(y.length - 1,57796),0.0,1E-7);
+    assertEquals(train.get(y.length - 1,57797),1.0,1E-7);
+    assertEquals(train.get(y.length - 1,57798),0.0,1E-7);
+    assertEquals(test.size(),3993);
+    assertEquals(testy[0],1);
+    assertEquals(testy[testy.length - 3],17);
+    assertEquals(testy[testy.length - 2],18);
+    assertEquals(testy[testy.length - 1],16);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

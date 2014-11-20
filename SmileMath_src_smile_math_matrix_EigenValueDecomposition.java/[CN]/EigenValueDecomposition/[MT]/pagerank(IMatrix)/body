@@ -1,0 +1,6 @@
+{
+  int n=A.nrows();
+  double[] v=new double[n];
+  Arrays.fill(v,1.0 / n);
+  return pagerank(A,v);
+}

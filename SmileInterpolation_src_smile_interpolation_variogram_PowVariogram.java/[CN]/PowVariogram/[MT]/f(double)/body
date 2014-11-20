@@ -1,0 +1,3 @@
+{
+  return nugget + alpha * Math.pow(r,beta);
+}

@@ -1,0 +1,3 @@
+{
+  return inverfc(1. - p);
+}

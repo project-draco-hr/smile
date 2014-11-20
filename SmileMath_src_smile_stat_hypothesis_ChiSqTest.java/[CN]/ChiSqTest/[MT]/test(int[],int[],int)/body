@@ -1,0 +1,19 @@
+{
+  if (bins1.length != bins2.length) {
+    throw new IllegalArgumentException("Input vectors have different size");
+  }
+  int nbins=bins1.length;
+  int df=nbins - constraints;
+  double chisq=0.0;
+  for (int j=0; j < nbins; j++) {
+    if (bins1[j] == 0 && bins2[j] == 0) {
+      --df;
+    }
+ else {
+      double temp=bins1[j] - bins2[j];
+      chisq+=temp * temp / (bins1[j] + bins2[j]);
+    }
+  }
+  double p=Gamma.regularizedUpperIncompleteGamma(0.5 * df,0.5 * chisq);
+  return new ChiSqTest(chisq,df,p);
+}

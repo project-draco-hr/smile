@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  HyperGeometricDistribution instance=new HyperGeometricDistribution(100,30,70);
+  instance.rand();
+  assertEquals(3,instance.npara());
+}

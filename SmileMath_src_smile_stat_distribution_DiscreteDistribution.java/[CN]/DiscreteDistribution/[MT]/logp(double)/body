@@ -1,0 +1,4 @@
+{
+  if (x - Math.floor(x) != 0)   return Double.NaN;
+ else   return logp((int)x);
+}

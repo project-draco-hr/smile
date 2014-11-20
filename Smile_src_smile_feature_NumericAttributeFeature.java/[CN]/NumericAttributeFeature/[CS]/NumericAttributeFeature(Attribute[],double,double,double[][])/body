@@ -1,0 +1,45 @@
+{
+  if (lower < 0.0 || lower > 0.5) {
+    throw new IllegalArgumentException("Invalid lower limit: " + lower);
+  }
+  if (upper < 0.5 || lower > 1.0) {
+    throw new IllegalArgumentException("Invalid upper limit: " + upper);
+  }
+  if (upper <= lower) {
+    throw new IllegalArgumentException("Invalid lower and upper limit pair: " + lower + " >= "+ upper);
+  }
+  this.attributes=attributes;
+  this.scaling=Scaling.NORMALIZATION;
+  int n=data.length;
+  int p=0;
+  for (  Attribute attribute : attributes) {
+    if (attribute instanceof NumericAttribute) {
+      p++;
+    }
+  }
+  int i1=(int)Math.round(lower * n);
+  int i2=(int)Math.round(upper * n);
+  if (i2 == n) {
+    i2=n - 1;
+  }
+  features=new Attribute[p];
+  map=new int[p];
+  a=new double[p];
+  b=new double[p];
+  double[] x=new double[n];
+  for (int i=0, j=0; j < attributes.length; j++) {
+    Attribute attribute=attributes[j];
+    if (attribute instanceof NumericAttribute) {
+      features[i]=new NumericAttribute(attribute.name + "_" + scaling,attribute.description,attribute.weight);
+      for (int k=0; k < n; k++) {
+        x[k]=data[k][j];
+      }
+      a[i]=QuickSelect.select(x,i1);
+      b[i]=QuickSelect.select(x,i2) - a[i];
+      if (b[i] == 0.0) {
+        throw new IllegalArgumentException("Attribute " + attribute + " has constant values in the given range.");
+      }
+      map[i++]=j;
+    }
+  }
+}

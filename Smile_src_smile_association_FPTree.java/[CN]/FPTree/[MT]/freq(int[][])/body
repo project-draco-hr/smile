@@ -1,0 +1,9 @@
+{
+  int[] f=new int[Math.max(itemsets) + 1];
+  for (  int[] itemset : itemsets) {
+    for (    int i : itemset) {
+      f[i]++;
+    }
+  }
+  return f;
+}

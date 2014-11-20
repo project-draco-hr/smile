@@ -1,0 +1,15 @@
+{
+  System.out.println("p");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(0.0,instance.p(-0.1),1E-7);
+  assertEquals(0.0,instance.p(0.0),1E-7);
+  assertEquals(0.0005147916,instance.p(0.1),1E-7);
+  assertEquals(0.03353553,instance.p(1.0),1E-7);
+  assertEquals(0.08332174,instance.p(2.0),1E-7);
+  assertEquals(0.1164485,instance.p(3.0),1E-7);
+  assertEquals(0.1285892,instance.p(4.0),1E-7);
+  assertEquals(0.04615759,instance.p(10),1E-7);
+  assertEquals(0.001578462,instance.p(20),1E-7);
+  assertEquals(3.036321e-05,instance.p(30),1E-7);
+}

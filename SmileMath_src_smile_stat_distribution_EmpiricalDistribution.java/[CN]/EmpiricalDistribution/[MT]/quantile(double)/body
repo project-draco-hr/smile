@@ -1,0 +1,12 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  int k=Arrays.binarySearch(cdf,p);
+  if (k < 0) {
+    return x[-k - 1];
+  }
+ else {
+    return x[k];
+  }
+}

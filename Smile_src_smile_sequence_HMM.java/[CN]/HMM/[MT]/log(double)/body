@@ -1,0 +1,10 @@
+{
+  double y;
+  if (x < 1E-300) {
+    y=-690.7755;
+  }
+ else {
+    y=java.lang.Math.log(x);
+  }
+  return y;
+}

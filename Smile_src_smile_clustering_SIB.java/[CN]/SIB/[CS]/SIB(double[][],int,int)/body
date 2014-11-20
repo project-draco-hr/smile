@@ -1,0 +1,66 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid parameter k = " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int n=data.length;
+  int d=data[0].length;
+  this.k=k;
+  size=new int[k];
+  centroids=new double[k][d];
+  y=seed(data,k,DistanceMethod.JENSEN_SHANNON_DIVERGENCE);
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+    for (int j=0; j < d; j++) {
+      centroids[y[i]][j]+=data[i][j];
+    }
+  }
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[i][j]/=size[i];
+    }
+  }
+  for (int iter=1, reassignment=n; iter <= maxIter && reassignment > 0; iter++) {
+    reassignment=0;
+    for (int i=0; i < n; i++) {
+      double nearest=Double.MAX_VALUE;
+      int c=-1;
+      for (int j=0; j < k; j++) {
+        double dist=Math.JensenShannonDivergence(data[i],centroids[j]);
+        if (nearest > dist) {
+          nearest=dist;
+          c=j;
+        }
+      }
+      if (c != y[i]) {
+        int o=y[i];
+        if (size[o] > 1) {
+          int m=size[o] - 1;
+          for (int j=0; j < d; j++) {
+            centroids[o][j]=(centroids[o][j] * size[o] - data[i][j]) / m;
+            if (centroids[o][j] < 0) {
+              centroids[o][j]=0;
+            }
+          }
+        }
+ else {
+          Arrays.fill(centroids[o],0.0);
+        }
+        int m=size[c] + 1;
+        for (int j=0; j < d; j++) {
+          centroids[c][j]=(centroids[c][j] * size[c] + data[i][j]) / m;
+        }
+        size[o]--;
+        size[c]++;
+        y[i]=c;
+        reassignment++;
+      }
+    }
+  }
+  distortion=0;
+  for (int i=0; i < n; i++) {
+    distortion+=Math.JensenShannonDivergence(data[i],centroids[y[i]]);
+  }
+}

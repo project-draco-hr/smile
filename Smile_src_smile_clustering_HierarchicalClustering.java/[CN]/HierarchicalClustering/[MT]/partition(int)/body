@@ -1,0 +1,13 @@
+{
+  int n=merge.length + 1;
+  int[] membership=new int[n];
+  IntHeapSelect heap=new IntHeapSelect(k);
+  for (int i=2; i <= k; i++) {
+    heap.add(merge[n - i][0]);
+    heap.add(merge[n - i][1]);
+  }
+  for (int i=0; i < k; i++) {
+    bfs(membership,heap.get(i),i);
+  }
+  return membership;
+}

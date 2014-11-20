@@ -1,0 +1,8 @@
+{
+  if (A.nrows() >= A.ncols()) {
+    return A.ncols();
+  }
+ else {
+    return A.nrows();
+  }
+}

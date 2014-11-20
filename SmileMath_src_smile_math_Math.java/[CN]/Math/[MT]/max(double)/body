@@ -1,0 +1,9 @@
+{
+  double m=Double.NEGATIVE_INFINITY;
+  for (  double n : x) {
+    if (n > m) {
+      m=n;
+    }
+  }
+  return m;
+}

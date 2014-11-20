@@ -1,0 +1,7 @@
+{
+  int i=0;
+  while (i < r.length && r[i] < f) {
+    ++i;
+  }
+  return ((i < r.length && r[i] == f) ? i : -1);
+}

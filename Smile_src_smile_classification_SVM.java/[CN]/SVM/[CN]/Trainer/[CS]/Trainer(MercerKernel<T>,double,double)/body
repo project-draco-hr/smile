@@ -1,0 +1,12 @@
+{
+  if (Cp < 0) {
+    throw new IllegalArgumentException("Invalid postive instance soft margin penalty: " + Cp);
+  }
+  if (Cn < 0) {
+    throw new IllegalArgumentException("Invalid negative instance soft margin penalty: " + Cn);
+  }
+  this.kernel=kernel;
+  this.Cp=Cp;
+  this.Cn=Cn;
+  this.k=2;
+}

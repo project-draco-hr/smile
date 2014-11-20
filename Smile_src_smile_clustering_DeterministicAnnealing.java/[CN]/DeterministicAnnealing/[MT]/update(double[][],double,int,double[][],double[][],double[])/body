@@ -1,0 +1,86 @@
+{
+  int n=data.length;
+  int d=data[0].length;
+  double D=0.0;
+  double H=0.0;
+  int iter=0;
+  double currentDistortion=Double.MAX_VALUE;
+  double newDistortion=Double.MAX_VALUE / 2;
+  while (iter < 100 && currentDistortion > newDistortion) {
+    currentDistortion=newDistortion;
+    D=Double.NaN;
+    H=0.0;
+    if (tasks != null) {
+      try {
+        D=0.0;
+        for (        UpdateThread t : tasks) {
+          t.k=k;
+          t.T=T;
+        }
+        for (        UpdateThread t : MulticoreExecutor.run(tasks)) {
+          D+=t.D;
+          H+=t.H;
+        }
+      }
+ catch (      Exception ex) {
+        System.err.println(ex);
+        D=Double.NaN;
+      }
+    }
+    if (Double.isNaN(D)) {
+      D=0.0;
+      double[] dist=new double[k];
+      for (int i=0; i < n; i++) {
+        double p=0.0;
+        for (int j=0; j < k; j++) {
+          dist[j]=Math.squaredDistance(data[i],centroids[j]);
+          posteriori[i][j]=priori[j] * Math.exp(-dist[j] / T);
+          p+=posteriori[i][j];
+        }
+        double r=0.0;
+        for (int j=0; j < k; j++) {
+          posteriori[i][j]/=p;
+          D+=posteriori[i][j] * dist[j];
+          r+=-posteriori[i][j] * Math.log(posteriori[i][j]);
+        }
+        H+=r;
+      }
+    }
+    for (int i=0; i < k; i++) {
+      priori[i]=0;
+      for (int j=0; j < n; j++) {
+        priori[i]+=posteriori[j][i];
+      }
+      priori[i]/=n;
+    }
+    boolean parallel=false;
+    if (ctasks != null) {
+      try {
+        for (        CentroidThread t : ctasks) {
+          t.k=k;
+        }
+        MulticoreExecutor.run(ctasks);
+        parallel=true;
+      }
+ catch (      Exception ex) {
+        System.err.println(ex);
+        parallel=false;
+      }
+    }
+    if (!parallel) {
+      for (int i=0; i < k; i++) {
+        Arrays.fill(centroids[i],0.0);
+        for (int j=0; j < d; j++) {
+          for (int m=0; m < n; m++) {
+            centroids[i][j]+=data[m][j] * posteriori[m][i];
+          }
+          centroids[i][j]/=(n * priori[i]);
+        }
+      }
+    }
+    newDistortion=D - T * H;
+    iter++;
+  }
+  System.out.format("Deterministic Annealing clustering entropy after %3d iterations at temperature %.4f and k = %d: %.5f (soft distortion = %.5f )\n",iter,T,k / 2,H,D);
+  return currentDistortion;
+}

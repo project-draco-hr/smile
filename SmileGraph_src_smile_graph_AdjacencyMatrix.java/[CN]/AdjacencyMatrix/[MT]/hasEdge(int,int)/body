@@ -1,0 +1,3 @@
+{
+  return graph[source][target] != 0.0;
+}

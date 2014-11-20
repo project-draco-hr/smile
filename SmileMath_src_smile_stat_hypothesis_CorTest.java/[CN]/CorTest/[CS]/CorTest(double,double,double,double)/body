@@ -1,0 +1,6 @@
+{
+  this.cor=cor;
+  this.df=df;
+  this.t=t;
+  this.pvalue=pvalue;
+}

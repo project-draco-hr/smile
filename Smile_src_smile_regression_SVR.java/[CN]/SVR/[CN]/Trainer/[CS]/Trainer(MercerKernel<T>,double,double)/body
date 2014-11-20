@@ -1,0 +1,8 @@
+{
+  if (C < 0) {
+    throw new IllegalArgumentException("Invalid soft margin penalty: " + C);
+  }
+  this.kernel=kernel;
+  this.C=C;
+  this.eps=eps;
+}

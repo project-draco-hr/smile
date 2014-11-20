@@ -1,0 +1,14 @@
+{
+  System.out.println("distance");
+  BitSet x=new BitSet();
+  x.set(1);
+  x.set(3);
+  x.set(4);
+  x.set(5);
+  x.set(7);
+  BitSet y=new BitSet();
+  y.set(1);
+  y.set(4);
+  y.set(7);
+  assertEquals(2,HammingDistance.d(x,y),1E-9);
+}

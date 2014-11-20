@@ -1,0 +1,17 @@
+{
+  int index=0;
+  double smallest=children[0].distance(x);
+  for (int i=1; i < numChildren; i++) {
+    double dist=children[i].distance(x);
+    if (dist < smallest) {
+      index=i;
+      smallest=dist;
+    }
+  }
+  if (children[index].numChildren == 0) {
+    return (Leaf)children[index];
+  }
+ else {
+    return children[index].search(x);
+  }
+}

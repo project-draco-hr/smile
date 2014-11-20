@@ -1,0 +1,9 @@
+{
+  this.d=d;
+  this.epsBest=epsBest;
+  this.epsNeighbor=epsNeighbor;
+  this.maxEdgeAge=maxEdgeAge;
+  this.lambda=lambda;
+  this.alpha=alpha;
+  this.beta=beta;
+}

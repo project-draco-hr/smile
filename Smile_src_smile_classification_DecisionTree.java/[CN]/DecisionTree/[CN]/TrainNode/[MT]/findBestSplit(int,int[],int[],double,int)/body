@@ -1,0 +1,76 @@
+{
+  int N=x.length;
+  Node splitNode=new Node();
+  if (attributes[j].type == Attribute.Type.NOMINAL) {
+    int m=((NominalAttribute)attributes[j]).size();
+    int[][] trueCount=new int[m][k];
+    for (int i=0; i < N; i++) {
+      if (samples[i] > 0) {
+        trueCount[(int)x[i][j]][y[i]]+=samples[i];
+      }
+    }
+    for (int l=0; l < m; l++) {
+      int tc=Math.sum(trueCount[l]);
+      int fc=n - tc;
+      if (tc == 0 || fc == 0) {
+        continue;
+      }
+      for (int q=0; q < k; q++) {
+        falseCount[q]=count[q] - trueCount[l][q];
+      }
+      int trueLabel=Math.whichMax(trueCount[l]);
+      int falseLabel=Math.whichMax(falseCount);
+      double gain=impurity - (double)tc / n * impurity(trueCount[l],tc) - (double)fc / n * impurity(falseCount,fc);
+      if (gain > splitNode.splitScore) {
+        splitNode.splitFeature=j;
+        splitNode.splitValue=l;
+        splitNode.splitScore=gain;
+        splitNode.trueChildOutput=trueLabel;
+        splitNode.falseChildOutput=falseLabel;
+      }
+    }
+  }
+ else   if (attributes[j].type == Attribute.Type.NUMERIC) {
+    int[] trueCount=new int[k];
+    double prevx=Double.NaN;
+    int prevy=-1;
+    for (    int i : order[j]) {
+      if (samples[i] > 0) {
+        if (Double.isNaN(prevx) || x[i][j] == prevx || y[i] == prevy) {
+          prevx=x[i][j];
+          prevy=y[i];
+          trueCount[y[i]]+=samples[i];
+          continue;
+        }
+        int tc=Math.sum(trueCount);
+        int fc=n - tc;
+        if (tc == 0 || fc == 0) {
+          prevx=x[i][j];
+          prevy=y[i];
+          trueCount[y[i]]+=samples[i];
+          continue;
+        }
+        for (int l=0; l < k; l++) {
+          falseCount[l]=count[l] - trueCount[l];
+        }
+        int trueLabel=Math.whichMax(trueCount);
+        int falseLabel=Math.whichMax(falseCount);
+        double gain=impurity - (double)tc / n * impurity(trueCount,tc) - (double)fc / n * impurity(falseCount,fc);
+        if (gain > splitNode.splitScore) {
+          splitNode.splitFeature=j;
+          splitNode.splitValue=(x[i][j] + prevx) / 2;
+          splitNode.splitScore=gain;
+          splitNode.trueChildOutput=trueLabel;
+          splitNode.falseChildOutput=falseLabel;
+        }
+        prevx=x[i][j];
+        prevy=y[i];
+        trueCount[y[i]]+=samples[i];
+      }
+    }
+  }
+ else {
+    throw new IllegalStateException("Unsupported attribute type: " + attributes[j].type);
+  }
+  return splitNode;
+}

@@ -1,0 +1,13 @@
+{
+  this(keys[0].length,Math.max(50,(int)Math.pow(keys.length,0.25)),Math.max(3,(int)Math.log10(keys.length)),w,H);
+  if (keys.length != data.length) {
+    throw new IllegalArgumentException("The array size of keys and data are different.");
+  }
+  if (H < keys.length) {
+    throw new IllegalArgumentException("Hash table size is too small: " + H);
+  }
+  int n=keys.length;
+  for (int i=0; i < n; i++) {
+    put(keys[i],data[i]);
+  }
+}

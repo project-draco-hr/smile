@@ -1,0 +1,3 @@
+double[] q
+Node node
+HeapSelect<Neighbor<double[],E>> heap

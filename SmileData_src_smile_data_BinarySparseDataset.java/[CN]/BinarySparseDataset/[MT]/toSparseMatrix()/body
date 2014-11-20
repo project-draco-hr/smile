@@ -1,0 +1,19 @@
+{
+  int[] pos=new int[numColumns];
+  int[] colIndex=new int[numColumns + 1];
+  for (int i=0; i < numColumns; i++) {
+    colIndex[i + 1]=colIndex[i] + colSize[i];
+  }
+  int nrows=size();
+  int[] rowIndex=new int[n];
+  double[] x=new double[n];
+  for (int i=0; i < nrows; i++) {
+    for (    int j : get(i).x) {
+      int k=colIndex[j] + pos[j];
+      rowIndex[k]=i;
+      x[k]=1;
+      pos[j]++;
+    }
+  }
+  return new SparseMatrix(nrows,numColumns,x,rowIndex,colIndex);
+}

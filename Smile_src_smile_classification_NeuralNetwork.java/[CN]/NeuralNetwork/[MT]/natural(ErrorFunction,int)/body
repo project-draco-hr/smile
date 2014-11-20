@@ -1,0 +1,13 @@
+{
+  if (error == ErrorFunction.CROSS_ENTROPY) {
+    if (k == 1) {
+      return ActivationFunction.LOGISTIC_SIGMOID;
+    }
+ else {
+      return ActivationFunction.SOFTMAX;
+    }
+  }
+ else {
+    return ActivationFunction.LOGISTIC_SIGMOID;
+  }
+}

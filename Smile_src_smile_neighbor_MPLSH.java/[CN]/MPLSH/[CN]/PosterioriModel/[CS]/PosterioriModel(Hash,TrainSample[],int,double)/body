@@ -1,0 +1,38 @@
+{
+  this.hash=hash;
+  HashValueParzenModel parzen=new HashValueParzenModel(hash,samples,sigma);
+  lookup=new PrH[k][][];
+  for (int m=0; m < k; m++) {
+    int minh=(int)Math.floor(hash.umin[m]);
+    int maxh=(int)Math.floor(hash.umax[m]);
+    int size=Math.min(maxh - minh + 1,Nz);
+    double delta=(maxh - minh) / (double)size;
+    lookup[m]=new PrH[size][];
+    for (int n=0; n < size; n++) {
+      parzen.estimate(m,minh + (n + 0.5) * delta);
+      GaussianDistribution gaussian=new GaussianDistribution(parzen.mean,parzen.std);
+      ArrayList<PrH> probs=new ArrayList<PrH>();
+      int h0=(int)Math.floor(parzen.mean);
+      for (int h=h0; ; h++) {
+        PrH prh=new PrH();
+        prh.u=h;
+        prh.pr=gaussian.cdf(h + 1) - gaussian.cdf(h);
+        if (prh.pr < 1E-7) {
+          break;
+        }
+        probs.add(prh);
+      }
+      for (int h=h0 - 1; ; h--) {
+        PrH prh=new PrH();
+        prh.u=h;
+        prh.pr=gaussian.cdf(h + 1) - gaussian.cdf(h);
+        if (prh.pr < 1E-7) {
+          break;
+        }
+        probs.add(prh);
+      }
+      lookup[m][n]=probs.toArray(new PrH[probs.size()]);
+      Arrays.sort(lookup[m][n]);
+    }
+  }
+}

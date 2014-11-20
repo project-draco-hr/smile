@@ -1,0 +1,8 @@
+{
+  if (k < Math.max(0,m + n - N) || k > Math.min(m,n)) {
+    return 0.0;
+  }
+ else {
+    return Math.exp(logp(k));
+  }
+}

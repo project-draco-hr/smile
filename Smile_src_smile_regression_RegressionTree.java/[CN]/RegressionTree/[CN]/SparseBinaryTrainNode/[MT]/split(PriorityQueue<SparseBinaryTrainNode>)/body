@@ -1,0 +1,46 @@
+{
+  if (node.splitFeature < 0) {
+    throw new IllegalStateException("Split a node with invalid feature.");
+  }
+  if (node.trueChild != null || node.falseChild != null) {
+    throw new IllegalStateException("Split non-leaf node.");
+  }
+  int n=x.length;
+  int tc=0;
+  int fc=0;
+  int[] trueSamples=new int[n];
+  int[] falseSamples=new int[n];
+  for (int i=0; i < n; i++) {
+    if (samples[i] > 0) {
+      if (x[i][node.splitFeature] == (int)node.splitValue) {
+        trueSamples[i]=samples[i];
+        tc+=samples[i];
+      }
+ else {
+        falseSamples[i]=samples[i];
+        fc+=samples[i];
+      }
+    }
+  }
+  node.trueChild=new Node(node.trueChildOutput);
+  node.falseChild=new Node(node.falseChildOutput);
+  trueChild=new SparseBinaryTrainNode(node.trueChild,x,y,trueSamples);
+  if (tc > S && trueChild.findBestSplit()) {
+    if (nextSplits != null) {
+      nextSplits.add(trueChild);
+    }
+ else {
+      trueChild.split(null);
+    }
+  }
+  falseChild=new SparseBinaryTrainNode(node.falseChild,x,y,falseSamples);
+  if (fc > S && falseChild.findBestSplit()) {
+    if (nextSplits != null) {
+      nextSplits.add(falseChild);
+    }
+ else {
+      falseChild.split(null);
+    }
+  }
+  importance[node.splitFeature]+=node.splitScore;
+}

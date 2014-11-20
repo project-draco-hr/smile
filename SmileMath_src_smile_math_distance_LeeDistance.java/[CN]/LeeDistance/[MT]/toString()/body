@@ -1,0 +1,3 @@
+{
+  return String.format("Lee distance (q = %d)",q);
+}

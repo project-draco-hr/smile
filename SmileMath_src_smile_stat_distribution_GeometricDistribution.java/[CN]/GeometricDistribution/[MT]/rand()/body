@@ -1,0 +1,7 @@
+{
+  if (expDist == null) {
+    double lambda=-Math.log(1 - p);
+    expDist=new ExponentialDistribution(lambda);
+  }
+  return Math.floor(expDist.rand()) + 1;
+}

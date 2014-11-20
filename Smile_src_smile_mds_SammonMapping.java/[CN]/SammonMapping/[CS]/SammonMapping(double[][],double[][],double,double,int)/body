@@ -1,0 +1,115 @@
+{
+  if (proximity.length != proximity[0].length) {
+    throw new IllegalArgumentException("The proximity matrix is not square.");
+  }
+  if (proximity.length != init.length) {
+    throw new IllegalArgumentException("The proximity matrix and the initial coordinates are of different size.");
+  }
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invalid tolerance: " + tol);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int m=proximity.length;
+  int n=proximity[0].length;
+  if (m != n) {
+    throw new IllegalArgumentException("The proximity matrix is not square.");
+  }
+  coordinates=Math.clone(init);
+  double c=0.0;
+  for (int i=0; i < n; i++) {
+    for (int j=i + 1; j < n; j++) {
+      c+=proximity[i][j];
+    }
+  }
+  int k=coordinates[0].length;
+  double[][] xu=new double[n][k];
+  stress=0.0;
+  for (int i=0; i < n; i++) {
+    for (int j=i + 1; j < n; j++) {
+      double dij=proximity[i][j];
+      if (dij == 0.0)       dij=1.0E-10;
+      double rij=Math.distance(coordinates[i],coordinates[j]);
+      stress+=Math.sqr(dij - rij) / dij;
+    }
+  }
+  stress/=c;
+  double epast=stress;
+  double eprev=stress;
+  System.out.format("Sammon's Mapping initial stress: %.5f\n",stress);
+  double[] xv=new double[k];
+  double[] e1=new double[k];
+  double[] e2=new double[k];
+  for (int iter=1; iter <= maxIter; iter++) {
+    for (int i=0; i < n; i++) {
+      double[] ri=coordinates[i];
+      Arrays.fill(e1,0.0);
+      Arrays.fill(e2,0.0);
+      for (int j=0; j < n; j++) {
+        if (i == j) {
+          continue;
+        }
+        double[] rj=coordinates[j];
+        double dij=proximity[i][j];
+        if (dij == 0.0)         dij=1.0E-10;
+        double rij=0.0;
+        for (int l=0; l < k; l++) {
+          double xd=ri[l] - rj[l];
+          rij+=xd * xd;
+          xv[l]=xd;
+        }
+        rij=Math.sqrt(rij);
+        if (rij == 0.0)         rij=1.0E-10;
+        double dq=dij - rij;
+        double dr=dij * rij;
+        for (int l=0; l < k; l++) {
+          e1[l]+=xv[l] * dq / dr;
+          e2[l]+=(dq - xv[l] * xv[l] * (1.0 + dq / rij) / rij) / dr;
+        }
+      }
+      for (int l=0; l < k; l++) {
+        xu[i][l]=ri[l] + lambda * e1[l] / Math.abs(e2[l]);
+      }
+    }
+    stress=0.0;
+    for (int i=0; i < n; i++) {
+      for (int j=i + 1; j < n; j++) {
+        double dij=proximity[i][j];
+        if (dij == 0.0)         dij=1.0E-10;
+        double rij=Math.distance(xu[i],xu[j]);
+        stress+=Math.sqr(dij - rij) / dij;
+      }
+    }
+    stress/=c;
+    if (stress > eprev) {
+      stress=eprev;
+      lambda=lambda * 0.2;
+      if (lambda < 1E-3) {
+        System.out.format("Sammon's Mapping stress after %3d iterations: %.5f\n",iter - 1,stress);
+        break;
+      }
+      iter--;
+    }
+ else {
+      lambda*=1.5;
+      if (lambda > 0.5) {
+        lambda=0.5;
+      }
+      eprev=stress;
+      double[] mu=Math.colMean(xu);
+      for (int i=0; i < n; i++) {
+        for (int j=0; j < k; j++) {
+          coordinates[i][j]=xu[i][j] - mu[j];
+        }
+      }
+      if (iter % 10 == 0) {
+        System.out.format("Sammon's Mapping stress after %3d iterations: %.5f, magic = %5.3f\n",iter,stress,lambda);
+        if (stress > epast - tol) {
+          break;
+        }
+        epast=stress;
+      }
+    }
+  }
+}

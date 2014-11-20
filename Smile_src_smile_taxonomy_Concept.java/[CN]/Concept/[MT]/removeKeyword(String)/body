@@ -1,0 +1,9 @@
+{
+  if (!taxonomy.concepts.containsKey(keyword)) {
+    throw new IllegalArgumentException(String.format("Concept %s does not exist.",keyword));
+  }
+  taxonomy.concepts.remove(keyword);
+  if (synset != null) {
+    synset.remove(keyword);
+  }
+}

@@ -1,0 +1,32 @@
+{
+  double nu=(n + 1) * p;
+  double q=1.0 - p;
+  double W=Math.sqrt(nu * q + 0.25);
+  mode=(int)nu;
+  k2=(int)Math.ceil(nu - 0.5 - W);
+  k4=(int)(nu - 0.5 + W);
+  k1=k2 + k2 - mode + 1;
+  k5=k4 + k4 - mode;
+  dl=(double)(k2 - k1);
+  dr=(double)(k5 - k4);
+  nu=nu / q;
+  p=p / q;
+  r1=nu / (double)k1 - p;
+  r2=nu / (double)k2 - p;
+  r4=nu / (double)(k4 + 1) - p;
+  r5=nu / (double)(k5 + 1) - p;
+  ll=Math.log(r1);
+  lr=-Math.log(r5);
+  l_pq=Math.log(p);
+  c_pm=mode * l_pq - Math.logFactorial(mode) - Math.logFactorial(n - mode);
+  f2=f(k2,n,l_pq,c_pm);
+  f4=f(k4,n,l_pq,c_pm);
+  f1=f(k1,n,l_pq,c_pm);
+  f5=f(k5,n,l_pq,c_pm);
+  p1=f2 * (dl + 1.);
+  p2=f2 * dl + p1;
+  p3=f4 * (dr + 1.) + p2;
+  p4=f4 * dr + p3;
+  p5=f1 / ll + p4;
+  p6=f5 / lr + p5;
+}

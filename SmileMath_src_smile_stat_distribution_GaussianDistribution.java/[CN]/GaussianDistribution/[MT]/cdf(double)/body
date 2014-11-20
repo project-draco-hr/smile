@@ -1,0 +1,11 @@
+{
+  if (sigma == 0) {
+    if (x < mu) {
+      return 0.0;
+    }
+ else {
+      return 1.0;
+    }
+  }
+  return 0.5 * Erf.erfc(-0.707106781186547524 * (x - mu) / sigma);
+}

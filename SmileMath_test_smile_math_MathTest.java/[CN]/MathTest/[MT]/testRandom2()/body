@@ -1,0 +1,14 @@
+{
+  System.out.println("random");
+  double[] prob={0.473646292,0.206116725,0.009308497,0.227844687,0.083083799};
+  int[] sample=new int[300];
+  for (int i=0; i < 300; i++) {
+    sample[i]=Math.random(prob);
+  }
+  double[][] hist=Histogram.histogram(sample,5);
+  double[] p=new double[5];
+  for (int i=0; i < 5; i++) {
+    p[i]=hist[2][i] / 300.0;
+  }
+  assertTrue(Math.KullbackLeiblerDivergence(prob,p) < 0.05);
+}

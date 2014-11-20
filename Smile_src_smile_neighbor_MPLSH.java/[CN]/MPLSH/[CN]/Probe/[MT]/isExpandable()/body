@@ -1,0 +1,9 @@
+{
+  if (last + 1 >= bucket.length) {
+    return false;
+  }
+  if (range[last + 1] <= 1) {
+    return false;
+  }
+  return true;
+}

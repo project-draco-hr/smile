@@ -1,0 +1,25 @@
+{
+  if (response == null) {
+    throw new IllegalArgumentException("The dataset has no response values.");
+  }
+  if (response.type != Attribute.Type.NOMINAL) {
+    throw new IllegalArgumentException("The response variable is not nominal.");
+  }
+  int n=data.size();
+  if (a.length < n) {
+    a=new int[n];
+  }
+  for (int i=0; i < n; i++) {
+    Datum<E> datum=get(i);
+    if (Double.isNaN(datum.y)) {
+      a[i]=Integer.MIN_VALUE;
+    }
+ else {
+      a[i]=(int)get(i).y;
+    }
+  }
+  for (int i=n; i < a.length; i++) {
+    a[i]=Integer.MIN_VALUE;
+  }
+  return a;
+}

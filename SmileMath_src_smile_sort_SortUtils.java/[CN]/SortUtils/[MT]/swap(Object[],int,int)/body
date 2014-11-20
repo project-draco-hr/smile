@@ -1,0 +1,6 @@
+{
+  Object a;
+  a=arr[i];
+  arr[i]=arr[j];
+  arr[j]=a;
+}

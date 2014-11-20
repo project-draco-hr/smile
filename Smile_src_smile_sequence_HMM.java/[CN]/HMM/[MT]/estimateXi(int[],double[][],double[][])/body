@@ -1,0 +1,15 @@
+{
+  if (o.length <= 1) {
+    throw new IllegalArgumentException("Observation sequence is too short.");
+  }
+  int n=o.length - 1;
+  double xi[][][]=new double[n][numStates][numStates];
+  for (int t=0; t < n; t++) {
+    for (int i=0; i < numStates; i++) {
+      for (int j=0; j < numStates; j++) {
+        xi[t][i][j]=alpha[t][i] * a[i][j] * b[j][o[t + 1]]* beta[t + 1][j];
+      }
+    }
+  }
+  return xi;
+}

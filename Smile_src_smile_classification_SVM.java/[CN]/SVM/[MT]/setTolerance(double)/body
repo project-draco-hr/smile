@@ -1,0 +1,6 @@
+{
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invlaid tolerance of convergence test:" + tol);
+  }
+  this.tol=tol;
+}

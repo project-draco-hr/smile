@@ -1,0 +1,7 @@
+{
+  int hash=5;
+  hash=37 * hash + type.hashCode();
+  hash=37 * hash + (name != null ? name.hashCode() : 0);
+  hash=37 * hash + (description != null ? description.hashCode() : 0);
+  return hash;
+}

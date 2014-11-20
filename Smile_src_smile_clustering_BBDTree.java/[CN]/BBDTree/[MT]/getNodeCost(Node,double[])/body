@@ -1,0 +1,9 @@
+{
+  int d=center.length;
+  double scatter=0.0;
+  for (int i=0; i < d; i++) {
+    double x=(node.sum[i] / node.count) - center[i];
+    scatter+=x * x;
+  }
+  return node.cost + node.count * scatter;
+}

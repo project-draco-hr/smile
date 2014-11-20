@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  ChiSquareDistribution instance=new ChiSquareDistribution(20);
+  instance.rand();
+  assertEquals(40,instance.var(),1E-7);
+}

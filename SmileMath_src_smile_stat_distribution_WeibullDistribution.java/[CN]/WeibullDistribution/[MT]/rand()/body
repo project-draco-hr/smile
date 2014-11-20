@@ -1,0 +1,4 @@
+{
+  double r=Math.random();
+  return scale * Math.pow(-Math.log(1 - r),1 / shape);
+}

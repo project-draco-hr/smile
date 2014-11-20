@@ -1,0 +1,13 @@
+{
+  if (k < Math.max(0,m + n - N)) {
+    return 0.0;
+  }
+ else   if (k >= Math.min(m,n)) {
+    return 1.0;
+  }
+  double p=0.0;
+  for (int i=Math.max(0,m + n - N); i <= k; i++) {
+    p+=p(i);
+  }
+  return p;
+}

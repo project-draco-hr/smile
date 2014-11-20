@@ -1,0 +1,19 @@
+{
+  double[][] A={{1,0,0,0.5},{0,1,0.2,0.3},{0,0.1,1,0.2}};
+  double[] x0={1,0,1,0};
+  double[] y=new double[A.length];
+  Math.ax(A,x0,y);
+  LASSO lasso=new LASSO(A,y,0.01,0.01,500);
+  double rss=0.0;
+  int n=A.length;
+  for (int i=0; i < n; i++) {
+    double r=y[i] - lasso.predict(A[i]);
+    rss+=r * r;
+  }
+  System.out.println("MSE = " + rss / n);
+  assertEquals(0.0,lasso.intercept(),1E-4);
+  double[] w={0.9930,0.0004,0.9941,0.0040};
+  for (int i=0; i < w.length; i++) {
+    assertEquals(w[i],lasso.coefficients()[i],1E-4);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  System.out.println("logP");
+  GaussianDistribution instance=new GaussianDistribution(4.0,3.0);
+  instance.rand();
+  assertEquals(-12.90644,instance.logp(-10),1E-5);
+  assertEquals(-4.017551,instance.logp(-2),1E-6);
+  assertEquals(-2.517551,instance.logp(1.0),1E-6);
+  assertEquals(-2.239773,instance.logp(2.0),1E-6);
+  assertEquals(-2.073106,instance.logp(3.0),1E-6);
+  assertEquals(-2.017551,instance.logp(4.0),1E-6);
+  assertEquals(-4.017551,instance.logp(10),1E-6);
+  assertEquals(-16.23977,instance.logp(20),1E-5);
+}

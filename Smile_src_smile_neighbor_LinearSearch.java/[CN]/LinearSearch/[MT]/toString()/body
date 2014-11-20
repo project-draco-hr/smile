@@ -1,0 +1,3 @@
+{
+  return String.format("Linear Search (%s)",distance);
+}

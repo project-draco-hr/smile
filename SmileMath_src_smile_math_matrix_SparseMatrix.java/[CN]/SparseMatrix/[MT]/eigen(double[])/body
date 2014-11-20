@@ -1,0 +1,6 @@
+{
+  if (nrows != ncols) {
+    throw new UnsupportedOperationException("The matrix is not square.");
+  }
+  return EigenValueDecomposition.eigen(this,v);
+}

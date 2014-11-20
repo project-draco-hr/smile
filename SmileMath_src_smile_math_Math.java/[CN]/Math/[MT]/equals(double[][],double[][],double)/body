@@ -1,0 +1,16 @@
+{
+  if (x.length != y.length || x[0].length != y[0].length) {
+    throw new IllegalArgumentException(String.format("Matrices have different rows: %d x %d vs %d x %d",x.length,x[0].length,y.length,y[0].length));
+  }
+  if (eps <= 0.0) {
+    throw new IllegalArgumentException("Invalid epsilon: " + eps);
+  }
+  for (int i=0; i < x.length; i++) {
+    for (int j=0; j < x[i].length; j++) {
+      if (Math.abs(x[i][j] - y[i][j]) > eps) {
+        return false;
+      }
+    }
+  }
+  return true;
+}

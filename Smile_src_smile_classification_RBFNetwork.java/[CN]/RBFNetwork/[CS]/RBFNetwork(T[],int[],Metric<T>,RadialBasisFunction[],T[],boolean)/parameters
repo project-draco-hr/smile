@@ -1,0 +1,6 @@
+T[] x
+int[] y
+Metric<T> distance
+RadialBasisFunction[] rbf
+T[] centers
+boolean normalized

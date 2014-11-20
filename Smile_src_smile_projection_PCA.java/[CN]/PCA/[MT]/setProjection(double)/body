@@ -1,0 +1,11 @@
+{
+  if (p <= 0 || p > 1) {
+    throw new IllegalArgumentException("Invalid percentage of variance: " + p);
+  }
+  for (int k=0; k < n; k++) {
+    if (cumulativeProportion[k] >= p) {
+      setProjection(k + 1);
+      break;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  int index=0;
+  for (int i=0; i < nr; i++) {
+    for (int j=i + 1; j < nr; j++) {
+      double tmp=0.0;
+      for (int c=0; c < nc; c++) {
+        tmp+=Math.sqr(x[i * nc + c] - x[j * nc + c]);
+      }
+      d[index++]=Math.sqrt(tmp);
+    }
+  }
+  for (index=0; index < n; index++) {
+    y[index]=d[ord[index]];
+  }
+}

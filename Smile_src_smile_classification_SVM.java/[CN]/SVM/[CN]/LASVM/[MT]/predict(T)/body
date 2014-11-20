@@ -1,0 +1,24 @@
+{
+  double f=b;
+  if (kernel instanceof LinearKernel && w != null) {
+    if (x instanceof double[]) {
+      f+=Math.dot(w,(double[])x);
+    }
+ else     if (x instanceof SparseArray) {
+      for (      SparseArray.Entry e : (SparseArray)x) {
+        f+=w[e.i] * e.x;
+      }
+    }
+ else {
+      throw new UnsupportedOperationException("Unsupported data type for linear kernel");
+    }
+  }
+ else {
+    for (    SupportVector v : sv) {
+      if (v != null) {
+        f+=v.alpha * kernel.k(v.x,x);
+      }
+    }
+  }
+  return f;
+}

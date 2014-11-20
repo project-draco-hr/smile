@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  LogisticDistribution instance=new LogisticDistribution(2.0,1.0);
+  instance.rand();
+  assertEquals(Math.PI * Math.PI / 3,instance.var(),1E-7);
+}

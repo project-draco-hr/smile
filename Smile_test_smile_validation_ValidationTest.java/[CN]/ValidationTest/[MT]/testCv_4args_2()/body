@@ -1,0 +1,18 @@
+{
+  System.out.println("cv");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(6);
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/cpu.arff"));
+    double[] y=data.toArray(new double[data.size()]);
+    double[][] x=data.toArray(new double[data.size()][]);
+    Math.normalize(x);
+    RBFNetwork.Trainer<double[]> trainer=new RBFNetwork.Trainer<double[]>(new EuclideanDistance());
+    trainer.setNumCenters(20);
+    double rmse=Validation.cv(10,trainer,x,y);
+    System.out.println("RMSE = " + rmse);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

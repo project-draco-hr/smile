@@ -1,0 +1,13 @@
+{
+  double alpha=0.0;
+  double mean=0.0;
+  for (int i=0; i < x.length; i++) {
+    alpha+=posteriori[i];
+    mean+=x[i] * posteriori[i];
+  }
+  mean/=alpha;
+  DiscreteMixture.Component c=new DiscreteMixture.Component();
+  c.priori=alpha;
+  c.distribution=new GeometricDistribution(1 / mean);
+  return c;
+}

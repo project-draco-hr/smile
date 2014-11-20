@@ -1,0 +1,4 @@
+{
+  numColumns=ncols;
+  colSize=new int[ncols];
+}

@@ -1,0 +1,13 @@
+{
+  if (alpha <= 0) {
+    throw new IllegalArgumentException("Invalid alpha: " + alpha);
+  }
+  if (beta <= 0) {
+    throw new IllegalArgumentException("Invalid beta: " + beta);
+  }
+  this.alpha=alpha;
+  this.beta=beta;
+  mean=alpha / (alpha + beta);
+  var=alpha * beta / ((alpha + beta) * (alpha + beta) * (alpha + beta + 1));
+  entropy=Math.log(Beta.beta(alpha,beta)) - (alpha - 1) * Gamma.digamma(alpha) - (beta - 1) * Gamma.digamma(beta) + (alpha + beta - 2) * Gamma.digamma(alpha + beta);
+}

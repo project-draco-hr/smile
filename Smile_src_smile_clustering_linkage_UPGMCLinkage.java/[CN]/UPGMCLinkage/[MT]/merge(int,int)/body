@@ -1,0 +1,13 @@
+{
+  double nij=n[i] + n[j];
+  for (int k=0; k < i; k++) {
+    proximity[i][k]=(proximity[i][k] * n[i] + proximity[j][k] * n[j] - proximity[j][i] * n[i] * n[j] / nij) / nij;
+  }
+  for (int k=i + 1; k < j; k++) {
+    proximity[k][i]=(proximity[k][i] * n[i] + proximity[j][k] * n[j] - proximity[j][i] * n[i] * n[j] / nij) / nij;
+  }
+  for (int k=j + 1; k < proximity.length; k++) {
+    proximity[k][i]=(proximity[k][i] * n[i] + proximity[k][j] * n[j] - proximity[j][i] * n[i] * n[j] / nij) / nij;
+  }
+  n[i]+=n[j];
+}

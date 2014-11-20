@@ -1,0 +1,3 @@
+{
+  this(D,100 * Math.EPSILON);
+}

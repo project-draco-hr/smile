@@ -1,0 +1,6 @@
+{
+  if (data.length > size()) {
+    int[] tmp=toArray();
+    data=tmp;
+  }
+}

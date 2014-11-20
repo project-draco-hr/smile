@@ -1,0 +1,3 @@
+{
+  this(x,y,distance,rep(rbf,centers.length),centers,normalized);
+}

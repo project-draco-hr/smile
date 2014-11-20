@@ -1,0 +1,40 @@
+{
+  ATA B=new ATA(A);
+  EigenValueDecomposition eigen=EigenValueDecomposition.decompose(B,k,kappa);
+  double[] s=eigen.getEigenValues();
+  for (int i=0; i < s.length; i++) {
+    s[i]=Math.sqrt(s[i]);
+  }
+  if (A.nrows() >= A.ncols()) {
+    double[][] V=eigen.getEigenVectors();
+    double[] tmp=new double[A.nrows()];
+    double[] vi=new double[A.ncols()];
+    double[][] U=new double[A.nrows()][s.length];
+    for (int i=0; i < s.length; i++) {
+      for (int j=0; j < A.ncols(); j++) {
+        vi[j]=V[j][i];
+      }
+      A.ax(vi,tmp);
+      for (int j=0; j < A.nrows(); j++) {
+        U[j][i]=tmp[j] / s[i];
+      }
+    }
+    return new SingularValueDecomposition(U,V,s,false);
+  }
+ else {
+    double[][] U=eigen.getEigenVectors();
+    double[] tmp=new double[A.ncols()];
+    double[] ui=new double[A.nrows()];
+    double[][] V=new double[A.ncols()][s.length];
+    for (int i=0; i < s.length; i++) {
+      for (int j=0; j < A.nrows(); j++) {
+        ui[j]=U[j][i];
+      }
+      A.atx(ui,tmp);
+      for (int j=0; j < A.ncols(); j++) {
+        V[j][i]=tmp[j] / s[i];
+      }
+    }
+    return new SingularValueDecomposition(U,V,s,false);
+  }
+}

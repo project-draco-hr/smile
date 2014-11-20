@@ -1,0 +1,9 @@
+{
+  double variance=distortion / (n - k);
+  double L=0.0;
+  for (int i=0; i < k; i++) {
+    L+=logLikelihood(k,n,clusterSize[i],d,variance);
+  }
+  int numParameters=k + k * d;
+  return L - 0.5 * numParameters * Math.log(n);
+}

@@ -1,0 +1,7 @@
+Attribute[] attributes
+double[][] x
+int[] y
+int T
+int J
+double shrinkage
+double f

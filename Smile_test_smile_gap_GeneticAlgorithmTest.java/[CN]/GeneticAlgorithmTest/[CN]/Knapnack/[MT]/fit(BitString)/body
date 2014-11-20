@@ -1,0 +1,15 @@
+{
+  double wsum=0.0;
+  double rew=0.0;
+  int[] bits=chromosome.bits();
+  for (int i=0; i < weight.length; i++) {
+    if (bits[i] == 1) {
+      wsum+=weight[i];
+      rew+=reward[i];
+    }
+  }
+  if (wsum > limit) {
+    rew-=5 * (wsum - limit);
+  }
+  return rew;
+}

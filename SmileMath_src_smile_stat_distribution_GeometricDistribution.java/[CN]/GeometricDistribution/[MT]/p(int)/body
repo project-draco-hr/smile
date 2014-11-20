@@ -1,0 +1,8 @@
+{
+  if (k < 0) {
+    return 0.0;
+  }
+ else {
+    return Math.pow(1 - p,k) * p;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  n=1;
+  System.arraycopy(x,0,sum,0,d);
+}

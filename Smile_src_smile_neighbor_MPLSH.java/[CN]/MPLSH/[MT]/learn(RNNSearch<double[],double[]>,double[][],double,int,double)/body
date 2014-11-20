@@ -1,0 +1,17 @@
+{
+  TrainSample[] training=new TrainSample[samples.length];
+  for (int i=0; i < samples.length; i++) {
+    training[i]=new TrainSample();
+    training[i].query=samples[i];
+    training[i].neighbors=new ArrayList<double[]>();
+    ArrayList<Neighbor<double[],double[]>> neighbors=new ArrayList<Neighbor<double[],double[]>>();
+    range.range(training[i].query,radius,neighbors);
+    for (    Neighbor<double[],double[]> n : neighbors) {
+      training[i].neighbors.add(keys.get(n.index));
+    }
+  }
+  model=new ArrayList<PosterioriModel>(hash.size());
+  for (int i=0; i < hash.size(); i++) {
+    model.add(new PosterioriModel(hash.get(i),training,Nz,sigma));
+  }
+}

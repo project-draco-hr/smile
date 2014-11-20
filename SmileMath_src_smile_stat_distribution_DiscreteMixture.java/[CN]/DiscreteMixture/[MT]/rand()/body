@@ -1,0 +1,14 @@
+{
+  if (components.size() == 0) {
+    throw new IllegalStateException("Mixture is empty!");
+  }
+  double r=Math.random();
+  double p=0.0;
+  for (  Component g : components) {
+    p+=g.priori;
+    if (r <= p) {
+      return g.distribution.rand();
+    }
+  }
+  return components.get(components.size() - 1).distribution.rand();
+}

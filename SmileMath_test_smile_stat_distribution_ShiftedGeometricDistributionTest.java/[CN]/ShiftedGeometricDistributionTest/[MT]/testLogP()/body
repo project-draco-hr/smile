@@ -1,0 +1,12 @@
+{
+  System.out.println("logP");
+  ShiftedGeometricDistribution instance=new ShiftedGeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(Math.log(0.3),instance.logp(1),1E-6);
+  assertEquals(Math.log(0.21),instance.logp(2),1E-6);
+  assertEquals(Math.log(0.147),instance.logp(3),1E-6);
+  assertEquals(Math.log(0.1029),instance.logp(4),1E-6);
+  assertEquals(Math.log(0.07203),instance.logp(5),1E-6);
+  assertEquals(Math.log(0.008474257),instance.logp(11),1E-6);
+  assertEquals(Math.log(0.0002393768),instance.logp(21),1E-6);
+}

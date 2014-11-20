@@ -1,0 +1,22 @@
+{
+  int n=x.length;
+  TrellisNode[][] trellis=getTrellis(x);
+  double[] scaling=new double[n];
+  forward(trellis,scaling);
+  backward(trellis);
+  int[] label=new int[n];
+  double[] p=new double[numClasses];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < numClasses; j++) {
+      p[j]=trellis[i][j].alpha * trellis[i][j].beta;
+    }
+    double max=Double.NEGATIVE_INFINITY;
+    for (int j=0; j < numClasses; j++) {
+      if (max < p[j]) {
+        max=p[j];
+        label[i]=j;
+      }
+    }
+  }
+  return label;
+}

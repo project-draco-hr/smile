@@ -1,0 +1,4 @@
+int index
+int end
+int[] itemset
+int support

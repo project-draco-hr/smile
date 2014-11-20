@@ -1,0 +1,3 @@
+{
+  return new KNN<T>(x,y,distance,k);
+}

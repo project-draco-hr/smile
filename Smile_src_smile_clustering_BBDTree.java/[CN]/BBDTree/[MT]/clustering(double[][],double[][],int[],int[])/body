@@ -1,0 +1,10 @@
+{
+  int k=centroids.length;
+  Arrays.fill(counts,0);
+  int[] candidates=new int[k];
+  for (int i=0; i < k; i++) {
+    candidates[i]=i;
+    Arrays.fill(sums[i],0.0);
+  }
+  return filter(root,centroids,candidates,k,sums,counts,membership);
+}

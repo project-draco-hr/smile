@@ -1,0 +1,15 @@
+{
+  System.out.println("learn hyphen");
+  Dataset train=load("/smile/data/sequence/sparse.hyphen.6.train");
+  Dataset test=load("/smile/data/sequence/sparse.hyphen.6.test");
+  Maxent maxent=new Maxent(train.p,train.x,train.y,0.1,1E-5,500);
+  int error=0;
+  for (int i=0; i < test.x.length; i++) {
+    if (test.y[i] != maxent.predict(test.x[i])) {
+      error++;
+    }
+  }
+  System.out.format("Protein error is %d of %d\n",error,test.x.length);
+  System.out.format("Hyphen error rate = %.2f%%\n",100.0 * error / test.x.length);
+  assertEquals(765,error);
+}

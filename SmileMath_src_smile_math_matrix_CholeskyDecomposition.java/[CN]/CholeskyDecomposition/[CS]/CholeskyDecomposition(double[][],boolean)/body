@@ -1,0 +1,34 @@
+{
+  int n=A.length;
+  if (n != A[n - 1].length) {
+    throw new IllegalArgumentException("The matrix is not square.");
+  }
+  L=A;
+  if (!overwrite) {
+    L=new double[n][];
+    for (int i=0; i < n; i++) {
+      L[i]=new double[i + 1];
+    }
+  }
+  for (int j=0; j < n; j++) {
+    double[] Lrowj=L[j];
+    double d=0.0;
+    for (int k=0; k < j; k++) {
+      double[] Lrowk=L[k];
+      double s=0.0;
+      for (int i=0; i < k; i++) {
+        s+=Lrowk[i] * Lrowj[i];
+      }
+      Lrowj[k]=s=(A[j][k] - s) / L[k][k];
+      d=d + s * s;
+    }
+    d=A[j][j] - d;
+    if (d < 0.0) {
+      throw new IllegalArgumentException("The matrix is not positive definite.");
+    }
+    L[j][j]=Math.sqrt(d);
+    if (L == A && L[j].length == n) {
+      Arrays.fill(L[j],j + 1,n,0.0);
+    }
+  }
+}

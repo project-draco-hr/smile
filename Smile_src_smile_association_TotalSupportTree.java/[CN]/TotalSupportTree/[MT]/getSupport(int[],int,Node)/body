@@ -1,0 +1,15 @@
+{
+  int item=order[itemset[index]];
+  Node child=node.children[item];
+  if (child != null) {
+    if (index == 0) {
+      return child.support;
+    }
+ else {
+      if (child.children != null) {
+        return getSupport(itemset,index - 1,child);
+      }
+    }
+  }
+  return 0;
+}

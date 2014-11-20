@@ -1,0 +1,14 @@
+{
+  System.out.println("distance");
+  Set<Integer> a=new HashSet<Integer>();
+  a.add(1);
+  a.add(2);
+  a.add(3);
+  a.add(4);
+  Set<Integer> b=new HashSet<Integer>();
+  b.add(3);
+  b.add(4);
+  b.add(5);
+  b.add(6);
+  assertEquals(0.6666667,JaccardDistance.d(a,b),1E-7);
+}

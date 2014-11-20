@@ -1,0 +1,7 @@
+{
+  Set<T> union=new HashSet<T>(a);
+  union.addAll(b);
+  Set<T> intersection=new HashSet<T>(a);
+  intersection.retainAll(b);
+  return 1.0 - (double)intersection.size() / union.size();
+}

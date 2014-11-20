@@ -1,0 +1,5 @@
+int nr
+int nc
+double[] d
+int[] ord
+int[] ord2

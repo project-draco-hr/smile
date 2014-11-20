@@ -1,0 +1,45 @@
+{
+  int I;
+  int L=N - m - n;
+  double Mp, np;
+  double U;
+  double c, d;
+  double divisor;
+  double k1, k2;
+  double L1=L;
+  Mp=(double)(m + 1);
+  np=(double)(n + 1);
+  while (true) {
+    U=Math.random();
+    if ((U-=fm) <= 0.) {
+      return (mode);
+    }
+    c=d=fm;
+    k1=mp - 1;
+    k2=mode + 1;
+    for (I=1; I <= mode; I++, k1--, k2++) {
+      divisor=(np - k1) * (Mp - k1);
+      U*=divisor;
+      d*=divisor;
+      c*=k1 * (L1 + k1);
+      if ((U-=c) <= 0.) {
+        return (mp - I - 1);
+      }
+      divisor=k2 * (L1 + k2);
+      U*=divisor;
+      c*=divisor;
+      d*=(np - k2) * (Mp - k2);
+      if ((U-=d) <= 0.) {
+        return (mode + I);
+      }
+    }
+    for (k2=I=mp + mode; I <= bound; I++, k2++) {
+      divisor=k2 * (L1 + k2);
+      U*=divisor;
+      d*=(np - k2) * (Mp - k2);
+      if ((U-=d) <= 0.) {
+        return (I);
+      }
+    }
+  }
+}

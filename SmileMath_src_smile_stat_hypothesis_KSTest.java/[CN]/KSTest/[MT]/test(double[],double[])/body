@@ -1,0 +1,30 @@
+{
+  Arrays.sort(x);
+  Arrays.sort(y);
+  int j1=0, j2=0;
+  int n1=x.length, n2=y.length;
+  double en1=n1;
+  double en2=n2;
+  double d=0.0;
+  double d1, d2, dt, fn1=0.0, fn2=0.0;
+  while (j1 < n1 && j2 < n2) {
+    if ((d1=x[j1]) <= (d2=y[j2])) {
+      do {
+        fn1=++j1 / en1;
+      }
+ while (j1 < n1 && d1 == x[j1]);
+    }
+    if (d2 <= d1) {
+      do {
+        fn2=++j2 / en2;
+      }
+ while (j2 < n2 && d2 == y[j2]);
+    }
+    if ((dt=Math.abs(fn2 - fn1)) > d) {
+      d=dt;
+    }
+  }
+  double en=Math.sqrt(en1 * en2 / (en1 + en2));
+  double p=qks((en + 0.12 + 0.11 / en) * d);
+  return new KSTest(d,p);
+}

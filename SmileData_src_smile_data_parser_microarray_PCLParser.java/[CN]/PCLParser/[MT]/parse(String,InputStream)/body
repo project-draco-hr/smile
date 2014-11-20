@@ -1,0 +1,44 @@
+{
+  BufferedReader reader=new BufferedReader(new InputStreamReader(stream));
+  String line=reader.readLine();
+  if (line == null) {
+    throw new IOException("Empty data source.");
+  }
+  String[] tokens=line.split("\t",-1);
+  int p=tokens.length - 3;
+  line=reader.readLine();
+  if (line == null) {
+    throw new IOException("Premature end of file.");
+  }
+  String[] weight=line.split("\t",-1);
+  if (weight.length != tokens.length) {
+    throw new IOException("Invalid sample weight header.");
+  }
+  Attribute[] attributes=new Attribute[p];
+  for (int i=0; i < p; i++) {
+    attributes[i]=new NumericAttribute(tokens[i + 3],null,Double.valueOf(weight[i + 3]));
+  }
+  AttributeDataset data=new AttributeDataset(name,attributes);
+  for (int i=3; (line=reader.readLine()) != null; i++) {
+    tokens=line.split("\t",-1);
+    if (tokens.length != weight.length) {
+      throw new IOException(String.format("Invalid number of elements of line %d: %d",i,tokens.length));
+    }
+    double[] x=new double[p];
+    for (int j=0; j < p; j++) {
+      if (tokens[j + 3].isEmpty()) {
+        x[j]=Double.NaN;
+      }
+ else {
+        x[j]=Double.valueOf(tokens[j + 3]);
+      }
+    }
+    Datum<double[]> datum=new Datum<double[]>(x);
+    datum.name=tokens[0];
+    datum.description=tokens[1];
+    datum.weight=Double.valueOf(tokens[2]);
+    data.add(datum);
+  }
+  reader.close();
+  return data;
+}

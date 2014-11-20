@@ -1,0 +1,24 @@
+{
+  if (k == 2) {
+    double y=b;
+    for (int i=0; i < T; i++) {
+      y+=shrinkage * trees[i].predict(x);
+    }
+    return y > 0 ? 1 : 0;
+  }
+ else {
+    double max=Double.NEGATIVE_INFINITY;
+    int y=-1;
+    for (int j=0; j < k; j++) {
+      double yj=0.0;
+      for (int i=0; i < T; i++) {
+        yj+=shrinkage * forest[j][i].predict(x);
+      }
+      if (yj > max) {
+        max=yj;
+        y=j;
+      }
+    }
+    return y;
+  }
+}

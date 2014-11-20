@@ -1,0 +1,10 @@
+{
+  System.out.println("nextInt");
+  smile.math.Random instance=new Random(System.currentTimeMillis());
+  for (int i=0; i < 1000000; i++) {
+    int n=instance.nextInt(1000000) + 1;
+    int result=instance.nextInt(n);
+    assertTrue(result >= 0);
+    assertTrue(result < n);
+  }
+}

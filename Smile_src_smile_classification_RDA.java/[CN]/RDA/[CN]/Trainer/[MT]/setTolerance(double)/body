@@ -1,0 +1,6 @@
+{
+  if (tol < 0.0) {
+    throw new IllegalArgumentException("Invalid tol: " + tol);
+  }
+  this.tol=tol;
+}

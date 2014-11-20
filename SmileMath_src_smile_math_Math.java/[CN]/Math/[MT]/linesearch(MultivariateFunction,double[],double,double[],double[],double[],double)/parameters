@@ -1,0 +1,7 @@
+MultivariateFunction func
+double[] xold
+double fold
+double[] g
+double[] p
+double[] x
+double stpmax

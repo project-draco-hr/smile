@@ -1,0 +1,9 @@
+{
+  if (response == null) {
+    throw new IllegalArgumentException("The dataset has no response values.");
+  }
+  if (response.type != Attribute.Type.NOMINAL) {
+    throw new IllegalArgumentException("The response variable is not nominal.");
+  }
+  add(new Datum<E>(x,y,weight));
+}

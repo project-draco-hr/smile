@@ -1,0 +1,9 @@
+{
+  this.U=U;
+  this.V=V;
+  this.s=s;
+  this.full=full;
+  m=U.length;
+  n=V.length;
+  tol=0.5 * Math.sqrt(U.length + V.length + 1.0) * s[0]* Math.EPSILON;
+}

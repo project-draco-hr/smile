@@ -1,0 +1,15 @@
+{
+  boolean end=true;
+  Arrays.fill(localItemSupport,0);
+  while (node != null) {
+    int support=node.count;
+    Node parent=node.parent;
+    while (parent != null) {
+      localItemSupport[parent.id]+=support;
+      parent=parent.parent;
+      end=false;
+    }
+    node=node.next;
+  }
+  return !end;
+}

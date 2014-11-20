@@ -1,0 +1,3 @@
+T q
+double radius
+List<Neighbor<T,T>> neighbors

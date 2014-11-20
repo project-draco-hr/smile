@@ -1,0 +1,10 @@
+{
+  if (au == null) {
+    decompose();
+  }
+  double dd=d;
+  for (int i=0; i < n; i++) {
+    dd*=au[i][0];
+  }
+  return dd;
+}

@@ -1,0 +1,8 @@
+{
+  if (a <= 0)   throw new IllegalArgumentException("Invalid parameter a = " + a);
+  if (b <= 0)   throw new IllegalArgumentException("Invalid parameter b = " + b);
+  if (c < 0)   throw new IllegalArgumentException("Invalid parameter c = " + c);
+  this.a=a;
+  this.b=b;
+  this.c=c;
+}

@@ -1,0 +1,10 @@
+{
+  double sum=n[i] + n[j];
+  for (int k=0; k < i; k++) {
+    proximity[i][k]=proximity[i][k] * n[i] / sum + d(j,k) * n[j] / sum;
+  }
+  for (int k=i + 1; k < proximity.length; k++) {
+    proximity[k][i]=proximity[k][i] * n[i] / sum + d(j,k) * n[j] / sum;
+  }
+  n[i]+=n[j];
+}

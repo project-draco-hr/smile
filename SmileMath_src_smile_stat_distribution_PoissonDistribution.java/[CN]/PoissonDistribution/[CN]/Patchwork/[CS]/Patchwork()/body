@@ -1,0 +1,28 @@
+{
+  int mode=(int)lambda;
+  double Ds=Math.sqrt(lambda + 0.25);
+  k2=(int)Math.ceil(lambda - 0.5 - Ds);
+  k4=(int)(lambda - 0.5 + Ds);
+  k1=k2 + k2 - mode + 1;
+  k5=k4 + k4 - mode;
+  dl=(double)(k2 - k1);
+  dr=(double)(k5 - k4);
+  r1=lambda / (double)k1;
+  r2=lambda / (double)k2;
+  r4=lambda / (double)(k4 + 1);
+  r5=lambda / (double)(k5 + 1);
+  ll=Math.log(r1);
+  rr=-Math.log(r5);
+  l_my=Math.log(lambda);
+  c_pm=mode * l_my - Math.logFactorial(mode);
+  f2=f(k2,l_my,c_pm);
+  f4=f(k4,l_my,c_pm);
+  f1=f(k1,l_my,c_pm);
+  f5=f(k5,l_my,c_pm);
+  p1=f2 * (dl + 1.);
+  p2=f2 * dl + p1;
+  p3=f4 * (dr + 1.) + p2;
+  p4=f4 * dr + p3;
+  p5=f1 / ll + p4;
+  p6=f5 / rr + p5;
+}

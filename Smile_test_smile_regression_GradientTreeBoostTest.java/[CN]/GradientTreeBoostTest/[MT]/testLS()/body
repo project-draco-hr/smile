@@ -1,0 +1,5 @@
+{
+  test(GradientTreeBoost.Loss.LeastSquares,"CPU","/smile/data/weka/cpu.arff",6);
+  test(GradientTreeBoost.Loss.LeastSquares,"autoMPG","/smile/data/weka/regression/autoMpg.arff",7);
+  test(GradientTreeBoost.Loss.LeastSquares,"cal_housing","/smile/data/weka/regression/cal_housing.arff",8);
+}

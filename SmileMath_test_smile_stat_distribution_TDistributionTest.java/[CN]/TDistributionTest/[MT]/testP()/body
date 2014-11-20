@@ -1,0 +1,12 @@
+{
+  System.out.println("p");
+  TDistribution instance=new TDistribution(20);
+  instance.rand();
+  assertEquals(2.660085e-09,instance.p(-10.0),1E-16);
+  assertEquals(0.05808722,instance.p(-2.0),1E-7);
+  assertEquals(0.2360456,instance.p(-1.0),1E-7);
+  assertEquals(0.3939886,instance.p(0.0),1E-7);
+  assertEquals(0.2360456,instance.p(1.0),1E-7);
+  assertEquals(0.05808722,instance.p(2.0),1E-7);
+  assertEquals(2.660085e-09,instance.p(10.0),1E-16);
+}

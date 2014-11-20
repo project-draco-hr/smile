@@ -1,0 +1,12 @@
+{
+  System.out.println("p");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(0.0,instance.p(0.0),1E-7);
+  assertEquals(0.4595763,instance.p(0.1),1E-7);
+  assertEquals(0.6134254,instance.p(0.2),1E-7);
+  assertEquals(0.7447834,instance.p(0.5),1E-7);
+  assertEquals(0.2926085,instance.p(1.5),1E-7);
+  assertEquals(0.0455367,instance.p(2.5),1E-7);
+  assertEquals(4.677527e-05,instance.p(5.0),1E-10);
+}

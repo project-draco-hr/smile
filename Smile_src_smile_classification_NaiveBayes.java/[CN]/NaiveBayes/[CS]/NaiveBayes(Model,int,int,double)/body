@@ -1,0 +1,22 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of classes: " + k);
+  }
+  if (p <= 0) {
+    throw new IllegalArgumentException("Invalid dimension: " + p);
+  }
+  if (sigma < 0) {
+    throw new IllegalArgumentException("Invalid add-k smoothing parameter: " + sigma);
+  }
+  this.model=model;
+  this.k=k;
+  this.p=p;
+  this.sigma=sigma;
+  predefinedPriori=false;
+  priori=new double[k];
+  n=0;
+  nc=new int[k];
+  nt=new int[k];
+  ntc=new int[k][p];
+  condprob=new double[k][p];
+}

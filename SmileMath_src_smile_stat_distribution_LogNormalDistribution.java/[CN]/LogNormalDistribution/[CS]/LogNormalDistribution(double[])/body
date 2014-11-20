@@ -1,0 +1,14 @@
+{
+  double[] x=new double[data.length];
+  for (int i=0; i < x.length; i++) {
+    if (data[i] <= 0.0) {
+      throw new IllegalArgumentException("Invalid input data: " + data[i]);
+    }
+    x[i]=Math.log(data[i]);
+  }
+  this.mu=Math.mean(x);
+  this.sigma=Math.sd(x);
+  mean=Math.exp(mu + sigma * sigma / 2);
+  var=(Math.exp(mu * mu) - 1) * Math.exp(2 * mu + sigma * sigma);
+  entropy=0.5 + 0.5 * Math.log(2 * Math.PI * sigma* sigma) + mu;
+}

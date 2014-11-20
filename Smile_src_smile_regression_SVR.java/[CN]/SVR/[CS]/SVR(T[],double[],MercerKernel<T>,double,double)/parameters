@@ -1,0 +1,5 @@
+T[] x
+double[] y
+MercerKernel<T> kernel
+double eps
+double C

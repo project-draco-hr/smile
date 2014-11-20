@@ -1,0 +1,3 @@
+double[] residual
+double[] response
+double alpha

@@ -1,0 +1,18 @@
+{
+  Collection<Edge> set=new LinkedList<Edge>();
+  if (digraph) {
+    for (    Edge edge : graph[source]) {
+      if (edge.v2 == target) {
+        set.add(edge);
+      }
+    }
+  }
+ else {
+    for (    Edge edge : graph[source]) {
+      if ((edge.v1 == source && edge.v2 == target) || (edge.v2 == source && edge.v1 == target)) {
+        set.add(edge);
+      }
+    }
+  }
+  return set;
+}

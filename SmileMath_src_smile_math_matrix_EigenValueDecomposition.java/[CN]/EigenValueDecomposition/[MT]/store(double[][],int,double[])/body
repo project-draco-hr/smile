@@ -1,0 +1,8 @@
+{
+  if (null == q[j]) {
+    q[j]=s.clone();
+  }
+ else {
+    Math.copy(s,q[j]);
+  }
+}

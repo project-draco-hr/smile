@@ -1,0 +1,11 @@
+{
+  int m=f.length;
+  int n=f[0].length;
+  double sum=0.0;
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++) {
+      sum+=Math.log(-f[i][j]);
+    }
+  }
+  return sum;
+}

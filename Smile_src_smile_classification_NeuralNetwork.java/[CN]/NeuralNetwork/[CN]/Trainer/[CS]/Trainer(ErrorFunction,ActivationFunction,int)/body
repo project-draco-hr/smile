@@ -1,0 +1,30 @@
+{
+  int numLayers=numUnits.length;
+  if (numLayers < 2) {
+    throw new IllegalArgumentException("Invalid number of layers: " + numLayers);
+  }
+  for (int i=0; i < numLayers; i++) {
+    if (numUnits[i] < 1) {
+      throw new IllegalArgumentException(String.format("Invalid number of units of layer %d: %d",i + 1,numUnits[i]));
+    }
+  }
+  if (error == ErrorFunction.LEAST_MEAN_SQUARES) {
+    if (activation == ActivationFunction.SOFTMAX) {
+      throw new IllegalArgumentException("Sofmax activation function is invalid for least mean squares error.");
+    }
+  }
+  if (error == ErrorFunction.CROSS_ENTROPY) {
+    if (activation == ActivationFunction.LINEAR) {
+      throw new IllegalArgumentException("Linear activation function is invalid with cross entropy error.");
+    }
+    if (activation == ActivationFunction.SOFTMAX && numUnits[numLayers - 1] == 1) {
+      throw new IllegalArgumentException("Softmax activation function is for multi-class.");
+    }
+    if (activation == ActivationFunction.LOGISTIC_SIGMOID && numUnits[numLayers - 1] != 1) {
+      throw new IllegalArgumentException("For cross entropy error, logistic sigmoid output is for binary classification.");
+    }
+  }
+  this.errorFunction=error;
+  this.activationFunction=activation;
+  this.numUnits=numUnits;
+}

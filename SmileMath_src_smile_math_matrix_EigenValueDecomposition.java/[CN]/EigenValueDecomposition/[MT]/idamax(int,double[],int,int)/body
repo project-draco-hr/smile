@@ -1,0 +1,25 @@
+{
+  int ix, imax;
+  double dmax;
+  if (n < 1) {
+    return -1;
+  }
+  if (n == 1) {
+    return 0;
+  }
+  if (incx == 0) {
+    return -1;
+  }
+  ix=(incx < 0) ? ix0 + ((-n + 1) * incx) : ix0;
+  imax=ix;
+  dmax=Math.abs(dx[ix]);
+  for (int i=1; i < n; i++) {
+    ix+=incx;
+    double dtemp=Math.abs(dx[ix]);
+    if (dtemp > dmax) {
+      dmax=dtemp;
+      imax=ix;
+    }
+  }
+  return imax;
+}

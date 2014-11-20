@@ -1,0 +1,61 @@
+{
+  double f=0.0;
+  int p=w.length - 1;
+  Arrays.fill(g,0.0);
+  int n=x.length;
+  int m=MulticoreExecutor.getThreadPoolSize();
+  if (n < 1000 || m < 2) {
+    for (int i=0; i < n; i++) {
+      double wx=dot(x[i],w);
+      f+=log1pe(wx) - y[i] * wx;
+      double yi=y[i] - Math.logistic(wx);
+      for (      int j : x[i]) {
+        g[j]-=yi * j;
+      }
+      g[p]-=yi;
+    }
+  }
+ else {
+    List<GTask> tasks=new ArrayList<GTask>(m + 1);
+    int step=n / m;
+    if (step < 100)     step=100;
+    int start=0;
+    int end=step;
+    for (int i=0; i < m - 1; i++) {
+      tasks.add(new GTask(w,start,end));
+      start+=step;
+      end+=step;
+    }
+    tasks.add(new GTask(w,start,n));
+    try {
+      for (      double[] gi : MulticoreExecutor.run(tasks)) {
+        f+=gi[w.length];
+        for (int i=0; i < w.length; i++) {
+          g[i]+=gi[i];
+        }
+      }
+    }
+ catch (    Exception ex) {
+      for (int i=0; i < n; i++) {
+        double wx=dot(x[i],w);
+        f+=log1pe(wx) - y[i] * wx;
+        double yi=y[i] - Math.logistic(wx);
+        for (        int j : x[i]) {
+          g[j]-=yi * j;
+        }
+        g[p]-=yi;
+      }
+    }
+  }
+  if (lambda != 0.0) {
+    double wnorm=0.0;
+    for (int i=0; i < p; i++) {
+      wnorm+=w[i] * w[i];
+    }
+    f+=0.5 * lambda * wnorm;
+    for (int j=0; j < p; j++) {
+      g[j]+=lambda * w[j];
+    }
+  }
+  return f;
+}

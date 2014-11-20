@@ -1,0 +1,14 @@
+{
+  System.out.println("quantile");
+  BinomialDistribution instance=new BinomialDistribution(100,0.3);
+  instance.rand();
+  assertEquals(0,instance.quantile(0),1E-7);
+  assertEquals(0,instance.quantile(0.00000000000000001),1E-7);
+  assertEquals(17,instance.quantile(0.001),1E-7);
+  assertEquals(20,instance.quantile(0.01),1E-7);
+  assertEquals(24,instance.quantile(0.1),1E-7);
+  assertEquals(26,instance.quantile(0.2),1E-7);
+  assertEquals(30,instance.quantile(0.5),1E-7);
+  assertEquals(36,instance.quantile(0.9),1E-7);
+  assertEquals(100,instance.quantile(1.0),1E-7);
+}

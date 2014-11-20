@@ -1,0 +1,9 @@
+{
+  StringBuilder builder=new StringBuilder("Empirical Distribution(");
+  for (int i=0; i < p.length; i++) {
+    builder.append(p[i]);
+    builder.append(' ');
+  }
+  builder.setCharAt(builder.length() - 1,')');
+  return builder.toString();
+}

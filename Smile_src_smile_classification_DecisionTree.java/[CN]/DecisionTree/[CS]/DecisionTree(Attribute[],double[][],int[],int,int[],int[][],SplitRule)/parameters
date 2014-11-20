@@ -1,0 +1,7 @@
+Attribute[] attributes
+double[][] x
+int[] y
+int J
+int[] samples
+int[][] order
+SplitRule rule

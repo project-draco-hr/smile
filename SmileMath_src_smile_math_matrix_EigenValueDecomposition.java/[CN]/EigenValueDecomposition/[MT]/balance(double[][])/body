@@ -1,0 +1,47 @@
+{
+  double sqrdx=Math.RADIX * Math.RADIX;
+  int n=A.length;
+  double[] scale=new double[n];
+  for (int i=0; i < n; i++) {
+    scale[i]=1.0;
+  }
+  boolean done=false;
+  while (!done) {
+    done=true;
+    for (int i=0; i < n; i++) {
+      double r=0.0, c=0.0;
+      for (int j=0; j < n; j++) {
+        if (j != i) {
+          c+=Math.abs(A[j][i]);
+          r+=Math.abs(A[i][j]);
+        }
+      }
+      if (c != 0.0 && r != 0.0) {
+        double g=r / Math.RADIX;
+        double f=1.0;
+        double s=c + r;
+        while (c < g) {
+          f*=Math.RADIX;
+          c*=sqrdx;
+        }
+        g=r * Math.RADIX;
+        while (c > g) {
+          f/=Math.RADIX;
+          c/=sqrdx;
+        }
+        if ((c + r) / f < 0.95 * s) {
+          done=false;
+          g=1.0 / f;
+          scale[i]*=f;
+          for (int j=0; j < n; j++) {
+            A[i][j]*=g;
+          }
+          for (int j=0; j < n; j++) {
+            A[j][i]*=f;
+          }
+        }
+      }
+    }
+  }
+  return scale;
+}

@@ -1,0 +1,51 @@
+{
+  if (minPts < 1) {
+    throw new IllegalArgumentException("Invalid minPts: " + minPts);
+  }
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  this.nns=nns;
+  this.minPts=minPts;
+  this.radius=radius;
+  k=0;
+  int n=data.length;
+  y=new int[n];
+  Arrays.fill(y,UNCLASSIFIED);
+  for (int i=0; i < data.length; i++) {
+    if (y[i] == UNCLASSIFIED) {
+      List<Neighbor<T,T>> neighbors=new ArrayList<Neighbor<T,T>>();
+      nns.range(data[i],radius,neighbors);
+      if (neighbors.size() < minPts) {
+        y[i]=OUTLIER;
+      }
+ else {
+        y[i]=k;
+        for (int j=0; j < neighbors.size(); j++) {
+          if (y[neighbors.get(j).index] == UNCLASSIFIED) {
+            y[neighbors.get(j).index]=k;
+            Neighbor<T,T> neighbor=neighbors.get(j);
+            List<Neighbor<T,T>> secondaryNeighbors=new ArrayList<Neighbor<T,T>>();
+            nns.range(neighbor.key,radius,secondaryNeighbors);
+            if (secondaryNeighbors.size() >= minPts) {
+              neighbors.addAll(secondaryNeighbors);
+            }
+          }
+          if (y[neighbors.get(j).index] == OUTLIER) {
+            y[neighbors.get(j).index]=k;
+          }
+        }
+        k++;
+      }
+    }
+  }
+  size=new int[k + 1];
+  for (int i=0; i < n; i++) {
+    if (y[i] == OUTLIER) {
+      size[k]++;
+    }
+ else {
+      size[y[i]]++;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  a=new double[k][d];
+  b=new double[k];
+  GaussianDistribution gaussian=GaussianDistribution.getInstance();
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      a[i][j]=gaussian.rand();
+    }
+    b[i]=Math.random(0,w);
+  }
+  table=new HashEntry[H];
+}

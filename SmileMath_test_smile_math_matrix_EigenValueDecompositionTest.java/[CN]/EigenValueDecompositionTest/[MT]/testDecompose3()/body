@@ -1,0 +1,12 @@
+{
+  System.out.println("decompose");
+  EigenValueDecomposition result=EigenValueDecomposition.decompose(A2,false);
+  assertTrue(Math.equals(eigenValues2,result.getEigenValues(),1E-7));
+  assertEquals(eigenVectors2.length,result.getEigenVectors().length);
+  assertEquals(eigenVectors2[0].length,result.getEigenVectors()[0].length);
+  for (int i=0; i < eigenVectors2.length; i++) {
+    for (int j=0; j < eigenVectors2[i].length; j++) {
+      assertEquals(Math.abs(eigenVectors2[i][j]),Math.abs(result.getEigenVectors()[i][j]),1E-7);
+    }
+  }
+}

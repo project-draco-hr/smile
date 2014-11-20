@@ -1,0 +1,5 @@
+{
+  this.id=id;
+  this.count=support;
+  this.parent=parent;
+}

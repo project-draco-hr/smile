@@ -1,0 +1,3 @@
+{
+  return -1 / lambda * Math.log(Math.random());
+}

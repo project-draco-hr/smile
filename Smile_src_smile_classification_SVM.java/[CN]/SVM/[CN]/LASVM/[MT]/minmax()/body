@@ -1,0 +1,21 @@
+{
+  if (!minmaxflag) {
+    gmin=Double.MAX_VALUE;
+    gmax=-Double.MAX_VALUE;
+    for (    SupportVector v : sv) {
+      if (v != null) {
+        double gi=v.g;
+        double ai=v.alpha;
+        if (gi < gmin && ai > v.cmin) {
+          svmin=v;
+          gmin=gi;
+        }
+        if (gi > gmax && ai < v.cmax) {
+          svmax=v;
+          gmax=gi;
+        }
+      }
+    }
+    minmaxflag=true;
+  }
+}

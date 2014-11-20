@@ -1,0 +1,18 @@
+{
+  if (o instanceof ItemSet) {
+    ItemSet a=(ItemSet)o;
+    if (support != a.support) {
+      return false;
+    }
+    if (items.length != a.items.length) {
+      return false;
+    }
+    for (int i=0; i < items.length; i++) {
+      if (items[i] != a.items[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+}

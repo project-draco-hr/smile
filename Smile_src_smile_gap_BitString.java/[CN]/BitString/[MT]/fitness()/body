@@ -1,0 +1,6 @@
+{
+  if (Double.isNaN(fitness)) {
+    fitness=measure.fit(this);
+  }
+  return fitness;
+}

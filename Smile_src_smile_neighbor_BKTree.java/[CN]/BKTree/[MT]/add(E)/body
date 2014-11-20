@@ -1,0 +1,8 @@
+{
+  if (root == null) {
+    root=new Node(count++,datum);
+  }
+ else {
+    root.add(datum);
+  }
+}

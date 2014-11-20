@@ -1,0 +1,29 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException("Input vectors have different size");
+  }
+  int is=0, n2=0, n1=0, n=x.length;
+  double aa, a2, a1;
+  for (int j=0; j < n - 1; j++) {
+    for (int k=j + 1; k < n; k++) {
+      a1=x[j] - x[k];
+      a2=y[j] - y[k];
+      aa=a1 * a2;
+      if (aa != 0.0) {
+        ++n1;
+        ++n2;
+        if (aa > 0)         ++is;
+ else         --is;
+      }
+ else {
+        if (a1 != 0.0)         ++n1;
+        if (a2 != 0.0)         ++n2;
+      }
+    }
+  }
+  double tau=is / (Math.sqrt(n1) * Math.sqrt(n2));
+  double svar=(4.0 * n + 10.0) / (9.0 * n * (n - 1.0));
+  double z=tau / Math.sqrt(svar);
+  double prob=Erf.erfcc(Math.abs(z) / 1.4142136);
+  return new CorTest(tau,0,z,prob);
+}

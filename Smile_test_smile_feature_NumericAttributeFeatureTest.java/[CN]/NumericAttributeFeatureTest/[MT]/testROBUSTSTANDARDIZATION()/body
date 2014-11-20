@@ -1,0 +1,20 @@
+{
+  System.out.println("ROBUST STANDARDIZATION");
+  ArffParser parser=new ArffParser();
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/regression/abalone.arff"));
+    double[][] x=data.toArray(new double[data.size()][]);
+    NumericAttributeFeature naf=new NumericAttributeFeature(data.attributes(),x);
+    Attribute[] attributes=naf.attributes();
+    assertEquals(data.attributes().length - 1,attributes.length);
+    for (int i=0; i < x.length; i++) {
+      double[] y=new double[attributes.length];
+      for (int j=0; j < y.length; j++) {
+        y[j]=naf.f(x[i],j);
+      }
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

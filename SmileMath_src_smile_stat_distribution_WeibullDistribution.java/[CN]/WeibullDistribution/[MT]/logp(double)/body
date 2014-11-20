@@ -1,0 +1,8 @@
+{
+  if (x <= 0) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return Math.log(shape / scale) + (shape - 1) * Math.log(x / scale) - Math.pow(x / scale,shape);
+  }
+}

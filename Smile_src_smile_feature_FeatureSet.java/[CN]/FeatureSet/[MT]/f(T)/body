@@ -1,0 +1,11 @@
+{
+  int i=0;
+  double[] x=new double[attributes.size()];
+  for (  Feature<T> feature : features) {
+    int k=feature.attributes().length;
+    for (int j=0; j < k; i++, j++) {
+      x[i]=feature.f(datum,j);
+    }
+  }
+  return x;
+}

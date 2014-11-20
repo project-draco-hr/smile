@@ -1,0 +1,12 @@
+{
+  int n=a.length;
+  if (!Math.isPower2(n)) {
+    throw new IllegalArgumentException("The data vector size is not a power of 2.");
+  }
+  if (n < 4) {
+    throw new IllegalArgumentException("The data vector size is less than 4.");
+  }
+  for (int nn=4; nn <= n; nn<<=1) {
+    backward(a,nn);
+  }
+}

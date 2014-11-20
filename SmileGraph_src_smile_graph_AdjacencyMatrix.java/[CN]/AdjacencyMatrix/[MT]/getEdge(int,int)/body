@@ -1,0 +1,10 @@
+{
+  if (graph[source][target] == 0.0) {
+    return null;
+  }
+  Edge edge=new Edge();
+  edge.v1=source;
+  edge.v2=target;
+  edge.weight=graph[source][target];
+  return edge;
+}

@@ -1,0 +1,3 @@
+{
+  return java.lang.Math.log1p(x);
+}

@@ -1,0 +1,5 @@
+{
+  TotalSupportTree ttree=new TotalSupportTree(minSupport,T0.numFreqItems,T0.order);
+  learn(null,null,ttree);
+  return ttree;
+}

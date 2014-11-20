@@ -1,0 +1,5 @@
+PrintStream out
+List<ItemSet> list
+int[] itemset
+int size
+Node node

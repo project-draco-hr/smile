@@ -1,0 +1,11 @@
+{
+  Chromosome chromosome=population[i];
+  if (chromosome instanceof LamarckianChromosome) {
+    LamarckianChromosome ch=(LamarckianChromosome)chromosome;
+    for (int j=0; j < t; j++) {
+      ch.evolve();
+    }
+  }
+  chromosome.fitness();
+  return this;
+}

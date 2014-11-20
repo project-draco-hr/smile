@@ -1,0 +1,21 @@
+{
+  HashMap<Integer,Neuron> hash=new HashMap<Integer,Neuron>();
+  Neuron[] neurons=new Neuron[nodes.size()];
+  int i=0;
+  for (  Node node : nodes) {
+    Neuron[] neighbors=new Neuron[node.edges.size()];
+    neurons[i]=new Neuron(node.w,neighbors);
+    hash.put(node.id,neurons[i]);
+    i++;
+  }
+  i=0;
+  for (  Node node : nodes) {
+    int j=0;
+    for (    Edge edge : node.edges) {
+      if (edge.a != node)       neurons[i].neighbors[j++]=hash.get(edge.a.id);
+ else       neurons[i].neighbors[j++]=hash.get(edge.b.id);
+    }
+    i++;
+  }
+  return neurons;
+}

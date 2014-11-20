@@ -1,0 +1,14 @@
+{
+  System.out.println("logPdf");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertTrue(Double.isInfinite(instance.logp(-1)));
+  assertEquals(-3.5,instance.logp(0),1E-7);
+  assertEquals(-2.247237,instance.logp(1),1E-6);
+  assertEquals(-1.687621,instance.logp(2),1E-6);
+  assertEquals(-1.533471,instance.logp(3),1E-6);
+  assertEquals(-1.667002,instance.logp(4),1E-6);
+  assertEquals(-6.076783,instance.logp(10),1E-6);
+  assertEquals(-20.78036,instance.logp(20),1E-5);
+  assertEquals(-241.9631,instance.logp(100),1E-4);
+}

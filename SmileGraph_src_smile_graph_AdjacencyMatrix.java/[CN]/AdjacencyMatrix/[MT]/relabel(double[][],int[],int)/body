@@ -1,0 +1,9 @@
+{
+  int minHeight=2 * n;
+  for (int v=0; v < n; v++) {
+    if (graph[u][v] - flow[u][v] > 0) {
+      minHeight=Math.min(minHeight,height[v]);
+      height[u]=minHeight + 1;
+    }
+  }
+}

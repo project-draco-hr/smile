@@ -1,0 +1,21 @@
+{
+  if (priori.length != condprob.length) {
+    throw new IllegalArgumentException("The number of priori probabilites and that of the classes are not same.");
+  }
+  double sum=0.0;
+  for (  double pr : priori) {
+    if (pr <= 0.0 || pr >= 1.0) {
+      throw new IllegalArgumentException("Invlaid priori probability: " + pr);
+    }
+    sum+=pr;
+  }
+  if (Math.abs(sum - 1.0) > 1E-10) {
+    throw new IllegalArgumentException("The sum of priori probabilities is not one: " + sum);
+  }
+  this.model=Model.GENERAL;
+  this.k=priori.length;
+  this.p=condprob[0].length;
+  this.priori=priori;
+  this.prob=condprob;
+  predefinedPriori=true;
+}

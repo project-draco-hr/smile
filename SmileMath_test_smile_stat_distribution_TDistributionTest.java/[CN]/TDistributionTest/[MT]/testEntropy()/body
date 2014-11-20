@@ -1,0 +1,5 @@
+{
+  System.out.println("entropy");
+  TDistribution instance=new TDistribution(20);
+  assertEquals(1.46954202,instance.entropy(),1E-7);
+}

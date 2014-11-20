@@ -1,0 +1,3 @@
+{
+  return lloyd(data,k,100);
+}

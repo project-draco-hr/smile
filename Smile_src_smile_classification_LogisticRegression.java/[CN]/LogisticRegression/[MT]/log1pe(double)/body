@@ -1,0 +1,10 @@
+{
+  double y=0.0;
+  if (x > 15) {
+    y=x;
+  }
+ else {
+    y+=Math.log1p(Math.exp(x));
+  }
+  return y;
+}

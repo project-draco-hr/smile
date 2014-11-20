@@ -1,0 +1,14 @@
+{
+  for (  String keyword : keywords) {
+    if (taxonomy.concepts.containsKey(keyword)) {
+      throw new IllegalArgumentException(String.format("Concept %s already exists.",keyword));
+    }
+  }
+  for (  String keyword : keywords) {
+    taxonomy.concepts.put(keyword,this);
+  }
+  if (synset == null) {
+    synset=new TreeSet<String>();
+  }
+  synset.addAll(keywords);
+}

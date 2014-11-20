@@ -1,0 +1,20 @@
+{
+  List<Neuron> outliers=new ArrayList<Neuron>();
+  for (  Neuron neuron : neurons) {
+    if (neuron.n < minPts) {
+      outliers.add(neuron);
+    }
+  }
+  neurons.removeAll(outliers);
+  for (  Neuron neuron : neurons) {
+    neuron.neighbors.removeAll(outliers);
+  }
+  outliers.clear();
+  for (  Neuron neuron : neurons) {
+    if (neuron.neighbors.isEmpty()) {
+      outliers.add(neuron);
+    }
+  }
+  neurons.removeAll(outliers);
+  return neurons.size();
+}

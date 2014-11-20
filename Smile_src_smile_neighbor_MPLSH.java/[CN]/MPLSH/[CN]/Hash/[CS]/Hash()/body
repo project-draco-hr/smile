@@ -1,0 +1,17 @@
+{
+  a=new double[k][d];
+  b=new double[k];
+  umin=new double[k];
+  umax=new double[k];
+  Arrays.fill(umin,Double.POSITIVE_INFINITY);
+  Arrays.fill(umax,Double.NEGATIVE_INFINITY);
+  GaussianDistribution gaussian=GaussianDistribution.getInstance();
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      a[i][j]=gaussian.rand();
+    }
+    b[i]=Math.random(0,r);
+  }
+  ArrayList<HashEntry> list=new ArrayList<HashEntry>();
+  table=(ArrayList<HashEntry>[])java.lang.reflect.Array.newInstance(list.getClass(),H);
+}

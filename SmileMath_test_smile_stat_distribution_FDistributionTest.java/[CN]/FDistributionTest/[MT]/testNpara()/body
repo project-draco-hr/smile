@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  FDistribution instance=new FDistribution(10,20);
+  instance.rand();
+  assertEquals(2,instance.npara());
+}

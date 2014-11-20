@@ -1,0 +1,23 @@
+{
+  if (components.isEmpty()) {
+    throw new IllegalStateException("MultivariateMixture is empty!");
+  }
+  double w=components.get(0).priori;
+  double[][] v=components.get(0).distribution.cov();
+  double[][] cov=new double[v.length][v[0].length];
+  for (int i=0; i < v.length; i++) {
+    for (int j=0; j < v[i].length; j++) {
+      cov[i][j]=w * w * v[i][j];
+    }
+  }
+  for (int k=1; k < components.size(); k++) {
+    w=components.get(0).priori;
+    v=components.get(0).distribution.cov();
+    for (int i=0; i < v.length; i++) {
+      for (int j=0; j < v[i].length; j++) {
+        cov[i][j]+=w * w * v[i][j];
+      }
+    }
+  }
+  return cov;
+}

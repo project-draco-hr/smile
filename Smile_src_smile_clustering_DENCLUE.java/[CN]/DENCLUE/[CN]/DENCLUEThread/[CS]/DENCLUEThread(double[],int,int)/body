@@ -1,0 +1,6 @@
+{
+  this.prob=prob;
+  this.start=start;
+  this.end=end;
+  attractor=new double[samples[0].length];
+}

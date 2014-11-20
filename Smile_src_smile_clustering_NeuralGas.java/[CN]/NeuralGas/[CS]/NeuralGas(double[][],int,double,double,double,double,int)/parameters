@@ -1,0 +1,7 @@
+double[][] data
+int k
+double lambda_i
+double lambda_f
+double eps_i
+double eps_f
+int steps

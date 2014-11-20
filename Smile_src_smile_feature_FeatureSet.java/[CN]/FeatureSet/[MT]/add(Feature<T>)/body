@@ -1,0 +1,4 @@
+{
+  features.add(feature);
+  attributes.addAll(Arrays.asList(feature.attributes()));
+}

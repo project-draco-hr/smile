@@ -1,0 +1,5 @@
+{
+  center=new double[d];
+  radius=new double[d];
+  sum=new double[d];
+}

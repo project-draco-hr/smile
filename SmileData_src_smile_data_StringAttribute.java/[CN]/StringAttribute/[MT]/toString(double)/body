@@ -1,0 +1,12 @@
+{
+  if (Double.isNaN(x)) {
+    return null;
+  }
+  if (Math.floor(x) != x) {
+    throw new IllegalArgumentException("The input string index is not an integer: " + x);
+  }
+  if (x < 0 || x >= values.size()) {
+    throw new IllegalArgumentException("Invalid string index: " + x);
+  }
+  return values.get((int)x);
+}

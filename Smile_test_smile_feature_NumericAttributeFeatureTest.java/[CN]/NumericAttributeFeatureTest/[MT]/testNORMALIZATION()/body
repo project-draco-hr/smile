@@ -1,0 +1,24 @@
+{
+  System.out.println("NORMALIZATION");
+  DelimitedTextParser parser=new DelimitedTextParser();
+  parser.setResponseIndex(new NominalAttribute("class"),0);
+  try {
+    AttributeDataset data=parser.parse("USPS Train",this.getClass().getResourceAsStream("/smile/data/usps/zip.train"));
+    double[][] x=data.toArray(new double[data.size()][]);
+    double[] min=Math.colMin(x);
+    double[] max=Math.colMax(x);
+    NumericAttributeFeature naf=new NumericAttributeFeature(data.attributes(),NumericAttributeFeature.Scaling.NORMALIZATION,x);
+    Attribute[] attributes=naf.attributes();
+    assertEquals(256,attributes.length);
+    for (int i=0; i < x.length; i++) {
+      double[] y=new double[attributes.length];
+      for (int j=0; j < y.length; j++) {
+        y[j]=naf.f(x[i],j);
+        assertEquals((x[i][j] - min[j]) / (max[j] - min[j]),y[j],1E-7);
+      }
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  int[] fs=new int[features.length + 1];
+  System.arraycopy(features,0,fs,0,features.length);
+  fs[features.length]=numFeatures + label;
+  return fs;
+}

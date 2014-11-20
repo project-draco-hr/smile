@@ -1,0 +1,6 @@
+{
+  if (qr == null) {
+    qr=new QRDecomposition(A);
+  }
+  return qr;
+}

@@ -1,0 +1,12 @@
+{
+  int n=this.x.length;
+  for (int i=0; i < n; i++) {
+    vstar[i]=variogram(Math.abs(x - this.x[i]));
+  }
+  vstar[n]=1.0;
+  double y=0.0;
+  for (int i=0; i <= n; i++) {
+    y+=yvi[i] * vstar[i];
+  }
+  return y;
+}

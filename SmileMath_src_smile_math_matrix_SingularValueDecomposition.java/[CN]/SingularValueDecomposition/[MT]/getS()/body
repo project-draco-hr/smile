@@ -1,0 +1,7 @@
+{
+  double[][] S=new double[V.length][V.length];
+  for (int i=0; i < s.length; i++) {
+    S[i][i]=s[i];
+  }
+  return S;
+}

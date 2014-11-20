@@ -1,0 +1,11 @@
+{
+  this.d=d;
+  this.ord=ord;
+  this.ord2=ord2;
+  this.nr=nr;
+  this.nc=nc;
+  this.n=d.length;
+  this.y=new double[n];
+  this.yf=new double[n];
+  this.yc=new double[n + 1];
+}

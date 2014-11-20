@@ -1,0 +1,14 @@
+{
+  if (A.length != x.length) {
+    throw new IllegalArgumentException(String.format("Array dimensions do not match for matrix multiplication: 1 x %d vs %d x %d",x.length,A.length,A[0].length));
+  }
+  if (A[0].length != y.length) {
+    throw new IllegalArgumentException(String.format("Array dimensions do not match"));
+  }
+  for (int i=0; i < y.length; i++) {
+    y[i]*=b;
+    for (int k=0; k < x.length; k++) {
+      y[i]+=x[k] * A[k][i];
+    }
+  }
+}

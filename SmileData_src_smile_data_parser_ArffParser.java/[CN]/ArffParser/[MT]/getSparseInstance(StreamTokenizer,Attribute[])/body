@@ -1,0 +1,40 @@
+{
+  double[] x=responseIndex >= 0 ? new double[attributes.length - 1] : new double[attributes.length];
+  double y=Double.NaN;
+  int index=-1;
+  do {
+    getNextToken(tokenizer);
+    if (tokenizer.ttype == '}') {
+      break;
+    }
+    String s=tokenizer.sval.trim();
+    if (index < 0) {
+      index=Integer.valueOf(s);
+      if (index < 0 || index >= attributes.length) {
+        throw new ParseException("Invalid attribute index: " + index,tokenizer.lineno());
+      }
+    }
+ else {
+      String val=s;
+      if (index != responseIndex) {
+        if (val.equals("?")) {
+          x[index]=Double.NaN;
+        }
+ else {
+          x[index]=attributes[index].valueOf(val);
+        }
+      }
+ else {
+        if (val.equals("?")) {
+          y=Double.NaN;
+        }
+ else {
+          y=attributes[index].valueOf(val);
+        }
+      }
+      index=-1;
+    }
+  }
+ while (tokenizer.ttype == StreamTokenizer.TT_WORD);
+  return new Datum<double[]>(x,y);
+}

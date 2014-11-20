@@ -1,0 +1,6 @@
+{
+  if (components.size() == 0) {
+    throw new IllegalStateException("Mixture is empty!");
+  }
+  return Math.log(p(x));
+}

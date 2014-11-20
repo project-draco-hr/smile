@@ -1,0 +1,8 @@
+{
+  if (viterbi) {
+    return predictViterbi(x);
+  }
+ else {
+    return predictForwardBackward(x);
+  }
+}

@@ -1,0 +1,16 @@
+{
+  if (lambda == 0) {
+    if (k >= 0) {
+      return 1.0;
+    }
+ else {
+      return 0.0;
+    }
+  }
+  if (k < 0) {
+    return 0.0;
+  }
+ else {
+    return Gamma.regularizedUpperIncompleteGamma(Math.floor(k + 1),lambda);
+  }
+}

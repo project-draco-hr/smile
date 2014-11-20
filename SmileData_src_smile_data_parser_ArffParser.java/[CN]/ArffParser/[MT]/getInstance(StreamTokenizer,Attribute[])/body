@@ -1,0 +1,26 @@
+{
+  double[] x=responseIndex >= 0 ? new double[attributes.length - 1] : new double[attributes.length];
+  double y=Double.NaN;
+  for (int i=0, k=0; i < attributes.length; i++) {
+    if (i > 0) {
+      getNextToken(tokenizer);
+    }
+    if (i == responseIndex) {
+      if (tokenizer.ttype == '?') {
+        y=Double.NaN;
+      }
+ else {
+        y=attributes[i].valueOf(tokenizer.sval);
+      }
+    }
+ else {
+      if (tokenizer.ttype == '?') {
+        x[k++]=Double.NaN;
+      }
+ else {
+        x[k++]=attributes[i].valueOf(tokenizer.sval);
+      }
+    }
+  }
+  return new Datum<double[]>(x,y);
+}

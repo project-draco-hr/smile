@@ -1,0 +1,45 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int n=data.length;
+  int d=data[0].length;
+  this.k=k;
+  distortion=Double.MAX_VALUE;
+  y=seed(data,k,DistanceMethod.EUCLIDEAN);
+  size=new int[k];
+  centroids=new double[k][d];
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+  }
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[y[i]][j]+=data[i][j];
+    }
+  }
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[i][j]/=size[i];
+    }
+  }
+  double[][] sums=new double[k][d];
+  for (int iter=1; iter <= maxIter; iter++) {
+    double dist=bbd.clustering(centroids,sums,size,y);
+    for (int i=0; i < k; i++) {
+      if (size[i] > 0) {
+        for (int j=0; j < d; j++) {
+          centroids[i][j]=sums[i][j] / size[i];
+        }
+      }
+    }
+    if (distortion <= dist) {
+      break;
+    }
+ else {
+      distortion=dist;
+    }
+  }
+}

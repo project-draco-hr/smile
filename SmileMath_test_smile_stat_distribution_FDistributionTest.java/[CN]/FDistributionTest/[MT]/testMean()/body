@@ -1,0 +1,6 @@
+{
+  System.out.println("mean");
+  FDistribution instance=new FDistribution(10,20);
+  instance.rand();
+  assertEquals(10.0 / 9,instance.mean(),1E-7);
+}

@@ -1,0 +1,8 @@
+{
+  System.out.println("pdf");
+  MultivariateGaussianDistribution instance=new MultivariateGaussianDistribution(mu,sigma);
+  instance.rand();
+  for (int i=0; i < x.length; i++) {
+    assertEquals(pdf[i],instance.p(x[i]),1E-4);
+  }
+}

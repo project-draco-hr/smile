@@ -1,0 +1,5 @@
+{
+  for (int i=0; i < m; i++)   yv[i]=srp[i].interpolate(x2p);
+  CubicSplineInterpolation1D scol=new CubicSplineInterpolation1D(x1,yv);
+  return scol.interpolate(x1p);
+}

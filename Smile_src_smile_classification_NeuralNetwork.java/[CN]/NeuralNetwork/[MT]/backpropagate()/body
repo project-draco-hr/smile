@@ -1,0 +1,5 @@
+{
+  for (int l=net.length; --l > 0; ) {
+    backpropagate(net[l],net[l - 1]);
+  }
+}

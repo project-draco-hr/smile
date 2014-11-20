@@ -1,0 +1,9 @@
+{
+  if (o instanceof Complex) {
+    Complex c=(Complex)o;
+    if (re == c.re && im == c.im) {
+      return true;
+    }
+  }
+  return false;
+}

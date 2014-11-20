@@ -1,0 +1,41 @@
+{
+  double f=Double.NaN;
+  int p=x[0].length;
+  double[] prob=new double[k];
+  if (ftasks != null) {
+    for (    FTask task : ftasks) {
+      task.w=w;
+    }
+    try {
+      f=0.0;
+      for (      double fi : MulticoreExecutor.run(ftasks)) {
+        f+=fi;
+      }
+    }
+ catch (    Exception ex) {
+      System.err.println(ex);
+      f=Double.NaN;
+    }
+  }
+  if (Double.isNaN(f)) {
+    f=0.0;
+    int n=x.length;
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < k; j++) {
+        prob[j]=dot(x[i],w,j * (p + 1));
+      }
+      softmax(prob);
+      f-=log(prob[y[i]]);
+    }
+  }
+  if (lambda != 0.0) {
+    double w2=0.0;
+    for (int i=0; i < k; i++) {
+      for (int j=0; j < p; j++) {
+        w2+=Math.sqr(w[i * (p + 1) + j]);
+      }
+    }
+    f+=0.5 * lambda * w2;
+  }
+  return f;
+}

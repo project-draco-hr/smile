@@ -1,0 +1,6 @@
+{
+  if (f <= 0 || f > 1) {
+    throw new IllegalArgumentException("Invalid sampling fraction: " + f);
+  }
+  this.f=f;
+}

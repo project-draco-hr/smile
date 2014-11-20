@@ -1,0 +1,14 @@
+{
+  if (C < 0) {
+    throw new IllegalArgumentException("Invalid soft margin penalty: " + C);
+  }
+  if (weight.length < 3) {
+    throw new IllegalArgumentException("Invalid number of classes: " + weight.length);
+  }
+  this.kernel=kernel;
+  this.Cp=C;
+  this.Cn=C;
+  this.k=weight.length;
+  this.weight=weight;
+  this.strategy=strategy;
+}

@@ -1,0 +1,4 @@
+List<HeaderTableItem> headers
+PrintStream out
+List<ItemSet> list
+TotalSupportTree ttree

@@ -1,0 +1,5 @@
+{
+  List<ItemSet> list=new ArrayList<ItemSet>();
+  getFrequentItemsets(null,list);
+  return list;
+}

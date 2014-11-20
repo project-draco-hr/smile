@@ -1,0 +1,16 @@
+{
+  int k=centers.length;
+  KMeans kmeans=new KMeans(x,k,10);
+  System.arraycopy(kmeans.centroids(),0,centers,0,k);
+  double r0=0.0;
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < i; j++) {
+      double d=Math.distance(centers[i],centers[j]);
+      if (r0 < d) {
+        r0=d;
+      }
+    }
+  }
+  r0/=Math.sqrt(2 * k);
+  return new GaussianRadialBasis(r0);
+}

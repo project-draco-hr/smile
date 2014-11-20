@@ -1,0 +1,109 @@
+{
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invalid tolerance: " + tol);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  if (itol < 1 || itol > 4) {
+    throw new IllegalArgumentException(String.format("Illegal itol: %d",itol));
+  }
+  double err=0.0;
+  double ak, akden, bk, bkden=1.0, bknum, bnrm, dxnrm, xnrm, zm1nrm, znrm=0.0;
+  int j, n=b.length;
+  double[] p=new double[n];
+  double[] pp=new double[n];
+  double[] r=new double[n];
+  double[] rr=new double[n];
+  double[] z=new double[n];
+  double[] zz=new double[n];
+  A.ax(x,r);
+  for (j=0; j < n; j++) {
+    r[j]=b[j] - r[j];
+    rr[j]=r[j];
+  }
+  if (itol == 1) {
+    bnrm=snorm(b,itol);
+    Ap.asolve(r,z);
+  }
+ else   if (itol == 2) {
+    Ap.asolve(b,z);
+    bnrm=snorm(z,itol);
+    Ap.asolve(r,z);
+  }
+ else   if (itol == 3 || itol == 4) {
+    Ap.asolve(b,z);
+    bnrm=snorm(z,itol);
+    Ap.asolve(r,z);
+    znrm=snorm(z,itol);
+  }
+ else {
+    throw new IllegalArgumentException(String.format("Illegal itol: %d",itol));
+  }
+  for (int iter=1; iter <= maxIter; iter++) {
+    Ap.asolve(rr,zz);
+    for (bknum=0.0, j=0; j < n; j++) {
+      bknum+=z[j] * rr[j];
+    }
+    if (iter == 1) {
+      for (j=0; j < n; j++) {
+        p[j]=z[j];
+        pp[j]=zz[j];
+      }
+    }
+ else {
+      bk=bknum / bkden;
+      for (j=0; j < n; j++) {
+        p[j]=bk * p[j] + z[j];
+        pp[j]=bk * pp[j] + zz[j];
+      }
+    }
+    bkden=bknum;
+    A.ax(p,z);
+    for (akden=0.0, j=0; j < n; j++) {
+      akden+=z[j] * pp[j];
+    }
+    ak=bknum / akden;
+    A.atx(pp,zz);
+    for (j=0; j < n; j++) {
+      x[j]+=ak * p[j];
+      r[j]-=ak * z[j];
+      rr[j]-=ak * zz[j];
+    }
+    Ap.asolve(r,z);
+    if (itol == 1) {
+      err=snorm(r,itol) / bnrm;
+    }
+ else     if (itol == 2) {
+      err=snorm(z,itol) / bnrm;
+    }
+ else     if (itol == 3 || itol == 4) {
+      zm1nrm=znrm;
+      znrm=snorm(z,itol);
+      if (Math.abs(zm1nrm - znrm) > EPSILON * znrm) {
+        dxnrm=Math.abs(ak) * snorm(p,itol);
+        err=znrm / Math.abs(zm1nrm - znrm) * dxnrm;
+      }
+ else {
+        err=znrm / bnrm;
+        continue;
+      }
+      xnrm=snorm(x,itol);
+      if (err <= 0.5 * xnrm) {
+        err/=xnrm;
+      }
+ else {
+        err=znrm / bnrm;
+        continue;
+      }
+    }
+    if (iter % 10 == 0) {
+      System.out.format("BCG: the error after %3d iterations: %.5g\n",iter,err);
+    }
+    if (err <= tol) {
+      System.out.format("BCG: the error after %3d iterations: %.5g\n",iter,err);
+      break;
+    }
+  }
+  return err;
+}

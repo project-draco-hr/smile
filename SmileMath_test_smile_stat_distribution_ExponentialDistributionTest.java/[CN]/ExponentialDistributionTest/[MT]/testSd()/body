@@ -1,0 +1,15 @@
+{
+  System.out.println("sd");
+  ExponentialDistribution instance=new ExponentialDistribution(1.0);
+  instance.rand();
+  assertEquals(1.0,instance.sd(),1E-7);
+  instance=new ExponentialDistribution(2.0);
+  instance.rand();
+  assertEquals(0.5,instance.sd(),1E-7);
+  instance=new ExponentialDistribution(3.0);
+  instance.rand();
+  assertEquals(0.3333333,instance.sd(),1E-7);
+  instance=new ExponentialDistribution(4.0);
+  instance.rand();
+  assertEquals(0.25,instance.sd(),1E-7);
+}

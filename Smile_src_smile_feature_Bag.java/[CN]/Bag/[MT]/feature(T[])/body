@@ -1,0 +1,20 @@
+{
+  double[] bag=new double[features.size()];
+  if (binary) {
+    for (    T word : x) {
+      Integer f=features.get(word);
+      if (f != null) {
+        bag[f]=1.0;
+      }
+    }
+  }
+ else {
+    for (    T word : x) {
+      Integer f=features.get(word);
+      if (f != null) {
+        bag[f]++;
+      }
+    }
+  }
+  return bag;
+}

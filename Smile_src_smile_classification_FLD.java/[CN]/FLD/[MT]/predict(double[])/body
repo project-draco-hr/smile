@@ -1,0 +1,16 @@
+{
+  if (x.length != p) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,p));
+  }
+  double[] wx=project(x);
+  int y=0;
+  double nearest=Double.POSITIVE_INFINITY;
+  for (int i=0; i < k; i++) {
+    double d=Math.distance(wx,smu[i]);
+    if (d < nearest) {
+      nearest=d;
+      y=i;
+    }
+  }
+  return y;
+}

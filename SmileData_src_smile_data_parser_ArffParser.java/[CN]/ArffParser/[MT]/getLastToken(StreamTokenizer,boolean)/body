@@ -1,0 +1,5 @@
+{
+  if ((tokenizer.nextToken() != StreamTokenizer.TT_EOL) && ((tokenizer.ttype != StreamTokenizer.TT_EOF) || !endOfFileOk)) {
+    throw new ParseException("end of line expected",tokenizer.lineno());
+  }
+}

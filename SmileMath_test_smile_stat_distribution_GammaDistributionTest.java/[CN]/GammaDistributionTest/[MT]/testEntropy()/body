@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(2.589516,instance.entropy(),1E-6);
+}

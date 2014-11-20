@@ -1,0 +1,6 @@
+int d
+double r
+double epsBest
+double epsNeighbor
+int L
+int k

@@ -1,0 +1,9 @@
+{
+  double variance=distortion / (n - 1);
+  double p1=-n * LOG2PI;
+  double p2=-n * d * Math.log(variance);
+  double p3=-(n - 1);
+  double L=(p1 + p2 + p3) / 2;
+  int numParameters=d + 1;
+  return L - 0.5 * numParameters * Math.log(n);
+}

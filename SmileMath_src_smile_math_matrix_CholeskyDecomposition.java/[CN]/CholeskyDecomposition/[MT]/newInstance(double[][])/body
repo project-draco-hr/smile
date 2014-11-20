@@ -1,0 +1,5 @@
+{
+  CholeskyDecomposition cholesky=new CholeskyDecomposition();
+  cholesky.L=L;
+  return cholesky;
+}

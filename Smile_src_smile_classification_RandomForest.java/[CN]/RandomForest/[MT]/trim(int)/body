@@ -1,0 +1,13 @@
+{
+  if (T > trees.size()) {
+    throw new IllegalArgumentException("The new model size is larger than the current size.");
+  }
+  if (T <= 0) {
+    throw new IllegalArgumentException("Invalid new model size: " + T);
+  }
+  List<DecisionTree> model=new ArrayList<DecisionTree>(T);
+  for (int i=0; i < T; i++) {
+    model.add(trees.get(i));
+  }
+  trees=model;
+}

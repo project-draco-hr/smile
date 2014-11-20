@@ -1,0 +1,8 @@
+{
+  System.out.println("PoissonDistribution");
+  PoissonDistribution instance=new PoissonDistribution(5.5);
+  int[] data=new int[1000];
+  for (int i=0; i < data.length; i++)   data[i]=(int)instance.rand();
+  PoissonDistribution est=new PoissonDistribution(data);
+  assertEquals(5.5,est.getLambda(),1.5E-1);
+}

@@ -1,0 +1,25 @@
+{
+  this.attributes=attributes;
+  this.types=types;
+  int p=0;
+  for (  Attribute attribute : attributes) {
+    if (attribute instanceof DateAttribute) {
+      p+=types.length;
+    }
+  }
+  features=new Attribute[p];
+  map=new int[p];
+  for (int i=0, j=0; j < attributes.length; j++) {
+    Attribute attribute=attributes[j];
+    if (attribute instanceof DateAttribute) {
+      DateAttribute date=(DateAttribute)attribute;
+      double weight=date.weight;
+      String name=date.name;
+      String description=date.description;
+      for (int k=0; k < types.length; k++, i++) {
+        features[i]=new NumericAttribute(name + "_" + types[k],description,weight);
+        map[i]=j;
+      }
+    }
+  }
+}

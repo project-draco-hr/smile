@@ -1,0 +1,13 @@
+{
+  if (node.trueChild == null && node.falseChild == null) {
+    node.output=output.calculate(samples);
+  }
+ else {
+    if (trueChild != null) {
+      trueChild.calculateOutput(output);
+    }
+    if (falseChild != null) {
+      falseChild.calculateOutput(output);
+    }
+  }
+}

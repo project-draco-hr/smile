@@ -1,0 +1,19 @@
+{
+  SparseDataset lil=new SparseDataset("Test Sparse Dataset");
+  int[] index={0,2,1};
+  for (int i=0; i < A.length; i++) {
+    for (int j=0; j < A[i].length; j++) {
+      if (A[i][index[j]] != 0) {
+        lil.set(i,index[j],Math.random());
+      }
+    }
+  }
+  for (int i=0; i < A.length; i++) {
+    for (int j=0; j < A[i].length; j++) {
+      if (A[i][index[j]] != 0) {
+        lil.set(i,index[j],A[i][index[j]]);
+      }
+    }
+  }
+  sm=lil.toSparseMatrix();
+}

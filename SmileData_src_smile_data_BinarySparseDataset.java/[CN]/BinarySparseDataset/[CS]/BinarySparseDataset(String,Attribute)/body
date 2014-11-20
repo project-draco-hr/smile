@@ -1,0 +1,5 @@
+{
+  super(name,response);
+  numColumns=0;
+  colSize=new int[100];
+}

@@ -1,0 +1,7 @@
+{
+  double dot=w[w.length - 1];
+  for (  int i : x) {
+    dot+=w[i];
+  }
+  return dot;
+}

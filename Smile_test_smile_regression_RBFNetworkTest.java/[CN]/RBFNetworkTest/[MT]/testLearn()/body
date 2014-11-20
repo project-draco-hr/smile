@@ -1,0 +1,17 @@
+{
+  System.out.println("learn");
+  Math.normalize(longley);
+  int n=longley.length;
+  LOOCV loocv=new LOOCV(n);
+  double rss=0.0;
+  for (int i=0; i < n; i++) {
+    double[][] trainx=Math.slice(longley,loocv.train[i]);
+    double[] trainy=Math.slice(y,loocv.train[i]);
+    double[][] centers=new double[10][];
+    RadialBasisFunction[] basis=SmileUtils.learnGaussianRadialBasis(trainx,centers,5.0);
+    RBFNetwork<double[]> rbf=new RBFNetwork<double[]>(trainx,trainy,new EuclideanDistance(),basis,centers);
+    double r=y[loocv.test[i]] - rbf.predict(longley[loocv.test[i]]);
+    rss+=r * r;
+  }
+  System.out.println("MSE = " + rss / n);
+}

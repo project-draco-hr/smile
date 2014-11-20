@@ -1,0 +1,144 @@
+{
+  if (v1 == null || v2 == null) {
+    if (v1 == null && v2 == null) {
+      minmax();
+      if (gmax > -gmin) {
+        v2=svmax;
+      }
+ else {
+        v1=svmin;
+      }
+    }
+    if (v2 == null) {
+      if (v1.kcache == null) {
+        v1.kcache=new DoubleArrayList(sv.size());
+        for (        SupportVector v : sv) {
+          if (v != null) {
+            v1.kcache.add(kernel.k(v1.x,v.x));
+          }
+ else {
+            v1.kcache.add(0.0);
+          }
+        }
+      }
+      double km=v1.k;
+      double gm=v1.g;
+      double best=0.0;
+      for (int i=0; i < sv.size(); i++) {
+        SupportVector v=sv.get(i);
+        if (v == null) {
+          continue;
+        }
+        double Z=v.g - gm;
+        double k=v1.kcache.get(i);
+        double curv=km + v.k - 2.0 * k;
+        if (curv <= 0.0)         curv=TAU;
+        double mu=Z / curv;
+        if ((mu > 0.0 && v.alpha < v.cmax) || (mu < 0.0 && v.alpha > v.cmin)) {
+          double gain=Z * mu;
+          if (gain > best) {
+            best=gain;
+            v2=v;
+          }
+        }
+      }
+    }
+ else {
+      if (v2.kcache == null) {
+        v2.kcache=new DoubleArrayList(sv.size());
+        for (        SupportVector v : sv) {
+          if (v != null) {
+            v2.kcache.add(kernel.k(v2.x,v.x));
+          }
+ else {
+            v2.kcache.add(0.0);
+          }
+        }
+      }
+      double km=v2.k;
+      double gm=v2.g;
+      double best=0.0;
+      for (int i=0; i < sv.size(); i++) {
+        SupportVector v=sv.get(i);
+        if (v == null) {
+          continue;
+        }
+        double Z=gm - v.g;
+        double k=v2.kcache.get(i);
+        double curv=km + v.k - 2.0 * k;
+        if (curv <= 0.0)         curv=TAU;
+        double mu=Z / curv;
+        if ((mu > 0.0 && v.alpha > v.cmin) || (mu < 0.0 && v.alpha < v.cmax)) {
+          double gain=Z * mu;
+          if (gain > best) {
+            best=gain;
+            v1=v;
+          }
+        }
+      }
+    }
+  }
+  if (v1 == null || v2 == null) {
+    return false;
+  }
+  if (v1.kcache == null) {
+    v1.kcache=new DoubleArrayList(sv.size());
+    for (    SupportVector v : sv) {
+      if (v != null) {
+        v1.kcache.add(kernel.k(v1.x,v.x));
+      }
+ else {
+        v1.kcache.add(0.0);
+      }
+    }
+  }
+  if (v2.kcache == null) {
+    v2.kcache=new DoubleArrayList(sv.size());
+    for (    SupportVector v : sv) {
+      if (v != null) {
+        v2.kcache.add(kernel.k(v2.x,v.x));
+      }
+ else {
+        v2.kcache.add(0.0);
+      }
+    }
+  }
+  double curv=v1.k + v2.k - 2 * kernel.k(v1.x,v2.x);
+  if (curv <= 0.0)   curv=TAU;
+  double step=(v2.g - v1.g) / curv;
+  if (step >= 0.0) {
+    double ostep=v1.alpha - v1.cmin;
+    if (ostep < step) {
+      step=ostep;
+    }
+    ostep=v2.cmax - v2.alpha;
+    if (ostep < step) {
+      step=ostep;
+    }
+  }
+ else {
+    double ostep=v2.cmin - v2.alpha;
+    if (ostep > step) {
+      step=ostep;
+    }
+    ostep=v1.alpha - v1.cmax;
+    if (ostep > step) {
+      step=ostep;
+    }
+  }
+  v1.alpha-=step;
+  v2.alpha+=step;
+  for (int i=0; i < sv.size(); i++) {
+    SupportVector v=sv.get(i);
+    if (v != null) {
+      v.g-=step * (v2.kcache.get(i) - v1.kcache.get(i));
+    }
+  }
+  minmaxflag=false;
+  minmax();
+  b=(gmax + gmin) / 2;
+  if (gmax - gmin < epsgr) {
+    return false;
+  }
+  return true;
+}

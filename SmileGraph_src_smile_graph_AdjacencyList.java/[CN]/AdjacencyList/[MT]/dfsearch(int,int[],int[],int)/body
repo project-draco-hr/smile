@@ -1,0 +1,11 @@
+{
+  pre[v]=0;
+  for (  Edge edge : graph[v]) {
+    int t=edge.v2;
+    if (pre[t] == -1) {
+      count=dfsearch(t,pre,ts,count);
+    }
+  }
+  ts[count++]=v;
+  return count;
+}

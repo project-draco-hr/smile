@@ -1,0 +1,3 @@
+{
+  for (int i=0; i < big.length; i++)   big[i]=Math.random();
+}

@@ -1,0 +1,21 @@
+{
+  if (!predefinedPriori) {
+    for (int c=0; c < k; c++) {
+      priori[c]=(nc[c] + EPSILON) / (n + k * EPSILON);
+    }
+  }
+  if (model == Model.MULTINOMIAL) {
+    for (int c=0; c < k; c++) {
+      for (int t=0; t < p; t++) {
+        condprob[c][t]=(ntc[c][t] + sigma) / (nt[c] + sigma * p);
+      }
+    }
+  }
+ else {
+    for (int c=0; c < k; c++) {
+      for (int t=0; t < p; t++) {
+        condprob[c][t]=(ntc[c][t] + sigma) / (nc[c] + sigma * 2);
+      }
+    }
+  }
+}

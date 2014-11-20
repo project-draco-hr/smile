@@ -1,0 +1,10 @@
+{
+  if (A.nrows() >= A.ncols()) {
+    A.ax(x,buf);
+    A.atx(buf,y);
+  }
+ else {
+    A.atx(x,buf);
+    A.ax(buf,y);
+  }
+}

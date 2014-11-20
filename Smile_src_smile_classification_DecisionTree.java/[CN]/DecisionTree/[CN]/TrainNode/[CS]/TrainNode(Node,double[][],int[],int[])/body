@@ -1,0 +1,6 @@
+{
+  this.node=node;
+  this.x=x;
+  this.y=y;
+  this.samples=samples;
+}

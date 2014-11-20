@@ -1,0 +1,7 @@
+{
+  int[][] obs=new int[observations.length][];
+  for (int i=0; i < obs.length; i++) {
+    obs[i]=translate(observations[i]);
+  }
+  return learn(obs,iterations);
+}

@@ -1,0 +1,7 @@
+{
+  n=0;
+  sum=new double[d];
+  parent=null;
+  numChildren=0;
+  children=new Node[B];
+}

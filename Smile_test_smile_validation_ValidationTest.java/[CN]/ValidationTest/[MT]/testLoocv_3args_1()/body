@@ -1,0 +1,17 @@
+{
+  System.out.println("loocv");
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(4);
+  try {
+    AttributeDataset iris=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/iris.arff"));
+    double[][] x=iris.toArray(new double[iris.size()][]);
+    int[] y=iris.toArray(new int[iris.size()]);
+    ClassifierTrainer<double[]> trainer=new LDA.Trainer();
+    double accuracy=Validation.loocv(trainer,x,y);
+    System.out.println("LOOCV accuracy = " + accuracy);
+    assertEquals(0.8533,accuracy,1E-4);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

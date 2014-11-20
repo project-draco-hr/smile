@@ -1,0 +1,5 @@
+{
+  ensureCapacity(size + vals.length);
+  System.arraycopy(vals,0,data,size,vals.length);
+  size+=vals.length;
+}

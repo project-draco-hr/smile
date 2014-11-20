@@ -1,0 +1,33 @@
+{
+  int[] count=new int[data[0].length];
+  for (int i=0; i < data.length; i++) {
+    int n=0;
+    for (int j=0; j < data[i].length; j++) {
+      if (Double.isNaN(data[i][j])) {
+        n++;
+        count[j]++;
+      }
+    }
+    if (n == data[i].length) {
+      throw new MissingValueImputationException("The whole row " + i + " is missing");
+    }
+  }
+  for (int i=0; i < data[0].length; i++) {
+    if (count[i] == data.length) {
+      throw new MissingValueImputationException("The whole column " + i + " is missing");
+    }
+  }
+  KMeans kmeans=KMeans.lloyd(data,k,Integer.MAX_VALUE,runs);
+  for (int i=0; i < k; i++) {
+    if (kmeans.getClusterSize()[i] > 0) {
+      double[][] d=new double[kmeans.getClusterSize()[i]][];
+      for (int j=0, m=0; j < data.length; j++) {
+        if (kmeans.getClusterLabel()[j] == i) {
+          d[m++]=data[j];
+        }
+      }
+      columnAverageImpute(d);
+    }
+  }
+  columnAverageImpute(data);
+}

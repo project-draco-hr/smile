@@ -1,0 +1,15 @@
+{
+  if (children == null) {
+    children=new HashMap<Integer,Node>();
+  }
+  if (index >= maxItemSetSize) {
+    maxItemSetSize=index + 1;
+  }
+  int item=itemset[index];
+  Node child=new Node(item,support,id < 0 ? null : this);
+  child.addToHeaderTable();
+  children.put(item,child);
+  if (++index < end) {
+    child.append(index,end,itemset,support);
+  }
+}

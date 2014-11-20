@@ -1,0 +1,6 @@
+{
+  if (T < 1) {
+    throw new IllegalArgumentException("Invlaid number of trees: " + T);
+  }
+  this.T=T;
+}

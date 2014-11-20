@@ -1,0 +1,7 @@
+{
+  double send=Math.min(excess[u],graph[u][v] - flow[u][v]);
+  flow[u][v]+=send;
+  flow[v][u]-=send;
+  excess[u]-=send;
+  excess[v]+=send;
+}

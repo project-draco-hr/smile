@@ -1,0 +1,4 @@
+{
+  System.out.println("nvals");
+  assertEquals(7,sm.size());
+}

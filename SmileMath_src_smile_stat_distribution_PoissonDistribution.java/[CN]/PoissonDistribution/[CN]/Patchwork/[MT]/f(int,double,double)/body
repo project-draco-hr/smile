@@ -1,0 +1,3 @@
+{
+  return Math.exp(k * l_nu - Math.logFactorial(k) - c_pm);
+}

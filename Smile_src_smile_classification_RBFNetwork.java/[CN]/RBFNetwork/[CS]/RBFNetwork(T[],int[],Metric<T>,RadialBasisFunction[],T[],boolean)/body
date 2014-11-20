@@ -1,0 +1,47 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (rbf.length != centers.length) {
+    throw new IllegalArgumentException(String.format("The sizes of RBF functions and centers don't match: %d != %d",rbf.length,centers.length));
+  }
+  int[] labels=Math.unique(y);
+  Arrays.sort(labels);
+  for (int i=0; i < labels.length; i++) {
+    if (labels[i] < 0) {
+      throw new IllegalArgumentException("Negative class label: " + labels[i]);
+    }
+    if (i > 0 && labels[i] - labels[i - 1] > 1) {
+      throw new IllegalArgumentException("Missing class: " + labels[i] + 1);
+    }
+  }
+  k=labels.length;
+  if (k < 2) {
+    throw new IllegalArgumentException("Only one class.");
+  }
+  this.centers=centers;
+  this.distance=distance;
+  this.rbf=rbf;
+  this.normalized=normalized;
+  int n=x.length;
+  int m=rbf.length;
+  w=new double[m + 1][k];
+  double[][] G=new double[n][m + 1];
+  double[][] b=new double[n][k];
+  for (int i=0; i < n; i++) {
+    double sum=0.0;
+    for (int j=0; j < m; j++) {
+      G[i][j]=rbf[j].f(distance.d(x[i],centers[j]));
+      sum+=G[i][j];
+    }
+    G[i][m]=1;
+    if (normalized) {
+      b[i][y[i]]=sum;
+    }
+ else {
+      b[i][y[i]]=1;
+    }
+  }
+  QRDecomposition qr=new QRDecomposition(G,true);
+  qr.solve(b,w);
+}

@@ -1,0 +1,5 @@
+{
+  double L=0.0;
+  for (  double xi : x)   L+=logp(xi);
+  return L;
+}

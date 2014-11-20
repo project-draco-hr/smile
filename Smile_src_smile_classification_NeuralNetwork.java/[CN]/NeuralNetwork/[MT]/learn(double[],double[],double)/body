@@ -1,0 +1,13 @@
+{
+  setInput(x);
+  propagate();
+  double err=weight * computeOutputError(y);
+  if (weight != 1.0) {
+    for (int i=0; i < outputLayer.units; i++) {
+      outputLayer.error[i]*=weight;
+    }
+  }
+  backpropagate();
+  adjustWeights();
+  return err;
+}

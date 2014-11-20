@@ -1,0 +1,5 @@
+{
+  this.n=n;
+  this.digraph=digraph;
+  graph=new double[n][n];
+}

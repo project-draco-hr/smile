@@ -1,0 +1,6 @@
+{
+  this.antecedent=antecedent;
+  this.consequent=consequent;
+  this.support=support;
+  this.confidence=confidence;
+}

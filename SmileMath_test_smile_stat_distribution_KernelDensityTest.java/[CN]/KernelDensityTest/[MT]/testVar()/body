@@ -1,0 +1,7 @@
+{
+  System.out.println("var");
+  KernelDensity instance=new KernelDensity(x);
+  double expResult=9.404966;
+  double result=instance.var();
+  assertEquals(expResult,result,1E-6);
+}

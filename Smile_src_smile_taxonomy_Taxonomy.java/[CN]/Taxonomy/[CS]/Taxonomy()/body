@@ -1,0 +1,4 @@
+{
+  root=new Concept();
+  root.taxonomy=this;
+}

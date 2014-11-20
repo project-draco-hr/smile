@@ -1,0 +1,4 @@
+{
+  svm.learn(x,y,weight);
+  return svm;
+}

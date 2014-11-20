@@ -1,0 +1,11 @@
+{
+  if (nu1 < 1) {
+    throw new IllegalArgumentException("Invalid nu1 = " + nu1);
+  }
+  if (nu2 < 1) {
+    throw new IllegalArgumentException("Invalid nu2 = " + nu2);
+  }
+  this.nu1=nu1;
+  this.nu2=nu2;
+  fac=0.5 * (nu1 * Math.log(nu1) + nu2 * Math.log(nu2)) + Gamma.logGamma(0.5 * (nu1 + nu2)) - Gamma.logGamma(0.5 * nu1) - Gamma.logGamma(0.5 * nu2);
+}

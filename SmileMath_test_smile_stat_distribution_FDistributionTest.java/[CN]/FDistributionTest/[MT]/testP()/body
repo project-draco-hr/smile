@@ -1,0 +1,11 @@
+{
+  System.out.println("p");
+  FDistribution instance=new FDistribution(10,20);
+  instance.rand();
+  assertEquals(2.90264e-06,instance.p(0.01),1E-10);
+  assertEquals(0.01504682,instance.p(0.1),1E-7);
+  assertEquals(0.1198157,instance.p(0.2),1E-7);
+  assertEquals(0.687882,instance.p(0.5),1E-6);
+  assertEquals(0.7143568,instance.p(1),1E-7);
+  assertEquals(6.652967e-06,instance.p(10),1E-10);
+}

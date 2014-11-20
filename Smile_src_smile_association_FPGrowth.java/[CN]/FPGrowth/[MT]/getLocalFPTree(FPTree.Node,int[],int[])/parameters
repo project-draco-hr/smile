@@ -1,0 +1,3 @@
+FPTree.Node node
+int[] localItemSupport
+int[] prefixItemset

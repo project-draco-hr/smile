@@ -1,0 +1,3 @@
+{
+  return String.format("Polynomial Kernel (scale = %.4f, offset = %.4f)",scale,offset);
+}

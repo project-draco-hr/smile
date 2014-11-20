@@ -1,0 +1,10 @@
+{
+  if (components.isEmpty())   throw new IllegalStateException("Mixture is empty!");
+  int n=data.length;
+  double logLikelihood=0.0;
+  for (  double x : data) {
+    double p=p(x);
+    if (p > 0)     logLikelihood+=Math.log(p);
+  }
+  return logLikelihood - 0.5 * npara() * Math.log(n);
+}

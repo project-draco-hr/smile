@@ -1,0 +1,8 @@
+{
+  this.p=w.length;
+  this.n=w[0].length;
+  this.r=r;
+  y=new double[p];
+  wy=new double[n];
+  projection=w;
+}

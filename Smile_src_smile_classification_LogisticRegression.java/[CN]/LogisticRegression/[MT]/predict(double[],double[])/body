@@ -1,0 +1,46 @@
+{
+  if (x.length != p) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,p));
+  }
+  if (posteriori != null && posteriori.length != k) {
+    throw new IllegalArgumentException(String.format("Invalid posteriori vector size: %d, expected: %d",posteriori.length,k));
+  }
+  if (k == 2) {
+    double f=1.0 / (1.0 + Math.exp(-dot(x,w)));
+    if (posteriori != null) {
+      posteriori[0]=f;
+      posteriori[1]=1.0 - f;
+    }
+    if (f < 0.5) {
+      return 0;
+    }
+ else {
+      return 1;
+    }
+  }
+ else {
+    int label=-1;
+    double max=Double.NEGATIVE_INFINITY;
+    for (int i=0; i < k; i++) {
+      double prob=dot(x,W[i]);
+      if (prob > max) {
+        max=prob;
+        label=i;
+      }
+      if (posteriori != null) {
+        posteriori[i]=prob;
+      }
+    }
+    if (posteriori != null) {
+      double Z=0.0;
+      for (int i=0; i < k; i++) {
+        posteriori[i]=Math.exp(posteriori[i] - max);
+        Z+=posteriori[i];
+      }
+      for (int i=0; i < k; i++) {
+        posteriori[i]/=Z;
+      }
+    }
+    return label;
+  }
+}

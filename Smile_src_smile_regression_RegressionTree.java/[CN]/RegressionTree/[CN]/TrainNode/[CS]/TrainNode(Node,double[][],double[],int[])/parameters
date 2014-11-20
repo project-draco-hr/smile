@@ -1,0 +1,4 @@
+Node node
+double[][] x
+double[] y
+int[] samples

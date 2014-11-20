@@ -1,0 +1,4 @@
+T[] data
+MercerKernel<T> kernel
+int k
+double threshold

@@ -1,0 +1,79 @@
+{
+  for (int i=1; i < n; i++) {
+    e[i - 1]=e[i];
+  }
+  e[n - 1]=0.0;
+  double f=0.0;
+  double tst1=0.0;
+  for (int l=0; l < n; l++) {
+    tst1=Math.max(tst1,Math.abs(d[l]) + Math.abs(e[l]));
+    int m=l;
+    for (; m < n; m++) {
+      if (Math.abs(e[m]) <= Math.EPSILON * tst1) {
+        break;
+      }
+    }
+    if (m > l) {
+      int iter=0;
+      do {
+        if (++iter >= 30) {
+          throw new RuntimeException("Too many iterations");
+        }
+        double g=d[l];
+        double p=(d[l + 1] - d[l]) / (2.0 * e[l]);
+        double r=Math.hypot(p,1.0);
+        if (p < 0) {
+          r=-r;
+        }
+        d[l]=e[l] / (p + r);
+        d[l + 1]=e[l] * (p + r);
+        double dl1=d[l + 1];
+        double h=g - d[l];
+        for (int i=l + 2; i < n; i++) {
+          d[i]-=h;
+        }
+        f=f + h;
+        p=d[m];
+        double c=1.0;
+        double c2=c;
+        double c3=c;
+        double el1=e[l + 1];
+        double s=0.0;
+        double s2=0.0;
+        for (int i=m - 1; i >= l; i--) {
+          c3=c2;
+          c2=c;
+          s2=s;
+          g=c * e[i];
+          h=c * p;
+          r=Math.hypot(p,e[i]);
+          e[i + 1]=s * r;
+          s=e[i] / r;
+          c=p / r;
+          p=c * d[i] - s * g;
+          d[i + 1]=h + s * (c * g + s * d[i]);
+        }
+        p=-s * s2 * c3* el1* e[l] / dl1;
+        e[l]=s * p;
+        d[l]=c * p;
+      }
+ while (Math.abs(e[l]) > Math.EPSILON * tst1);
+    }
+    d[l]=d[l] + f;
+    e[l]=0.0;
+  }
+  for (int i=0; i < n - 1; i++) {
+    int k=i;
+    double p=d[i];
+    for (int j=i + 1; j < n; j++) {
+      if (d[j] > p) {
+        k=j;
+        p=d[j];
+      }
+    }
+    if (k != i) {
+      d[k]=d[i];
+      d[i]=p;
+    }
+  }
+}

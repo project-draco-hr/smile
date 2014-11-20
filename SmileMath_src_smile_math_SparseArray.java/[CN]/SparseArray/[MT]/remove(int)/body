@@ -1,0 +1,10 @@
+{
+  Iterator<Entry> it=array.iterator();
+  while (it.hasNext()) {
+    Entry e=it.next();
+    if (e.i == i) {
+      it.remove();
+      break;
+    }
+  }
+}

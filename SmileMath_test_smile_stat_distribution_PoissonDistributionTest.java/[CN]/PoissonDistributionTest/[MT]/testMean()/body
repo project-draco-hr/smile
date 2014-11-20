@@ -1,0 +1,6 @@
+{
+  System.out.println("mean");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(3.5,instance.mean(),1E-7);
+}

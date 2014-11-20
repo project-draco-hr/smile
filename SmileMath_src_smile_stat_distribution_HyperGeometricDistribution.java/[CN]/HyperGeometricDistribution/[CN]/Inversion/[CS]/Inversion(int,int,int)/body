@@ -1,0 +1,20 @@
+{
+  super(N,m,n);
+  int L=N - m - n;
+  double Mp=m + 1;
+  double np=n + 1;
+  double p=Mp / (N + 2.);
+  double modef=np * p;
+  mode=(int)modef;
+  if (mode == modef && p == 0.5) {
+    mp=mode--;
+  }
+ else {
+    mp=mode + 1;
+  }
+  fm=Math.exp(Math.logFactorial(N - m) - Math.logFactorial(L + mode) - Math.logFactorial(n - mode) + Math.logFactorial(m) - Math.logFactorial(m - mode) - Math.logFactorial(mode) - Math.logFactorial(N) + Math.logFactorial(N - n) + Math.logFactorial(n));
+  bound=(int)(modef + 11. * Math.sqrt(modef * (1. - p) * (1. - n / (double)N) + 1.));
+  if (bound > n) {
+    bound=n;
+  }
+}

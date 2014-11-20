@@ -1,0 +1,3 @@
+{
+  return (int)Math.signum(prob - o.prob);
+}

@@ -1,0 +1,27 @@
+{
+  nrows=D.length;
+  ncols=D[0].length;
+  int n=0;
+  for (int i=0; i < nrows; i++) {
+    for (int j=0; j < ncols; j++) {
+      if (Math.abs(D[i][j]) >= tol) {
+        n++;
+      }
+    }
+  }
+  x=new double[n];
+  rowIndex=new int[n];
+  colIndex=new int[ncols + 1];
+  colIndex[ncols]=n;
+  n=0;
+  for (int j=0; j < ncols; j++) {
+    colIndex[j]=n;
+    for (int i=0; i < nrows; i++) {
+      if (Math.abs(D[i][j]) >= tol) {
+        rowIndex[n]=i;
+        x[n]=D[i][j];
+        n++;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  if (o instanceof AssociationRule) {
+    AssociationRule a=(AssociationRule)o;
+    if (support != a.support) {
+      return false;
+    }
+    if (confidence != a.confidence) {
+      return false;
+    }
+    if (antecedent.length != a.antecedent.length) {
+      return false;
+    }
+    if (consequent.length != a.consequent.length) {
+      return false;
+    }
+    for (int i=0; i < antecedent.length; i++) {
+      if (antecedent[i] != a.antecedent[i]) {
+        return false;
+      }
+    }
+    for (int i=0; i < consequent.length; i++) {
+      if (consequent[i] != a.consequent[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+}

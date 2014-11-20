@@ -1,0 +1,13 @@
+{
+  if (shape <= 0) {
+    throw new IllegalArgumentException("Invalid shape: " + shape);
+  }
+  if (scale <= 0) {
+    throw new IllegalArgumentException("Invalid scale: " + scale);
+  }
+  this.shape=shape;
+  this.scale=scale;
+  mean=scale * Gamma.gamma(1 + 1 / shape);
+  var=scale * scale * Gamma.gamma(1 + 2 / shape) - mean * mean;
+  entropy=0.5772156649015328606 * (1 - 1 / shape) + Math.log(scale / shape) + 1;
+}

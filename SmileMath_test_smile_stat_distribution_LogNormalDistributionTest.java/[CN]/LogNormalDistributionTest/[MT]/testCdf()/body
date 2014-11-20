@@ -1,0 +1,11 @@
+{
+  System.out.println("cdf");
+  LogNormalDistribution instance=new LogNormalDistribution(1.0,1.0);
+  instance.rand();
+  assertEquals(1.040252e-08,instance.cdf(0.01),1E-12);
+  assertEquals(0.0004789901,instance.cdf(0.1),1E-7);
+  assertEquals(0.1586553,instance.cdf(1.0),1E-7);
+  assertEquals(0.3794777,instance.cdf(2.0),1E-7);
+  assertEquals(0.7288829,instance.cdf(5.0),1E-7);
+  assertEquals(0.9036418,instance.cdf(10.0),1E-7);
+}

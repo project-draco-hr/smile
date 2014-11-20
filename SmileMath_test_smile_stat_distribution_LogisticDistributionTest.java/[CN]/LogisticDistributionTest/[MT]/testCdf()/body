@@ -1,0 +1,14 @@
+{
+  System.out.println("cdf");
+  LogisticDistribution instance=new LogisticDistribution(2.0,1.0);
+  instance.rand();
+  assertEquals(0.1193080,instance.cdf(0.001),1E-7);
+  assertEquals(0.1202569,instance.cdf(0.01),1E-7);
+  assertEquals(0.1301085,instance.cdf(0.1),1E-7);
+  assertEquals(0.1418511,instance.cdf(0.2),1E-7);
+  assertEquals(0.1824255,instance.cdf(0.5),1E-7);
+  assertEquals(0.2689414,instance.cdf(1.0),1E-7);
+  assertEquals(0.5,instance.cdf(2.0),1E-7);
+  assertEquals(0.9525741,instance.cdf(5.0),1E-7);
+  assertEquals(0.9996646,instance.cdf(10.0),1E-7);
+}

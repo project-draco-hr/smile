@@ -1,0 +1,3 @@
+{
+  return SingularValueDecomposition.decompose(A).rank();
+}

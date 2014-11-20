@@ -1,0 +1,6 @@
+{
+  if (n < k) {
+    throw new IllegalStateException();
+  }
+  SortUtils.siftDown(heap,0,k - 1);
+}

@@ -1,0 +1,74 @@
+{
+  if (k < 2)   throw new IllegalArgumentException("Invalid number of components in the mixture.");
+  int n=data.length;
+  int d=data[0].length;
+  double[] mu=new double[d];
+  double[][] sigma=new double[d][d];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < d; j++) {
+      mu[j]+=data[i][j];
+    }
+  }
+  for (int j=0; j < d; j++) {
+    mu[j]/=n;
+  }
+  if (diagonal) {
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < d; j++) {
+        sigma[j][j]+=(data[i][j] - mu[j]) * (data[i][j] - mu[j]);
+      }
+    }
+    for (int j=0; j < d; j++) {
+      sigma[j][j]/=(n - 1);
+    }
+  }
+ else {
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < d; j++) {
+        for (int l=0; l <= j; l++) {
+          sigma[j][l]+=(data[i][j] - mu[j]) * (data[i][l] - mu[l]);
+        }
+      }
+    }
+    for (int j=0; j < d; j++) {
+      for (int l=0; l <= j; l++) {
+        sigma[j][l]/=(n - 1);
+        sigma[l][j]=sigma[j][l];
+      }
+    }
+  }
+  double[] centroid=data[Math.randomInt(n)];
+  Component c=new Component();
+  c.priori=1.0 / k;
+  MultivariateGaussianDistribution gaussian=new MultivariateGaussianDistribution(centroid,sigma);
+  gaussian.diagonal=diagonal;
+  c.distribution=gaussian;
+  components.add(c);
+  double[] D=new double[n];
+  for (int i=0; i < n; i++) {
+    D[i]=Double.MAX_VALUE;
+  }
+  for (int i=1; i < k; i++) {
+    for (int j=0; j < n; j++) {
+      double dist=Math.squaredDistance(data[j],centroid);
+      if (dist < D[j]) {
+        D[j]=dist;
+      }
+    }
+    double cutoff=Math.random() * Math.sum(D);
+    double cost=0.0;
+    int index=0;
+    for (; index < n; index++) {
+      cost+=D[index];
+      if (cost >= cutoff)       break;
+    }
+    centroid=data[index];
+    c=new Component();
+    c.priori=1.0 / k;
+    gaussian=new MultivariateGaussianDistribution(centroid,sigma);
+    gaussian.diagonal=diagonal;
+    c.distribution=gaussian;
+    components.add(c);
+  }
+  EM(components,data);
+}

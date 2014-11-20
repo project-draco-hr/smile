@@ -1,0 +1,5 @@
+{
+  double[] x=new double[n];
+  random.nextDoubles(x);
+  return x;
+}

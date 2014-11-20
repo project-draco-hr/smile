@@ -1,0 +1,28 @@
+{
+  if (a < 0.0 || x < 0.0 || x >= a + 1) {
+    throw new IllegalArgumentException(String.format("Invalid a = %f, x = %f",a,x));
+  }
+  int i=0;
+  double igf=0.0;
+  boolean check=true;
+  double acopy=a;
+  double sum=1.0 / a;
+  double incr=sum;
+  double loggamma=logGamma(a);
+  while (check) {
+    ++i;
+    ++a;
+    incr*=x / a;
+    sum+=incr;
+    if (Math.abs(incr) < Math.abs(sum) * INCOMPLETE_GAMMA_EPSILON) {
+      igf=sum * Math.exp(-x + acopy * Math.log(x) - loggamma);
+      check=false;
+    }
+    if (i >= INCOMPLETE_GAMMA_MAX_ITERATIONS) {
+      check=false;
+      igf=sum * Math.exp(-x + acopy * Math.log(x) - loggamma);
+      System.err.println("Maximum number of iterations wes exceeded");
+    }
+  }
+  return igf;
+}

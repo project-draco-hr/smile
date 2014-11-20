@@ -1,0 +1,7 @@
+T[] x
+double[] y
+double[] weight
+MercerKernel<T> kernel
+double eps
+double C
+double tol

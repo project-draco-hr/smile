@@ -1,0 +1,22 @@
+{
+  if (x.isEmpty()) {
+    throw new IllegalArgumentException("List x is empty.");
+  }
+  Iterator<SparseArray.Entry> iter=x.iterator();
+  boolean intersection=false;
+  double kl=0.0;
+  while (iter.hasNext()) {
+    SparseArray.Entry b=iter.next();
+    int i=b.i;
+    if (y[i] > 0) {
+      intersection=true;
+      kl+=b.x * Math.log(b.x / y[i]);
+    }
+  }
+  if (intersection) {
+    return kl;
+  }
+ else {
+    return Double.POSITIVE_INFINITY;
+  }
+}

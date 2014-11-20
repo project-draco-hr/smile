@@ -1,0 +1,7 @@
+{
+  if (n == 0) {
+    return addd;
+  }
+  int x=random();
+  return x * fak + addd;
+}

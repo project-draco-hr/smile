@@ -1,0 +1,6 @@
+{
+  this.key=key;
+  this.value=object;
+  this.index=index;
+  this.distance=distance;
+}

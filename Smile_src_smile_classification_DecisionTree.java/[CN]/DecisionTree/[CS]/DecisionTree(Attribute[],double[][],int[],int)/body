@@ -1,0 +1,3 @@
+{
+  this(attributes,x,y,J,SplitRule.GINI);
+}

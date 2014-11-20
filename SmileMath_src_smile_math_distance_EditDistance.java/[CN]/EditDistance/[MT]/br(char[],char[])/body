@@ -1,0 +1,35 @@
+{
+  if (x.length > y.length) {
+    char[] swap=x;
+    x=y;
+    y=swap;
+  }
+  final int m=x.length;
+  final int n=y.length;
+  int ZERO_K=n;
+  if (n + 2 > FKP[0].length)   FKP=new int[2 * n + 1][n + 2];
+  for (int k=-ZERO_K; k < 0; k++) {
+    int p=-k - 1;
+    FKP[k + ZERO_K][p + 1]=Math.abs(k) - 1;
+    FKP[k + ZERO_K][p]=-Integer.MAX_VALUE;
+  }
+  FKP[ZERO_K][0]=-1;
+  for (int k=1; k <= ZERO_K; k++) {
+    int p=k - 1;
+    FKP[k + ZERO_K][p + 1]=-1;
+    FKP[k + ZERO_K][p]=-Integer.MAX_VALUE;
+  }
+  int p=n - m - 1;
+  do {
+    p++;
+    for (int i=(p - (n - m)) / 2; i >= 1; i--) {
+      brf.f(x,y,FKP,ZERO_K,n - m + i,p - i);
+    }
+    for (int i=(n - m + p) / 2; i >= 1; i--) {
+      brf.f(x,y,FKP,ZERO_K,n - m - i,p - i);
+    }
+    brf.f(x,y,FKP,ZERO_K,n - m,p);
+  }
+ while (FKP[(n - m) + ZERO_K][p] != m);
+  return p - 1;
+}

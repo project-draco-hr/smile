@@ -1,0 +1,23 @@
+{
+  int n1=x.length;
+  int n2=y.length;
+  double var1=Math.var(x);
+  double var2=Math.var(y);
+  int df1, df2;
+  double f;
+  if (var1 > var2) {
+    f=var1 / var2;
+    df1=n1 - 1;
+    df2=n2 - 1;
+  }
+ else {
+    f=var2 / var1;
+    df1=n2 - 1;
+    df2=n1 - 1;
+  }
+  double p=2.0 * Beta.regularizedIncompleteBetaFunction(0.5 * df2,0.5 * df1,df2 / (df2 + df1 * f));
+  if (p > 1.0) {
+    p=2.0 - p;
+  }
+  return new FTest(f,df1,df2,p);
+}

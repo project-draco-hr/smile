@@ -1,0 +1,14 @@
+{
+  int n=data.length;
+  double[] y=new double[n];
+  for (int i=0; i < n; i++) {
+    y[i]=kernel.k(x,data[i]);
+  }
+  double my=Math.mean(y);
+  for (int i=0; i < n; i++) {
+    y[i]=y[i] - my - mean[i] + mu;
+  }
+  double[] z=new double[p];
+  Math.ax(projection,y,z);
+  return z;
+}

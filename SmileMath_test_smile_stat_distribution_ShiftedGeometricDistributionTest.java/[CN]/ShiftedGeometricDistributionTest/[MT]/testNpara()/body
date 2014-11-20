@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  ShiftedGeometricDistribution instance=new ShiftedGeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(1,instance.npara());
+}

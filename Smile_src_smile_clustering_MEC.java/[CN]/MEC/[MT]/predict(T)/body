@@ -1,0 +1,13 @@
+{
+  List<Neighbor<T,T>> neighbors=new ArrayList<Neighbor<T,T>>();
+  nns.range(x,radius,neighbors);
+  if (neighbors.isEmpty()) {
+    return OUTLIER;
+  }
+  int[] label=new int[k];
+  for (  Neighbor<T,T> neighbor : neighbors) {
+    int yi=y[neighbor.index];
+    label[yi]++;
+  }
+  return Math.whichMax(label);
+}

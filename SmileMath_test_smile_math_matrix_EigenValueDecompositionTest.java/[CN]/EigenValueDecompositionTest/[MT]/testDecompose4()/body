@@ -1,0 +1,6 @@
+{
+  System.out.println("decompose");
+  EigenValueDecomposition result=EigenValueDecomposition.decompose(A2,false,true);
+  assertTrue(Math.equals(eigenValues2,result.getEigenValues(),1E-7));
+  assertTrue(null == result.getEigenVectors());
+}

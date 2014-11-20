@@ -1,0 +1,39 @@
+{
+  int n=data.length;
+  int k=medoids.length;
+  T medoid=data[Math.randomInt(n)];
+  medoids[0]=medoid;
+  Arrays.fill(d,Double.MAX_VALUE);
+  for (int j=1; j < k; j++) {
+    for (int i=0; i < n; i++) {
+      double dist=distance.d(data[i],medoid);
+      if (dist < d[i]) {
+        d[i]=dist;
+        y[i]=j - 1;
+      }
+    }
+    double cutoff=Math.random() * Math.sum(d);
+    double cost=0.0;
+    int index=0;
+    for (; index < n; index++) {
+      cost+=d[index];
+      if (cost >= cutoff) {
+        break;
+      }
+    }
+    medoid=data[index];
+    medoids[j]=medoid;
+  }
+  for (int i=0; i < n; i++) {
+    double dist=distance.d(data[i],medoid);
+    if (dist < d[i]) {
+      d[i]=dist;
+      y[i]=k - 1;
+    }
+  }
+  double distortion=0.0;
+  for (int i=0; i < n; ++i) {
+    distortion+=d[i];
+  }
+  return distortion;
+}

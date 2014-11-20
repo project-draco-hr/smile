@@ -1,0 +1,13 @@
+{
+  System.out.println("logP");
+  HyperGeometricDistribution instance=new HyperGeometricDistribution(100,30,70);
+  instance.rand();
+  assertEquals(Math.log(3.404564e-26),instance.logp(0),1E-5);
+  assertEquals(Math.log(7.149584e-23),instance.logp(1),1E-5);
+  assertEquals(Math.log(3.576579e-20),instance.logp(2),1E-5);
+  assertEquals(Math.log(0.1655920),instance.logp(20),1E-5);
+  assertEquals(Math.log(0.1877461),instance.logp(21),1E-5);
+  assertEquals(Math.log(0.00041413),instance.logp(28),1E-5);
+  assertEquals(Math.log(4.136376e-05),instance.logp(29),1E-5);
+  assertEquals(Math.log(1.884349e-06),instance.logp(30),1E-5);
+}

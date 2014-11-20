@@ -1,0 +1,16 @@
+{
+  String displayName="anonymous";
+  if (synset != null && synset.size() > 0) {
+    StringBuilder builder=new StringBuilder();
+    builder.append('(');
+    Iterator<String> iter=synset.iterator();
+    builder.append(iter.next());
+    while (iter.hasNext()) {
+      builder.append(", ");
+      builder.append(iter.next());
+    }
+    builder.append(']');
+    displayName=builder.toString();
+  }
+  return String.format("Concept %s",displayName);
+}

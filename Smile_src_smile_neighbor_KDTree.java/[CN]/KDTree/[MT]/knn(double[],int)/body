@@ -1,0 +1,21 @@
+{
+  if (k <= 0) {
+    throw new IllegalArgumentException("Invalid k: " + k);
+  }
+  if (k > keys.length) {
+    throw new IllegalArgumentException("Neighbor array length is larger than the dataset size");
+  }
+  Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,0,Double.MAX_VALUE);
+  @SuppressWarnings("unchecked") Neighbor<double[],E>[] neighbors=(Neighbor<double[],E>[])java.lang.reflect.Array.newInstance(neighbor.getClass(),k);
+  HeapSelect<Neighbor<double[],E>> heap=new HeapSelect<Neighbor<double[],E>>(neighbors);
+  for (int i=0; i < k; i++) {
+    heap.add(neighbor);
+    neighbor=new Neighbor<double[],E>(null,null,0,Double.MAX_VALUE);
+  }
+  search(q,root,heap);
+  heap.sort();
+  for (int i=0; i < neighbors.length; i++) {
+    neighbors[i].distance=Math.sqrt(neighbors[i].distance);
+  }
+  return neighbors;
+}

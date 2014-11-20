@@ -1,0 +1,3 @@
+{
+  return new Complex(Math.sin(re) * Math.cosh(im),Math.cos(re) * Math.sinh(im));
+}

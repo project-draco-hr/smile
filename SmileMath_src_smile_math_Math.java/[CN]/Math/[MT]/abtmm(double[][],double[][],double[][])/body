@@ -1,0 +1,15 @@
+{
+  if (A[0].length != B[0].length) {
+    throw new IllegalArgumentException(String.format("Matrix multiplication A * B': %d x %d vs %d x %d",A.length,A[0].length,B.length,B[0].length));
+  }
+  int m=A.length;
+  int n=B.length;
+  int l=B[0].length;
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++) {
+      for (int k=0; k < l; k++) {
+        C[i][j]+=A[i][k] * B[j][k];
+      }
+    }
+  }
+}

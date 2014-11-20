@@ -1,0 +1,3 @@
+{
+  add(root,0,itemset.length - 1,itemset,support);
+}

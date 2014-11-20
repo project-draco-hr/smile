@@ -1,0 +1,12 @@
+{
+  System.out.println("logP");
+  TDistribution instance=new TDistribution(20);
+  instance.rand();
+  assertEquals(Math.log(2.660085e-09),instance.logp(-10.0),1E-5);
+  assertEquals(Math.log(0.05808722),instance.logp(-2.0),1E-5);
+  assertEquals(Math.log(0.2360456),instance.logp(-1.0),1E-5);
+  assertEquals(Math.log(0.3939886),instance.logp(0.0),1E-5);
+  assertEquals(Math.log(0.2360456),instance.logp(1.0),1E-5);
+  assertEquals(Math.log(0.05808722),instance.logp(2.0),1E-5);
+  assertEquals(Math.log(2.660085e-09),instance.logp(10.0),1E-5);
+}

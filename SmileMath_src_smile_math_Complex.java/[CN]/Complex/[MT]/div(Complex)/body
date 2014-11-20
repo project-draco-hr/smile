@@ -1,0 +1,17 @@
+{
+  double cdivr, cdivi;
+  double r, d;
+  if (Math.abs(b.re) > Math.abs(b.im)) {
+    r=b.im / b.re;
+    d=b.re + r * b.im;
+    cdivr=(re + r * im) / d;
+    cdivi=(im - r * re) / d;
+  }
+ else {
+    r=b.re / b.im;
+    d=b.im + r * b.re;
+    cdivr=(r * re + im) / d;
+    cdivi=(r * im - re) / d;
+  }
+  return new Complex(cdivr,cdivi);
+}

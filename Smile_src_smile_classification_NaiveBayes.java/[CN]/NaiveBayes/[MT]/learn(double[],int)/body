@@ -1,0 +1,24 @@
+{
+  if (model == Model.GENERAL) {
+    throw new UnsupportedOperationException("General-mode Naive Bayes classifier doesn't support online learning.");
+  }
+  if (x.length != p) {
+    throw new IllegalArgumentException("Invalid input vector size: " + x.length);
+  }
+  if (model == Model.MULTINOMIAL) {
+    for (int i=0; i < p; i++) {
+      ntc[y][i]+=x[i];
+      nt[y]+=x[i];
+    }
+  }
+ else {
+    for (int i=0; i < p; i++) {
+      if (x[i] > 0) {
+        ntc[y][i]++;
+      }
+    }
+  }
+  n++;
+  nc[y]++;
+  update();
+}

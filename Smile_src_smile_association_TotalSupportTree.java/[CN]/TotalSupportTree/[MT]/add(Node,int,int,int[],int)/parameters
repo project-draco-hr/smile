@@ -1,0 +1,5 @@
+Node node
+int size
+int index
+int[] itemset
+int support

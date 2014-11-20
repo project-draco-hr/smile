@@ -1,0 +1,3 @@
+int minSupport
+int numItems
+int[] order

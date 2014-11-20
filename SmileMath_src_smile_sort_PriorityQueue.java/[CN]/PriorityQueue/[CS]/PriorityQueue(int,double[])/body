@@ -1,0 +1,7 @@
+{
+  this.d=d;
+  this.a=a;
+  this.n=0;
+  pq=new int[a.length + 1];
+  qp=new int[a.length + 1];
+}

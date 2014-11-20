@@ -1,0 +1,16 @@
+{
+  int[] son=new int[length];
+  int[] daughter=new int[length];
+  for (int i=0; i < length; i++) {
+    if (Math.random() < 0.5) {
+      son[i]=father.bits[i];
+      daughter[i]=mother.bits[i];
+    }
+ else {
+      son[i]=mother.bits[i];
+      daughter[i]=father.bits[i];
+    }
+  }
+  offsprings[0]=new BitString(son,measure,crossover,crossoverRate,mutationRate);
+  offsprings[1]=new BitString(daughter,measure,crossover,crossoverRate,mutationRate);
+}

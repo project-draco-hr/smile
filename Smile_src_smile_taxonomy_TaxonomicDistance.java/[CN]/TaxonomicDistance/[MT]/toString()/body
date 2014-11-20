@@ -1,0 +1,3 @@
+{
+  return String.format("Taxonomic distance on %s",taxonomy);
+}

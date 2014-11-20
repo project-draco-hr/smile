@@ -1,0 +1,3 @@
+{
+  return String.format("Poisson Distribution(%.4f)",lambda);
+}

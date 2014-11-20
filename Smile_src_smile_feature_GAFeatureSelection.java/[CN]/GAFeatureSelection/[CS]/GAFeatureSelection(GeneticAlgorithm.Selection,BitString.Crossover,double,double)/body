@@ -1,0 +1,12 @@
+{
+  if (crossoverRate < 0.0 || crossoverRate > 1.0) {
+    throw new IllegalArgumentException("Invalid crossover rate: " + crossoverRate);
+  }
+  if (mutationRate < 0.0 || mutationRate > 1.0) {
+    throw new IllegalArgumentException("Invalid mutation rate: " + mutationRate);
+  }
+  this.selection=selection;
+  this.crossover=crossover;
+  this.crossoverRate=crossoverRate;
+  this.mutationRate=mutationRate;
+}

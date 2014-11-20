@@ -1,0 +1,39 @@
+{
+  if (b.length != n) {
+    throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but b is %d x 1",n,n,b.length));
+  }
+  if (b.length != x.length) {
+    throw new IllegalArgumentException("b and x dimensions do not agree.");
+  }
+  if (au == null) {
+    decompose();
+  }
+  System.arraycopy(b,0,x,0,n);
+  int mm=m1 + m2 + 1;
+  int l=m1;
+  for (int k=0; k < n; k++) {
+    int j=index[k] - 1;
+    if (j != k) {
+      double swap=x[k];
+      x[k]=x[j];
+      x[j]=swap;
+    }
+    if (l < n) {
+      l++;
+    }
+    for (j=k + 1; j < l; j++) {
+      x[j]-=al[k][j - k - 1] * x[k];
+    }
+  }
+  l=1;
+  for (int i=n - 1; i >= 0; i--) {
+    double dum=x[i];
+    for (int k=1; k < l; k++) {
+      dum-=au[i][k] * x[k + i];
+    }
+    x[i]=dum / au[i][0];
+    if (l < mm) {
+      l++;
+    }
+  }
+}

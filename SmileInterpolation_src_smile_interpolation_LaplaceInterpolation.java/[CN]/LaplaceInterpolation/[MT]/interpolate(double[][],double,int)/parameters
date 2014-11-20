@@ -1,0 +1,3 @@
+double[][] matrix
+double tol
+int maxIter

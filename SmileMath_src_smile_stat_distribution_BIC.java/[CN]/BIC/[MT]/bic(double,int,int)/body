@@ -1,0 +1,3 @@
+{
+  return L - 0.5 * v * Math.log(n);
+}

@@ -1,0 +1,27 @@
+{
+  System.out.println("Segment");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(19);
+  try {
+    AttributeDataset train=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-challenge.arff"));
+    AttributeDataset test=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-test.arff"));
+    double[][] x=train.toArray(new double[0][]);
+    int[] y=train.toArray(new int[0]);
+    double[][] testx=test.toArray(new double[0][]);
+    int[] testy=test.toArray(new int[0]);
+    double[][] centers=new double[100][];
+    RadialBasisFunction[] basis=SmileUtils.learnGaussianRadialBasis(x,centers,5.0);
+    RBFNetwork<double[]> rbf=new RBFNetwork<double[]>(x,y,new EuclideanDistance(),basis,centers);
+    int error=0;
+    for (int i=0; i < testx.length; i++) {
+      if (rbf.predict(testx[i]) != testy[i]) {
+        error++;
+      }
+    }
+    System.out.format("Segment error rate = %.2f%%\n",100.0 * error / testx.length);
+    assertTrue(error <= 210);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

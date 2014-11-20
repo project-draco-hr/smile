@@ -1,0 +1,6 @@
+{
+  super(n == 14 ? c14 : n == 18 ? c18 : n == 20 ? c20 : null);
+  if (n != 14 && n != 18 && n != 20) {
+    throw new IllegalArgumentException(String.format("n = %d not yet implemented.",n));
+  }
+}

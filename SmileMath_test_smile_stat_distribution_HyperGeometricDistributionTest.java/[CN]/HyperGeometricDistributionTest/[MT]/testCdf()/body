@@ -1,0 +1,14 @@
+{
+  System.out.println("cdf");
+  HyperGeometricDistribution instance=new HyperGeometricDistribution(100,30,70);
+  instance.rand();
+  assertEquals(3.404564e-26,instance.cdf(0),1E-30);
+  assertEquals(7.152988e-23,instance.cdf(1),1E-27);
+  assertEquals(3.583732e-20,instance.cdf(2),1E-25);
+  assertEquals(0.4013632,instance.cdf(20),1E-7);
+  assertEquals(0.5891093,instance.cdf(21),1E-7);
+  assertEquals(0.9999568,instance.cdf(28),1E-7);
+  assertEquals(0.9999981,instance.cdf(29),1E-7);
+  assertEquals(1.0,instance.cdf(30),1E-7);
+  assertEquals(1.0,instance.cdf(31),1E-7);
+}

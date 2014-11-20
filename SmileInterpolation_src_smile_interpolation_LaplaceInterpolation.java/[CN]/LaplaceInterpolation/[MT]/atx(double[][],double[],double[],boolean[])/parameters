@@ -1,0 +1,4 @@
+double[][] matrix
+double[] x
+double[] r
+boolean[] mask

@@ -1,0 +1,56 @@
+{
+  int numLayers=numUnits.length;
+  if (numLayers < 2) {
+    throw new IllegalArgumentException("Invalid number of layers: " + numLayers);
+  }
+  for (int i=0; i < numLayers; i++) {
+    if (numUnits[i] < 1) {
+      throw new IllegalArgumentException(String.format("Invalid number of units of layer %d: %d",i + 1,numUnits[i]));
+    }
+  }
+  if (error == ErrorFunction.LEAST_MEAN_SQUARES) {
+    if (activation == ActivationFunction.SOFTMAX) {
+      throw new IllegalArgumentException("Sofmax activation function is invalid for least mean squares error.");
+    }
+  }
+  if (error == ErrorFunction.CROSS_ENTROPY) {
+    if (activation == ActivationFunction.LINEAR) {
+      throw new IllegalArgumentException("Linear activation function is invalid with cross entropy error.");
+    }
+    if (activation == ActivationFunction.SOFTMAX && numUnits[numLayers - 1] == 1) {
+      throw new IllegalArgumentException("Softmax activation function is for multi-class.");
+    }
+    if (activation == ActivationFunction.LOGISTIC_SIGMOID && numUnits[numLayers - 1] != 1) {
+      throw new IllegalArgumentException("For cross entropy error, logistic sigmoid output is for binary classification.");
+    }
+  }
+  this.errorFunction=error;
+  this.activationFunction=activation;
+  if (error == ErrorFunction.CROSS_ENTROPY) {
+    this.alpha=0.0;
+    this.lambda=0.0;
+  }
+  this.p=numUnits[0];
+  this.k=numUnits[numLayers - 1] == 1 ? 2 : numUnits[numLayers - 1];
+  this.target=new double[numUnits[numLayers - 1]];
+  net=new Layer[numLayers];
+  for (int i=0; i < numLayers; i++) {
+    net[i]=new Layer();
+    net[i].units=numUnits[i];
+    net[i].output=new double[numUnits[i] + 1];
+    net[i].error=new double[numUnits[i] + 1];
+    net[i].output[numUnits[i]]=1.0;
+  }
+  inputLayer=net[0];
+  outputLayer=net[numLayers - 1];
+  for (int l=1; l < numLayers; l++) {
+    net[l].weight=new double[numUnits[l]][numUnits[l - 1] + 1];
+    net[l].delta=new double[numUnits[l]][numUnits[l - 1] + 1];
+    double r=1.0 / Math.sqrt(net[l - 1].units);
+    for (int i=0; i < net[l].units; i++) {
+      for (int j=0; j <= net[l - 1].units; j++) {
+        net[l].weight[i][j]=Math.random(-r,r);
+      }
+    }
+  }
+}

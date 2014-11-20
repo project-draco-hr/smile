@@ -1,0 +1,8 @@
+{
+  if (p < 0 || p > 1) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  this.p=p;
+  q=1 - p;
+  entropy=-p * Math.log2(p) - q * Math.log2(q);
+}

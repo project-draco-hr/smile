@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(0.1597191,instance.sd(),1E-7);
+}

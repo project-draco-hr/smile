@@ -1,0 +1,3 @@
+{
+  this(data,distance,k,maxNeighbor,Math.max(2,MulticoreExecutor.getThreadPoolSize()));
+}

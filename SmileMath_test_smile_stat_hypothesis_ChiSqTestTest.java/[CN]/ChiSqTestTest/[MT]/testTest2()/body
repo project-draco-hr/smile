@@ -1,0 +1,9 @@
+{
+  System.out.println("two sample test");
+  int[] bins1={8,13,16,10,3};
+  int[] bins2={4,9,14,16,7};
+  ChiSqTest result=ChiSqTest.test(bins1,bins2);
+  assertEquals(5.179,result.chisq,1E-2);
+  assertEquals(4,result.df,1E-10);
+  assertEquals(0.2695,result.pvalue,1E-4);
+}

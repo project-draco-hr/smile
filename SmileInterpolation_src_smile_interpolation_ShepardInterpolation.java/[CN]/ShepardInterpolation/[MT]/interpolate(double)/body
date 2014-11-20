@@ -1,0 +1,16 @@
+{
+  if (x.length != this.x[0].length) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,this.x[0].length));
+  }
+  double weight=0.0, sum=0.0;
+  for (int i=0; i < this.x.length; i++) {
+    double r=Math.distance(x,this.x[i]);
+    if (r == 0.0) {
+      return y[i];
+    }
+    double w=Math.pow(r,p);
+    weight+=w;
+    sum+=w * y[i];
+  }
+  return sum / weight;
+}

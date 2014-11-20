@@ -1,0 +1,60 @@
+{
+  dist(x);
+  yc[0]=0.0;
+  double tmp=0.0;
+  for (int i=0; i < n; i++) {
+    tmp+=y[i];
+    yc[i + 1]=tmp;
+  }
+  int ip=0;
+  int known=0;
+  do {
+    double slope=1.0e+200;
+    for (int i=known + 1; i <= n; i++) {
+      tmp=(yc[i] - yc[known]) / (i - known);
+      if (tmp < slope) {
+        slope=tmp;
+        ip=i;
+      }
+    }
+    for (int i=known; i < ip; i++) {
+      yf[i]=(yc[ip] - yc[known]) / (ip - known);
+    }
+  }
+ while ((known=ip) < n);
+  double sstar=0.0;
+  double tstar=0.0;
+  for (int i=0; i < n; i++) {
+    tmp=y[i] - yf[i];
+    sstar+=tmp * tmp;
+    tstar+=y[i] * y[i];
+  }
+  double ssq=Math.sqrt(sstar / tstar);
+  int k=0;
+  for (int u=0; u < nr; u++) {
+    for (int i=0; i < nc; i++) {
+      tmp=0.0;
+      for (int s=0; s < nr; s++) {
+        if (s == u) {
+          continue;
+        }
+        if (s > u) {
+          k=nr * u - u * (u + 1) / 2 + s - u;
+        }
+ else         if (s < u) {
+          k=nr * s - s * (s + 1) / 2 + u - s;
+        }
+        k=ord2[k - 1];
+        if (k >= n) {
+          continue;
+        }
+        double tmp1=(x[u * nc + i] - x[s * nc + i]);
+        double sgn=(tmp1 >= 0) ? 1 : -1;
+        tmp1=Math.abs(tmp1) / y[k];
+        tmp+=((y[k] - yf[k]) / sstar - y[k] / tstar) * sgn * tmp1;
+      }
+      g[u * nc + i]=tmp * ssq;
+    }
+  }
+  return ssq;
+}

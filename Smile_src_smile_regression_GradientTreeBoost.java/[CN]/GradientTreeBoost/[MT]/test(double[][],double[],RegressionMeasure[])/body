@@ -1,0 +1,16 @@
+{
+  int m=measures.length;
+  double[][] results=new double[T][m];
+  int n=x.length;
+  double[] prediction=new double[n];
+  Arrays.fill(prediction,b);
+  for (int i=0; i < T; i++) {
+    for (int j=0; j < n; j++) {
+      prediction[j]+=shrinkage * trees[i].predict(x[j]);
+    }
+    for (int j=0; j < m; j++) {
+      results[i][j]=measures[j].measure(y,prediction);
+    }
+  }
+  return results;
+}

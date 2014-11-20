@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  TDistribution instance=new TDistribution(20);
+  instance.rand();
+  assertEquals(Math.sqrt(10 / 9.0),instance.sd(),1E-7);
+}

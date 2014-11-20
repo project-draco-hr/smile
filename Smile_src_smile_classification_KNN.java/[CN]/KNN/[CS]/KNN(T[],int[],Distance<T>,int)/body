@@ -1,0 +1,30 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (k < 1) {
+    throw new IllegalArgumentException("Illegal k = " + k);
+  }
+  int[] labels=Math.unique(y);
+  Arrays.sort(labels);
+  for (int i=0; i < labels.length; i++) {
+    if (labels[i] < 0) {
+      throw new IllegalArgumentException("Negative class label: " + labels[i]);
+    }
+    if (i > 0 && labels[i] - labels[i - 1] > 1) {
+      throw new IllegalArgumentException("Missing class: " + labels[i] + 1);
+    }
+  }
+  c=labels.length;
+  if (c < 2) {
+    throw new IllegalArgumentException("Only one class.");
+  }
+  this.y=y;
+  this.k=k;
+  if (distance instanceof Metric) {
+    knn=new CoverTree<T>(x,(Metric<T>)distance);
+  }
+ else {
+    knn=new LinearSearch<T>(x,distance);
+  }
+}

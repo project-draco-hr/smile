@@ -1,0 +1,8 @@
+{
+  for (int k=0; k < i; k++) {
+    proximity[i][k]=(proximity[i][k] + d(j,k)) / 2;
+  }
+  for (int k=i + 1; k < proximity.length; k++) {
+    proximity[k][i]=(proximity[k][i] + d(j,k)) / 2;
+  }
+}

@@ -1,0 +1,34 @@
+{
+  if (maxIter < 1) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int[] count=new int[data[0].length];
+  for (int i=0; i < data.length; i++) {
+    int n=0;
+    for (int j=0; j < data[i].length; j++) {
+      if (Double.isNaN(data[i][j])) {
+        n++;
+        count[j]++;
+      }
+    }
+    if (n == data[i].length) {
+      throw new MissingValueImputationException("The whole row " + i + " is missing");
+    }
+  }
+  for (int i=0; i < data[0].length; i++) {
+    if (count[i] == data.length) {
+      throw new MissingValueImputationException("The whole column " + i + " is missing");
+    }
+  }
+  double[][] full=new double[data.length][];
+  for (int i=0; i < full.length; i++) {
+    full[i]=data[i].clone();
+  }
+  KMeansImputation.columnAverageImpute(full);
+  for (int iter=0; iter < maxIter; iter++) {
+    svdImpute(data,full);
+  }
+  for (int i=0; i < data.length; i++) {
+    System.arraycopy(full[i],0,data[i],0,data[i].length);
+  }
+}

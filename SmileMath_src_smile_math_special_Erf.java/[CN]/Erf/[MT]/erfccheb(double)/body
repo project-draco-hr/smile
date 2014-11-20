@@ -1,0 +1,14 @@
+{
+  double t, ty, tmp, d=0., dd=0.;
+  if (z < 0.) {
+    throw new IllegalArgumentException("erfccheb requires nonnegative argument");
+  }
+  t=2. / (2. + z);
+  ty=4. * t - 2.;
+  for (int j=cof.length - 1; j > 0; j--) {
+    tmp=d;
+    d=ty * d - dd + cof[j];
+    dd=tmp;
+  }
+  return t * Math.exp(-z * z + 0.5 * (cof[0] + ty * d) - dd);
+}

@@ -1,0 +1,14 @@
+{
+  if (i < 0) {
+    throw new IllegalArgumentException("Invalid index: i = " + i);
+  }
+  int nrows=size();
+  if (i >= nrows) {
+    for (int k=nrows; k <= i; k++) {
+      data.add(new Datum<SparseArray>(new SparseArray()));
+    }
+  }
+  Datum<SparseArray> datum=get(i);
+  datum.y=y;
+  datum.weight=weight;
+}

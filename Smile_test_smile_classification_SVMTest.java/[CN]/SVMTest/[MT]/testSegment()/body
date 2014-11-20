@@ -1,0 +1,27 @@
+{
+  System.out.println("Segment");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(19);
+  try {
+    AttributeDataset train=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-challenge.arff"));
+    AttributeDataset test=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-test.arff"));
+    double[][] x=train.toArray(new double[0][]);
+    int[] y=train.toArray(new int[0]);
+    double[][] testx=test.toArray(new double[0][]);
+    int[] testy=test.toArray(new int[0]);
+    SVM<double[]> svm=new SVM<double[]>(new GaussianKernel(8.0),5.0,Math.max(y) + 1,SVM.Multiclass.ONE_VS_ALL);
+    svm.learn(x,y);
+    svm.finish();
+    int error=0;
+    for (int i=0; i < testx.length; i++) {
+      if (svm.predict(testx[i]) != testy[i]) {
+        error++;
+      }
+    }
+    System.out.format("Segment error rate = %.2f%%\n",100.0 * error / testx.length);
+    assertTrue(error < 70);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

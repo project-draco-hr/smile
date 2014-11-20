@@ -1,0 +1,11 @@
+{
+  System.out.println("nextInt");
+  int lo=-10;
+  int hi=20;
+  smile.math.Random instance=new Random(System.currentTimeMillis());
+  for (int i=0; i < 1000000; i++) {
+    double result=instance.nextDouble(lo,hi);
+    assertTrue(result >= lo);
+    assertTrue(result < hi);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return breaks(Math.min(x),Math.max(x),k);
+}

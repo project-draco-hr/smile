@@ -1,0 +1,14 @@
+{
+  int bucket=hash(r2,x);
+  int i=hash(r1,x) % H;
+  HashEntry he=table[i];
+  if (he == null) {
+    return null;
+  }
+  for (  BucketEntry be : he.entry) {
+    if (bucket == be.bucket) {
+      return be;
+    }
+  }
+  return null;
+}

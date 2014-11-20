@@ -1,0 +1,49 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  this.k=k;
+  int n=W.length;
+  for (int i=0; i < n; i++) {
+    if (W[i].length != n) {
+      throw new IllegalArgumentException("The adjacency matrix is not square.");
+    }
+    if (W[i][i] != 0.0) {
+      throw new IllegalArgumentException(String.format("Vertex %d has self loop: ",i));
+    }
+    for (int j=0; j < i; j++) {
+      if (W[i][j] != W[j][i]) {
+        throw new IllegalArgumentException("The adjacency matrix is not symmetric.");
+      }
+      if (W[i][j] < 0.0) {
+        throw new IllegalArgumentException("Negative entry of adjacency matrix: " + W[i][j]);
+      }
+    }
+  }
+  double[] D=new double[n];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < n; j++) {
+      D[i]+=W[i][j];
+    }
+    if (D[i] == 0.0) {
+      throw new IllegalArgumentException("Isolated vertex: " + i);
+    }
+    D[i]=1.0 / Math.sqrt(D[i]);
+  }
+  double[][] L=new double[n][n];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < i; j++) {
+      L[i][j]=D[i] * W[i][j] * D[j];
+      L[j][i]=L[i][j];
+    }
+  }
+  EigenValueDecomposition eigen=Math.eigen(L,k);
+  double[][] Y=eigen.getEigenVectors();
+  for (int i=0; i < n; i++) {
+    Math.unitize2(Y[i]);
+  }
+  KMeans kmeans=new KMeans(Y,k);
+  distortion=kmeans.distortion;
+  y=kmeans.getClusterLabel();
+  size=kmeans.getClusterSize();
+}

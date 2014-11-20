@@ -1,0 +1,16 @@
+{
+  int T=trees.size();
+  double[] rmse=new double[T];
+  int n=x.length;
+  double[] sum=new double[n];
+  double[] prediction=new double[n];
+  RMSE measure=new RMSE();
+  for (int i=0, nt=1; i < T; i++, nt++) {
+    for (int j=0; j < n; j++) {
+      sum[j]+=trees.get(i).predict(x[j]);
+      prediction[j]=sum[j] / nt;
+    }
+    rmse[i]=measure.measure(y,prediction);
+  }
+  return rmse;
+}

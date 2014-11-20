@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  LogNormalDistribution instance=new LogNormalDistribution(1.0,1.0);
+  instance.rand();
+  assertEquals(2,instance.npara());
+}

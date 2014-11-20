@@ -1,0 +1,3 @@
+{
+  return solve(A,Ap,b,x,tol,itol,2 * Math.max(A.nrows(),A.ncols()));
+}

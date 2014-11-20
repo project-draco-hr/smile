@@ -1,0 +1,12 @@
+{
+  System.out.println("isDiagonal");
+  MultivariateGaussianDistribution instance=new MultivariateGaussianDistribution(mu,1.0);
+  instance.rand();
+  assertEquals(true,instance.isDiagonal());
+  instance=new MultivariateGaussianDistribution(mu,sigma[0]);
+  instance.rand();
+  assertEquals(true,instance.isDiagonal());
+  instance=new MultivariateGaussianDistribution(mu,sigma);
+  instance.rand();
+  assertEquals(false,instance.isDiagonal());
+}

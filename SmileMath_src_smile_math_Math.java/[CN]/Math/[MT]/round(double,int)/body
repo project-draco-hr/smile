@@ -1,0 +1,8 @@
+{
+  if (decimal < 0) {
+    return round(x / pow(10,-decimal)) * pow(10,-decimal);
+  }
+ else {
+    return round(x * pow(10,decimal)) / pow(10,decimal);
+  }
+}

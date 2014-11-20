@@ -1,0 +1,11 @@
+{
+  if (trueChild == null && falseChild == null) {
+    return output;
+  }
+ else   if (x[splitFeature] == (int)splitValue) {
+    return trueChild.predict(x);
+  }
+ else {
+    return falseChild.predict(x);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  int n=x.length;
+  double[] predictions=new double[n];
+  for (int i=0; i < n; i++) {
+    predictions[i]=regression.predict(x[i]);
+  }
+  return new RMSE().measure(y,predictions);
+}

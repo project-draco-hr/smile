@@ -1,0 +1,13 @@
+{
+  System.out.println("quantile");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(0,instance.quantile(0.01),1E-7);
+  assertEquals(1,instance.quantile(0.1),1E-7);
+  assertEquals(2,instance.quantile(0.2),1E-7);
+  assertEquals(2,instance.quantile(0.3),1E-7);
+  assertEquals(3,instance.quantile(0.4),1E-6);
+  assertEquals(3,instance.quantile(0.5),1E-6);
+  assertEquals(6,instance.quantile(0.9),1E-6);
+  assertEquals(8,instance.quantile(0.99),1E-6);
+}

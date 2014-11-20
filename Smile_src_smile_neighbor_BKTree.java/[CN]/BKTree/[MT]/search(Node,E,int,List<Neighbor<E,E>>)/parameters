@@ -1,0 +1,4 @@
+Node node
+E q
+int k
+List<Neighbor<E,E>> neighbors

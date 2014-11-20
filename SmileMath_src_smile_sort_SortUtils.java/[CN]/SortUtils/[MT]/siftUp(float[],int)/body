@@ -1,0 +1,6 @@
+{
+  while (k > 1 && arr[k / 2] < arr[k]) {
+    swap(arr,k,k / 2);
+    k=k / 2;
+  }
+}

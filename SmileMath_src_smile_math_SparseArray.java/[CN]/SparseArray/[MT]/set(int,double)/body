@@ -1,0 +1,20 @@
+{
+  if (x == 0.0) {
+    remove(i);
+    return false;
+  }
+  Iterator<Entry> it=array.iterator();
+  for (int k=0; it.hasNext(); k++) {
+    Entry e=it.next();
+    if (e.i == i) {
+      e.x=x;
+      return false;
+    }
+ else     if (e.i > i) {
+      array.add(k,new Entry(i,x));
+      return true;
+    }
+  }
+  array.add(new Entry(i,x));
+  return true;
+}

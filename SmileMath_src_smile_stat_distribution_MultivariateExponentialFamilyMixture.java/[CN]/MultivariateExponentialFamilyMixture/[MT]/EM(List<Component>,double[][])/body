@@ -1,0 +1,3 @@
+{
+  return EM(mixture,x,0.2);
+}

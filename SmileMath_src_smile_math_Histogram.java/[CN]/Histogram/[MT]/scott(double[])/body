@@ -1,0 +1,4 @@
+{
+  double h=Math.ceil(3.5 * Math.sd(x) / Math.pow(x.length,1.0 / 3));
+  return bins(x,h);
+}

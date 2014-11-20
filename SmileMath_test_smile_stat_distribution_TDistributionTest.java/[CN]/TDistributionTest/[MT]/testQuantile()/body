@@ -1,0 +1,13 @@
+{
+  System.out.println("quantile");
+  TDistribution instance=new TDistribution(20);
+  instance.rand();
+  assertEquals(-3.551808,instance.quantile(0.001),1E-6);
+  assertEquals(-2.527977,instance.quantile(0.01),1E-6);
+  assertEquals(-1.325341,instance.quantile(0.1),1E-6);
+  assertEquals(-0.8599644,instance.quantile(0.2),1E-6);
+  assertEquals(0.0,instance.quantile(0.5),1E-6);
+  assertEquals(1.325341,instance.quantile(0.9),1E-6);
+  assertEquals(2.527977,instance.quantile(0.99),1E-6);
+  assertEquals(3.551808,instance.quantile(0.999),1E-6);
+}

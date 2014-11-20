@@ -1,0 +1,3 @@
+{
+  srand(Math.abs((int)(seed % BIG_PRIME)));
+}

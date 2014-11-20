@@ -1,0 +1,8 @@
+{
+  double norm=0.0;
+  for (  double n : x) {
+    norm+=n * n;
+  }
+  norm=Math.sqrt(norm);
+  return norm;
+}

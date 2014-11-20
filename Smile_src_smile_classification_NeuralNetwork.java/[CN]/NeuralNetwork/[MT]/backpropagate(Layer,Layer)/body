@@ -1,0 +1,10 @@
+{
+  for (int i=0; i <= lower.units; i++) {
+    double out=lower.output[i];
+    double err=0;
+    for (int j=0; j < upper.units; j++) {
+      err+=upper.weight[j][i] * upper.error[j];
+    }
+    lower.error[i]=out * (1.0 - out) * err;
+  }
+}

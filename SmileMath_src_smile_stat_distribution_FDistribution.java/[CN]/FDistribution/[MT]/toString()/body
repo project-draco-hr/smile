@@ -1,0 +1,3 @@
+{
+  return String.format("F-distribution(%.4f, %.4f)",nu1,nu2);
+}

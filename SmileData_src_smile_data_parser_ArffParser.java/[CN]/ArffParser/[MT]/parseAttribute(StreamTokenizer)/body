@@ -1,0 +1,66 @@
+{
+  Attribute attribute=null;
+  getNextToken(tokenizer);
+  String attributeName=tokenizer.sval;
+  getNextToken(tokenizer);
+  if (tokenizer.ttype == StreamTokenizer.TT_WORD) {
+    if (tokenizer.sval.equalsIgnoreCase(ARFF_ATTRIBUTE_REAL) || tokenizer.sval.equalsIgnoreCase(ARFF_ATTRIBUTE_INTEGER) || tokenizer.sval.equalsIgnoreCase(ARFF_ATTRIBUTE_NUMERIC)) {
+      attribute=new NumericAttribute(attributeName);
+      readTillEOL(tokenizer);
+    }
+ else     if (tokenizer.sval.equalsIgnoreCase(ARFF_ATTRIBUTE_STRING)) {
+      attribute=new StringAttribute(attributeName);
+      readTillEOL(tokenizer);
+    }
+ else     if (tokenizer.sval.equalsIgnoreCase(ARFF_ATTRIBUTE_DATE)) {
+      String format=null;
+      if (tokenizer.nextToken() != StreamTokenizer.TT_EOL) {
+        if ((tokenizer.ttype != StreamTokenizer.TT_WORD) && (tokenizer.ttype != '\'') && (tokenizer.ttype != '\"')) {
+          throw new ParseException("not a valid date format",tokenizer.lineno());
+        }
+        format=tokenizer.sval;
+        readTillEOL(tokenizer);
+      }
+ else {
+        tokenizer.pushBack();
+      }
+      attribute=new DateAttribute(attributeName,null,format);
+      readTillEOL(tokenizer);
+    }
+ else     if (tokenizer.sval.equalsIgnoreCase(ARFF_ATTRIBUTE_RELATIONAL)) {
+      readTillEOL(tokenizer);
+    }
+ else     if (tokenizer.sval.equalsIgnoreCase(ARFF_END_SUBRELATION)) {
+      getNextToken(tokenizer);
+    }
+ else {
+      throw new ParseException("Invalid attribute type or invalid enumeration",tokenizer.lineno());
+    }
+  }
+ else {
+    List<String> attributeValues=new ArrayList<String>();
+    tokenizer.pushBack();
+    if (tokenizer.nextToken() != '{') {
+      throw new ParseException("{ expected at beginning of enumeration",tokenizer.lineno());
+    }
+    while (tokenizer.nextToken() != '}') {
+      if (tokenizer.ttype == StreamTokenizer.TT_EOL) {
+        throw new ParseException("} expected at end of enumeration",tokenizer.lineno());
+      }
+ else {
+        attributeValues.add(tokenizer.sval.trim());
+      }
+    }
+    String[] values=new String[attributeValues.size()];
+    for (int i=0; i < values.length; i++) {
+      values[i]=attributeValues.get(i);
+    }
+    attribute=new NominalAttribute(attributeName,values);
+  }
+  getLastToken(tokenizer,false);
+  getFirstToken(tokenizer);
+  if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
+    throw new ParseException("premature end of file",tokenizer.lineno());
+  }
+  return attribute;
+}

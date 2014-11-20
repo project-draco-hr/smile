@@ -1,0 +1,6 @@
+{
+  if (bucket[last] + 1 >= range[last]) {
+    return false;
+  }
+  return true;
+}

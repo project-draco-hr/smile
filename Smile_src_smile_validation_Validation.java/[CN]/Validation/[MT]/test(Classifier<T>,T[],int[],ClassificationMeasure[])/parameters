@@ -1,0 +1,4 @@
+Classifier<T> classifier
+T[] x
+int[] y
+ClassificationMeasure[] measures

@@ -1,0 +1,6 @@
+{
+  FKP=new int[2 * maxStringLength + 1][maxStringLength + 2];
+  damerauDistance=damerau;
+  if (damerau)   brf=new BRF2();
+ else   brf=new BRF1();
+}

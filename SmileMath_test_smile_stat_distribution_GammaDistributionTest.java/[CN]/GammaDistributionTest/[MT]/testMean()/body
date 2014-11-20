@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(6.3,instance.mean(),1E-7);
+}

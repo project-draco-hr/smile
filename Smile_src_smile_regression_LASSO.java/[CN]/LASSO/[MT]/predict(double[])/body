@@ -1,0 +1,6 @@
+{
+  if (x.length != p) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,p));
+  }
+  return Math.dot(x,w) + b;
+}

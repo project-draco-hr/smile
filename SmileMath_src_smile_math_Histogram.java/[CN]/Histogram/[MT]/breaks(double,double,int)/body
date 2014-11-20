@@ -1,0 +1,10 @@
+{
+  if (k <= 1) {
+    throw new IllegalArgumentException("Invalid number of bins: " + k);
+  }
+  if (min > max) {
+    throw new IllegalArgumentException("Invalid lower and upper bounds: " + min + " > "+ max);
+  }
+  double h=(max - min) / k;
+  return breaks(min,max,h);
+}

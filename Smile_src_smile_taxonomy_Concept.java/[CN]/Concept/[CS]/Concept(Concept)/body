@@ -1,0 +1,11 @@
+{
+  if (parent == null) {
+    throw new NullPointerException("Parent concept cannot be null.");
+  }
+  this.parent=parent;
+  if (parent.children == null) {
+    parent.children=new ArrayList<Concept>();
+  }
+  parent.children.add(this);
+  taxonomy=parent.taxonomy;
+}

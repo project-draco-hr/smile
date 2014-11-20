@@ -1,0 +1,9 @@
+{
+  this.A=A;
+  if (A.nrows() >= A.ncols()) {
+    buf=new double[A.nrows()];
+  }
+ else {
+    buf=new double[A.ncols()];
+  }
+}

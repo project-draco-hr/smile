@@ -1,0 +1,16 @@
+{
+  System.out.println("cv");
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(4);
+  try {
+    AttributeDataset iris=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/iris.arff"));
+    double[][] x=iris.toArray(new double[iris.size()][]);
+    int[] y=iris.toArray(new int[iris.size()]);
+    ClassifierTrainer<double[]> trainer=new LDA.Trainer();
+    double accuracy=Validation.cv(10,trainer,x,y);
+    System.out.println("10-fold CV accuracy = " + accuracy);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

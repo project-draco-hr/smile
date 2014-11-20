@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  GeometricDistribution instance=new GeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(0.7 / 0.09,instance.var(),1E-7);
+}

@@ -1,0 +1,19 @@
+{
+  int n=x.length;
+  if (itol <= 3) {
+    double ans=0.0;
+    for (int i=0; i < n; i++) {
+      ans+=x[i] * x[i];
+    }
+    return Math.sqrt(ans);
+  }
+ else {
+    int isamax=0;
+    for (int i=0; i < n; i++) {
+      if (Math.abs(x[i]) > Math.abs(x[isamax])) {
+        isamax=i;
+      }
+    }
+    return Math.abs(x[isamax]);
+  }
+}

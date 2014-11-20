@@ -1,0 +1,14 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  if (sigma == 0.0) {
+    if (p < 1.0) {
+      return mu - 1E-10;
+    }
+ else {
+      return mu;
+    }
+  }
+  return -1.41421356237309505 * sigma * Erf.inverfc(2.0 * p) + mu;
+}

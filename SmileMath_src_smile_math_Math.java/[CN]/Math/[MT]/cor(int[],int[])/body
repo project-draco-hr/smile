@@ -1,0 +1,15 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException("Arrays have different length.");
+  }
+  if (x.length < 3) {
+    throw new IllegalArgumentException("array length has to be at least 3.");
+  }
+  double Sxy=cov(x,y);
+  double Sxx=var(x);
+  double Syy=var(y);
+  if (Sxx == 0 || Syy == 0) {
+    return Double.NaN;
+  }
+  return Sxy / java.lang.Math.sqrt(Sxx * Syy);
+}

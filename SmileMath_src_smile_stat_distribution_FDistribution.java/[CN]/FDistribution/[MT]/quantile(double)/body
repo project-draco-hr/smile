@@ -1,0 +1,7 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  double x=Beta.inverseRegularizedIncompleteBetaFunction(0.5 * nu1,0.5 * nu2,p);
+  return nu2 * x / (nu1 * (1.0 - x));
+}

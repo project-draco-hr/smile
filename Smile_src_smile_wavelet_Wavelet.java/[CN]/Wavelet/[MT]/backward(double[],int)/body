@@ -1,0 +1,27 @@
+{
+  if (n < 4) {
+    return;
+  }
+  if (n > workspace.length) {
+    workspace=new double[n];
+  }
+ else {
+    Arrays.fill(workspace,0,n,0.0);
+  }
+  int nmod=ncof * n;
+  int n1=n - 1;
+  int nh=n >> 1;
+  for (int ii=0, i=0; i < n; i+=2, ii++) {
+    double ai=a[ii];
+    double ai1=a[ii + nh];
+    int ni=i + 1 + nmod+ ioff;
+    int nj=i + 1 + nmod+ joff;
+    for (int k=0; k < ncof; k++) {
+      int jf=n1 & (ni + k + 1);
+      int jr=n1 & (nj + k + 1);
+      workspace[jf]+=cc[k] * ai;
+      workspace[jr]+=cr[k] * ai1;
+    }
+  }
+  System.arraycopy(workspace,0,a,0,n);
+}

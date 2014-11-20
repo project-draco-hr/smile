@@ -1,0 +1,19 @@
+{
+  double out, x, y, r, z;
+  if (boxMuller != null) {
+    out=boxMuller.doubleValue();
+    boxMuller=null;
+  }
+ else {
+    do {
+      x=Math.random(-1,1);
+      y=Math.random(-1,1);
+      r=x * x + y * y;
+    }
+ while (r >= 1.0);
+    z=Math.sqrt(-2.0 * Math.log(r) / r);
+    boxMuller=new Double(x * z);
+    out=y * z;
+  }
+  return mu + sigma * out;
+}

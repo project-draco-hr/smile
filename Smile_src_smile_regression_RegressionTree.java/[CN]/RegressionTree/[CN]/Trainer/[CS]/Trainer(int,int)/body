@@ -1,0 +1,10 @@
+{
+  if (numFeatures <= 0) {
+    throw new IllegalArgumentException("Invalid number of sparse binary features: " + numFeatures);
+  }
+  if (J < 2) {
+    throw new IllegalArgumentException("Invalid number of leaf nodes: " + J);
+  }
+  this.numFeatures=numFeatures;
+  this.J=J;
+}

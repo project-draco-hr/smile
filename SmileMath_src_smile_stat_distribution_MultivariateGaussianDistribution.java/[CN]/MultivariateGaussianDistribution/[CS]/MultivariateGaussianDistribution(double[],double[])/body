@@ -1,0 +1,17 @@
+{
+  if (mean.length != var.length) {
+    throw new IllegalArgumentException("Mean vector and covariance matrix have different dimension");
+  }
+  mu=new double[mean.length];
+  sigma=new double[mu.length][mu.length];
+  for (int i=0; i < mu.length; i++) {
+    if (var[i] <= 0) {
+      throw new IllegalArgumentException("Variance is not positive: " + var[i]);
+    }
+    mu[i]=mean[i];
+    sigma[i][i]=var[i];
+  }
+  diagonal=true;
+  numParameters=2 * mu.length;
+  init();
+}

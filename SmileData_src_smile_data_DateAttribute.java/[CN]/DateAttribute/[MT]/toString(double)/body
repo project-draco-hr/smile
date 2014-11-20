@@ -1,0 +1,6 @@
+{
+  if (Double.isNaN(x)) {
+    return null;
+  }
+  return format.format(Double.doubleToRawLongBits(x));
+}

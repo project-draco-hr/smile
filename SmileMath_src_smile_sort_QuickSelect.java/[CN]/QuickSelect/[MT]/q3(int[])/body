@@ -1,0 +1,4 @@
+{
+  int k=3 * a.length / 4;
+  return select(a,k);
+}

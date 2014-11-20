@@ -1,0 +1,6 @@
+{
+  if (centroids == null) {
+    throw new IllegalStateException("Call partition() first!");
+  }
+  return centroids;
+}

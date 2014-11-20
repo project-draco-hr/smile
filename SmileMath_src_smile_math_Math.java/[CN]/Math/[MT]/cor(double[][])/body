@@ -1,0 +1,3 @@
+{
+  return cor(data,Math.colMean(data));
+}

@@ -1,0 +1,8 @@
+{
+  this.trainer=trainer;
+  this.measure=measure;
+  this.x=x;
+  this.y=y;
+  this.testx=testx;
+  this.testy=testy;
+}

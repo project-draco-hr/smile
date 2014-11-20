@@ -1,0 +1,67 @@
+{
+  int m=data.length;
+  n=data[0].length;
+  mu=Math.colMean(data);
+  double[][] x=Math.clone(data);
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++) {
+      x[i][j]=data[i][j] - mu[j];
+    }
+  }
+  if (m > n && !cor) {
+    SingularValueDecomposition svd=SingularValueDecomposition.decompose(x);
+    eigvalues=svd.getSingularValues();
+    for (int i=0; i < eigvalues.length; i++) {
+      eigvalues[i]*=eigvalues[i];
+    }
+    eigvectors=svd.getV();
+  }
+ else {
+    double[][] cov=new double[n][n];
+    for (int k=0; k < m; k++) {
+      for (int i=0; i < n; i++) {
+        for (int j=0; j <= i; j++) {
+          cov[i][j]+=x[k][i] * x[k][j];
+        }
+      }
+    }
+    for (int i=0; i < n; i++) {
+      for (int j=0; j <= i; j++) {
+        cov[i][j]/=m;
+        cov[j][i]=cov[i][j];
+      }
+    }
+    double[] sd=null;
+    if (cor) {
+      sd=new double[n];
+      for (int i=0; i < n; i++) {
+        sd[i]=Math.sqrt(cov[i][i]);
+      }
+      for (int i=0; i < n; i++) {
+        for (int j=0; j <= i; j++) {
+          cov[i][j]/=sd[i] * sd[j];
+          cov[j][i]=cov[i][j];
+        }
+      }
+    }
+    EigenValueDecomposition eigen=EigenValueDecomposition.decompose(cov,true);
+    double[][] loadings=eigen.getEigenVectors();
+    if (cor) {
+      for (int i=0; i < n; i++) {
+        for (int j=0; j < n; j++) {
+          loadings[i][j]/=sd[i];
+        }
+      }
+    }
+    eigvalues=eigen.getEigenValues();
+    eigvectors=loadings;
+  }
+  proportion=eigvalues.clone();
+  Math.unitize1(proportion);
+  cumulativeProportion=new double[eigvalues.length];
+  cumulativeProportion[0]=proportion[0];
+  for (int i=1; i < eigvalues.length; i++) {
+    cumulativeProportion[i]=cumulativeProportion[i - 1] + proportion[i];
+  }
+  setProjection(0.95);
+}

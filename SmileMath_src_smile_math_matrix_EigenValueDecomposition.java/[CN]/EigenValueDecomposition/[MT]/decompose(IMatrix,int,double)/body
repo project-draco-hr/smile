@@ -1,0 +1,160 @@
+{
+  if (A.nrows() != A.ncols()) {
+    throw new IllegalArgumentException("Matrix is not square.");
+  }
+  if (k < 1 || k > A.nrows()) {
+    throw new IllegalArgumentException("k is larger than the size of A: " + k + " > "+ A.nrows());
+  }
+  int n=A.nrows();
+  int intro=0;
+  double eps=Math.EPSILON * Math.sqrt(n);
+  double reps=Math.sqrt(Math.EPSILON);
+  double eps34=reps * Math.sqrt(reps);
+  kappa=Math.max(kappa,eps34);
+  double[][] wptr=new double[6][n];
+  double[] eta=new double[n];
+  double[] oldeta=new double[n];
+  double[] bnd=new double[n];
+  double[] alf=new double[n];
+  double[] bet=new double[n + 1];
+  double[][] q=new double[n][];
+  double[][] p=new double[2][];
+  double[] ritz=new double[n + 1];
+  double[][] z=null;
+  double rnm=startv(A,q,wptr,0);
+  double t=1.0 / rnm;
+  Math.scale(t,wptr[0],wptr[1]);
+  Math.scale(t,wptr[3]);
+  A.ax(wptr[3],wptr[0]);
+  alf[0]=Math.dot(wptr[0],wptr[3]);
+  Math.axpy(-alf[0],wptr[1],wptr[0]);
+  t=Math.dot(wptr[0],wptr[3]);
+  Math.axpy(-t,wptr[1],wptr[0]);
+  alf[0]+=t;
+  Math.copy(wptr[0],wptr[4]);
+  rnm=Math.norm(wptr[0]);
+  double anorm=rnm + Math.abs(alf[0]);
+  double tol=reps * anorm;
+  if (0 == rnm) {
+    throw new IllegalStateException("Lanczos method was unable to find a starting vector within range.");
+  }
+  eta[0]=eps;
+  oldeta[0]=eps;
+  int neig=0;
+  int ll=0;
+  int first=1;
+  int last=Math.min(k + Math.max(8,k),n);
+  int j=0;
+  boolean enough=false;
+  while (!enough) {
+    if (rnm <= tol) {
+      rnm=0.0;
+    }
+    for (j=first; j < last; j++) {
+      Math.swap(wptr,1,2);
+      Math.swap(wptr,3,4);
+      store(q,j - 1,wptr[2]);
+      if (j - 1 < 2) {
+        p[j - 1]=wptr[4].clone();
+      }
+      bet[j]=rnm;
+      if (0 == bet[j]) {
+        rnm=startv(A,q,wptr,j);
+        if (rnm < 0.0) {
+          rnm=0.0;
+          break;
+        }
+        if (rnm == 0) {
+          enough=true;
+        }
+      }
+      if (enough) {
+        Math.swap(wptr,1,2);
+        break;
+      }
+      t=1.0 / rnm;
+      Math.scale(t,wptr[0],wptr[1]);
+      Math.scale(t,wptr[3]);
+      A.ax(wptr[3],wptr[0]);
+      Math.axpy(-rnm,wptr[2],wptr[0]);
+      alf[j]=Math.dot(wptr[0],wptr[3]);
+      Math.axpy(-alf[j],wptr[1],wptr[0]);
+      if (j <= 2 && (Math.abs(alf[j - 1]) > 4.0 * Math.abs(alf[j]))) {
+        ll=j;
+      }
+      for (int i=0; i < Math.min(ll,j - 1); i++) {
+        t=Math.dot(p[i],wptr[0]);
+        Math.axpy(-t,q[i],wptr[0]);
+        eta[i]=eps;
+        oldeta[i]=eps;
+      }
+      t=Math.dot(wptr[0],wptr[4]);
+      Math.axpy(-t,wptr[2],wptr[0]);
+      if (bet[j] > 0.0) {
+        bet[j]=bet[j] + t;
+      }
+      t=Math.dot(wptr[0],wptr[3]);
+      Math.axpy(-t,wptr[1],wptr[0]);
+      alf[j]=alf[j] + t;
+      Math.copy(wptr[0],wptr[4]);
+      rnm=Math.norm(wptr[0]);
+      anorm=bet[j] + Math.abs(alf[j]) + rnm;
+      tol=reps * anorm;
+      ortbnd(alf,bet,eta,oldeta,j,rnm,eps);
+      rnm=purge(ll,q,wptr[0],wptr[1],wptr[4],wptr[3],eta,oldeta,j,rnm,tol,eps,reps);
+      if (rnm <= tol) {
+        rnm=0.0;
+      }
+    }
+    if (enough) {
+      j=j - 1;
+    }
+ else {
+      j=last - 1;
+    }
+    first=j + 1;
+    bet[j + 1]=rnm;
+    System.arraycopy(alf,0,ritz,0,j + 1);
+    System.arraycopy(bet,0,wptr[5],0,j + 1);
+    z=new double[j + 1][j + 1];
+    for (int i=0; i <= j; i++) {
+      z[i][i]=1.0;
+    }
+    tql2(z,ritz,wptr[5],j + 1);
+    for (int i=0; i <= j; i++) {
+      bnd[i]=rnm * Math.abs(z[j][i]);
+    }
+    boolean[] ref_enough={enough};
+    neig=error_bound(ref_enough,ritz,bnd,j,tol,eps34);
+    enough=ref_enough[0];
+    if (neig < k) {
+      if (0 == neig) {
+        last=first + 9;
+        intro=first;
+      }
+ else {
+        last=first + Math.max(3,1 + ((j - intro) * (k - neig)) / Math.max(3,neig));
+      }
+      last=Math.min(last,n);
+    }
+ else {
+      enough=true;
+    }
+    enough=enough || first >= n;
+  }
+  store(q,j,wptr[1]);
+  k=Math.min(k,neig);
+  double[] eigenvalues=new double[k];
+  double[][] eigenvectors=new double[n][k];
+  for (int i=0, index=0; i <= j && index < k; i++) {
+    if (bnd[i] <= kappa * Math.abs(ritz[i])) {
+      for (int row=0; row < n; row++) {
+        for (int l=0; l <= j; l++) {
+          eigenvectors[row][index]+=q[l][row] * z[l][i];
+        }
+      }
+      eigenvalues[index++]=ritz[i];
+    }
+  }
+  return new EigenValueDecomposition(eigenvectors,eigenvalues);
+}

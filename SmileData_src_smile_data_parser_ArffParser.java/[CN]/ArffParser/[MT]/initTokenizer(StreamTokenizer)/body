@@ -1,0 +1,12 @@
+{
+  tokenizer.resetSyntax();
+  tokenizer.whitespaceChars(0,' ');
+  tokenizer.wordChars(' ' + 1,'\u00FF');
+  tokenizer.whitespaceChars(',',',');
+  tokenizer.commentChar('%');
+  tokenizer.quoteChar('"');
+  tokenizer.quoteChar('\'');
+  tokenizer.ordinaryChar('{');
+  tokenizer.ordinaryChar('}');
+  tokenizer.eolIsSignificant(true);
+}

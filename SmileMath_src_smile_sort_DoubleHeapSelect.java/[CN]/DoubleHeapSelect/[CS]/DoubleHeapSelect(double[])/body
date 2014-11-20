@@ -1,0 +1,6 @@
+{
+  this.heap=heap;
+  k=heap.length;
+  n=0;
+  sorted=false;
+}

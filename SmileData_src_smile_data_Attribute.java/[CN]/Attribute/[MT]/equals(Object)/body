@@ -1,0 +1,17 @@
+{
+  if (o instanceof Attribute) {
+    Attribute a=(Attribute)o;
+    if (name.equals(a.name) && type == a.type) {
+      if (description != null && a.description != null && description.equals(a.description)) {
+        return true;
+      }
+ else {
+        return false;
+      }
+    }
+ else {
+      return false;
+    }
+  }
+  return false;
+}

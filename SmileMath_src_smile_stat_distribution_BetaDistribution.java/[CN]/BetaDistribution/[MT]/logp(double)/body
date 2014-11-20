@@ -1,0 +1,8 @@
+{
+  if (x < 0 || x > 1) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return (alpha - 1) * Math.log(x) + (beta - 1) * Math.log(1 - x) - Math.log(Beta.beta(alpha,beta));
+  }
+}

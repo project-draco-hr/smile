@@ -1,0 +1,6 @@
+{
+  final double TINY=1.0e-20;
+  double t=r * Math.sqrt(df / ((1.0 - r + TINY) * (1.0 + r + TINY)));
+  double p=Beta.regularizedIncompleteBetaFunction(0.5 * df,0.5,df / (df + t * t));
+  return new TTest(t,df,p);
+}

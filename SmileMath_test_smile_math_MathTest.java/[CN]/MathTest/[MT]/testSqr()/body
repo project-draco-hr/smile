@@ -1,0 +1,7 @@
+{
+  System.out.println("sqr");
+  assertEquals(0,Math.sqr(0),1E-10);
+  assertEquals(1,Math.sqr(1),1E-10);
+  assertEquals(4,Math.sqr(2),1E-10);
+  assertEquals(9,Math.sqr(3),1E-10);
+}

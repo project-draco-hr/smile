@@ -1,0 +1,9 @@
+{
+  if (nu < 1) {
+    throw new IllegalArgumentException("Invalid nu = " + nu);
+  }
+  this.nu=nu;
+  entropy=0.5 * (nu + 1) * (Gamma.digamma((nu + 1) / 2.0) - Gamma.digamma(nu / 2.0)) + Math.log(Math.sqrt(nu) * Beta.beta(nu / 2.0,0.5));
+  np=0.5 * (nu + 1.0);
+  fac=Gamma.logGamma(np) - Gamma.logGamma(0.5 * nu);
+}

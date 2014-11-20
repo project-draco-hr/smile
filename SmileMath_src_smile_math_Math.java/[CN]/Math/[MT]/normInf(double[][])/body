@@ -1,0 +1,9 @@
+{
+  int m=x.length;
+  double f=0.0;
+  for (int i=0; i < m; i++) {
+    double s=norm1(x[i]);
+    f=Math.max(f,s);
+  }
+  return f;
+}

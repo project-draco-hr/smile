@@ -1,0 +1,18 @@
+{
+  int ju, jm, jl;
+  boolean ascnd=(xx[n - 1] >= xx[0]);
+  jl=0;
+  ju=n - 1;
+  while (ju - jl > 1) {
+    jm=(ju + jl) >> 1;
+    if (x >= xx[jm] == ascnd) {
+      jl=jm;
+    }
+ else {
+      ju=jm;
+    }
+  }
+  cor=Math.abs(jl - jsav) <= dj;
+  jsav=jl;
+  return Math.max(0,Math.min(n - 2,jl));
+}

@@ -1,0 +1,6 @@
+{
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invalid tolerance: " + tol);
+  }
+  this.tol=tol;
+}

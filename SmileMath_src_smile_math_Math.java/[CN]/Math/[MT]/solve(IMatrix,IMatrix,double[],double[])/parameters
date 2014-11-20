@@ -1,0 +1,4 @@
+IMatrix A
+IMatrix Ap
+double[] b
+double[] x

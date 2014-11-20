@@ -1,0 +1,3 @@
+{
+  this(model,priori,p,1.0);
+}

@@ -1,0 +1,4 @@
+{
+  this.Cp=Cp;
+  this.Cn=Cn;
+}

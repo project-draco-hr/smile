@@ -1,0 +1,57 @@
+{
+  int nrows=0, ncols=0, n=0;
+  int[] colIndex;
+  int[] rowIndex;
+  double[] data;
+  Scanner scanner=null;
+  try {
+    scanner=new Scanner(stream);
+    String line=scanner.nextLine();
+    String[] tokens=line.split("\\s+");
+    if (tokens.length == 3) {
+      try {
+        nrows=Integer.valueOf(tokens[0]);
+        ncols=Integer.valueOf(tokens[1]);
+        n=Integer.valueOf(tokens[2]);
+      }
+ catch (      Exception ex) {
+      }
+    }
+    if (n == 0) {
+      line=scanner.nextLine().trim();
+      tokens=line.split("\\s+");
+      int RHSCRD=Integer.valueOf(tokens[4]);
+      line=scanner.nextLine().trim();
+      if (!line.startsWith("R")) {
+        throw new UnsupportedOperationException("SparseMatrixParser supports only real-valued matrix.");
+      }
+      tokens=line.split("\\s+");
+      nrows=Integer.valueOf(tokens[1]);
+      ncols=Integer.valueOf(tokens[2]);
+      n=Integer.valueOf(tokens[3]);
+      line=scanner.nextLine();
+      if (RHSCRD > 0) {
+        line=scanner.nextLine();
+      }
+    }
+    colIndex=new int[ncols + 1];
+    rowIndex=new int[n];
+    data=new double[n];
+    for (int i=0; i <= ncols; i++) {
+      colIndex[i]=scanner.nextInt() - 1;
+    }
+    for (int i=0; i < n; i++) {
+      rowIndex[i]=scanner.nextInt() - 1;
+    }
+    for (int i=0; i < n; i++) {
+      data[i]=scanner.nextDouble();
+    }
+  }
+  finally {
+    if (scanner != null) {
+      scanner.close();
+    }
+  }
+  SparseMatrix matrix=new SparseMatrix(nrows,ncols,data,rowIndex,colIndex);
+  return matrix;
+}

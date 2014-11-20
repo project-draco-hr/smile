@@ -1,0 +1,8 @@
+{
+  int bucket=hash(r2,x);
+  int i=hash(r1,x) % H;
+  if (table[i] == null) {
+    table[i]=new HashEntry();
+  }
+  table[i].add(bucket,index);
+}

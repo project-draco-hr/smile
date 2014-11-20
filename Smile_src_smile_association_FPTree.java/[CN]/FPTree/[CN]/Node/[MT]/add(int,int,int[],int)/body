@@ -1,0 +1,15 @@
+{
+  if (children == null) {
+    children=new HashMap<Integer,Node>();
+  }
+  Node child=children.get(itemset[index]);
+  if (child != null) {
+    child.count+=support;
+    if (++index < end) {
+      child.add(index,end,itemset,support);
+    }
+  }
+ else {
+    append(index,end,itemset,support);
+  }
+}

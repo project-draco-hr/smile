@@ -1,0 +1,3 @@
+{
+  return solve(A,A,b,x,tol);
+}

@@ -1,0 +1,9 @@
+{
+  double sum=0.0, sumw=0.0;
+  for (int i=0; i < rbf.length; i++) {
+    double f=rbf[i].f(distance.d(x,centers[i]));
+    sumw+=w[i] * f;
+    sum+=f;
+  }
+  return normalized ? sumw / sum : sumw;
+}

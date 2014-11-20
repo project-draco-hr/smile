@@ -1,0 +1,13 @@
+{
+  if (svd == null) {
+    int m=A.length;
+    int n=A[0].length;
+    double[][] V=new double[m][n];
+    for (int i=0; i < m; i++) {
+      System.arraycopy(A[i],0,V[i],0,n);
+    }
+    svd=SingularValueDecomposition.decompose(V);
+    rank=svd.rank();
+  }
+  return svd;
+}

@@ -1,0 +1,4 @@
+{
+  this.neuron=neuron;
+  this.distance=distance;
+}

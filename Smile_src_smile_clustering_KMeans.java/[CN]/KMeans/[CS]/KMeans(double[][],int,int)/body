@@ -1,0 +1,3 @@
+{
+  this(new BBDTree(data),data,k,maxIter);
+}

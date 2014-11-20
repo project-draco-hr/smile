@@ -1,0 +1,10 @@
+{
+  npoints--;
+  int q=index[p];
+  index[points[q]=points[npoints]]=q;
+  for (int i=0; i < npoints; i++) {
+    if (neighbor[points[i]] == p) {
+      findNeighbor(points[i]);
+    }
+  }
+}

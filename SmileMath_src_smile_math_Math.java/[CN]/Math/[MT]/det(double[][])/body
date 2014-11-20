@@ -1,0 +1,7 @@
+{
+  if (A.length != A[0].length) {
+    throw new IllegalArgumentException(String.format("Matrix is not square: %d x %d",A.length,A[0].length));
+  }
+  LUDecomposition lu=new LUDecomposition(A,false);
+  return lu.det();
+}

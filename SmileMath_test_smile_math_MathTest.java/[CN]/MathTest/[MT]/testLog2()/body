@@ -1,0 +1,7 @@
+{
+  System.out.println("log2");
+  assertEquals(0,Math.log2(1),1E-6);
+  assertEquals(1,Math.log2(2),1E-6);
+  assertEquals(1.584963,Math.log2(3),1E-6);
+  assertEquals(2,Math.log2(4),1E-6);
+}

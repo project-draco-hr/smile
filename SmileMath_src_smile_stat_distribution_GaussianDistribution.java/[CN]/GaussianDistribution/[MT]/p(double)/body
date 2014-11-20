@@ -1,0 +1,11 @@
+{
+  if (sigma == 0) {
+    if (x == mu) {
+      return 1.0;
+    }
+ else {
+      return 0.0;
+    }
+  }
+  return Math.exp(logp(x));
+}

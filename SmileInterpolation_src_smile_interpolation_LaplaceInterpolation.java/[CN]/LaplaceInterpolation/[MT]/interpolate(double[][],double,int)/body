@@ -1,0 +1,29 @@
+{
+  int nrows=matrix.length;
+  int ncols=matrix[0].length;
+  int n=nrows * ncols;
+  double[] b=new double[n];
+  double[] y=new double[n];
+  boolean[] mask=new boolean[n];
+  double vl=0.;
+  for (int k=0; k < n; k++) {
+    int i=k / ncols;
+    int j=k - i * ncols;
+    if (!Double.isNaN(matrix[i][j])) {
+      b[k]=y[k]=vl=matrix[i][j];
+      mask[k]=true;
+    }
+ else {
+      b[k]=0.;
+      y[k]=vl;
+      mask[k]=false;
+    }
+  }
+  double err=solve(matrix,b,y,mask,tol,maxIter);
+  for (int k=0, i=0; i < nrows; i++) {
+    for (int j=0; j < ncols; j++) {
+      matrix[i][j]=y[k++];
+    }
+  }
+  return err;
+}

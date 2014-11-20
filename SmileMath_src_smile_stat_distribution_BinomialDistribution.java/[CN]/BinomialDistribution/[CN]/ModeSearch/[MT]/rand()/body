@@ -1,0 +1,36 @@
+{
+  int K, x;
+  double U, c, d, divisor;
+  while (true) {
+    U=Math.random();
+    if ((U-=modeValue) <= 0.0) {
+      return (mode);
+    }
+    c=d=modeValue;
+    for (K=1; K <= mode; K++) {
+      x=mode - K;
+      divisor=(n - x) * r1;
+      c*=x + 1;
+      U*=divisor;
+      d*=divisor;
+      if ((U-=c) <= 0.0) {
+        return x;
+      }
+      x=mode + K;
+      divisor=x;
+      d*=(n - x + 1) * r1;
+      U*=divisor;
+      c*=divisor;
+      if ((U-=d) <= 0.0) {
+        return x;
+      }
+    }
+    for (x=mode + mode + 1; x <= bound; x++) {
+      d*=(n - x + 1) * r1;
+      U*=x;
+      if ((U-=d) <= 0.0) {
+        return x;
+      }
+    }
+  }
+}

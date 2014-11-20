@@ -1,0 +1,6 @@
+{
+  Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,0,Double.MAX_VALUE);
+  search(q,root,neighbor);
+  neighbor.distance=Math.sqrt(neighbor.distance);
+  return neighbor;
+}

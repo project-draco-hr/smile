@@ -1,0 +1,13 @@
+{
+  int t=FKP[k + ZERO_K][p] + 1;
+  if (t > 1 && k + t > 1 && t < Math.min(x.length(),y.length() - k)) {
+    if (x.charAt(t - 1) == y.charAt(k + t) && x.charAt(t) == y.charAt(k + t - 1)) {
+      t++;
+    }
+  }
+  t=Math.max(FKP[k - 1 + ZERO_K][p],FKP[k + 1 + ZERO_K][p] + 1,t);
+  while (t < Math.min(x.length(),y.length() - k) && x.charAt(t) == y.charAt(t + k)) {
+    t++;
+  }
+  FKP[k + ZERO_K][p + 1]=t;
+}

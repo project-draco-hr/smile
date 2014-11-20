@@ -1,0 +1,11 @@
+{
+  if (i < 0 || i >= nrows || j < 0 || j >= ncols) {
+    throw new IllegalArgumentException("Invalid index: i = " + i + " j = "+ j);
+  }
+  for (int k=colIndex[j]; k < colIndex[j + 1]; k++) {
+    if (rowIndex[k] == i) {
+      return x[k];
+    }
+  }
+  return 0.0;
+}

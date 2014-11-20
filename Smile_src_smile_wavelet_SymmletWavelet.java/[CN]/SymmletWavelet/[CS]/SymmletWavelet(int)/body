@@ -1,0 +1,6 @@
+{
+  super(n == 8 ? c8 : n == 10 ? c10 : n == 12 ? c12 : n == 14 ? c14 : n == 16 ? c16 : n == 18 ? c18 : n == 20 ? c20 : null);
+  if (n < 8 || n > 20 || n % 2 != 0) {
+    throw new IllegalArgumentException(String.format("n = %d not yet implemented.",n));
+  }
+}

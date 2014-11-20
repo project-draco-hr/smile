@@ -1,0 +1,6 @@
+{
+  super(mixture);
+  for (  Component component : mixture) {
+    if (component.distribution instanceof ExponentialFamily == false)     throw new IllegalArgumentException("Component " + component + " is not of exponential family.");
+  }
+}

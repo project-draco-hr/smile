@@ -1,0 +1,3 @@
+DifferentiableMultivariateFunction func
+double[] x
+double gtol

@@ -1,0 +1,6 @@
+{
+  while (k > 1 && less(k,(k + d - 2) / d)) {
+    swap(k,(k + d - 2) / d);
+    k=(k + d - 2) / d;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  if (z < 0.0) {
+    throw new IllegalArgumentException("Invalid z: " + z);
+  }
+  if (z == 0.0) {
+    return 1.0;
+  }
+  if (z < 1.18) {
+    return 1.0 - pks(z);
+  }
+  double x=Math.exp(-2. * (z * z));
+  return 2. * (x - Math.pow(x,4) + Math.pow(x,9));
+}

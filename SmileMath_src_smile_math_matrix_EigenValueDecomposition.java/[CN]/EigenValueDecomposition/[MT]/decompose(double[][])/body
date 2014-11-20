@@ -1,0 +1,14 @@
+{
+  if (A.length != A[0].length) {
+    throw new IllegalArgumentException(String.format("Matrix is not square: %d x %d",A.length,A[0].length));
+  }
+  int n=A.length;
+  double tol=100 * Math.EPSILON;
+  boolean symmetric=true;
+  for (int i=0; (i < n) && symmetric; i++) {
+    for (int j=0; (j < n) && symmetric; j++) {
+      symmetric=Math.abs(A[i][j] - A[j][i]) < tol;
+    }
+  }
+  return decompose(A,symmetric);
+}

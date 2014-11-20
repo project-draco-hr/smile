@@ -1,0 +1,17 @@
+{
+  double[][] gamma=new double[xi.length + 1][numStates];
+  for (int t=0; t < xi.length; t++) {
+    for (int i=0; i < numStates; i++) {
+      for (int j=0; j < numStates; j++) {
+        gamma[t][i]+=xi[t][i][j];
+      }
+    }
+  }
+  int n=xi.length - 1;
+  for (int j=0; j < numStates; j++) {
+    for (int i=0; i < numStates; i++) {
+      gamma[xi.length][j]+=xi[n][i][j];
+    }
+  }
+  return gamma;
+}

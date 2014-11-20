@@ -1,0 +1,32 @@
+{
+  System.out.println("CPU");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(6);
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/cpu.arff"));
+    double[] datay=data.toArray(new double[data.size()]);
+    double[][] datax=data.toArray(new double[data.size()][]);
+    Math.normalize(datax);
+    int n=datax.length;
+    int k=10;
+    CrossValidation cv=new CrossValidation(n,k);
+    double rss=0.0;
+    for (int i=0; i < k; i++) {
+      double[][] trainx=Math.slice(datax,cv.train[i]);
+      double[] trainy=Math.slice(datay,cv.train[i]);
+      double[][] testx=Math.slice(datax,cv.test[i]);
+      double[] testy=Math.slice(datay,cv.test[i]);
+      double[][] centers=new double[20][];
+      RadialBasisFunction[] basis=SmileUtils.learnGaussianRadialBasis(trainx,centers,5.0);
+      RBFNetwork<double[]> rbf=new RBFNetwork<double[]>(trainx,trainy,new EuclideanDistance(),basis,centers);
+      for (int j=0; j < testx.length; j++) {
+        double r=testy[j] - rbf.predict(testx[j]);
+        rss+=r * r;
+      }
+    }
+    System.out.println("10-CV MSE = " + rss / n);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

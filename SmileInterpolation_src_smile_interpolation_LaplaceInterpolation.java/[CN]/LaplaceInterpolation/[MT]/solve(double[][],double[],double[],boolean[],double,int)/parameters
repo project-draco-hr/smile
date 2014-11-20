@@ -1,0 +1,6 @@
+double[][] matrix
+double[] b
+double[] x
+boolean[] mask
+double tol
+int maxIter

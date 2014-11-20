@@ -1,0 +1,4 @@
+{
+  if (sigma <= 0)   throw new IllegalArgumentException("sigma is not positive.");
+  this.gamma=0.5 / (sigma * sigma);
+}

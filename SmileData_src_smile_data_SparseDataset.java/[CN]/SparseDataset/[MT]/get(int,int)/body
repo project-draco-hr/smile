@@ -1,0 +1,11 @@
+{
+  if (i < 0 || i >= size() || j < 0 || j >= ncols()) {
+    throw new IllegalArgumentException("Invalid index: i = " + i + " j = "+ j);
+  }
+  for (  SparseArray.Entry e : get(i).x) {
+    if (e.i == j) {
+      return e.x;
+    }
+  }
+  return 0.0;
+}

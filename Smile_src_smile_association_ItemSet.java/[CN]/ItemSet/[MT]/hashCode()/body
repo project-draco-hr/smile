@@ -1,0 +1,6 @@
+{
+  int hash=7;
+  hash=23 * hash + Arrays.hashCode(this.items);
+  hash=23 * hash + this.support;
+  return hash;
+}

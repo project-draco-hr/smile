@@ -1,0 +1,23 @@
+{
+  List<Neuron> data=new ArrayList<Neuron>();
+  for (  Neuron neuron : neurons) {
+    neuron.y=OUTLIER;
+    if (neuron.n >= minPts) {
+      data.add(neuron);
+    }
+  }
+  double[][] proximity=new double[data.size()][];
+  for (int i=0; i < data.size(); i++) {
+    proximity[i]=new double[i + 1];
+    for (int j=0; j < i; j++) {
+      proximity[i][j]=Math.distance(data.get(i).w,data.get(j).w);
+    }
+  }
+  Linkage linkage=new UPGMALinkage(proximity);
+  HierarchicalClustering hc=new HierarchicalClustering(linkage);
+  int[] y=hc.partition(k);
+  for (int i=0; i < data.size(); i++) {
+    data.get(i).y=y[i];
+  }
+  return data.size();
+}

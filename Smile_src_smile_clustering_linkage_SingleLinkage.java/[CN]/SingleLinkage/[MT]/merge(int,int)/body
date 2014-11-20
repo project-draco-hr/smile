@@ -1,0 +1,8 @@
+{
+  for (int k=0; k < i; k++) {
+    proximity[i][k]=Math.min(proximity[i][k],d(j,k));
+  }
+  for (int k=i + 1; k < proximity.length; k++) {
+    proximity[k][i]=Math.min(proximity[k][i],d(j,k));
+  }
+}

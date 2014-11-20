@@ -1,0 +1,23 @@
+{
+  System.out.println("sparse");
+  try {
+    ArffParser arffParser=new ArffParser();
+    AttributeDataset sparse=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/sparse.arff"));
+    double[][] x=sparse.toArray(new double[sparse.size()][]);
+    assertEquals(2,sparse.size());
+    assertEquals(5,sparse.attributes().length);
+    assertEquals(0.0,x[0][0],1E-7);
+    assertEquals(2.0,x[0][1],1E-7);
+    assertEquals(0.0,x[0][2],1E-7);
+    assertEquals(3.0,x[0][3],1E-7);
+    assertEquals(0.0,x[0][4],1E-7);
+    assertEquals(0.0,x[1][0],1E-7);
+    assertEquals(0.0,x[1][1],1E-7);
+    assertEquals(1.0,x[1][2],1E-7);
+    assertEquals(0.0,x[1][3],1E-7);
+    assertEquals(1.0,x[1][4],1E-7);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

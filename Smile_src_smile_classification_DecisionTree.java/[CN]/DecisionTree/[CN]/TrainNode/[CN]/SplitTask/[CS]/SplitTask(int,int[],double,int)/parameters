@@ -1,0 +1,4 @@
+int n
+int[] count
+double impurity
+int j

@@ -1,0 +1,10 @@
+{
+  int m=LU.length;
+  int n=LU[0].length;
+  if (m != n)   throw new IllegalArgumentException(String.format("Matrix is not square: %d x %d",m,n));
+  double d=(double)pivsign;
+  for (int j=0; j < n; j++) {
+    d*=LU[j][j];
+  }
+  return d;
+}

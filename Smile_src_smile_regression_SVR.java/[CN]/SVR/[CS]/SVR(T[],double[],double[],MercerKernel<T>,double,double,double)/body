@@ -1,0 +1,66 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (weight != null && x.length != weight.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and instance weight don't match: %d != %d",x.length,weight.length));
+  }
+  if (eps <= 0) {
+    throw new IllegalArgumentException("Invalid error threshold: " + eps);
+  }
+  if (C < 0) {
+    throw new IllegalArgumentException("Invalid soft margin penalty: " + C);
+  }
+  if (tol <= 0.0) {
+    throw new IllegalArgumentException("Invlaid tolerance of convergence test:" + tol);
+  }
+  this.kernel=kernel;
+  this.eps=eps;
+  this.C=C;
+  this.tol=tol;
+  int n=x.length;
+  for (int i=0; i < n; i++) {
+    double w=1.0;
+    if (weight != null) {
+      w=weight[i];
+      if (w <= 0.0) {
+        throw new IllegalArgumentException("Invalid instance weight: " + w);
+      }
+    }
+    SupportVector v=new SupportVector();
+    v.x=x[i];
+    v.y=y[i];
+    v.C=w * C;
+    v.g[0]=eps + y[i];
+    v.g[1]=eps - y[i];
+    v.k=kernel.k(x[i],x[i]);
+    sv.add(v);
+  }
+  minmax();
+  int phase=Math.min(n,1000);
+  for (int count=1; smo(tol); count++) {
+    if (count % phase == 0) {
+      System.out.print('.');
+    }
+    if (count % (80 * phase) == 0) {
+      System.out.println();
+    }
+  }
+  System.out.println();
+  Iterator<SupportVector> iter=sv.iterator();
+  while (iter.hasNext()) {
+    SupportVector v=iter.next();
+    if (v.alpha[0] == 0.0 && v.alpha[1] == 0.0) {
+      iter.remove();
+    }
+  }
+  nsv=sv.size();
+  nbsv=0;
+  for (  SupportVector v : sv) {
+    v.kcache=null;
+    if (v.alpha[0] == C || v.alpha[1] == C) {
+      nbsv++;
+    }
+  }
+  System.out.format("%d support vectors, %d bounded\n",nsv,nbsv);
+}

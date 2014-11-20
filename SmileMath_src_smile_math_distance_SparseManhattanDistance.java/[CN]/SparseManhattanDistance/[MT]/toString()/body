@@ -1,0 +1,4 @@
+{
+  if (weight != null)   return "Weighted Manhattan distance";
+ else   return "Manhattan distance";
+}

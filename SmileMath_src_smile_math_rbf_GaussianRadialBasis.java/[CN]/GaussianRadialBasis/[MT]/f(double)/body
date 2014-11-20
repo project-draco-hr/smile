@@ -1,0 +1,4 @@
+{
+  r/=r0;
+  return Math.exp(-0.5 * r * r);
+}

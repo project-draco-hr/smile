@@ -1,0 +1,8 @@
+{
+  double f=0.0;
+  for (int i=start; i < end; i++) {
+    double wx=dot(x[i],w);
+    f+=log1pe(wx) - y[i] * wx;
+  }
+  return f;
+}

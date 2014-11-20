@@ -1,0 +1,8 @@
+{
+  int n=index.length;
+  float[] x=new float[n];
+  for (int i=0; i < n; i++) {
+    x[i]=data[index[i]];
+  }
+  return x;
+}

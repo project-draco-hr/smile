@@ -1,0 +1,3 @@
+{
+  return Math.logFactorial(k) + Math.logFactorial(m - k) + Math.logFactorial(n - k)+ Math.logFactorial(L + k);
+}

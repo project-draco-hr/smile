@@ -1,0 +1,18 @@
+{
+  this.residual=residual;
+  this.response=response;
+  this.alpha=alpha;
+  int n=residual.length;
+  for (int i=0; i < n; i++) {
+    response[i]=Math.abs(residual[i]);
+  }
+  delta=QuickSelect.select(response,(int)(n * alpha));
+  for (int i=0; i < n; i++) {
+    if (Math.abs(residual[i]) <= delta) {
+      response[i]=residual[i];
+    }
+ else {
+      response[i]=delta * Math.signum(residual[i]);
+    }
+  }
+}

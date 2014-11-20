@@ -1,0 +1,25 @@
+{
+  int point1=0;
+  while (point1 == 0 || point1 == length - 1) {
+    point1=Math.randomInt(length);
+  }
+  int point2=0;
+  while (point2 == point1 || point2 == 0 || point2 == length - 1) {
+    point2=Math.randomInt(length);
+  }
+  if (point2 < point1) {
+    int p=point1;
+    point1=point2;
+    point2=p;
+  }
+  int[] son=new int[length];
+  System.arraycopy(father.bits,0,son,0,point1);
+  System.arraycopy(mother.bits,point1,son,point1,point2 - point1);
+  System.arraycopy(father.bits,point2,son,point2,length - point2);
+  int[] daughter=new int[length];
+  System.arraycopy(mother.bits,0,daughter,0,point1);
+  System.arraycopy(father.bits,point1,daughter,point1,point2 - point1);
+  System.arraycopy(mother.bits,point2,daughter,point2,length - point2);
+  offsprings[0]=new BitString(son,measure,crossover,crossoverRate,mutationRate);
+  offsprings[1]=new BitString(daughter,measure,crossover,crossoverRate,mutationRate);
+}

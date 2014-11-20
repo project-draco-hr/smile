@@ -1,0 +1,31 @@
+{
+  double np=n * p;
+  if (np < 1.E-6) {
+    return PoissonDistribution.tinyLambdaRand(np);
+  }
+  boolean inv=false;
+  if (p > 0.5) {
+    inv=true;
+  }
+  if (np < 55) {
+    if (p <= 0.5) {
+      rng=new ModeSearch(p);
+    }
+ else {
+      rng=new ModeSearch(1.0 - p);
+    }
+  }
+ else {
+    if (p <= 0.5) {
+      rng=new Patchwork(p);
+    }
+ else {
+      rng=new Patchwork(1.0 - p);
+    }
+  }
+  int x=rng.rand();
+  if (inv) {
+    x=n - x;
+  }
+  return x;
+}

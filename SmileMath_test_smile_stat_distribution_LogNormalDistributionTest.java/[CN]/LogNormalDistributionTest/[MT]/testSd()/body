@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  LogNormalDistribution instance=new LogNormalDistribution(1.0,1.0);
+  instance.rand();
+  assertEquals(5.874744,instance.sd(),1E-6);
+}

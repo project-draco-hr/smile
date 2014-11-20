@@ -1,0 +1,3 @@
+{
+  this(proximity,k,0.2,1E-4,100);
+}

@@ -1,0 +1,8 @@
+{
+  int bucket=hash(x);
+  int i=bucket % H;
+  if (table[i] == null) {
+    table[i]=new ArrayList<HashEntry>();
+  }
+  table[i].add(new HashEntry(bucket,index,x,data));
+}

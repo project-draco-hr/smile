@@ -1,0 +1,17 @@
+{
+  System.out.println("HB exchange format");
+  try {
+    SparseMatrixParser parser=new SparseMatrixParser();
+    SparseMatrix data=parser.parse(this.getClass().getResourceAsStream("/smile/data/matrix/5by5_rua.hb"));
+    assertEquals(13,data.size());
+    assertEquals(5,data.nrows());
+    assertEquals(5,data.ncols());
+    assertEquals(11.0,data.get(0,0),1E-7);
+    assertEquals(31.0,data.get(2,0),1E-7);
+    assertEquals(51.0,data.get(4,0),1E-7);
+    assertEquals(55.0,data.get(4,4),1E-7);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

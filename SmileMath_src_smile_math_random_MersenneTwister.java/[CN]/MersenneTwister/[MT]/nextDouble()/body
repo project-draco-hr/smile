@@ -1,0 +1,3 @@
+{
+  return (nextInt() >>> 1) / (double)Integer.MAX_VALUE;
+}

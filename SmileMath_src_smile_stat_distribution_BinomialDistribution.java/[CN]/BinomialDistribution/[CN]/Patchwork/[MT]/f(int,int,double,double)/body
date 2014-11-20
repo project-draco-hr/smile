@@ -1,0 +1,3 @@
+{
+  return Math.exp(k * l_pq - Math.logFactorial(k) - Math.logFactorial(n - k) - c_pm);
+}

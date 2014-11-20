@@ -1,0 +1,32 @@
+{
+  if (data.length == 0) {
+    throw new IllegalArgumentException("Empty dataset.");
+  }
+  xMin=Math.min(data);
+  xMax=Math.max(data);
+  int n=xMax - xMin + 1;
+  x=new int[n];
+  p=new double[n];
+  cdf=new double[n];
+  for (int i=0; i < data.length; i++) {
+    p[data[i] - xMin]++;
+  }
+  mean=0.0;
+  double mean2=0.0;
+  entropy=0.0;
+  for (int i=0; i < n; i++) {
+    x[i]=xMin + i;
+    p[i]/=data.length;
+    if (i == 0) {
+      cdf[0]=p[0];
+    }
+ else {
+      cdf[i]=cdf[i - 1] + p[i];
+    }
+    mean+=x[i] * p[i];
+    mean2+=x[i] * x[i] * p[i];
+    entropy-=p[i] * Math.log2(p[i]);
+  }
+  var=mean2 - mean * mean;
+  sd=Math.sqrt(var);
+}

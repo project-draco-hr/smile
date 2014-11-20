@@ -1,0 +1,21 @@
+{
+  setInput(x);
+  propagate();
+  if (outputLayer.units == 1) {
+    if (outputLayer.output[0] > 0.5) {
+      return 0;
+    }
+ else {
+      return 1;
+    }
+  }
+  double max=Double.NEGATIVE_INFINITY;
+  int label=-1;
+  for (int i=0; i < outputLayer.units; i++) {
+    if (outputLayer.output[i] > max) {
+      max=outputLayer.output[i];
+      label=i;
+    }
+  }
+  return label;
+}

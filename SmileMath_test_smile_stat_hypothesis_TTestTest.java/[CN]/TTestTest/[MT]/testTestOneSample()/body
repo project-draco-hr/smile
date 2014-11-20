@@ -1,0 +1,12 @@
+{
+  System.out.println("test");
+  double[] x={0.48074284,-0.52975023,1.28590721,0.63456079,-0.41761197,2.76072411,1.30321095,-1.16454533,2.27210509,1.46394553,-0.31713164,1.26247543,2.65886430,0.40773450,1.18055440,-0.39611251,2.13557687,0.40878860,1.28461394,-0.02906355};
+  TTest result=TTest.test(x,1.0);
+  assertEquals(19,result.df,1E-10);
+  assertEquals(-0.6641,result.t,1E-4);
+  assertEquals(0.5146,result.pvalue,1E-4);
+  result=TTest.test(x,1.1);
+  assertEquals(19,result.df,1E-10);
+  assertEquals(-1.0648,result.t,1E-4);
+  assertEquals(0.3003,result.pvalue,1E-4);
+}

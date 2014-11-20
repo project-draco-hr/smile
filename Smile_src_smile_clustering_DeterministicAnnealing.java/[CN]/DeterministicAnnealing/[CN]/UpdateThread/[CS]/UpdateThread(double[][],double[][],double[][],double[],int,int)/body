@@ -1,0 +1,9 @@
+{
+  this.data=data;
+  this.centroids=centroids;
+  this.posteriori=posteriori;
+  this.priori=priori;
+  this.start=start;
+  this.end=end;
+  dist=new double[centroids.length];
+}

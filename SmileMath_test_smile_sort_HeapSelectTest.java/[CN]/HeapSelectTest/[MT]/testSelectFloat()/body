@@ -1,0 +1,21 @@
+{
+  System.out.println("FloatHeapSelect");
+  FloatHeapSelect instance=new FloatHeapSelect(10);
+  for (int i=0; i < 1000; i++) {
+    instance.add(0.1f * i);
+    if (i > 10) {
+      for (int j=0; j < 10; j++) {
+        assertEquals(instance.get(j),0.1f * j,1E-10);
+      }
+    }
+  }
+  instance=new FloatHeapSelect(10);
+  for (int i=0; i < 1000; i++) {
+    instance.add((1000 - i) * 0.1f);
+    if (i >= 9) {
+      for (int j=0; j < 10; j++) {
+        assertEquals(instance.get(j),(1000 - i + j) * 0.1f,1E-10);
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (lambda <= 0) {
+    throw new IllegalArgumentException("Invalid lambda: " + lambda);
+  }
+  this.lambda=lambda;
+}

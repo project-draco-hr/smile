@@ -1,0 +1,10 @@
+{
+  this.A=A;
+  this.d1=d1;
+  this.d2=d2;
+  this.prb=prb;
+  this.prs=prs;
+  int n=A.length;
+  ax=new double[n];
+  atax=new double[p];
+}

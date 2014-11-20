@@ -1,0 +1,85 @@
+{
+  Neighbor[] top2=new Neighbor[2];
+  int k=lsh.knn(x,top2);
+  double dist=Double.MAX_VALUE;
+  Neuron neuron=null;
+  if (k == 0) {
+    neuron=new Neuron(x.clone());
+    lsh.add(neuron);
+    neurons.add(neuron);
+    return;
+  }
+ else   if (k == 1) {
+    dist=top2[0].distance;
+    if (dist <= r) {
+      neuron=top2[0].neuron;
+      neuron.n++;
+      lsh.remove(neuron);
+      for (int i=0; i < d; i++) {
+        neuron.w[i]+=epsBest * (x[i] - neuron.w[i]);
+      }
+      lsh.add(neuron);
+    }
+ else {
+      neuron=new Neuron(x.clone());
+      lsh.add(neuron);
+      neurons.add(neuron);
+      Neuron second=top2[0].neuron;
+      neuron.neighbors.add(second);
+      second.neighbors.add(neuron);
+    }
+  }
+ else {
+    dist=top2[1].distance;
+    if (dist <= r) {
+      neuron=top2[1].neuron;
+      lsh.remove(neuron);
+      for (int i=0; i < d; i++) {
+        neuron.w[i]+=epsBest * (x[i] - neuron.w[i]);
+      }
+      lsh.add(neuron);
+      Neuron second=top2[0].neuron;
+      second.n++;
+      boolean connected=false;
+      for (      Neuron neighbor : neuron.neighbors) {
+        if (neighbor == second) {
+          connected=true;
+          break;
+        }
+      }
+      if (!connected) {
+        neuron.neighbors.add(second);
+        second.neighbors.add(neuron);
+      }
+    }
+ else {
+      neuron=new Neuron(x.clone());
+      lsh.add(neuron);
+      neurons.add(neuron);
+      Neuron second=top2[1].neuron;
+      neuron.neighbors.add(second);
+      second.neighbors.add(neuron);
+    }
+  }
+  for (Iterator<Neuron> iter=neuron.neighbors.iterator(); iter.hasNext(); ) {
+    Neuron neighbor=iter.next();
+    lsh.remove(neighbor);
+    for (int i=0; i < d; i++) {
+      neighbor.w[i]+=epsNeighbor * (x[i] - neighbor.w[i]);
+    }
+    if (Math.distance(neuron.w,neighbor.w) > 2 * r) {
+      neighbor.neighbors.remove(neuron);
+      iter.remove();
+    }
+    if (neighbor.neighbors.size() > 0) {
+      lsh.add(neighbor);
+    }
+ else {
+      neurons.remove(neighbor);
+    }
+  }
+  if (neuron.neighbors.size() == 0) {
+    lsh.remove(neuron);
+    neurons.remove(neuron);
+  }
+}

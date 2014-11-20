@@ -1,0 +1,5 @@
+{
+  Concept vnode=getConcept(v);
+  Concept wnode=getConcept(w);
+  return lowestCommonAncestor(vnode,wnode);
+}

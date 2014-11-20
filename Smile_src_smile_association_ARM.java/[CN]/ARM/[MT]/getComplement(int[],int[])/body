@@ -1,0 +1,22 @@
+{
+  int size=fullset.length - subset.length;
+  if (size < 1) {
+    return null;
+  }
+  int[] complement=new int[size];
+  int index=0;
+  for (int i=0; i < fullset.length; i++) {
+    int item=fullset[i];
+    boolean member=false;
+    for (int j=0; j < subset.length; j++) {
+      if (item == subset[j]) {
+        member=true;
+        break;
+      }
+    }
+    if (!member) {
+      complement[index++]=item;
+    }
+  }
+  return complement;
+}

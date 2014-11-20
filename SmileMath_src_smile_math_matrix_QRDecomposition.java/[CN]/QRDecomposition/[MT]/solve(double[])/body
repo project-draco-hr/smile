@@ -1,0 +1,6 @@
+{
+  if (QR.length != QR[0].length) {
+    throw new UnsupportedOperationException("In-place solver supports only square matrix.");
+  }
+  solve(b,b);
+}

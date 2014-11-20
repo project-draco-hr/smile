@@ -1,0 +1,9 @@
+{
+  double p1=-ni * LOG2PI;
+  double p2=-ni * d * Math.log(variance);
+  double p3=-(ni - k);
+  double p4=ni * Math.log(ni);
+  double p5=-ni * Math.log(n);
+  double loglike=(p1 + p2 + p3) / 2 + p4 + p5;
+  return loglike;
+}

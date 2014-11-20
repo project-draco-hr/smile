@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < ncols; i++) {
+    y[i]*=b;
+    for (int j=colIndex[i]; j < colIndex[i + 1]; j++) {
+      y[i]+=this.x[j] * x[rowIndex[j]];
+    }
+  }
+}

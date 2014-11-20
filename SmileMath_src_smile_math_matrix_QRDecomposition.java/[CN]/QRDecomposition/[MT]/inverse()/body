@@ -1,0 +1,5 @@
+{
+  double[][] I=Math.eye(QR[0].length,QR.length);
+  solve(I);
+  return I;
+}

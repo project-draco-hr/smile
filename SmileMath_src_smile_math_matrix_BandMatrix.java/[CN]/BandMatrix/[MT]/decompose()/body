@@ -1,0 +1,52 @@
+{
+  final double TINY=1.0e-40;
+  int mm=m1 + m2 + 1;
+  index=new int[n];
+  au=new double[n][mm];
+  al=new double[n][m1];
+  for (int i=0; i < A.length; i++) {
+    System.arraycopy(A[i],0,au[i],0,A[i].length);
+  }
+  double dum;
+  int l=m1;
+  for (int i=0; i < m1; i++) {
+    for (int j=m1 - i; j < mm; j++) {
+      au[i][j - l]=au[i][j];
+    }
+    l--;
+    for (int j=mm - l - 1; j < mm; j++)     au[i][j]=0.0;
+  }
+  d=1.0;
+  l=m1;
+  for (int k=0; k < n; k++) {
+    dum=au[k][0];
+    int i=k;
+    if (l < n) {
+      l++;
+    }
+    for (int j=k + 1; j < l; j++) {
+      if (Math.abs(au[j][0]) > Math.abs(dum)) {
+        dum=au[j][0];
+        i=j;
+      }
+    }
+    index[k]=i + 1;
+    if (dum == 0.0) {
+      au[k][0]=TINY;
+    }
+    if (i != k) {
+      d=-d;
+      double[] swap=au[k];
+      au[k]=au[i];
+      au[i]=swap;
+    }
+    for (i=k + 1; i < l; i++) {
+      dum=au[i][0] / au[k][0];
+      al[k][i - k - 1]=dum;
+      for (int j=1; j < mm; j++) {
+        au[i][j - 1]=au[i][j] - dum * au[k][j];
+      }
+      au[i][mm - 1]=0.0;
+    }
+  }
+}

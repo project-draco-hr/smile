@@ -1,0 +1,18 @@
+{
+  System.out.println("crossover uniform");
+  int[] father={1,1,1,0,1,0,0,1,0,0,0};
+  int[] mother={0,0,0,0,1,0,1,0,1,0,1};
+  BitString instance=new BitString(father,null,BitString.Crossover.UNIFORM,1.0,0.0);
+  BitString another=new BitString(mother,null,BitString.Crossover.UNIFORM,1.0,0.0);
+  BitString[] result=instance.crossover(another);
+  assertEquals(father.length,result[0].bits().length);
+  assertEquals(mother.length,result[1].bits().length);
+  boolean same=true;
+  for (int i=0; i < father.length; i++) {
+    assertTrue((father[i] == result[0].bits()[i] && mother[i] == result[1].bits()[i]) || (father[i] == result[1].bits()[i] && mother[i] == result[0].bits()[i]));
+    if (father[i] != result[0].bits()[i]) {
+      same=false;
+    }
+  }
+  assertFalse(same);
+}

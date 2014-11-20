@@ -1,0 +1,4 @@
+IMatrix A
+double[][] q
+double[][] wptr
+int step

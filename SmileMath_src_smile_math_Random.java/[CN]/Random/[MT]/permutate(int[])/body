@@ -1,0 +1,6 @@
+{
+  for (int i=0; i < x.length; i++) {
+    int j=i + nextInt(x.length - i);
+    Math.swap(x,i,j);
+  }
+}

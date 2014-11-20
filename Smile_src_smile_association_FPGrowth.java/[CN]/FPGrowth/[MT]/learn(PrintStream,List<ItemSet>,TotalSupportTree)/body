@@ -1,0 +1,8 @@
+{
+  if (MulticoreExecutor.getThreadPoolSize() > 1) {
+    return grow(out,list,ttree,T0,null,null,null);
+  }
+ else {
+    return grow(out,list,ttree,T0,null);
+  }
+}

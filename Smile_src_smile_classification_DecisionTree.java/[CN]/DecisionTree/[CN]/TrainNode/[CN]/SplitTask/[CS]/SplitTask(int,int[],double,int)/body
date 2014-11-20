@@ -1,0 +1,6 @@
+{
+  this.n=n;
+  this.count=count;
+  this.impurity=impurity;
+  this.j=j;
+}

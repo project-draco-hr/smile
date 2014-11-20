@@ -1,0 +1,21 @@
+{
+  if (alpha > 1.0 && beta > 1.0) {
+    method=BB;
+    am=(alpha < beta) ? alpha : beta;
+    bm=(alpha > beta) ? alpha : beta;
+    al=am + bm;
+    be=Math.sqrt((al - 2.0) / (2.0 * alpha * beta - al));
+    ga=am + 1.0 / be;
+  }
+ else {
+    method=BC;
+    am=(alpha > beta) ? alpha : beta;
+    bm=(alpha < beta) ? alpha : beta;
+    al=am + bm;
+    alnam=al * Math.log(al / am) - 1.386294361;
+    be=1.0 / bm;
+    si=1.0 + am - bm;
+    rk1=si * (0.013888889 + 0.041666667 * bm) / (am * be - 0.77777778);
+    rk2=0.25 + (0.5 + 0.25 / si) * bm;
+  }
+}

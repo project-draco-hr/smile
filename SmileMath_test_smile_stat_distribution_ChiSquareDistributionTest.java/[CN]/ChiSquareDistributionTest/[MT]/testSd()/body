@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  ChiSquareDistribution instance=new ChiSquareDistribution(20);
+  instance.rand();
+  assertEquals(Math.sqrt(40),instance.sd(),1E-7);
+}

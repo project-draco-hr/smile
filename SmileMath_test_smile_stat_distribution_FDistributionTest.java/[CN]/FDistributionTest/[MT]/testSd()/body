@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  FDistribution instance=new FDistribution(10,20);
+  instance.rand();
+  assertEquals(0.6573422,instance.sd(),1E-7);
+}

@@ -1,0 +1,6 @@
+IMatrix A
+IMatrix Ap
+double[] b
+double[] x
+double tol
+int itol

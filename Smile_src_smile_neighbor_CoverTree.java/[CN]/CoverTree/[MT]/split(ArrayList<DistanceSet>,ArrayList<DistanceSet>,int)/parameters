@@ -1,0 +1,3 @@
+ArrayList<DistanceSet> pointSet
+ArrayList<DistanceSet> farSet
+int maxScale

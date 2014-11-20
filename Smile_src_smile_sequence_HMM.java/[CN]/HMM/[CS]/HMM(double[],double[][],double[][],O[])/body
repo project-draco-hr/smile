@@ -1,0 +1,55 @@
+{
+  if (pi.length == 0) {
+    throw new IllegalArgumentException("Invalid initial state probabilities.");
+  }
+  if (pi.length != a.length) {
+    throw new IllegalArgumentException("Invalid state transition probability matrix.");
+  }
+  if (a.length != b.length) {
+    throw new IllegalArgumentException("Invalid symbol emission probability matrix.");
+  }
+  if (symbols != null) {
+    if (b[0].length != symbols.length) {
+      throw new IllegalArgumentException("Invalid size of emission symbol list.");
+    }
+    this.symbols=new HashMap<O,Integer>();
+    for (int i=0; i < symbols.length; i++) {
+      this.symbols.put(symbols[i],i);
+    }
+  }
+  numStates=pi.length;
+  numSymbols=b[0].length;
+  for (int i=0; i < numStates; i++) {
+    if (a[i].length != numStates) {
+      throw new IllegalArgumentException("Invalid state transition probability matrix.");
+    }
+    double sum=0.0;
+    for (int j=0; j < numStates; j++) {
+      if (a[i][j] < 0 || a[i][j] > 1.0) {
+        throw new IllegalArgumentException("Invalid state transition probability: " + a[i][j]);
+      }
+      sum+=a[i][j];
+    }
+    if (Math.abs(1.0 - sum) > 1E-7) {
+      throw new IllegalArgumentException(String.format("The row %d of state transition probability matrix doesn't sum to 1.",i));
+    }
+  }
+  for (int i=0; i < numStates; i++) {
+    if (b[i].length != numSymbols) {
+      throw new IllegalArgumentException("Invalid symbol emission probability matrix.");
+    }
+    double sum=0.0;
+    for (int j=0; j < numSymbols; j++) {
+      if (b[i][j] < 0 || b[i][j] > 1.0) {
+        throw new IllegalArgumentException("Invalid symbol emission probability: " + b[i][j]);
+      }
+      sum+=b[i][j];
+    }
+    if (Math.abs(1.0 - sum) > 1E-7) {
+      throw new IllegalArgumentException(String.format("The row %d of symbol emission probability matrix doesn't sum to 1.",i));
+    }
+  }
+  this.pi=pi;
+  this.a=a;
+  this.b=b;
+}

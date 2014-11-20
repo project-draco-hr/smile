@@ -1,0 +1,13 @@
+{
+  while (xmax - xmin > 1) {
+    int xmed=(xmax + xmin) / 2;
+    if (cdf(xmed) > p) {
+      xmax=xmed;
+    }
+ else {
+      xmin=xmed;
+    }
+  }
+  if (cdf(xmin) >= p)   return xmin;
+ else   return xmax;
+}

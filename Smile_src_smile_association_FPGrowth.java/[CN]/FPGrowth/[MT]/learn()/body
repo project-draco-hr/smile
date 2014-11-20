@@ -1,0 +1,5 @@
+{
+  List<ItemSet> list=new ArrayList<ItemSet>();
+  learn(null,list,null);
+  return list;
+}

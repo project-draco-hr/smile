@@ -1,0 +1,10 @@
+{
+  System.out.println("interpolate");
+  double[][] x={{0,0},{1,1}};
+  double[] y={0,1};
+  ShepardInterpolation instance=new ShepardInterpolation(x,y);
+  double[] x1={0.5,0.5};
+  assertEquals(0,instance.interpolate(x[0]),1E-7);
+  assertEquals(1,instance.interpolate(x[1]),1E-7);
+  assertEquals(0.5,instance.interpolate(x1),1E-7);
+}

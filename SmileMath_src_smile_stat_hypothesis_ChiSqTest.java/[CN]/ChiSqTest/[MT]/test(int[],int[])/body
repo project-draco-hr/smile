@@ -1,0 +1,3 @@
+{
+  return test(bins1,bins2,1);
+}

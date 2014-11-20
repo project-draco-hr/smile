@@ -1,0 +1,15 @@
+{
+  int n=x.length;
+  int p=x[0].length;
+  double[] a=new double[n];
+  int[][] index=new int[p][];
+  for (int j=0; j < p; j++) {
+    if (attributes[j].type == Attribute.Type.NUMERIC) {
+      for (int i=0; i < n; i++) {
+        a[i]=x[i][j];
+      }
+      index[j]=QuickSort.sort(a);
+    }
+  }
+  return index;
+}

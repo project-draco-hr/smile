@@ -1,0 +1,4 @@
+DifferentiableMultivariateFunction func
+int m
+double[] x
+double gtol

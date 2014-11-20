@@ -1,0 +1,26 @@
+{
+  Component componentToSplit=null;
+  double maxSigma=0.0;
+  for (  Component c : mixture) {
+    double sigma=((MultivariateGaussianDistribution)c.distribution).scatter();
+    if (sigma > maxSigma) {
+      maxSigma=sigma;
+      componentToSplit=c;
+    }
+  }
+  double[][] delta=((MultivariateGaussianDistribution)componentToSplit.distribution).cov();
+  double[] mu=((MultivariateGaussianDistribution)componentToSplit.distribution).mean();
+  Component c=new Component();
+  c.priori=componentToSplit.priori / 2;
+  double[] mu1=new double[mu.length];
+  for (int i=0; i < mu.length; i++)   mu1[i]=mu[i] + Math.sqrt(delta[i][i]) / 2;
+  c.distribution=new MultivariateGaussianDistribution(mu1,delta);
+  mixture.add(c);
+  c=new Component();
+  c.priori=componentToSplit.priori / 2;
+  double[] mu2=new double[mu.length];
+  for (int i=0; i < mu.length; i++)   mu2[i]=mu[i] - Math.sqrt(delta[i][i]) / 2;
+  c.distribution=new MultivariateGaussianDistribution(mu2,delta);
+  mixture.add(c);
+  mixture.remove(componentToSplit);
+}

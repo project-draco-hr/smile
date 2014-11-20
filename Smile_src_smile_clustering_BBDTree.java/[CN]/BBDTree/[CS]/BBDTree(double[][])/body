@@ -1,0 +1,8 @@
+{
+  int n=data.length;
+  index=new int[n];
+  for (int i=0; i < n; i++) {
+    index[i]=i;
+  }
+  root=buildNode(data,0,n);
+}

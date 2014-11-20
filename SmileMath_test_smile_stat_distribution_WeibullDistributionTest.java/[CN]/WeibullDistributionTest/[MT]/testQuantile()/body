@@ -1,0 +1,12 @@
+{
+  System.out.println("quantile");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(0.0,instance.p(0.0),1E-7);
+  assertEquals(0.2230755,instance.quantile(0.1),1E-7);
+  assertEquals(0.3678942,instance.quantile(0.2),1E-7);
+  assertEquals(0.7832198,instance.quantile(0.5),1E-7);
+  assertEquals(1.743722,instance.quantile(0.9),1E-6);
+  assertEquals(2.767985,instance.quantile(0.99),1E-6);
+  assertEquals(3.627087,instance.quantile(0.999),1E-6);
+}

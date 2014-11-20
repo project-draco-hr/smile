@@ -1,0 +1,4 @@
+RegressionTrainer<T> trainer
+T[] x
+double[] y
+RegressionMeasure measure

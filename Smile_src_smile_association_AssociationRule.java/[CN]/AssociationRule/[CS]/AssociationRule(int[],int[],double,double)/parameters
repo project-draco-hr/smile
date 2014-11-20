@@ -1,0 +1,4 @@
+int[] antecedent
+int[] consequent
+double support
+double confidence

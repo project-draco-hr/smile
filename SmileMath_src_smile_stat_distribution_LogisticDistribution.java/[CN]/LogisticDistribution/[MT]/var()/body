@@ -1,0 +1,3 @@
+{
+  return PI2_3 * scale * scale;
+}

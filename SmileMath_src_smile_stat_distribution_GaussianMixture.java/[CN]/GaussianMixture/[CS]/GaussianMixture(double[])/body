@@ -1,0 +1,26 @@
+{
+  if (data.length < 20)   throw new IllegalArgumentException("Too few samples.");
+  ArrayList<Component> mixture=new ArrayList<Component>();
+  Component c=new Component();
+  c.priori=1.0;
+  c.distribution=new GaussianDistribution(data);
+  mixture.add(c);
+  int freedom=0;
+  for (int i=0; i < mixture.size(); i++)   freedom+=mixture.get(i).distribution.npara();
+  double bic=0.0;
+  for (  double x : data) {
+    double p=c.distribution.p(x);
+    if (p > 0)     bic+=Math.log(p);
+  }
+  bic-=0.5 * freedom * Math.log(data.length);
+  double b=Double.NEGATIVE_INFINITY;
+  while (bic > b) {
+    b=bic;
+    components=(ArrayList<Component>)mixture.clone();
+    split(mixture);
+    bic=EM(mixture,data);
+    freedom=0;
+    for (int i=0; i < mixture.size(); i++)     freedom+=mixture.get(i).distribution.npara();
+    bic-=0.5 * freedom * Math.log(data.length);
+  }
+}

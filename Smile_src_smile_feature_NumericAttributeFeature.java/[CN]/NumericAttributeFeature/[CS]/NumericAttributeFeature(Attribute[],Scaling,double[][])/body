@@ -1,0 +1,47 @@
+{
+  this.attributes=attributes;
+  this.scaling=scaling;
+  int n=data.length;
+  int p=0;
+  for (  Attribute attribute : attributes) {
+    if (attribute instanceof NumericAttribute) {
+      p++;
+    }
+  }
+  features=new Attribute[p];
+  map=new int[p];
+  a=new double[p];
+  b=new double[p];
+  double[] x=new double[n];
+  for (int i=0, j=0; j < attributes.length; j++) {
+    Attribute attribute=attributes[j];
+    if (attribute instanceof NumericAttribute) {
+      if (scaling == Scaling.NONE) {
+        features[i]=attribute;
+      }
+ else {
+        features[i]=new NumericAttribute(attribute.name + "_" + scaling,attribute.description,attribute.weight);
+        if (scaling == Scaling.NORMALIZATION || scaling == Scaling.STANDARDIZATION) {
+          for (int k=0; k < n; k++) {
+            x[k]=data[k][j];
+          }
+          if (scaling == Scaling.NORMALIZATION) {
+            a[i]=Math.min(x);
+            b[i]=Math.max(x) - a[i];
+            if (b[i] == 0.0) {
+              throw new IllegalArgumentException("Attribute " + attribute + " has constant values.");
+            }
+          }
+          if (scaling == Scaling.STANDARDIZATION) {
+            a[i]=Math.mean(x);
+            b[i]=Math.sd(x);
+            if (b[i] == 0.0) {
+              throw new IllegalArgumentException("Attribute " + attribute + " has constant values.");
+            }
+          }
+        }
+      }
+      map[i++]=j;
+    }
+  }
+}

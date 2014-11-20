@@ -1,0 +1,12 @@
+{
+  System.out.println("predict");
+  String[] symbols={"0","1"};
+  HMM<String> hmm=new HMM<String>(pi,a,b,symbols);
+  String[] o={"0","0","1","1","0","1","1","0"};
+  int[] s={0,0,0,0,0,0,0,0};
+  int[] result=hmm.predict(o);
+  assertEquals(o.length,result.length);
+  for (int i=0; i < s.length; i++) {
+    assertEquals(s[i],result[i]);
+  }
+}

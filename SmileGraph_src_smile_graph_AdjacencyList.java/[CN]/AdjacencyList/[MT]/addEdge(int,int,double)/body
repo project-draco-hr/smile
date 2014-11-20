@@ -1,0 +1,10 @@
+{
+  Edge edge=new Edge();
+  edge.v1=source;
+  edge.v2=target;
+  edge.weight=weight;
+  graph[source].add(edge);
+  if (!digraph && source != target) {
+    graph[target].add(edge);
+  }
+}

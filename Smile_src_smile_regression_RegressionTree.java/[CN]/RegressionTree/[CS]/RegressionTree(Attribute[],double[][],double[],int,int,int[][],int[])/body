@@ -1,0 +1,38 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (M <= 0 || M > x[0].length) {
+    throw new IllegalArgumentException("Invalid number of variables to split on at a node of the tree: " + M);
+  }
+  if (S <= 0) {
+    throw new IllegalArgumentException("Invalid mimum number of instances in leaf nodes: " + S);
+  }
+  if (samples == null) {
+    throw new IllegalArgumentException("Sampling array is null.");
+  }
+  if (attributes == null) {
+    int p=x[0].length;
+    attributes=new Attribute[p];
+    for (int i=0; i < p; i++) {
+      attributes[i]=new NumericAttribute("V" + (i + 1));
+    }
+  }
+  this.attributes=attributes;
+  this.J=Integer.MAX_VALUE;
+  this.M=M;
+  this.S=S;
+  this.order=order;
+  importance=new double[attributes.length];
+  int n=0;
+  double sum=0.0;
+  for (int i=0; i < y.length; i++) {
+    n+=samples[i];
+    sum+=samples[i] * y[i];
+  }
+  root=new Node(sum / n);
+  TrainNode trainRoot=new TrainNode(root,x,y,samples);
+  if (trainRoot.findBestSplit()) {
+    trainRoot.split(null);
+  }
+}

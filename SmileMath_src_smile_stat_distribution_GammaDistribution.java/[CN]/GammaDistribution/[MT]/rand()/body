@@ -1,0 +1,11 @@
+{
+  if (k - Math.floor(k) != 0.0) {
+    throw new IllegalArgumentException("Gamma random number generator support only integer shape parameter.");
+  }
+  double r=0.0;
+  for (int i=0; i < k; i++) {
+    r+=Math.log(Math.random());
+  }
+  r*=-theta;
+  return r;
+}

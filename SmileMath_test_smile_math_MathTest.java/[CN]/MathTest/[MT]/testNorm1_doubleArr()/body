@@ -1,0 +1,5 @@
+{
+  System.out.println("norm1");
+  double[] x={-2.1968219,-0.9559913,-0.0431738,1.0567679,0.3853515};
+  assertEquals(4.638106,Math.norm1(x),1E-6);
+}

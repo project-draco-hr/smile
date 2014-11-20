@@ -1,0 +1,8 @@
+{
+  if (features.remove(feature)) {
+    attributes.clear();
+    for (    Feature<T> f : features) {
+      attributes.addAll(Arrays.asList(f.attributes()));
+    }
+  }
+}

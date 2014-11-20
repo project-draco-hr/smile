@@ -1,0 +1,16 @@
+{
+  System.out.println("tridiagonal solve");
+  double[][] A={{0.9000,0.4000,0.0000},{0.4000,0.5000,0.3000},{0.0000,0.3000,0.8000}};
+  double[] r={0.5,0.5,0.5};
+  LUDecomposition lu=new LUDecomposition(A);
+  double[] x=new double[r.length];
+  lu.solve(r,x);
+  double[] a={0.0,0.4,0.3};
+  double[] b={0.9,0.5,0.8};
+  double[] c={0.4,0.3,0.0};
+  double[] result=Math.solve(a,b,c,r);
+  assertEquals(result.length,x.length);
+  for (int i=0; i < x.length; i++) {
+    assertEquals(result[i],x[i],1E-7);
+  }
+}

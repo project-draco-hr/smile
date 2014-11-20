@@ -1,0 +1,20 @@
+{
+  SVM<T> svm=null;
+  if (k == 2) {
+    svm=new SVM<T>(kernel,Cp,Cn);
+  }
+ else {
+    if (this.weight == null) {
+      svm=new SVM<T>(kernel,Cp,k,strategy);
+    }
+ else {
+      svm=new SVM<T>(kernel,Cp,this.weight,strategy);
+    }
+  }
+  svm.setTolerance(tol);
+  for (int i=1; i <= epochs; i++) {
+    svm.learn(x,y,weight);
+  }
+  svm.finish();
+  return svm;
+}

@@ -1,0 +1,5 @@
+{
+  this.H=H;
+  this.mean=mean;
+  this.var=var;
+}

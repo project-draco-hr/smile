@@ -1,0 +1,6 @@
+{
+  System.out.println("learn");
+  FPGrowth fpgrowth=new FPGrowth(itemsets,3);
+  List<ItemSet> results=fpgrowth.learn();
+  assertEquals(8,results.size());
+}

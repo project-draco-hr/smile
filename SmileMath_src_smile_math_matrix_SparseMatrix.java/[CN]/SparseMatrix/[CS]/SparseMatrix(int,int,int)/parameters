@@ -1,0 +1,3 @@
+int nrows
+int ncols
+int nvals

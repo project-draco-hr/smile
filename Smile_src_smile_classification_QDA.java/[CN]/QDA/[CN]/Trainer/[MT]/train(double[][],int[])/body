@@ -1,0 +1,3 @@
+{
+  return new QDA(x,y,priori,tol);
+}

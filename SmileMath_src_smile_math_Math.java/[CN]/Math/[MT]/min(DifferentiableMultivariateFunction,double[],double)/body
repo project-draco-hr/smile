@@ -1,0 +1,3 @@
+{
+  return min(func,x,gtol,200);
+}

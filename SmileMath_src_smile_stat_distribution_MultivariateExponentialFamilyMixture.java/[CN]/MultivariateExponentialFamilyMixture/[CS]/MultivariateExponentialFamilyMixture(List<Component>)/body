@@ -1,0 +1,6 @@
+{
+  super(mixture);
+  for (  Component component : mixture) {
+    if (component.distribution instanceof MultivariateExponentialFamily == false)     throw new IllegalArgumentException("Component " + component + " is not of multivariate exponential family.");
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (index < 0 || index >= size) {
+    throw new IndexOutOfBoundsException(String.valueOf(index));
+  }
+  data[index]=val;
+}

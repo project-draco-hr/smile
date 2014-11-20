@@ -1,0 +1,9 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid k: " + k);
+  }
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  learn(data,nns,k,radius,y.clone());
+}

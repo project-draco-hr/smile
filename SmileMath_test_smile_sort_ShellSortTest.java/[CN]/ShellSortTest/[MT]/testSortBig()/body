@@ -1,0 +1,4 @@
+{
+  System.out.println("sort big array");
+  ShellSort.sort(big);
+}

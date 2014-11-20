@@ -1,0 +1,26 @@
+{
+  int n=0;
+  double[][] data=dataset.toArray(new double[dataset.size()][]);
+  double[][] dat=new double[data.length][data[0].length];
+  for (int i=0; i < dat.length; i++) {
+    for (int j=0; j < dat[i].length; j++) {
+      if (Math.random() < rate) {
+        n++;
+        dat[i][j]=Double.NaN;
+      }
+ else {
+        dat[i][j]=data[i][j];
+      }
+    }
+  }
+  imputation.impute(dat);
+  double rmse=0.0;
+  for (int i=0; i < dat.length; i++) {
+    for (int j=0; j < dat[i].length; j++) {
+      double d=(data[i][j] - dat[i][j]);
+      rmse+=d * d;
+    }
+  }
+  rmse=Math.sqrt(rmse / n);
+  return rmse;
+}

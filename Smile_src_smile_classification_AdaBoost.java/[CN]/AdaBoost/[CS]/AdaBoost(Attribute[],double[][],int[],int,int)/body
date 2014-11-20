@@ -1,0 +1,88 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (T < 1) {
+    throw new IllegalArgumentException("Invlaid number of trees: " + T);
+  }
+  if (J < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + J);
+  }
+  int[] labels=Math.unique(y);
+  Arrays.sort(labels);
+  for (int i=0; i < labels.length; i++) {
+    if (labels[i] < 0) {
+      throw new IllegalArgumentException("Negative class label: " + labels[i]);
+    }
+    if (i > 0 && labels[i] - labels[i - 1] > 1) {
+      throw new IllegalArgumentException("Missing class: " + labels[i] + 1);
+    }
+  }
+  k=labels.length;
+  if (k < 2) {
+    throw new IllegalArgumentException("Only one class.");
+  }
+  if (attributes == null) {
+    int p=x[0].length;
+    attributes=new Attribute[p];
+    for (int i=0; i < p; i++) {
+      attributes[i]=new NumericAttribute("V" + (i + 1));
+    }
+  }
+  int[][] order=SmileUtils.sort(attributes,x);
+  int n=x.length;
+  int[] samples=new int[n];
+  double[] w=new double[n];
+  boolean[] err=new boolean[n];
+  for (int i=0; i < n; i++) {
+    w[i]=1.0;
+  }
+  double guess=1.0 / k;
+  double b=Math.log(k - 1);
+  trees=new DecisionTree[T];
+  alpha=new double[T];
+  error=new double[T];
+  for (int t=0; t < T; t++) {
+    double W=Math.sum(w);
+    for (int i=0; i < n; i++) {
+      w[i]/=W;
+    }
+    Arrays.fill(samples,0);
+    int[] rand=Math.random(w,n);
+    for (    int s : rand) {
+      samples[s]++;
+    }
+    trees[t]=new DecisionTree(attributes,x,y,J,samples,order,DecisionTree.SplitRule.GINI);
+    for (int i=0; i < n; i++) {
+      err[i]=trees[t].predict(x[i]) != y[i];
+    }
+    double e=0.0;
+    for (int i=0; i < n; i++) {
+      if (err[i]) {
+        e+=w[i];
+      }
+    }
+    if (1 - e <= guess) {
+      System.err.format("Weak classifier %d makes %.2f%% weighted error\n",t,100 * e);
+      trees=Arrays.copyOf(trees,t);
+      alpha=Arrays.copyOf(alpha,t);
+      error=Arrays.copyOf(error,t);
+      break;
+    }
+    error[t]=e;
+    alpha[t]=Math.log((1 - e) / Math.max(1E-10,e)) + b;
+    double a=Math.exp(alpha[t]);
+    for (int i=0; i < n; i++) {
+      if (err[i]) {
+        w[i]*=a;
+      }
+    }
+  }
+  importance=new double[attributes.length];
+  for (  DecisionTree tree : trees) {
+    double[] imp=tree.importance();
+    for (int i=0; i < imp.length; i++) {
+      importance[i]+=imp[i];
+    }
+  }
+}

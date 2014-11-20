@@ -1,0 +1,12 @@
+{
+  if (nrows() != ncols()) {
+    throw new UnsupportedOperationException("The matrix is not square.");
+  }
+  if (!symmetric) {
+    throw new UnsupportedOperationException("The current implementation of eigen value decomposition only works for symmetric matrices");
+  }
+  if (eigen == null || eigen.getEigenVectors().length != k) {
+    eigen=EigenValueDecomposition.decompose(this,k);
+  }
+  return eigen;
+}

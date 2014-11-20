@@ -1,0 +1,9 @@
+{
+  int n=x.length;
+  double mu=Math.mean(x);
+  double var=Math.var(x);
+  int df=n - 1;
+  double t=(mu - mean) / Math.sqrt(var / n);
+  double p=Beta.regularizedIncompleteBetaFunction(0.5 * df,0.5,df / (df + t * t));
+  return new TTest(t,df,p);
+}

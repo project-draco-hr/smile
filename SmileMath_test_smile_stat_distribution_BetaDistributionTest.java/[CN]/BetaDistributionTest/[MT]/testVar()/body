@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(0.0255102,instance.var(),1E-7);
+}

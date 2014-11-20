@@ -1,0 +1,4 @@
+{
+  double e=Math.exp(-(x - mu) / scale);
+  return e / (scale * (1.0 + e) * (1.0 + e));
+}

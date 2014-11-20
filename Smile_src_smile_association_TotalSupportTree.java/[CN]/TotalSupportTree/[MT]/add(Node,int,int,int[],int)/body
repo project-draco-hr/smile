@@ -1,0 +1,15 @@
+{
+  if (node.children == null) {
+    node.children=new Node[size];
+  }
+  int item=order[itemset[index]];
+  if (node.children[item] == null) {
+    node.children[item]=new Node(itemset[index]);
+  }
+  if (index == 0) {
+    node.children[item].support+=support;
+  }
+ else {
+    add(node.children[item],item,index - 1,itemset,support);
+  }
+}

@@ -1,0 +1,25 @@
+{
+  if (x.length != y.length)   throw new IllegalArgumentException(String.format("Arrays have different length: x[%d], y[%d]",x.length,y.length));
+  int n=x.length;
+  int m=0;
+  double dist=0.0;
+  if (weight == null) {
+    for (int i=0; i < n; i++) {
+      if (!Float.isNaN(x[i]) && !Float.isNaN(y[i])) {
+        m++;
+        dist+=Math.abs(x[i] - y[i]);
+      }
+    }
+  }
+ else {
+    if (x.length != weight.length)     throw new IllegalArgumentException(String.format("Input vectors and weight vector have different length: %d, %d",x.length,weight.length));
+    for (int i=0; i < n; i++) {
+      if (!Float.isNaN(x[i]) && !Float.isNaN(y[i])) {
+        m++;
+        dist+=weight[i] * Math.abs(x[i] - y[i]);
+      }
+    }
+  }
+  dist=n * dist / m;
+  return dist;
+}

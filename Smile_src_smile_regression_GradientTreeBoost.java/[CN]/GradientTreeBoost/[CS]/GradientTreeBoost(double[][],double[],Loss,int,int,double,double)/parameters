@@ -1,0 +1,7 @@
+double[][] x
+double[] y
+Loss loss
+int T
+int J
+double shrinkage
+double f

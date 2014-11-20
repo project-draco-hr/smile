@@ -1,0 +1,23 @@
+{
+  double impurity=0.0;
+switch (rule) {
+case GINI:
+    impurity=1.0;
+  for (int i=0; i < count.length; i++) {
+    if (count[i] > 0) {
+      double p=(double)count[i] / n;
+      impurity-=p * p;
+    }
+  }
+break;
+case ENTROPY:
+for (int i=0; i < count.length; i++) {
+if (count[i] > 0) {
+  double p=(double)count[i] / n;
+  impurity-=p * Math.log2(p);
+}
+}
+break;
+}
+return impurity;
+}

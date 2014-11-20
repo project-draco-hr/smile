@@ -1,0 +1,6 @@
+{
+  if (x.length != inputLayer.units) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,inputLayer.units));
+  }
+  System.arraycopy(x,0,inputLayer.output,0,inputLayer.units);
+}

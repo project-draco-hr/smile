@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(2,instance.npara());
+}

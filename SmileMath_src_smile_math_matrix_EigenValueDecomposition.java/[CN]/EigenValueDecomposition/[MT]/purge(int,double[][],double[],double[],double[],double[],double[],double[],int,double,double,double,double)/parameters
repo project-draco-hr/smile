@@ -1,0 +1,13 @@
+int ll
+double[][] Q
+double[] r
+double[] q
+double[] ra
+double[] qa
+double[] eta
+double[] oldeta
+int step
+double rnm
+double tol
+double eps
+double reps

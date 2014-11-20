@@ -1,0 +1,10 @@
+{
+  if (taxonomy.concepts.containsKey(keyword)) {
+    throw new IllegalArgumentException(String.format("Concept %s already exists.",keyword));
+  }
+  taxonomy.concepts.put(keyword,this);
+  if (synset == null) {
+    synset=new TreeSet<String>();
+  }
+  synset.add(keyword);
+}

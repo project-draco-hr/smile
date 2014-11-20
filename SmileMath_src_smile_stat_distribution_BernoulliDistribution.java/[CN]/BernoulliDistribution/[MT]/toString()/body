@@ -1,0 +1,3 @@
+{
+  return String.format("Bernoulli Distribution(%.4f)",p);
+}

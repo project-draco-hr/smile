@@ -1,0 +1,12 @@
+{
+  cc[v]=id;
+  for (  Edge edge : graph[v]) {
+    int t=edge.v2;
+    if (!digraph && t == v) {
+      t=edge.v1;
+    }
+    if (cc[t] == -1) {
+      dfs(t,cc,id);
+    }
+  }
+}

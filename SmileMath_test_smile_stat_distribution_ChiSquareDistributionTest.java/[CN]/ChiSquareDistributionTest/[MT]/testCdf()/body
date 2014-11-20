@@ -1,0 +1,12 @@
+{
+  System.out.println("cdf");
+  ChiSquareDistribution instance=new ChiSquareDistribution(20);
+  instance.rand();
+  assertEquals(0.0,instance.cdf(0),1E-7);
+  assertEquals(2.571580e-20,instance.cdf(0.1),1E-25);
+  assertEquals(1.70967e-10,instance.cdf(1),1E-15);
+  assertEquals(0.03182806,instance.cdf(10),1E-7);
+  assertEquals(0.5420703,instance.cdf(20),1E-7);
+  assertEquals(0.9997785,instance.cdf(50),1E-7);
+  assertEquals(1.0,instance.cdf(100),1E-7);
+}

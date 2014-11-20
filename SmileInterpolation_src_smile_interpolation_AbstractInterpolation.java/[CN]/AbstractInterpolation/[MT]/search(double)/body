@@ -1,0 +1,3 @@
+{
+  return cor ? hunt(x) : locate(x);
+}

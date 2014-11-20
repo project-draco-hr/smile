@@ -1,0 +1,13 @@
+{
+  System.out.println("quantile");
+  LogisticDistribution instance=new LogisticDistribution(2.0,1.0);
+  instance.rand();
+  assertEquals(-4.906755,instance.quantile(0.001),1E-6);
+  assertEquals(-2.59512,instance.quantile(0.01),1E-5);
+  assertEquals(-0.1972246,instance.quantile(0.1),1E-7);
+  assertEquals(0.6137056,instance.quantile(0.2),1E-6);
+  assertEquals(2.0,instance.quantile(0.5),1E-7);
+  assertEquals(4.197225,instance.quantile(0.9),1E-6);
+  assertEquals(6.59512,instance.quantile(0.99),1E-5);
+  assertEquals(8.906755,instance.quantile(0.999),1E-6);
+}

@@ -1,0 +1,11 @@
+{
+  System.out.println("quantile");
+  GaussianDistribution instance=new GaussianDistribution(4.0,3.0);
+  instance.rand();
+  assertEquals(1.475136,instance.quantile(0.2),1E-6);
+  assertEquals(2.426798,instance.quantile(0.3),1E-6);
+  assertEquals(3.239959,instance.quantile(0.4),1E-6);
+  assertEquals(4.000000,instance.quantile(0.5),1E-6);
+  assertEquals(4.760041,instance.quantile(0.6),1E-6);
+  assertEquals(5.573202,instance.quantile(0.7),1E-6);
+}

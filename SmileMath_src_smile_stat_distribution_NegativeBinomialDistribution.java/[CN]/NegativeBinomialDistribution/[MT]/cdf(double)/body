@@ -1,0 +1,8 @@
+{
+  if (k < 0) {
+    return 0.0;
+  }
+ else {
+    return Beta.regularizedIncompleteBetaFunction(r,k + 1,p);
+  }
+}

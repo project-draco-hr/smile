@@ -1,0 +1,40 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  if (runs <= 0) {
+    throw new IllegalArgumentException("Invalid number of runs: " + runs);
+  }
+  BBDTree bbd=new BBDTree(data);
+  List<KMeansThread> tasks=new ArrayList<KMeansThread>();
+  for (int i=0; i < runs; i++) {
+    tasks.add(new KMeansThread(bbd,data,k,maxIter));
+  }
+  KMeans best=new KMeans();
+  best.distortion=Double.MAX_VALUE;
+  try {
+    List<KMeans> clusters=MulticoreExecutor.run(tasks);
+    for (    KMeans kmeans : clusters) {
+      if (kmeans.distortion < best.distortion) {
+        best=kmeans;
+      }
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+    for (int i=0; i < runs; i++) {
+      KMeans kmeans=lloyd(data,k,maxIter);
+      if (kmeans.distortion < best.distortion) {
+        best=kmeans;
+      }
+    }
+  }
+  this.k=best.k;
+  this.distortion=best.distortion;
+  this.centroids=best.centroids;
+  this.y=best.y;
+  this.size=best.size;
+}

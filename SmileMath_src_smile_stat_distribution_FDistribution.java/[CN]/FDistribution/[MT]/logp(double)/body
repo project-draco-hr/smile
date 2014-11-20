@@ -1,0 +1,6 @@
+{
+  if (x <= 0.0) {
+    throw new IllegalArgumentException("Invalid x: " + x);
+  }
+  return (0.5 * nu1 - 1.0) * Math.log(x) - 0.5 * (nu1 + nu2) * Math.log(nu2 + nu1 * x) + fac;
+}

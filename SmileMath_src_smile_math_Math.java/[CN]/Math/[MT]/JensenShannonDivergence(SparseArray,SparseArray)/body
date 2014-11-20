@@ -1,0 +1,32 @@
+{
+  if (x.isEmpty()) {
+    throw new IllegalArgumentException("List x is empty.");
+  }
+  if (y.isEmpty()) {
+    throw new IllegalArgumentException("List y is empty.");
+  }
+  Iterator<SparseArray.Entry> iterX=x.iterator();
+  Iterator<SparseArray.Entry> iterY=y.iterator();
+  SparseArray.Entry a=iterX.hasNext() ? iterX.next() : null;
+  SparseArray.Entry b=iterY.hasNext() ? iterY.next() : null;
+  double js=0.0;
+  while (a != null && b != null) {
+    if (a.i < b.i) {
+      double mi=a.x / 2;
+      js+=a.x * Math.log(a.x / mi);
+      a=iterX.hasNext() ? iterX.next() : null;
+    }
+ else     if (a.i > b.i) {
+      double mi=b.x / 2;
+      js+=b.x * Math.log(b.x / mi);
+      b=iterY.hasNext() ? iterY.next() : null;
+    }
+ else {
+      double mi=(a.x + b.x) / 2;
+      js+=a.x * Math.log(a.x / mi) + b.x * Math.log(b.x / mi);
+      a=iterX.hasNext() ? iterX.next() : null;
+      b=iterY.hasNext() ? iterY.next() : null;
+    }
+  }
+  return js / 2;
+}

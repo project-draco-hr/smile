@@ -1,0 +1,14 @@
+{
+  if (object.length != attributes.length) {
+    throw new IllegalArgumentException(String.format("Invalide object size %d, expected %d",object.length,attributes.length));
+  }
+  int[] features=new int[attributes.length];
+  for (int i=0; i < features.length; i++) {
+    int f=(int)object[i];
+    if (Math.floor(object[i]) != object[i] || f < 0 || f >= attributes[i].size()) {
+      throw new IllegalArgumentException(String.format("Invalid value of attribute %s: %d",attributes[i].toString(),f));
+    }
+    features[i]=f + base[i];
+  }
+  return features;
+}

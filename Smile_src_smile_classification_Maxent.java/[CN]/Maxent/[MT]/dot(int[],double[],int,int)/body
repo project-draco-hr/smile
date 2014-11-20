@@ -1,0 +1,8 @@
+{
+  int pos=j * (p + 1);
+  double dot=w[pos + p];
+  for (  int i : x) {
+    dot+=w[pos + i];
+  }
+  return dot;
+}

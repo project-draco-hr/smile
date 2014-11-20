@@ -1,0 +1,16 @@
+{
+  int m=LU.length;
+  int n=LU[0].length;
+  double[][] U=new double[m][n];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < n; j++) {
+      if (i <= j) {
+        U[i][j]=LU[i][j];
+      }
+ else {
+        U[i][j]=0.0;
+      }
+    }
+  }
+  return U;
+}

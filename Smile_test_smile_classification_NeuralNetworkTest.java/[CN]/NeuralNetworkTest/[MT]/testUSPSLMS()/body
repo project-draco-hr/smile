@@ -1,0 +1,40 @@
+{
+  System.out.println("USPS LMS");
+  DelimitedTextParser parser=new DelimitedTextParser();
+  parser.setResponseIndex(new NominalAttribute("class"),0);
+  try {
+    AttributeDataset train=parser.parse("USPS Train",this.getClass().getResourceAsStream("/smile/data/usps/zip.train"));
+    AttributeDataset test=parser.parse("USPS Test",this.getClass().getResourceAsStream("/smile/data/usps/zip.test"));
+    double[][] x=train.toArray(new double[train.size()][]);
+    int[] y=train.toArray(new int[train.size()]);
+    double[][] testx=test.toArray(new double[test.size()][]);
+    int[] testy=test.toArray(new int[test.size()]);
+    int p=x[0].length;
+    double[] mu=Math.colMean(x);
+    double[] sd=Math.colSd(x);
+    for (int i=0; i < x.length; i++) {
+      for (int j=0; j < p; j++) {
+        x[i][j]=(x[i][j] - mu[j]) / sd[j];
+      }
+    }
+    for (int i=0; i < testx.length; i++) {
+      for (int j=0; j < p; j++) {
+        testx[i][j]=(testx[i][j] - mu[j]) / sd[j];
+      }
+    }
+    NeuralNetwork net=new NeuralNetwork(NeuralNetwork.ErrorFunction.LEAST_MEAN_SQUARES,NeuralNetwork.ActivationFunction.LOGISTIC_SIGMOID,x[0].length,40,Math.max(y) + 1);
+    for (int j=0; j < 30; j++) {
+      net.learn(x,y);
+    }
+    int error=0;
+    for (int i=0; i < testx.length; i++) {
+      if (net.predict(testx[i]) != testy[i]) {
+        error++;
+      }
+    }
+    System.out.format("USPS error rate = %.2f%%\n",100.0 * error / testx.length);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

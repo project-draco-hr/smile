@@ -1,0 +1,32 @@
+{
+  System.out.println("string");
+  List<String> words=new ArrayList<String>();
+  long start=System.currentTimeMillis();
+  try {
+    InputStream stream=this.getClass().getResourceAsStream("/smile/neighbor/index.noun");
+    BufferedReader input=new BufferedReader(new InputStreamReader(stream));
+    String line=input.readLine();
+    while (line != null) {
+      if (!line.startsWith(" ")) {
+        String[] w=line.split("\\s");
+        words.add(w[0].replace('_',' '));
+      }
+      line=input.readLine();
+    }
+  }
+ catch (  Exception e) {
+    System.err.println(e);
+  }
+  double time=(System.currentTimeMillis() - start) / 1000.0;
+  System.out.format("Loading string data: %.2fs\n",time);
+  String[] data=words.toArray(new String[words.size()]);
+  LinearSearch<String> naive=new LinearSearch<String>(data,new EditDistance(50,true));
+  start=System.currentTimeMillis();
+  List<Neighbor<String,String>> neighbors=new ArrayList<Neighbor<String,String>>();
+  for (int i=1000; i < 1100; i++) {
+    naive.range(words.get(i),1,neighbors);
+    neighbors.clear();
+  }
+  time=(System.currentTimeMillis() - start) / 1000.0;
+  System.out.format("Linear string search: %.2fs\n",time);
+}

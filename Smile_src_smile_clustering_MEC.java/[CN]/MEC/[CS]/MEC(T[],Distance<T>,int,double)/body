@@ -1,0 +1,19 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid k: " + k);
+  }
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  LinearSearch<T> naive=new LinearSearch<T>(data,distance);
+  naive.setIdenticalExcluded(false);
+  if (data[0] instanceof double[] && distance instanceof EuclideanDistance) {
+    KMeans kmeans=new KMeans((double[][])data,k,10,Math.max(1,MulticoreExecutor.getThreadPoolSize()));
+    y=kmeans.getClusterLabel();
+  }
+ else {
+    CLARANS<T> clarans=new CLARANS<T>(data,distance,k,Math.min(100,(int)Math.round(0.01 * k * (data.length - k))),Math.max(1,MulticoreExecutor.getThreadPoolSize()));
+    y=clarans.getClusterLabel();
+  }
+  learn(data,naive,k,radius,y);
+}

@@ -1,0 +1,12 @@
+{
+  System.out.println("cdf");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(0.0,instance.cdf(0.0),1E-7);
+  assertEquals(0.03112801,instance.cdf(0.1),1E-7);
+  assertEquals(0.08555936,instance.cdf(0.2),1E-7);
+  assertEquals(0.2978115,instance.cdf(0.5),1E-7);
+  assertEquals(0.8407241,instance.cdf(1.5),1E-7);
+  assertEquals(0.9808,instance.cdf(2.5),1E-7);
+  assertEquals(0.999986,instance.cdf(5.0),1E-6);
+}

@@ -1,0 +1,78 @@
+{
+  if (stpmax <= 0) {
+    throw new IllegalArgumentException("Invalid upper bound of linear search step: " + stpmax);
+  }
+  final double xtol=EPSILON;
+  final double ftol=1.0E-4;
+  int n=xold.length;
+  double pnorm=norm(p);
+  if (pnorm > stpmax) {
+    double r=stpmax / pnorm;
+    for (int i=0; i < n; i++) {
+      p[i]*=r;
+    }
+  }
+  double slope=0.0;
+  for (int i=0; i < n; i++) {
+    slope+=g[i] * p[i];
+  }
+  if (slope >= 0) {
+    throw new IllegalArgumentException("Line Search: the search direction is not a descent direction, which may be caused by roundoff problem.");
+  }
+  double test=0.0;
+  for (int i=0; i < n; i++) {
+    double temp=abs(p[i]) / max(xold[i],1.0);
+    if (temp > test) {
+      test=temp;
+    }
+  }
+  double alammin=xtol / test;
+  double alam=1.0;
+  double alam2=0.0, f2=0.0;
+  double a, b, disc, rhs1, rhs2, tmpalam;
+  while (true) {
+    for (int i=0; i < n; i++) {
+      x[i]=xold[i] + alam * p[i];
+    }
+    double f=func.f(x);
+    if (alam < alammin) {
+      System.arraycopy(xold,0,x,0,n);
+      return f;
+    }
+ else     if (f <= fold + ftol * alam * slope) {
+      return f;
+    }
+ else {
+      if (alam == 1.0) {
+        tmpalam=-slope / (2.0 * (f - fold - slope));
+      }
+ else {
+        rhs1=f - fold - alam * slope;
+        rhs2=f2 - fold - alam2 * slope;
+        a=(rhs1 / (alam * alam) - rhs2 / (alam2 * alam2)) / (alam - alam2);
+        b=(-alam2 * rhs1 / (alam * alam) + alam * rhs2 / (alam2 * alam2)) / (alam - alam2);
+        if (a == 0.0) {
+          tmpalam=-slope / (2.0 * b);
+        }
+ else {
+          disc=b * b - 3.0 * a * slope;
+          if (disc < 0.0) {
+            tmpalam=0.5 * alam;
+          }
+ else           if (b <= 0.0) {
+            tmpalam=(-b + sqrt(disc)) / (3.0 * a);
+          }
+ else {
+            tmpalam=-slope / (b + sqrt(disc));
+          }
+        }
+        if (tmpalam > 0.5 * alam) {
+          tmpalam=0.5 * alam;
+        }
+      }
+    }
+    alam2=alam;
+    f2=f;
+    alam=max(tmpalam,0.1 * alam);
+  }
+}

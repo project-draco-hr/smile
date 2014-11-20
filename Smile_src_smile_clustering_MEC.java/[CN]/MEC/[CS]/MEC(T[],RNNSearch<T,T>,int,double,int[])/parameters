@@ -1,0 +1,5 @@
+T[] data
+RNNSearch<T,T> nns
+int k
+double radius
+int[] y

@@ -1,0 +1,11 @@
+{
+  System.out.println("quantile");
+  FDistribution instance=new FDistribution(10,20);
+  instance.rand();
+  assertEquals(0.2269944,instance.quantile(0.01),1E-7);
+  assertEquals(0.4543918,instance.quantile(0.1),1E-7);
+  assertEquals(0.5944412,instance.quantile(0.2),1E-7);
+  assertEquals(0.9662639,instance.quantile(0.5),1E-7);
+  assertEquals(3.368186,instance.quantile(0.99),1E-6);
+  assertEquals(7.180539,instance.quantile(0.9999),1E-6);
+}

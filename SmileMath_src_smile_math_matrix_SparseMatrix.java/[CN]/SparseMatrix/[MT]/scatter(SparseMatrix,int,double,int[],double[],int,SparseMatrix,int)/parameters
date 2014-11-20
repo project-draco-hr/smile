@@ -1,0 +1,8 @@
+SparseMatrix A
+int j
+double beta
+int[] w
+double[] x
+int mark
+SparseMatrix C
+int nz

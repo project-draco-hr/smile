@@ -1,0 +1,20 @@
+{
+  int d=(int)distance.d(object,datum);
+  if (d == 0) {
+    return;
+  }
+  if (children == null) {
+    children=new ArrayList<Node>();
+  }
+  while (children.size() <= d) {
+    children.add(null);
+  }
+  Node child=children.get(d);
+  if (child == null) {
+    Node node=new Node(count++,datum);
+    children.set(d,node);
+  }
+ else {
+    child.add(datum);
+  }
+}

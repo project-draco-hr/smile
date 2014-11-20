@@ -1,0 +1,117 @@
+{
+  SupportVector i=svmax;
+  int ii=gmaxindex;
+  double old_alpha_i=i.alpha[ii];
+  if (i.kcache == null) {
+    gram(i);
+  }
+  SupportVector j=svmin;
+  int jj=gminindex;
+  double old_alpha_j=j.alpha[jj];
+  double best=0.0;
+  double gi=ii == 0 ? -i.g[0] : i.g[1];
+  for (  SupportVector v : sv) {
+    double curv=i.k + v.k - 2 * kernel.k(i.x,v.x);
+    if (curv <= 0.0)     curv=TAU;
+    double gj=-v.g[0];
+    if (v.alpha[0] > 0.0 && gj < gi) {
+      double gain=-Math.sqr(gi - gj) / curv;
+      if (gain < best) {
+        best=gain;
+        j=v;
+        jj=0;
+        old_alpha_j=j.alpha[0];
+      }
+    }
+    gj=v.g[1];
+    if (v.alpha[1] < v.C && gj < gi) {
+      double gain=-Math.sqr(gi - gj) / curv;
+      if (gain < best) {
+        best=gain;
+        j=v;
+        jj=1;
+        old_alpha_j=j.alpha[1];
+      }
+    }
+  }
+  if (j.kcache == null) {
+    gram(j);
+  }
+  double curv=i.k + j.k - 2 * kernel.k(i.x,j.x);
+  if (curv <= 0.0)   curv=TAU;
+  if (ii != jj) {
+    double delta=(-i.g[ii] - j.g[jj]) / curv;
+    double diff=i.alpha[ii] - j.alpha[jj];
+    i.alpha[ii]+=delta;
+    j.alpha[jj]+=delta;
+    if (diff > 0.0) {
+      if (j.alpha[jj] < 0.0) {
+        j.alpha[jj]=0.0;
+        i.alpha[ii]=diff;
+      }
+    }
+ else {
+      if (i.alpha[ii] < 0.0) {
+        i.alpha[ii]=0.0;
+        j.alpha[jj]=-diff;
+      }
+    }
+    if (diff > i.C - j.C) {
+      if (i.alpha[ii] > i.C) {
+        i.alpha[ii]=i.C;
+        j.alpha[jj]=i.C - diff;
+      }
+    }
+ else {
+      if (j.alpha[jj] > j.C) {
+        j.alpha[jj]=j.C;
+        i.alpha[ii]=j.C + diff;
+      }
+    }
+  }
+ else {
+    double delta=(i.g[ii] - j.g[jj]) / curv;
+    double sum=i.alpha[ii] + j.alpha[jj];
+    i.alpha[ii]-=delta;
+    j.alpha[jj]+=delta;
+    if (sum > i.C) {
+      if (i.alpha[ii] > i.C) {
+        i.alpha[ii]=i.C;
+        j.alpha[jj]=sum - i.C;
+      }
+    }
+ else {
+      if (j.alpha[jj] < 0) {
+        j.alpha[jj]=0;
+        i.alpha[ii]=sum;
+      }
+    }
+    if (sum > j.C) {
+      if (j.alpha[jj] > j.C) {
+        j.alpha[jj]=j.C;
+        i.alpha[ii]=sum - j.C;
+      }
+    }
+ else {
+      if (i.alpha[ii] < 0) {
+        i.alpha[ii]=0.0;
+        j.alpha[jj]=sum;
+      }
+    }
+  }
+  double delta_alpha_i=i.alpha[ii] - old_alpha_i;
+  double delta_alpha_j=j.alpha[jj] - old_alpha_j;
+  int si=2 * ii - 1;
+  int sj=2 * jj - 1;
+  for (int k=0; k < sv.size(); k++) {
+    SupportVector v=sv.get(k);
+    v.g[0]-=si * i.kcache.get(k) * delta_alpha_i + sj * j.kcache.get(k) * delta_alpha_j;
+    v.g[1]+=si * i.kcache.get(k) * delta_alpha_i + sj * j.kcache.get(k) * delta_alpha_j;
+  }
+  minmax();
+  b=-(gmax + gmin) / 2;
+  if (gmax - gmin < epsgr) {
+    return false;
+  }
+  return true;
+}

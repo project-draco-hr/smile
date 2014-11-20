@@ -1,0 +1,16 @@
+{
+  System.out.println("cdf");
+  GaussianDistribution instance=new GaussianDistribution(4.0,3.0);
+  instance.rand();
+  assertEquals(1.530627e-06,instance.cdf(-10),1E-12);
+  assertEquals(0.02275013,instance.cdf(-2),1E-7);
+  assertEquals(0.2524925,instance.cdf(2),1E-7);
+  assertEquals(0.3694413,instance.cdf(3),1E-7);
+  assertEquals(0.5000000,instance.cdf(4),1E-7);
+  assertEquals(0.6305587,instance.cdf(5),1E-7);
+  assertEquals(0.7475075,instance.cdf(6),1E-7);
+  assertEquals(0.8413447,instance.cdf(7),1E-7);
+  assertEquals(0.9772499,instance.cdf(10),1E-7);
+  assertEquals(0.9998771,instance.cdf(15),1E-7);
+  assertEquals(1.0000000,instance.cdf(20),1E-7);
+}

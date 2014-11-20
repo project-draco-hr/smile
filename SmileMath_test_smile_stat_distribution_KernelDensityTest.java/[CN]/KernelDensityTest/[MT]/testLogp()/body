@@ -1,0 +1,7 @@
+{
+  System.out.println("logp");
+  KernelDensity instance=new KernelDensity(x);
+  double expResult=-2.29044906;
+  double result=instance.logp(3.5);
+  assertEquals(expResult,result,1E-8);
+}

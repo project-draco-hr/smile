@@ -1,0 +1,4 @@
+DifferentiableMultivariateFunction func
+double[] x
+double gtol
+int maxIter

@@ -1,0 +1,53 @@
+{
+  int jd=0, jq=1, iq;
+  double target, told=0., tnew=0., qold, qnew;
+  double[] newqile=new double[nq];
+  Arrays.sort(dbuf,0,nd);
+  qold=qnew=qile[0]=newqile[0]=q0;
+  qile[nq - 1]=newqile[nq - 1]=qm;
+  pval[0]=Math.min(0.5 / (nt + nd),0.5 * pval[1]);
+  pval[nq - 1]=Math.max(1.0 - 0.5 / (nt + nd),0.5 * (1. + pval[nq - 2]));
+  for (iq=1; iq < nq - 1; iq++) {
+    target=(nt + nd) * pval[iq];
+    if (tnew < target) {
+      for (; ; ) {
+        if (jq < nq && (jd >= nd || qile[jq] < dbuf[jd])) {
+          qnew=qile[jq];
+          tnew=jd + nt * pval[jq++];
+          if (tnew >= target) {
+            break;
+          }
+        }
+ else {
+          qnew=dbuf[jd];
+          tnew=told;
+          if (qile[jq] > qile[jq - 1]) {
+            tnew+=nt * (pval[jq] - pval[jq - 1]) * (qnew - qold) / (qile[jq] - qile[jq - 1]);
+          }
+          jd++;
+          if (tnew >= target) {
+            break;
+          }
+          told=tnew++;
+          qold=qnew;
+          if (tnew >= target) {
+            break;
+          }
+        }
+        told=tnew;
+        qold=qnew;
+      }
+    }
+    if (tnew == told) {
+      newqile[iq]=0.5 * (qold + qnew);
+    }
+ else {
+      newqile[iq]=qold + (qnew - qold) * (target - told) / (tnew - told);
+    }
+    told=tnew;
+    qold=qnew;
+  }
+  qile=newqile;
+  nt+=nd;
+  nd=0;
+}

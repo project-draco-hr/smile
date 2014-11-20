@@ -1,0 +1,4 @@
+int n
+double[] dx
+int ix0
+int incx

@@ -1,0 +1,14 @@
+{
+  List<String> keywords=new ArrayList<String>();
+  while (c != null) {
+    if (c.synset != null) {
+      keywords.addAll(c.synset);
+    }
+    if (c.children != null) {
+      for (      Concept child : c.children) {
+        keywords.addAll(getConcepts(child));
+      }
+    }
+  }
+  return keywords;
+}

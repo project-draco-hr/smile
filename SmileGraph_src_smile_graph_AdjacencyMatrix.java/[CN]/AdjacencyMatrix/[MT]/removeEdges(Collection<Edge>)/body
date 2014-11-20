@@ -1,0 +1,6 @@
+{
+  Iterator<Edge> iter=edges.iterator();
+  while (iter.hasNext()) {
+    removeEdge(iter.next());
+  }
+}

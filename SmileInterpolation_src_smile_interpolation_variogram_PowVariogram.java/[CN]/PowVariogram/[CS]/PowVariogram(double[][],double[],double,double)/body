@@ -1,0 +1,25 @@
+{
+  if (beta < 1 || beta >= 2) {
+    throw new IllegalArgumentException("Invalid beta = " + beta);
+  }
+  if (nugget < 0) {
+    throw new IllegalArgumentException("Invalid nugget effect = " + nugget);
+  }
+  this.beta=beta;
+  this.nugget=nugget;
+  int n=x.length;
+  int dim=x[0].length;
+  double num=0.0, denom=0.0;
+  for (int i=0; i < n; i++) {
+    for (int j=i + 1; j < n; j++) {
+      double rb=0.0;
+      for (int k=0; k < dim; k++) {
+        rb+=Math.sqr(x[i][k] - x[j][k]);
+      }
+      rb=Math.pow(rb,0.5 * beta);
+      num+=rb * 0.5 * Math.sqr(y[i] - y[j] - nugget);
+      denom+=rb * rb;
+    }
+  }
+  alpha=num / denom;
+}

@@ -1,0 +1,8 @@
+{
+  if (k < 0 || k > n) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return Math.logFactorial(n) - Math.logFactorial(k) - Math.logFactorial(n - k) + k * Math.log(p) + (n - k) * Math.log(1.0 - p);
+  }
+}

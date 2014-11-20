@@ -1,0 +1,17 @@
+{
+  double f=f(x);
+  double[] xh=x.clone();
+  for (int j=0; j < x.length; j++) {
+    double temp=x[j];
+    double h=EPS * Math.abs(temp);
+    if (h == 0.0) {
+      h=EPS;
+    }
+    xh[j]=temp + h;
+    h=xh[j] - temp;
+    double fh=f(xh);
+    xh[j]=temp;
+    gradient[j]=(fh - f) / h;
+  }
+  return f;
+}

@@ -1,0 +1,8 @@
+{
+  this.size=seeds.length;
+  this.population=seeds;
+  this.selection=selection;
+  for (int i=0; i < size; i++) {
+    tasks.add(new Task(i));
+  }
+}

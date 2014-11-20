@@ -1,0 +1,8 @@
+{
+  if (x >= 0.) {
+    return 1.0 - erfccheb(x);
+  }
+ else {
+    return erfccheb(-x) - 1.0;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  data=new double[1000][];
+  for (int i=0; i < data.length; i++) {
+    data[i]=new double[10];
+    for (int j=0; j < data[i].length; j++)     data[i][j]=Math.random();
+  }
+  coverTree=new CoverTree<double[]>(data,new EuclideanDistance());
+  naive=new LinearSearch<double[]>(data,new EuclideanDistance());
+}

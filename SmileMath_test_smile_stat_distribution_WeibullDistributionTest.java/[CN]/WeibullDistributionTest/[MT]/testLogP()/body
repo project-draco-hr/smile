@@ -1,0 +1,11 @@
+{
+  System.out.println("logP");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(Math.log(0.4595763),instance.logp(0.1),1E-5);
+  assertEquals(Math.log(0.6134254),instance.logp(0.2),1E-5);
+  assertEquals(Math.log(0.7447834),instance.logp(0.5),1E-5);
+  assertEquals(Math.log(0.2926085),instance.logp(1.5),1E-5);
+  assertEquals(Math.log(0.0455367),instance.logp(2.5),1E-5);
+  assertEquals(Math.log(4.677527e-05),instance.logp(5.0),1E-5);
+}

@@ -1,0 +1,11 @@
+{
+  System.out.println("quantile");
+  ChiSquareDistribution instance=new ChiSquareDistribution(20);
+  instance.rand();
+  assertEquals(0.0,instance.quantile(0),1E-7);
+  assertEquals(12.44261,instance.quantile(0.1),1E-5);
+  assertEquals(14.57844,instance.quantile(0.2),1E-5);
+  assertEquals(16.26586,instance.quantile(0.3),1E-5);
+  assertEquals(19.33743,instance.quantile(0.5),1E-5);
+  assertEquals(28.41198,instance.quantile(0.9),1E-5);
+}

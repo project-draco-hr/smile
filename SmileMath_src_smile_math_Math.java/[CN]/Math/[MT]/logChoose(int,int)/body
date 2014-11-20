@@ -1,0 +1,6 @@
+{
+  if (n < 0 || k < 0 || k > n) {
+    throw new IllegalArgumentException(String.format("Invalid n = %d, k = %d",n,k));
+  }
+  return Math.logFactorial(n) - Math.logFactorial(k) - Math.logFactorial(n - k);
+}

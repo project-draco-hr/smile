@@ -1,0 +1,12 @@
+{
+  System.out.println("cdf");
+  GeometricDistribution instance=new GeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(0.3,instance.cdf(0),1E-6);
+  assertEquals(0.51,instance.cdf(1),1E-6);
+  assertEquals(0.657,instance.cdf(2),1E-6);
+  assertEquals(0.7599,instance.cdf(3),1E-6);
+  assertEquals(0.83193,instance.cdf(4),1E-6);
+  assertEquals(0.9802267,instance.cdf(10),1E-6);
+  assertEquals(0.9994415,instance.cdf(20),1E-6);
+}

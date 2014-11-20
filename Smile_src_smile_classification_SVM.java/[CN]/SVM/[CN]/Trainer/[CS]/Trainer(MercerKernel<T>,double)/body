@@ -1,0 +1,9 @@
+{
+  if (C < 0) {
+    throw new IllegalArgumentException("Invalid soft margin penalty: " + C);
+  }
+  this.kernel=kernel;
+  this.Cp=C;
+  this.Cn=C;
+  this.k=2;
+}

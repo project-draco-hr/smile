@@ -1,0 +1,5 @@
+{
+  int mode=(int)lambda;
+  upperBound=(int)Math.floor(lambda + 0.5 + 7.0 * (Math.sqrt(lambda + lambda + 1.) + 1.5));
+  f0Mode=Math.exp(mode * Math.log(lambda) - lambda - Math.logFactorial(mode));
+}

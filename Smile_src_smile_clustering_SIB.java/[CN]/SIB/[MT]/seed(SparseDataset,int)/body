@@ -1,0 +1,36 @@
+{
+  int n=data.size();
+  int[] y=new int[n];
+  SparseArray centroid=data.get(Math.randomInt(n)).x;
+  double[] D=new double[n];
+  for (int i=0; i < n; i++) {
+    D[i]=Double.MAX_VALUE;
+  }
+  for (int i=1; i < k; i++) {
+    for (int j=0; j < n; j++) {
+      double dist=Math.JensenShannonDivergence(data.get(j).x,centroid);
+      if (dist < D[j]) {
+        D[j]=dist;
+        y[j]=i - 1;
+      }
+    }
+    double cutoff=Math.random() * Math.sum(D);
+    double cost=0.0;
+    int index=0;
+    for (; index < n; index++) {
+      cost+=D[index];
+      if (cost >= cutoff) {
+        break;
+      }
+    }
+    centroid=data.get(index).x;
+  }
+  for (int j=0; j < n; j++) {
+    double dist=Math.JensenShannonDivergence(data.get(j).x,centroid);
+    if (dist < D[j]) {
+      D[j]=dist;
+      y[j]=k - 1;
+    }
+  }
+  return y;
+}

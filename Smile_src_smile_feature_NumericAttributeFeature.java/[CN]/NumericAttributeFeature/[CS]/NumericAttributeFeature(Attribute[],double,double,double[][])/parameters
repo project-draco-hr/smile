@@ -1,0 +1,4 @@
+Attribute[] attributes
+double lower
+double upper
+double[][] data

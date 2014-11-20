@@ -1,0 +1,23 @@
+{
+  if (i < 0 || j < 0) {
+    throw new IllegalArgumentException("Invalid index: i = " + i + " j = "+ j);
+  }
+  int nrows=size();
+  if (i >= nrows) {
+    for (int k=nrows; k <= i; k++) {
+      data.add(new Datum<SparseArray>(new SparseArray()));
+    }
+  }
+  if (j >= ncols()) {
+    numColumns=j + 1;
+    if (numColumns > colSize.length) {
+      int[] size=new int[3 * numColumns / 2];
+      System.arraycopy(colSize,0,size,0,colSize.length);
+      colSize=size;
+    }
+  }
+  if (get(i).x.set(j,x)) {
+    colSize[j]++;
+    n++;
+  }
+}

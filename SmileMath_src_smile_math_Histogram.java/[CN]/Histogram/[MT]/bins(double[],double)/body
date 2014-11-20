@@ -1,0 +1,8 @@
+{
+  if (h <= 0.0) {
+    throw new IllegalArgumentException("Invalid bin width: " + h);
+  }
+  double max=Math.max(x);
+  double min=Math.min(x);
+  return (int)Math.ceil((max - min) / h);
+}

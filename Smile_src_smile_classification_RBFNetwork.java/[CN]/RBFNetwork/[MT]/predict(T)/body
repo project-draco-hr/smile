@@ -1,0 +1,30 @@
+{
+  double[] sumw=new double[k];
+  double sum=0.0;
+  for (int i=0; i < rbf.length; i++) {
+    double f=rbf[i].f(distance.d(x,centers[i]));
+    sum+=f;
+    for (int j=0; j < k; j++) {
+      sumw[j]+=w[i][j] * f;
+    }
+  }
+  if (normalized) {
+    for (int j=0; j < k; j++) {
+      sumw[j]=(sumw[j] + w[centers.length][j]) / sum;
+    }
+  }
+ else {
+    for (int j=0; j < k; j++) {
+      sumw[j]+=w[centers.length][j];
+    }
+  }
+  double max=Double.NEGATIVE_INFINITY;
+  int y=0;
+  for (int j=0; j < k; j++) {
+    if (max < sumw[j]) {
+      max=sumw[j];
+      y=j;
+    }
+  }
+  return y;
+}

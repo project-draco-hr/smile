@@ -1,0 +1,8 @@
+{
+  System.out.println("logFactorial");
+  assertEquals(0.0,Math.logFactorial(0),1E-7);
+  assertEquals(0.0,Math.logFactorial(1),1E-7);
+  assertEquals(Math.log(2.0),Math.logFactorial(2),1E-7);
+  assertEquals(Math.log(6.0),Math.logFactorial(3),1E-7);
+  assertEquals(Math.log(24.0),Math.logFactorial(4),1E-7);
+}

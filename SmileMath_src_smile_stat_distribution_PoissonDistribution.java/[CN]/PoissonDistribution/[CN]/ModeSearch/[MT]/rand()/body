@@ -1,0 +1,35 @@
+{
+  double r, c, d;
+  int x, mode;
+  mode=(int)lambda;
+  while (true) {
+    r=Math.random();
+    if ((r-=f0Mode) <= 0) {
+      return mode;
+    }
+    c=d=f0Mode;
+    for (int i=1; i <= mode; i++) {
+      x=mode - i;
+      c*=x + 1;
+      r*=lambda;
+      d*=lambda;
+      if ((r-=c) <= 0) {
+        return x;
+      }
+      x=mode + i;
+      d*=lambda;
+      r*=x;
+      c*=x;
+      if ((r-=d) <= 0) {
+        return x;
+      }
+    }
+    for (x=mode + mode + 1; x <= upperBound; x++) {
+      d*=lambda;
+      r*=x;
+      if ((r-=d) <= 0) {
+        return x;
+      }
+    }
+  }
+}

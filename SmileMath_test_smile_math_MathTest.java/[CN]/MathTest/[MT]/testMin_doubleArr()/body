@@ -1,0 +1,5 @@
+{
+  System.out.println("min");
+  double[] x={-2.1968219,-0.9559913,-0.0431738,1.0567679,0.3853515};
+  assertEquals(-2.196822,Math.min(x),1E-7);
+}

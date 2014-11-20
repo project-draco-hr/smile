@@ -1,0 +1,10 @@
+{
+  if (size < 1) {
+    throw new IllegalArgumentException("Invalid tournament size: " + size);
+  }
+  if (p < 0.5 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid best-player-wins probability: " + p);
+  }
+  tournamentSize=size;
+  tournamentProbability=p;
+}

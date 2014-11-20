@@ -1,0 +1,6 @@
+{
+  if (components.isEmpty())   throw new IllegalStateException("Mixture is empty!");
+  double p=0.0;
+  for (  Component c : components)   p+=c.priori * c.distribution.cdf(x);
+  return p;
+}

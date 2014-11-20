@@ -1,0 +1,16 @@
+{
+  for (int l=1; l < net.length; l++) {
+    for (int i=0; i < net[l].units; i++) {
+      for (int j=0; j <= net[l - 1].units; j++) {
+        double out=net[l - 1].output[j];
+        double err=net[l].error[i];
+        double delta=(1 - alpha) * eta * err* out + alpha * net[l].delta[i][j];
+        net[l].delta[i][j]=delta;
+        net[l].weight[i][j]+=delta;
+        if (lambda != 0.0 && j < net[l - 1].units) {
+          net[l].weight[i][j]*=(1.0 - eta * lambda);
+        }
+      }
+    }
+  }
+}

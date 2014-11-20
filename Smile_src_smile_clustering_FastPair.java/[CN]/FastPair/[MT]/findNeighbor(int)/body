@@ -1,0 +1,23 @@
+{
+  if (npoints == 1) {
+    neighbor[p]=p;
+    distance[p]=Double.MAX_VALUE;
+    return;
+  }
+  int first=0;
+  if (p == points[first]) {
+    first=1;
+  }
+  neighbor[p]=points[first];
+  distance[p]=d(p,neighbor[p]);
+  for (int i=first + 1; i < npoints; i++) {
+    int q=points[i];
+    if (q != p) {
+      double d=d(p,q);
+      if (d < distance[p]) {
+        distance[p]=d;
+        neighbor[p]=q;
+      }
+    }
+  }
+}

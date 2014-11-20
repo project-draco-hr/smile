@@ -1,0 +1,5 @@
+{
+  this.d=d;
+  this.B=B;
+  this.T=T;
+}

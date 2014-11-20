@@ -1,0 +1,33 @@
+{
+  String relationName=null;
+  attributes.clear();
+  getFirstToken(tokenizer);
+  if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
+    throw new ParseException("premature end of file",tokenizer.lineno());
+  }
+  if (ARFF_RELATION.equalsIgnoreCase(tokenizer.sval)) {
+    getNextToken(tokenizer);
+    relationName=tokenizer.sval;
+    getLastToken(tokenizer,false);
+  }
+ else {
+    throw new ParseException("keyword " + ARFF_RELATION + " expected",tokenizer.lineno());
+  }
+  getFirstToken(tokenizer);
+  if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
+    throw new ParseException("premature end of file",tokenizer.lineno());
+  }
+  while (ARFF_ATTRIBUTE.equalsIgnoreCase(tokenizer.sval)) {
+    attributes.add(parseAttribute(tokenizer));
+  }
+  if (!ARFF_DATA.equalsIgnoreCase(tokenizer.sval)) {
+    throw new ParseException("keyword " + ARFF_DATA + " expected",tokenizer.lineno());
+  }
+  if (attributes.isEmpty()) {
+    throw new ParseException("no attributes declared",tokenizer.lineno());
+  }
+  if (responseIndex >= attributes.size()) {
+    throw new ParseException("Invalid response variable index",responseIndex);
+  }
+  return relationName;
+}

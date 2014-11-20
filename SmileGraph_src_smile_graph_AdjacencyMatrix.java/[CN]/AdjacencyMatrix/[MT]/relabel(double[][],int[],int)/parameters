@@ -1,0 +1,3 @@
+double[][] flow
+int[] height
+int u

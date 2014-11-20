@@ -1,0 +1,3 @@
+{
+  return Math.exp(-np * Math.log(1.0 + x * x / nu) + fac) / Math.sqrt(Math.PI * nu);
+}

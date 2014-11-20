@@ -1,0 +1,78 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (J < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + J);
+  }
+  int[] labels=Math.unique(y);
+  Arrays.sort(labels);
+  for (int i=0; i < labels.length; i++) {
+    if (labels[i] < 0) {
+      throw new IllegalArgumentException("Negative class label: " + labels[i]);
+    }
+    if (i > 0 && labels[i] - labels[i - 1] > 1) {
+      throw new IllegalArgumentException("Missing class: " + labels[i] + 1);
+    }
+  }
+  k=labels.length;
+  if (k < 2) {
+    throw new IllegalArgumentException("Only one class.");
+  }
+  if (attributes == null) {
+    int p=x[0].length;
+    attributes=new Attribute[p];
+    for (int i=0; i < p; i++) {
+      attributes[i]=new NumericAttribute("V" + (i + 1));
+    }
+  }
+  this.attributes=attributes;
+  this.J=J;
+  this.rule=rule;
+  this.M=attributes.length;
+  importance=new double[attributes.length];
+  if (order != null) {
+    this.order=order;
+  }
+ else {
+    int n=x.length;
+    int p=x[0].length;
+    double[] a=new double[n];
+    this.order=new int[p][];
+    for (int j=0; j < p; j++) {
+      if (attributes[j] instanceof NumericAttribute) {
+        for (int i=0; i < n; i++) {
+          a[i]=x[i][j];
+        }
+        this.order[j]=QuickSort.sort(a);
+      }
+    }
+  }
+  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<TrainNode>();
+  int n=y.length;
+  int[] count=new int[k];
+  if (samples == null) {
+    samples=new int[n];
+    for (int i=0; i < n; i++) {
+      samples[i]=1;
+      count[y[i]]++;
+    }
+  }
+ else {
+    for (int i=0; i < n; i++) {
+      count[y[i]]+=samples[i];
+    }
+  }
+  root=new Node(Math.whichMax(count));
+  TrainNode trainRoot=new TrainNode(root,x,y,samples);
+  if (trainRoot.findBestSplit()) {
+    nextSplits.add(trainRoot);
+  }
+  for (int leaves=1; leaves < this.J; leaves++) {
+    TrainNode node=nextSplits.poll();
+    if (node == null) {
+      break;
+    }
+    node.split(nextSplits);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  float s=x[i];
+  x[i]=x[j];
+  x[j]=s;
+}

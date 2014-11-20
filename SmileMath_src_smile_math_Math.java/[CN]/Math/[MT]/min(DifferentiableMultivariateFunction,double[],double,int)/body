@@ -1,0 +1,92 @@
+{
+  final double TOLX=4 * EPSILON;
+  final double STPMX=100.0;
+  double den, fac, fad, fae, sumdg, sumxi, temp, test;
+  int n=x.length;
+  double[] dg=new double[n];
+  double[] g=new double[n];
+  double[] hdg=new double[n];
+  double[] xnew=new double[n];
+  double[] xi=new double[n];
+  double[][] hessin=new double[n][n];
+  double f=func.f(x,g);
+  System.out.format("BFGS: initial function value: %.5g\n",f);
+  double sum=0.0;
+  for (int i=0; i < n; i++) {
+    hessin[i][i]=1.0;
+    xi[i]=-g[i];
+    sum+=x[i] * x[i];
+  }
+  double stpmax=STPMX * max(sqrt(sum),n);
+  for (int iter=1; iter <= maxIter; iter++) {
+    f=linesearch(func,x,f,g,xi,xnew,stpmax);
+    if (iter % 10 == 0) {
+      System.out.format("BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+    }
+    for (int i=0; i < n; i++) {
+      xi[i]=xnew[i] - x[i];
+      x[i]=xnew[i];
+    }
+    test=0.0;
+    for (int i=0; i < n; i++) {
+      temp=abs(xi[i]) / max(abs(x[i]),1.0);
+      if (temp > test) {
+        test=temp;
+      }
+    }
+    if (test < TOLX) {
+      System.out.format("BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      return f;
+    }
+    System.arraycopy(g,0,dg,0,n);
+    func.f(x,g);
+    den=max(f,1.0);
+    test=0.0;
+    for (int i=0; i < n; i++) {
+      temp=abs(g[i]) * max(abs(x[i]),1.0) / den;
+      if (temp > test) {
+        test=temp;
+      }
+    }
+    if (test < gtol) {
+      System.out.format("BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      return f;
+    }
+    for (int i=0; i < n; i++) {
+      dg[i]=g[i] - dg[i];
+    }
+    for (int i=0; i < n; i++) {
+      hdg[i]=0.0;
+      for (int j=0; j < n; j++) {
+        hdg[i]+=hessin[i][j] * dg[j];
+      }
+    }
+    fac=fae=sumdg=sumxi=0.0;
+    for (int i=0; i < n; i++) {
+      fac+=dg[i] * xi[i];
+      fae+=dg[i] * hdg[i];
+      sumdg+=dg[i] * dg[i];
+      sumxi+=xi[i] * xi[i];
+    }
+    if (fac > sqrt(EPSILON * sumdg * sumxi)) {
+      fac=1.0 / fac;
+      fad=1.0 / fae;
+      for (int i=0; i < n; i++) {
+        dg[i]=fac * xi[i] - fad * hdg[i];
+      }
+      for (int i=0; i < n; i++) {
+        for (int j=i; j < n; j++) {
+          hessin[i][j]+=fac * xi[i] * xi[j] - fad * hdg[i] * hdg[j] + fae * dg[i] * dg[j];
+          hessin[j][i]=hessin[i][j];
+        }
+      }
+    }
+    Arrays.fill(xi,0.0);
+    for (int i=0; i < n; i++) {
+      for (int j=0; j < n; j++) {
+        xi[i]-=hessin[i][j] * g[j];
+      }
+    }
+  }
+  throw new IllegalStateException("BFGS: Too many iterations.");
+}

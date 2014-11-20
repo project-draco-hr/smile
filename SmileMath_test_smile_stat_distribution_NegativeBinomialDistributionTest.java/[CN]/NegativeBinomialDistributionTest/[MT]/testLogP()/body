@@ -1,0 +1,10 @@
+{
+  System.out.println("logP");
+  NegativeBinomialDistribution instance=new NegativeBinomialDistribution(3,0.3);
+  instance.rand();
+  assertEquals(Math.log(0.027),instance.logp(0),1E-7);
+  assertEquals(Math.log(0.0567),instance.logp(1),1E-7);
+  assertEquals(Math.log(0.07938),instance.logp(2),1E-7);
+  assertEquals(Math.log(0.09261),instance.logp(3),1E-7);
+  assertEquals(Math.log(0.05033709),instance.logp(10),1E-7);
+}

@@ -1,0 +1,54 @@
+{
+  if (x.length != p) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d",x.length));
+  }
+  if (posteriori != null && posteriori.length != k) {
+    throw new IllegalArgumentException(String.format("Invalid posteriori vector size: %d, expected: %d",posteriori.length,k));
+  }
+  int label=-1;
+  double max=Double.NEGATIVE_INFINITY;
+  boolean any=model == Model.GENERAL ? true : false;
+  for (int i=0; i < k; i++) {
+    double logprob=Math.log(priori[i]);
+    for (int j=0; j < p; j++) {
+switch (model) {
+case GENERAL:
+        logprob+=prob[i][j].logp(x[j]);
+      break;
+case MULTINOMIAL:
+    if (x[j] > 0) {
+      logprob+=x[j] * Math.log(condprob[i][j]);
+      any=true;
+    }
+  break;
+case BERNOULLI:
+if (x[j] > 0) {
+  logprob+=Math.log(condprob[i][j]);
+  any=true;
+}
+ else {
+  logprob+=Math.log(1.0 - condprob[i][j]);
+}
+break;
+}
+}
+if (logprob > max && any) {
+max=logprob;
+label=i;
+}
+if (posteriori != null) {
+posteriori[i]=logprob;
+}
+}
+if (posteriori != null && any) {
+double Z=0.0;
+for (int i=0; i < k; i++) {
+posteriori[i]=Math.exp(posteriori[i] - max);
+Z+=posteriori[i];
+}
+for (int i=0; i < k; i++) {
+posteriori[i]/=Z;
+}
+}
+return label;
+}

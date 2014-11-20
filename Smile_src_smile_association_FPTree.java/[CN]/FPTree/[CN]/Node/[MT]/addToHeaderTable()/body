@@ -1,0 +1,4 @@
+{
+  next=headerTable[order[id]].node;
+  headerTable[order[id]].node=this;
+}

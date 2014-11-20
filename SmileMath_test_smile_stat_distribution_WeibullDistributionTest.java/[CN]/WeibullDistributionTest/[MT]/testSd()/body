@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(0.61293579,instance.sd(),1E-7);
+}

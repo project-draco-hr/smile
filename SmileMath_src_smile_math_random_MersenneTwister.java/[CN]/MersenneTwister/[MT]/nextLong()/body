@@ -1,0 +1,4 @@
+{
+  long x=nextInt();
+  return (x << 32) | nextInt();
+}

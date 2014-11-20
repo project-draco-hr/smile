@@ -1,0 +1,23 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (lambda < 0.0) {
+    throw new IllegalArgumentException("Invalid regularization parameter lambda = " + lambda);
+  }
+  this.kernel=kernel;
+  this.lambda=lambda;
+  this.knots=x;
+  int n=x.length;
+  double[][] K=new double[n][n];
+  w=new double[n];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j <= i; j++) {
+      K[i][j]=kernel.k(x[i],x[j]);
+      K[j][i]=K[i][j];
+    }
+    K[i][i]+=lambda;
+  }
+  CholeskyDecomposition cholesky=new CholeskyDecomposition(K,true);
+  cholesky.solve(y,w);
+}

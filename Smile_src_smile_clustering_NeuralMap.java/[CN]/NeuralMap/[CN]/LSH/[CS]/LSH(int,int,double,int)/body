@@ -1,0 +1,13 @@
+{
+  this.k=k;
+  this.w=w;
+  this.H=H;
+  hash=new Hash[L];
+  c=new int[k];
+  for (int i=0; i < c.length; i++) {
+    c[i]=Math.randomInt(P);
+  }
+  for (int i=0; i < L; i++) {
+    hash[i]=new Hash();
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (lambda < 0.0) {
+    throw new IllegalArgumentException("Invalid shrinkage/regularization parameter lambda = " + lambda);
+  }
+  this.lambda=lambda;
+}

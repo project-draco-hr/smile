@@ -1,0 +1,34 @@
+{
+  if (d < 2) {
+    throw new IllegalArgumentException("Invalid input space dimension: " + d);
+  }
+  if (L < 1) {
+    throw new IllegalArgumentException("Invalid number of hash tables: " + L);
+  }
+  if (k < 1) {
+    throw new IllegalArgumentException("Invalid number of random projections per hash value: " + k);
+  }
+  if (w <= 0.0) {
+    throw new IllegalArgumentException("Invalid width of random projections: " + w);
+  }
+  if (H < 1) {
+    throw new IllegalArgumentException("Invalid size of hash tables: " + H);
+  }
+  this.d=d;
+  this.L=L;
+  this.k=k;
+  this.w=w;
+  this.H=H;
+  keys=new ArrayList<double[]>();
+  data=new ArrayList<E>();
+  r1=new int[k];
+  r2=new int[k];
+  for (int i=0; i < k; i++) {
+    r1[i]=Math.randomInt(MAX_HASH_RND);
+    r2[i]=Math.randomInt(MAX_HASH_RND);
+  }
+  hash=new ArrayList<Hash>(L);
+  for (int i=0; i < L; i++) {
+    hash.add(new Hash());
+  }
+}

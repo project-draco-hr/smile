@@ -1,0 +1,16 @@
+{
+  if (x.length != n) {
+    throw new IllegalArgumentException(String.format("Column dimensions do not agree: A is %d x %d, but x is 1 x %d",n,n,x.length));
+  }
+  if (y.length != n) {
+    throw new IllegalArgumentException(String.format("Column dimensions do not agree: A is %d x %d, but y is 1 x %d",n,n,y.length));
+  }
+  Arrays.fill(y,0.0);
+  for (int i=0; i < n; i++) {
+    for (int j=-m2; j <= m1; j++) {
+      if (i + j >= 0 && i + j < n) {
+        y[i]+=A[i + j][m1 - j] * x[i + j];
+      }
+    }
+  }
+}

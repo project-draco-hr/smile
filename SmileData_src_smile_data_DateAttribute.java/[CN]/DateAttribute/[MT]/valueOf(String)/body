@@ -1,0 +1,4 @@
+{
+  Date d=format.parse(s);
+  return Double.longBitsToDouble(d.getTime());
+}

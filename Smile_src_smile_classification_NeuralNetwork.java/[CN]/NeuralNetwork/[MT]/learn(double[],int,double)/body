@@ -1,0 +1,41 @@
+{
+  if (weight < 0.0) {
+    throw new IllegalArgumentException("Invalid weight: " + weight);
+  }
+  if (weight == 0.0) {
+    System.out.println("Ignore the training instance with zero weight.");
+    return;
+  }
+  if (y < 0) {
+    throw new IllegalArgumentException("Invalid class label: " + y);
+  }
+  if (outputLayer.units == 1 && y > 1) {
+    throw new IllegalArgumentException("Invalid class label: " + y);
+  }
+  if (outputLayer.units > 1 && y >= outputLayer.units) {
+    throw new IllegalArgumentException("Invalid class label: " + y);
+  }
+  if (errorFunction == ErrorFunction.CROSS_ENTROPY) {
+    if (activationFunction == ActivationFunction.LOGISTIC_SIGMOID) {
+      if (y == 0) {
+        target[0]=1.0;
+      }
+ else {
+        target[0]=0.0;
+      }
+    }
+ else {
+      for (int i=0; i < target.length; i++) {
+        target[i]=0.0;
+      }
+      target[y]=1.0;
+    }
+  }
+ else {
+    for (int i=0; i < target.length; i++) {
+      target[i]=0.1;
+    }
+    target[y]=0.9;
+  }
+  learn(x,target,weight);
+}

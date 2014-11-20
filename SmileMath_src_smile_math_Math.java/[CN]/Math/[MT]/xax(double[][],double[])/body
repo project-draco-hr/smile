@@ -1,0 +1,16 @@
+{
+  if (A.length != A[0].length) {
+    throw new IllegalArgumentException("The matrix is not square");
+  }
+  if (A.length != x.length) {
+    throw new IllegalArgumentException(String.format("x' * A * x: 1 x %d vs %d x %d",x.length,A.length,A[0].length));
+  }
+  int n=A.length;
+  double s=0.0;
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < n; j++) {
+      s+=A[i][j] * x[i] * x[j];
+    }
+  }
+  return s;
+}

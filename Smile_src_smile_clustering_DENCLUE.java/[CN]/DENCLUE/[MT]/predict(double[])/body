@@ -1,0 +1,40 @@
+{
+  int p=attractors[0].length;
+  if (x.length != p) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,p));
+  }
+  double prob=0.0;
+  double diff=1.0;
+  double step=0.0;
+  double[] z=x.clone();
+  double[] attractor=new double[p];
+  while (diff > eps) {
+    double weight=0.0;
+    for (int i=0; i < samples.length; i++) {
+      double w=Math.exp(gamma * Math.squaredDistance(samples[i],z));
+      weight+=w;
+      for (int j=0; j < p; j++) {
+        attractor[j]+=w * samples[i][j];
+      }
+    }
+    for (int j=0; j < p; j++) {
+      attractor[j]/=weight;
+    }
+    weight/=k;
+    diff=weight - prob;
+    prob=weight;
+    if (diff > 1E-5) {
+      step=2 * Math.distance(attractor,z);
+    }
+    for (int j=0; j < p; j++) {
+      z[j]=attractor[j];
+      attractor[j]=0;
+    }
+  }
+  for (int i=0; i < k; i++) {
+    if (Math.distance(attractors[i],z) < radius[i] + step) {
+      return i;
+    }
+  }
+  return OUTLIER;
+}

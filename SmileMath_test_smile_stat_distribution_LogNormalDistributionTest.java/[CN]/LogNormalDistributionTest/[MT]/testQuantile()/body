@@ -1,0 +1,11 @@
+{
+  System.out.println("quantile");
+  LogNormalDistribution instance=new LogNormalDistribution(1.0,1.0);
+  instance.rand();
+  assertEquals(0.2654449,instance.quantile(0.01),1E-7);
+  assertEquals(0.754612,instance.quantile(0.1),1E-6);
+  assertEquals(1.171610,instance.quantile(0.2),1E-6);
+  assertEquals(1.608978,instance.quantile(0.3),1E-6);
+  assertEquals(9.791861,instance.quantile(0.9),1E-6);
+  assertEquals(27.83649,instance.quantile(0.99),1E-5);
+}

@@ -1,0 +1,10 @@
+{
+  super(Type.NOMINAL,name,description,weight);
+  this.values=new ArrayList<String>();
+  this.map=new HashMap<String,Integer>();
+  this.open=false;
+  for (int i=0; i < values.length; i++) {
+    this.values.add(values[i]);
+    this.map.put(values[i],i);
+  }
+}

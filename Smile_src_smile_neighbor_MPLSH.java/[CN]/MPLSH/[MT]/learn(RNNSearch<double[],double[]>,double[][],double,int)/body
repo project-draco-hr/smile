@@ -1,0 +1,3 @@
+{
+  learn(range,samples,radius,Nz,0.2);
+}

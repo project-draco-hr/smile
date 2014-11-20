@@ -1,0 +1,22 @@
+{
+  System.out.println("bootstrap");
+  ArffParser parser=new ArffParser();
+  parser.setResponseIndex(6);
+  try {
+    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/cpu.arff"));
+    double[] y=data.toArray(new double[data.size()]);
+    double[][] x=data.toArray(new double[data.size()][]);
+    Math.normalize(x);
+    RBFNetwork.Trainer<double[]> trainer=new RBFNetwork.Trainer<double[]>(new EuclideanDistance());
+    trainer.setNumCenters(20);
+    RegressionMeasure[] measures={new RMSE(),new AbsoluteDeviation()};
+    double[][] results=Validation.bootstrap(100,trainer,x,y,measures);
+    System.out.println("100-fold bootstrap RMSE average = " + Math.mean(results[0]));
+    System.out.println("100-fold bootstrap RMSE std.dev = " + Math.sd(results[0]));
+    System.out.println("100-fold bootstrap AbsoluteDeviation average = " + Math.mean(results[1]));
+    System.out.println("100-fold bootstrap AbsoluteDeviation std.dev = " + Math.sd(results[1]));
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

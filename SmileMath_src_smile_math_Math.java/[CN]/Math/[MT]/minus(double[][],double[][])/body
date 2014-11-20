@@ -1,0 +1,8 @@
+{
+  if (x.length != y.length || x[0].length != y[0].length) {
+    throw new IllegalArgumentException(String.format("Matrices have different rows: %d x %d vs %d x %d",x.length,x[0].length,y.length,y[0].length));
+  }
+  for (int i=0; i < x.length; i++) {
+    minus(y[i],x[i]);
+  }
+}

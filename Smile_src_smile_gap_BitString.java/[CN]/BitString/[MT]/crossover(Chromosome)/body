@@ -1,0 +1,25 @@
+{
+  if (!(another instanceof BitString)) {
+    throw new IllegalArgumentException("The input parent is NOT bit string chromosome.");
+  }
+  BitString mother=(BitString)another;
+  BitString[] offsprings=new BitString[2];
+  if (Math.random() < crossoverRate) {
+switch (crossover) {
+case SINGLE_POINT:
+      singlePointCrossover(this,mother,offsprings);
+    break;
+case TWO_POINT:
+  twoPointCrossover(this,mother,offsprings);
+break;
+case UNIFORM:
+uniformCrossover(this,mother,offsprings);
+break;
+}
+}
+ else {
+offsprings[0]=this;
+offsprings[1]=mother;
+}
+return offsprings;
+}

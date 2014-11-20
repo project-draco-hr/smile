@@ -1,0 +1,3 @@
+{
+  return new GaussianProcessRegression<T>(x,y,kernel,lambda);
+}

@@ -1,0 +1,13 @@
+{
+  if (nrows() != ncols()) {
+    throw new UnsupportedOperationException("The matrix is not square.");
+  }
+  if (!symmetric || !positive) {
+    throw new UnsupportedOperationException("The matrix is not symmetric positive definite.");
+  }
+  if (cholesky == null) {
+    cholesky=new CholeskyDecomposition(A);
+    det=cholesky.det();
+  }
+  return cholesky;
+}

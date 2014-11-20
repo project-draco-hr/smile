@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(1,instance.npara());
+}

@@ -1,0 +1,8 @@
+{
+  for (  BucketEntry b : entry) {
+    if (b.bucket == bucket) {
+      return b.remove(point);
+    }
+  }
+  return false;
+}

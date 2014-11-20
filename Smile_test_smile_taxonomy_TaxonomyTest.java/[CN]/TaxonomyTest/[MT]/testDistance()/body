@@ -1,0 +1,6 @@
+{
+  System.out.println("distance");
+  TaxonomicDistance td=new TaxonomicDistance(instance);
+  assertEquals(2.0,td.d("A","F"),1E-9);
+  assertEquals(5.0,td.d("E","F"),1E-9);
+}

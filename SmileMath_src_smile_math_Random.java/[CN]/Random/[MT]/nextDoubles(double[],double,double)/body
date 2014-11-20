@@ -1,0 +1,8 @@
+{
+  rng.nextDoubles(d);
+  double l=hi - lo;
+  int n=d.length;
+  for (int i=0; i < n; i++) {
+    d[i]=lo + l * d[i];
+  }
+}

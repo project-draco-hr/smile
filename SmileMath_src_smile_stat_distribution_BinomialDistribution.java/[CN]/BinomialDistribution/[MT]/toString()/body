@@ -1,0 +1,3 @@
+{
+  return String.format("Binomial Distribution(%d, %.4f)",n,p);
+}

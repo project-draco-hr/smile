@@ -1,0 +1,6 @@
+{
+  if (components.isEmpty())   throw new IllegalStateException("Mixture is empty!");
+  double mu=0.0;
+  for (  Component c : components)   mu+=c.priori * c.distribution.mean();
+  return mu;
+}

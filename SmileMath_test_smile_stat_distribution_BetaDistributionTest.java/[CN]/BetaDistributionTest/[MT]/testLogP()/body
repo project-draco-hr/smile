@@ -1,0 +1,14 @@
+{
+  System.out.println("logP");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertTrue(Double.isInfinite(instance.logp(-0.1)));
+  assertTrue(Double.isInfinite(instance.logp(0.0)));
+  assertEquals(0.6771702,instance.logp(0.1),1E-7);
+  assertEquals(0.8991853,instance.logp(0.2),1E-7);
+  assertEquals(0.7705248,instance.logp(0.3),1E-7);
+  assertEquals(0.4416042,instance.logp(0.4),1E-7);
+  assertEquals(-0.06453852,instance.logp(0.5),1E-7);
+  assertTrue(Double.isInfinite(instance.logp(1.0)));
+  assertTrue(Double.isInfinite(instance.logp(1.5)));
+}

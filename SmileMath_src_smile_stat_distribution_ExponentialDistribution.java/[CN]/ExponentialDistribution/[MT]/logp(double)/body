@@ -1,0 +1,8 @@
+{
+  if (x < 0) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return Math.log(lambda) - lambda * x;
+  }
+}

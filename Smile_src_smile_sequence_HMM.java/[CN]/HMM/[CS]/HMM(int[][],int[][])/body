@@ -1,0 +1,30 @@
+{
+  if (observations.length != labels.length) {
+    throw new IllegalArgumentException("The number of observation sequences and that of label sequences are different.");
+  }
+  numStates=0;
+  numSymbols=0;
+  for (int i=0; i < observations.length; i++) {
+    if (observations[i].length != labels[i].length) {
+      throw new IllegalArgumentException(String.format("The length of observation sequence %d and that of corresponding label sequence are different.",i));
+    }
+    numStates=Math.max(numStates,Math.max(labels[i]) + 1);
+    numSymbols=Math.max(numSymbols,Math.max(observations[i]) + 1);
+  }
+  pi=new double[numStates];
+  a=new double[numStates][numStates];
+  b=new double[numStates][numSymbols];
+  for (int i=0; i < observations.length; i++) {
+    pi[labels[i][0]]++;
+    b[labels[i][0]][observations[i][0]]++;
+    for (int j=1; j < observations[i].length; j++) {
+      a[labels[i][j - 1]][labels[i][j]]++;
+      b[labels[i][j]][observations[i][j]]++;
+    }
+  }
+  Math.unitize1(pi);
+  for (int i=0; i < numStates; i++) {
+    Math.unitize1(a[i]);
+    Math.unitize1(b[i]);
+  }
+}

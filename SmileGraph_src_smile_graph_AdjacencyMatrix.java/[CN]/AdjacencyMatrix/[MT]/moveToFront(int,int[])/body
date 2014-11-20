@@ -1,0 +1,7 @@
+{
+  int temp=array[i];
+  for (int j=i; j > 0; j--) {
+    array[j]=array[j - 1];
+  }
+  array[0]=temp;
+}

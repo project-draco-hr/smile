@@ -1,0 +1,17 @@
+{
+  for (int i=0; i < data.length; i++) {
+    if (data[i] < 0 || data[i] > 1) {
+      throw new IllegalArgumentException("Samples are not in range [0, 1].");
+    }
+  }
+  mean=Math.mean(data);
+  var=Math.var(data);
+  alpha=mean * (mean * (1 - mean) / var - 1);
+  beta=(1 - mean) * (mean * (1 - mean) / var - 1);
+  if (alpha <= 0 || beta <= 0) {
+    throw new IllegalArgumentException("Samples don't follow Beta Distribution.");
+  }
+  mean=alpha / (alpha + beta);
+  var=alpha * beta / ((alpha + beta) * (alpha + beta) * (alpha + beta + 1));
+  entropy=Math.log(Beta.beta(alpha,beta)) - (alpha - 1) * Gamma.digamma(alpha) - (beta - 1) * Gamma.digamma(beta) + (alpha + beta - 2) * Gamma.digamma(alpha + beta);
+}

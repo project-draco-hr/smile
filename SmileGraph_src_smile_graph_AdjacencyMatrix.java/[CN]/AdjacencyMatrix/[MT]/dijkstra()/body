@@ -1,0 +1,7 @@
+{
+  double[][] wt=new double[n][];
+  for (int i=0; i < n; i++) {
+    wt[i]=dijkstra(i);
+  }
+  return wt;
+}

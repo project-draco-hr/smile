@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(3.637307,instance.sd(),1E-6);
+}

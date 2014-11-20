@@ -1,0 +1,13 @@
+{
+  int m=data.size();
+  if (a.length < m) {
+    a=new SparseArray[m];
+  }
+  for (int i=0; i < m; i++) {
+    a[i]=get(i).x;
+  }
+  for (int i=m; i < a.length; i++) {
+    a[i]=null;
+  }
+  return a;
+}

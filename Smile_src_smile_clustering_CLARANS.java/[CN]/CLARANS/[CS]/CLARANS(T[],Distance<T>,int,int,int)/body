@@ -1,0 +1,51 @@
+{
+  if (maxNeighbor <= 0) {
+    throw new IllegalArgumentException("Invalid maxNeighbor: " + maxNeighbor);
+  }
+  if (numLocal <= 0) {
+    throw new IllegalArgumentException("Invalid numLocal: " + numLocal);
+  }
+  int n=data.length;
+  if (k >= n) {
+    throw new IllegalArgumentException("Too large k: " + k);
+  }
+  if (maxNeighbor > n) {
+    throw new IllegalArgumentException("Too large maxNeighbor: " + maxNeighbor);
+  }
+  int minmax=100;
+  if (k * (n - k) < minmax) {
+    minmax=k * (n - k);
+  }
+  if (maxNeighbor < minmax) {
+    maxNeighbor=minmax;
+  }
+  this.k=k;
+  this.distance=distance;
+  this.numLocal=numLocal;
+  this.maxNeighbor=maxNeighbor;
+  List<CLARANSTask> tasks=new ArrayList<CLARANSTask>();
+  for (int i=0; i < numLocal; i++) {
+    tasks.add(new CLARANSTask(data));
+  }
+  try {
+    MulticoreExecutor.run(tasks);
+  }
+ catch (  Exception e) {
+    System.err.println(e.getMessage());
+    for (    CLARANSTask task : tasks) {
+      task.call();
+    }
+  }
+  distortion=Double.POSITIVE_INFINITY;
+  for (  CLARANSTask task : tasks) {
+    if (task.distortion < distortion) {
+      distortion=task.distortion;
+      medoids=task.medoids;
+      y=task.y;
+    }
+  }
+  size=new int[k];
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+  }
+}

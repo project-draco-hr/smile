@@ -1,0 +1,14 @@
+{
+  if (mean.length != cov.length) {
+    throw new IllegalArgumentException("Mean vector and covariance matrix have different dimension");
+  }
+  mu=new double[mean.length];
+  sigma=new double[mean.length][mean.length];
+  for (int i=0; i < mu.length; i++) {
+    mu[i]=mean[i];
+    System.arraycopy(cov[i],0,sigma[i],0,mu.length);
+  }
+  diagonal=false;
+  numParameters=mu.length + mu.length * (mu.length + 1) / 2;
+  init();
+}

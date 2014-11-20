@@ -1,0 +1,15 @@
+{
+  for (int i=inputIndex; i < set.length; i++) {
+    int n=sofar == null ? 0 : sofar.length;
+    if (n < set.length - 1) {
+      int[] subset=new int[n + 1];
+      subset[n]=set[i];
+      if (sofar != null) {
+        System.arraycopy(sofar,0,subset,0,n);
+      }
+      sets[outputIndex]=subset;
+      outputIndex=getPowerSet(set,i + 1,subset,sets,outputIndex + 1);
+    }
+  }
+  return outputIndex;
+}

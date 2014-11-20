@@ -1,0 +1,21 @@
+{
+  System.out.println("loocv");
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(4);
+  try {
+    AttributeDataset weather=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/weather.nominal.arff"));
+    double[][] x=weather.toArray(new double[weather.size()][]);
+    int[] y=weather.toArray(new int[weather.size()]);
+    DecisionTree.Trainer trainer=new DecisionTree.Trainer(3);
+    trainer.setAttributes(weather.attributes());
+    ClassificationMeasure[] measures={new Accuracy(),new Recall(),new Precision()};
+    double[] results=Validation.loocv(trainer,x,y,measures);
+    for (int i=0; i < measures.length; i++) {
+      System.out.println(measures[i] + " = " + results[i]);
+    }
+    assertEquals(0.6429,results[0],1E-4);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  if (x < 0.0 || x > 1.0) {
+    throw new IllegalArgumentException("Invalid x: " + x);
+  }
+  double ibeta=0.0;
+  if (x == 0.0) {
+    ibeta=0.0;
+  }
+ else {
+    if (x == 1.0) {
+      ibeta=1.0;
+    }
+ else {
+      ibeta=Math.exp(Gamma.logGamma(alpha + beta) - Gamma.logGamma(alpha) - Gamma.logGamma(beta) + alpha * Math.log(x) + beta * Math.log(1.0D - x));
+      if (x < (alpha + 1.0) / (alpha + beta + 2.0)) {
+        ibeta=ibeta * incompleteFractionSummation(alpha,beta,x) / alpha;
+      }
+ else {
+        ibeta=1.0 - ibeta * incompleteFractionSummation(beta,alpha,1.0 - x) / beta;
+      }
+    }
+  }
+  return ibeta;
+}

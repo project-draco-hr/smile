@@ -1,0 +1,18 @@
+{
+  int d=(int)distance.d(node.object,q);
+  if (d <= k) {
+    if (d > 0 || !identicalExcluded) {
+      neighbors.add(new Neighbor<E,E>(node.object,node.object,node.index,d));
+    }
+  }
+  if (node.children != null) {
+    int start=Math.max(1,d - k);
+    int end=Math.min(node.children.size(),d + k + 1);
+    for (int i=start; i < end; i++) {
+      Node child=node.children.get(i);
+      if (child != null) {
+        search(child,q,k,neighbors);
+      }
+    }
+  }
+}

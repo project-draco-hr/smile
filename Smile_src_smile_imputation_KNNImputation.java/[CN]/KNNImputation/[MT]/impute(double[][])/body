@@ -1,0 +1,65 @@
+{
+  int[] count=new int[data[0].length];
+  for (int i=0; i < data.length; i++) {
+    int n=0;
+    for (int j=0; j < data[i].length; j++) {
+      if (Double.isNaN(data[i][j])) {
+        n++;
+        count[j]++;
+      }
+    }
+    if (n == data[i].length) {
+      throw new MissingValueImputationException("The whole row " + i + " is missing");
+    }
+  }
+  for (int i=0; i < data[0].length; i++) {
+    if (count[i] == data.length) {
+      throw new MissingValueImputationException("The whole column " + i + " is missing");
+    }
+  }
+  double[] dist=new double[data.length];
+  for (int i=0; i < data.length; i++) {
+    double[] x=data[i];
+    int missing=0;
+    for (int j=0; j < x.length; j++) {
+      if (Double.isNaN(x[j])) {
+        missing++;
+      }
+    }
+    if (missing == 0)     continue;
+    for (int j=0; j < data.length; j++) {
+      double[] y=data[j];
+      int n=0;
+      dist[j]=0;
+      for (int m=0; m < x.length; m++) {
+        if (!Double.isNaN(x[m]) && !Double.isNaN(y[m])) {
+          n++;
+          double d=x[m] - y[m];
+          dist[j]+=d * d;
+        }
+      }
+      if (n > (x.length - missing) / 2) {
+        dist[j]=x.length * dist[j] / n;
+      }
+ else {
+        dist[j]=Double.MAX_VALUE;
+      }
+    }
+    double[][] dat=new double[data.length][];
+    System.arraycopy(data,0,dat,0,data.length);
+    QuickSort.sort(dist,dat);
+    for (int j=0; j < data[i].length; j++) {
+      if (Double.isNaN(x[j])) {
+        x[j]=0;
+        int n=0;
+        for (int m=0; n < k && m < dat.length; m++) {
+          if (!Double.isNaN(dat[m][j])) {
+            x[j]+=dat[m][j];
+            n++;
+          }
+        }
+        x[j]/=n;
+      }
+    }
+  }
+}

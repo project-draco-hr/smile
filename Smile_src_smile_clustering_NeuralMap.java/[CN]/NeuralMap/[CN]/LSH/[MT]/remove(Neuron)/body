@@ -1,0 +1,14 @@
+{
+  for (int i=0; i < hash.length; i++) {
+    int bucket=hash[i].hash(neuron.w);
+    LinkedList<Hash.Item> bin=hash[i].table[bucket % H];
+    if (bin != null) {
+      for (      Hash.Item e : bin) {
+        if (e.bucket == bucket && e.neuron == neuron) {
+          bin.remove(e);
+          break;
+        }
+      }
+    }
+  }
+}

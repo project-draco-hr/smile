@@ -1,0 +1,3 @@
+{
+  return eigen(A,v,Math.max(1.0E-10,A.nrows() * Math.EPSILON));
+}

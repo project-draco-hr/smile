@@ -1,0 +1,5 @@
+{
+  this.n=n;
+  this.sum=sum;
+  this.j=j;
+}

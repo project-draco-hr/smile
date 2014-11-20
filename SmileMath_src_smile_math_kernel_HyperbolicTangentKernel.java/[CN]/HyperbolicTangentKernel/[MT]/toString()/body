@@ -1,0 +1,3 @@
+{
+  return String.format("Hyperbolic Tangent Kernel (scale = %.4f, offset = %.4f)",scale,offset);
+}

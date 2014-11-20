@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(2,instance.npara());
+}

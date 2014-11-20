@@ -1,0 +1,3 @@
+{
+  fim=new FPGrowth(frequency,minSupport);
+}

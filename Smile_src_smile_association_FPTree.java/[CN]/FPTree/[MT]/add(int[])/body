@@ -1,0 +1,25 @@
+{
+  numTransactions++;
+  int m=0;
+  int t=itemset.length;
+  int[] o=new int[t];
+  for (int i=0; i < t; i++) {
+    int item=itemset[i];
+    o[i]=order[item];
+    if (itemSupport[item] >= minSupport) {
+      m++;
+    }
+  }
+  if (m > 0) {
+    QuickSort.sort(o,itemset,t);
+    for (int i=1; i < m; i++) {
+      if (itemset[i] == itemset[i - 1]) {
+        m--;
+        for (int j=i; j < m; j++) {
+          itemset[j]=itemset[j + 1];
+        }
+      }
+    }
+    root.add(0,m,itemset,1);
+  }
+}

@@ -1,0 +1,15 @@
+{
+  if (eps <= 0.0) {
+    throw new IllegalArgumentException("Invalid epsilon: " + eps);
+  }
+  while (Math.abs(xmax - xmin) > eps) {
+    double xmed=(xmax + xmin) / 2;
+    if (cdf(xmed) > p) {
+      xmax=xmed;
+    }
+ else {
+      xmin=xmed;
+    }
+  }
+  return xmin;
+}

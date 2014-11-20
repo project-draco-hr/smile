@@ -1,0 +1,7 @@
+{
+  System.out.println("logP");
+  BernoulliDistribution instance=new BernoulliDistribution(0.3);
+  instance.rand();
+  assertEquals(Math.log(0.7),instance.logp(0),1E-7);
+  assertEquals(Math.log(0.3),instance.logp(1),1E-7);
+}

@@ -1,0 +1,31 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (lambda < 0.0) {
+    throw new IllegalArgumentException("Invalid regularization parameter lambda = " + lambda);
+  }
+  this.kernel=kernel;
+  this.lambda=lambda;
+  this.knots=t;
+  int n=x.length;
+  int m=t.length;
+  double[][] G=new double[n][m];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < m; j++) {
+      G[i][j]=kernel.k(x[i],t[j]);
+    }
+  }
+  double[][] K=Math.atamm(G);
+  for (int i=0; i < m; i++) {
+    for (int j=0; j <= i; j++) {
+      K[i][j]+=lambda * kernel.k(t[i],t[j]);
+      K[j][i]=K[i][j];
+    }
+  }
+  double[] b=new double[m];
+  w=new double[m];
+  Math.atx(G,y,b);
+  LUDecomposition lu=new LUDecomposition(K,true);
+  lu.solve(b,w);
+}

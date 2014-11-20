@@ -1,0 +1,13 @@
+{
+  double[][] reps=new double[nodes.size()][];
+  int i=0;
+  for (  Node neuron : nodes)   reps[i++]=neuron.w;
+  double[][] proximity=new double[nodes.size()][];
+  for (i=0; i < nodes.size(); i++) {
+    proximity[i]=new double[i + 1];
+    for (int j=0; j < i; j++)     proximity[i][j]=Math.distance(reps[i],reps[j]);
+  }
+  Linkage linkage=new UPGMALinkage(proximity);
+  HierarchicalClustering hc=new HierarchicalClustering(linkage);
+  y=hc.partition(k);
+}

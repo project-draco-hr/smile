@@ -1,0 +1,6 @@
+{
+  this.bbd=bbd;
+  this.data=data;
+  this.k=k;
+  this.maxIter=maxIter;
+}

@@ -1,0 +1,5 @@
+int p
+int maxScale
+int topScale
+ArrayList<DistanceSet> pointSet
+ArrayList<DistanceSet> consumedSet

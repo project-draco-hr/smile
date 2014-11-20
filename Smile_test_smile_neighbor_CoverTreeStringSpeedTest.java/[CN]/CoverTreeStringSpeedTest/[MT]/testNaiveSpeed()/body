@@ -1,0 +1,11 @@
+{
+  System.out.println("cover tree");
+  long start=System.currentTimeMillis();
+  List<Neighbor<String,String>> neighbors=new ArrayList<Neighbor<String,String>>();
+  for (int i=1000; i < 1100; i++) {
+    cover.range(words.get(i),1,neighbors);
+    neighbors.clear();
+  }
+  double time=(System.currentTimeMillis() - start) / 1000.0;
+  System.out.format("Cover tree string search: %.2fs\n",time);
+}

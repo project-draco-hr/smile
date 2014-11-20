@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  WeibullDistribution instance=new WeibullDistribution(1.5,1.0);
+  instance.rand();
+  assertEquals(0.78694011,instance.entropy(),1E-7);
+}

@@ -1,0 +1,13 @@
+{
+  while (2 * k <= n) {
+    int j=2 * k;
+    if (j < n && arr[j] < arr[j + 1]) {
+      j++;
+    }
+    if (arr[k] >= arr[j]) {
+      break;
+    }
+    swap(arr,k,j);
+    k=j;
+  }
+}

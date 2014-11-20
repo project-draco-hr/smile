@@ -1,0 +1,6 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  return scale * Math.pow(-Math.log(1 - p),1 / shape);
+}

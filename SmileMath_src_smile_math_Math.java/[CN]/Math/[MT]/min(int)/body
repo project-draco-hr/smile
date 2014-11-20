@@ -1,0 +1,9 @@
+{
+  int m=x[0];
+  for (  int n : x) {
+    if (n < m) {
+      m=n;
+    }
+  }
+  return m;
+}

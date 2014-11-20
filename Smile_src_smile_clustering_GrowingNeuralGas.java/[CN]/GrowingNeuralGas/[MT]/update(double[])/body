@@ -1,0 +1,85 @@
+{
+  n++;
+  if (nodes.size() < 2) {
+    nodes.add(new Node(x.clone()));
+    return;
+  }
+  Node[] top2=new Node[2];
+  HeapSelect<Node> heap=new HeapSelect<Node>(top2);
+  for (  Node neuron : nodes) {
+    neuron.dist=Math.squaredDistance(neuron.w,x);
+    heap.add(neuron);
+  }
+  Node s1=top2[1];
+  Node s2=top2[0];
+  s1.error+=s1.dist;
+  for (int i=0; i < d; i++) {
+    s1.w[i]+=epsBest * (x[i] - s1.w[i]);
+  }
+  boolean addEdge=true;
+  for (  Edge edge : s1.edges) {
+    if (edge.a != s1) {
+      for (int i=0; i < d; i++) {
+        edge.a.w[i]+=epsNeighbor * (x[i] - edge.a.w[i]);
+      }
+    }
+ else {
+      for (int i=0; i < d; i++) {
+        edge.b.w[i]+=epsNeighbor * (x[i] - edge.b.w[i]);
+      }
+    }
+    edge.age++;
+    if (edge.a == s2 || edge.b == s2) {
+      edge.age=0;
+      addEdge=false;
+    }
+  }
+  if (addEdge) {
+    Edge edge=new Edge(s1,s2);
+    s1.edges.add(edge);
+    s2.edges.add(edge);
+  }
+  for (Iterator<Edge> iter=s1.edges.iterator(); iter.hasNext(); ) {
+    Edge edge=iter.next();
+    if (edge.age > maxEdgeAge) {
+      iter.remove();
+      if (edge.a != s1) {
+        edge.a.edges.remove(edge);
+        if (edge.a.edges.size() == 0)         nodes.remove(edge.a);
+      }
+ else {
+        edge.b.edges.remove(edge);
+        if (edge.b.edges.size() == 0)         nodes.remove(edge.b);
+      }
+    }
+  }
+  if (n % lambda == 0) {
+    Node q=nodes.get(0);
+    for (    Node neuron : nodes) {
+      if (neuron.error > q.error)       q=neuron;
+    }
+    Node f=null;
+    for (    Edge edge : q.edges) {
+      if (edge.a != q) {
+        if (f == null || edge.a.error > f.error)         f=edge.a;
+      }
+ else {
+        if (f == null || edge.b.error > f.error)         f=edge.b;
+      }
+    }
+    if (f != null) {
+      double[] w=new double[d];
+      for (int i=0; i < d; i++) {
+        w[i]+=(q.w[i] + f.w[i]) / 2;
+      }
+      Node r=new Node(w);
+      q.error*=alpha;
+      f.error*=alpha;
+      r.error=q.error;
+      nodes.add(r);
+    }
+  }
+  for (  Node neuron : nodes) {
+    neuron.error*=beta;
+  }
+}

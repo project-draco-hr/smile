@@ -1,0 +1,6 @@
+Attribute[] attributes
+double[][] x
+int[] y
+int M
+int[][] order
+int[][] prediction

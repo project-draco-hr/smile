@@ -1,0 +1,12 @@
+{
+  if (h <= 0) {
+    throw new IllegalArgumentException("Invalid bandwidth: " + h);
+  }
+  this.x=x;
+  this.h=h;
+  this.mean=Math.mean(x);
+  this.var=Math.var(x);
+  this.sd=Math.sqrt(var);
+  gaussian=new GaussianDistribution(0,h);
+  Arrays.sort(x);
+}

@@ -1,0 +1,115 @@
+{
+  if (sigma <= 0.0) {
+    throw new IllegalArgumentException("Invalid standard deviation of Gaussian kernel: " + sigma);
+  }
+  if (m <= 0) {
+    throw new IllegalArgumentException("Invlaid number of selected samples: " + m);
+  }
+  if (m < 10) {
+    throw new IllegalArgumentException("The number of selected samples is too small: " + m);
+  }
+  this.sigma=sigma;
+  this.gamma=-0.5 / (sigma * sigma);
+  KMeans kmeans=new KMeans(data,m);
+  samples=kmeans.centroids();
+  int n=data.length;
+  int d=data[0].length;
+  attractors=new double[n][];
+  for (int i=0; i < n; i++) {
+    attractors[i]=data[i].clone();
+  }
+  double[] attractor=new double[d];
+  double[] prob=new double[n];
+  radius=new double[n];
+  int np=MulticoreExecutor.getThreadPoolSize();
+  List<DENCLUEThread> tasks=null;
+  if (n >= 1000 && np >= 2) {
+    tasks=new ArrayList<DENCLUEThread>(np + 1);
+    int step=n / np;
+    if (step < 100) {
+      step=100;
+    }
+    int start=0;
+    int end=step;
+    for (int i=0; i < np - 1; i++) {
+      tasks.add(new DENCLUEThread(prob,start,end));
+      start+=step;
+      end+=step;
+    }
+    tasks.add(new DENCLUEThread(prob,start,n));
+    try {
+      MulticoreExecutor.run(tasks);
+    }
+ catch (    Exception ex) {
+      System.err.println(ex);
+      for (      DENCLUEThread task : tasks) {
+        task.call();
+      }
+    }
+  }
+ else {
+    for (int i=0; i < n; i++) {
+      double diff=1.0;
+      while (diff > eps) {
+        double weight=0.0;
+        for (int j=0; j < m; j++) {
+          double w=Math.exp(gamma * Math.squaredDistance(attractors[i],samples[j]));
+          weight+=w;
+          for (int l=0; l < d; l++) {
+            attractor[l]+=w * samples[j][l];
+          }
+        }
+        for (int l=0; l < d; l++) {
+          attractor[l]/=weight;
+        }
+        weight/=m;
+        diff=weight - prob[i];
+        prob[i]=weight;
+        if (diff > 1E-5) {
+          radius[i]=2 * Math.distance(attractors[i],attractor);
+        }
+        System.arraycopy(attractor,0,attractors[i],0,d);
+        Arrays.fill(attractor,0.0);
+      }
+    }
+  }
+  y=new int[n];
+  ArrayList<double[]> cluster=new ArrayList<double[]>();
+  ArrayList<Double> probability=new ArrayList<Double>();
+  ArrayList<Double> step=new ArrayList<Double>();
+  y[0]=0;
+  cluster.add(attractors[0]);
+  probability.add(prob[0]);
+  step.add(radius[0]);
+  boolean newcluster=true;
+  for (int i=1; i < n; i++) {
+    newcluster=true;
+    for (int j=0; j < cluster.size(); j++) {
+      if (Math.distance(attractors[i],cluster.get(j)) < radius[i] + step.get(j)) {
+        y[i]=j;
+        newcluster=false;
+        if (prob[i] > probability.get(j)) {
+          cluster.set(j,attractors[i]);
+          probability.set(j,prob[i]);
+          step.set(j,radius[i]);
+        }
+        break;
+      }
+    }
+    if (newcluster) {
+      y[i]=cluster.size();
+      cluster.add(attractors[i]);
+      probability.add(prob[i]);
+      step.add(radius[i]);
+    }
+  }
+  size=new int[cluster.size()];
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+  }
+  k=cluster.size();
+  attractors=new double[k][];
+  for (int i=0; i < k; i++) {
+    attractors[i]=cluster.get(i);
+  }
+}

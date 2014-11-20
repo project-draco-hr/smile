@@ -1,0 +1,6 @@
+{
+  if (L < 1) {
+    throw new IllegalArgumentException("Invalid mapping space dimension: " + L);
+  }
+  this.L=L;
+}

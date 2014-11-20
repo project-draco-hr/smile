@@ -1,0 +1,14 @@
+{
+  System.out.println("Orthogonal");
+  int n=57;
+  LOOCV instance=new LOOCV(n);
+  boolean[] hit=new boolean[n];
+  for (int i=0; i < n; i++) {
+    int test=instance.test[i];
+    assertFalse(hit[test]);
+    hit[test]=true;
+  }
+  for (int j=0; j < n; j++) {
+    assertTrue(hit[j]);
+  }
+}

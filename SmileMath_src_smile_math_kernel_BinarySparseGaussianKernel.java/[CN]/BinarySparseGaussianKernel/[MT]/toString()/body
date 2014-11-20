@@ -1,0 +1,3 @@
+{
+  return String.format("Sparse Binary Gaussian Kernel (\u02E0 = %.4f)",Math.sqrt(0.5 / gamma));
+}

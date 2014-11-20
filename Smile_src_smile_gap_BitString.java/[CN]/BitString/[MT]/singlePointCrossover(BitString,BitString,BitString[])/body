@@ -1,0 +1,14 @@
+{
+  int point=0;
+  while (point == 0) {
+    point=Math.randomInt(length);
+  }
+  int[] son=new int[length];
+  System.arraycopy(father.bits,0,son,0,point);
+  System.arraycopy(mother.bits,point,son,point,length - point);
+  int[] daughter=new int[length];
+  System.arraycopy(mother.bits,0,daughter,0,point);
+  System.arraycopy(father.bits,point,daughter,point,length - point);
+  offsprings[0]=new BitString(son,measure,crossover,crossoverRate,mutationRate);
+  offsprings[1]=new BitString(daughter,measure,crossover,crossoverRate,mutationRate);
+}

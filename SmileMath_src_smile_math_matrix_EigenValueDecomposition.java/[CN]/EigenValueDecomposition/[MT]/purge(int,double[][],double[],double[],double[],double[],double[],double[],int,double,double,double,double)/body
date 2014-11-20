@@ -1,0 +1,41 @@
+{
+  if (step < ll + 2) {
+    return rnm;
+  }
+  double t, tq, tr;
+  int k=idamax(step - (ll + 1),eta,ll,1) + ll;
+  if (Math.abs(eta[k]) > reps) {
+    double reps1=eps / reps;
+    int iteration=0;
+    boolean flag=true;
+    while (iteration < 2 && flag) {
+      if (rnm > tol) {
+        tq=0.0;
+        tr=0.0;
+        for (int i=ll; i < step; i++) {
+          t=-Math.dot(qa,Q[i]);
+          tq+=Math.abs(t);
+          Math.axpy(t,Q[i],q);
+          t=-Math.dot(ra,Q[i]);
+          tr+=Math.abs(t);
+          Math.axpy(t,Q[i],r);
+        }
+        Math.copy(q,qa);
+        t=-Math.dot(r,qa);
+        tr+=Math.abs(t);
+        Math.axpy(t,q,r);
+        Math.copy(r,ra);
+        rnm=Math.sqrt(Math.dot(ra,r));
+        if (tq <= reps1 && tr <= reps1 * rnm) {
+          flag=false;
+        }
+      }
+      iteration++;
+    }
+    for (int i=ll; i <= step; i++) {
+      eta[i]=eps;
+      oldeta[i]=eps;
+    }
+  }
+  return rnm;
+}

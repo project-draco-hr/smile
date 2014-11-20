@@ -1,0 +1,5 @@
+{
+  this.t=t;
+  this.df=df;
+  this.pvalue=pvalue;
+}

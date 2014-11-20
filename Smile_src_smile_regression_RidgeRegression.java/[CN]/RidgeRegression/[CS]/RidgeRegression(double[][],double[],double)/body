@@ -1,0 +1,42 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (lambda < 0.0) {
+    throw new IllegalArgumentException("Invalid shrinkage/regularization parameter lambda = " + lambda);
+  }
+  int n=x.length;
+  p=x[0].length;
+  ym=Math.mean(y);
+  center=Math.colMean(x);
+  double[][] X=new double[n][p];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < p; j++) {
+      X[i][j]=x[i][j] - center[j];
+    }
+  }
+  scale=new double[p];
+  for (int j=0; j < p; j++) {
+    for (int i=0; i < n; i++) {
+      scale[j]+=Math.sqr(X[i][j]);
+    }
+    scale[j]=Math.sqrt(scale[j] / n);
+  }
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < p; j++) {
+      X[i][j]/=scale[j];
+    }
+  }
+  w=new double[p];
+  Math.atx(X,y,w);
+  double[][] XtX=Math.atamm(X);
+  for (int i=0; i < p; i++) {
+    XtX[i][i]+=lambda;
+  }
+  CholeskyDecomposition cholesky=new CholeskyDecomposition(XtX);
+  cholesky.solve(w);
+  for (int j=0; j < p; j++) {
+    w[j]/=scale[j];
+  }
+  b=ym - Math.dot(w,center);
+}

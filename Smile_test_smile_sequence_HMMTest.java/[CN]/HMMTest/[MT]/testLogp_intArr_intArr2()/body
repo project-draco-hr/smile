@@ -1,0 +1,10 @@
+{
+  System.out.println("logp");
+  String[] symbols={"0","1"};
+  HMM<String> hmm=new HMM<String>(pi,a,b,symbols);
+  String[] o={"0","0","1","1","0","1","1","0"};
+  int[] s={0,0,1,1,1,1,1,0};
+  double expResult=-9.51981;
+  double result=hmm.logp(o,s);
+  assertEquals(expResult,result,1E-5);
+}

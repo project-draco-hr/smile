@@ -1,0 +1,14 @@
+{
+  System.out.println("pdf");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(0.0,instance.p(-1),1E-7);
+  assertEquals(0.03019738,instance.p(0),1E-7);
+  assertEquals(0.1056908,instance.p(1),1E-7);
+  assertEquals(0.1849590,instance.p(2),1E-7);
+  assertEquals(0.2157855,instance.p(3),1E-7);
+  assertEquals(0.1888123,instance.p(4),1E-7);
+  assertEquals(0.00229555,instance.p(10),1E-7);
+  assertEquals(9.445079e-10,instance.p(20),1E-10);
+  assertEquals(8.256008e-106,instance.p(100),1E-110);
+}

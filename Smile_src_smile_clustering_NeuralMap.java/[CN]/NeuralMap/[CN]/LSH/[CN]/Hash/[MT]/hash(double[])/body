@@ -1,0 +1,12 @@
+{
+  long r=0;
+  for (int i=0; i < k; i++) {
+    double ri=hash(x,i);
+    r+=c[i] * (int)Math.floor(ri);
+  }
+  int h=(int)(r % P);
+  if (h < 0) {
+    h+=P;
+  }
+  return h;
+}

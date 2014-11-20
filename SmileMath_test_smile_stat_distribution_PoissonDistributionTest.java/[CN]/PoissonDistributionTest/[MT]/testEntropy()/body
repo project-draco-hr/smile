@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(2.016878,instance.entropy(),1E-6);
+}

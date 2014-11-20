@@ -1,0 +1,44 @@
+{
+  double f=0.0;
+  int p=w.length - 1;
+  int n=x.length;
+  int m=MulticoreExecutor.getThreadPoolSize();
+  if (n < 1000 || m < 2) {
+    for (int i=0; i < n; i++) {
+      double wx=dot(x[i],w);
+      f+=log1pe(wx) - y[i] * wx;
+    }
+  }
+ else {
+    List<FTask> tasks=new ArrayList<FTask>(m + 1);
+    int step=n / m;
+    if (step < 100)     step=100;
+    int start=0;
+    int end=step;
+    for (int i=0; i < m - 1; i++) {
+      tasks.add(new FTask(w,start,end));
+      start+=step;
+      end+=step;
+    }
+    tasks.add(new FTask(w,start,n));
+    try {
+      for (      double fi : MulticoreExecutor.run(tasks)) {
+        f+=fi;
+      }
+    }
+ catch (    Exception ex) {
+      for (int i=0; i < n; i++) {
+        double wx=dot(x[i],w);
+        f+=log1pe(wx) - y[i] * wx;
+      }
+    }
+  }
+  if (lambda != 0.0) {
+    double wnorm=0.0;
+    for (int i=0; i < p; i++) {
+      wnorm+=w[i] * w[i];
+    }
+    f+=0.5 * lambda * wnorm;
+  }
+  return f;
+}

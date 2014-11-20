@@ -1,0 +1,15 @@
+{
+  System.out.println("p");
+  HyperGeometricDistribution instance=new HyperGeometricDistribution(100,30,70);
+  instance.rand();
+  assertEquals(0.0,instance.p(-1),1E-6);
+  assertEquals(3.404564e-26,instance.p(0),1E-30);
+  assertEquals(7.149584e-23,instance.p(1),1E-27);
+  assertEquals(3.576579e-20,instance.p(2),1E-25);
+  assertEquals(0.1655920,instance.p(20),1E-7);
+  assertEquals(0.1877461,instance.p(21),1E-7);
+  assertEquals(0.00041413,instance.p(28),1E-8);
+  assertEquals(4.136376e-05,instance.p(29),1E-10);
+  assertEquals(1.884349e-06,instance.p(30),1E-12);
+  assertEquals(0.0,instance.p(31),1E-6);
+}

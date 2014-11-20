@@ -1,0 +1,34 @@
+{
+  if (fptree == T0) {
+    int nprocs=MulticoreExecutor.getThreadPoolSize();
+    List<List<HeaderTableItem>> headers=new ArrayList<List<HeaderTableItem>>();
+    for (int i=0; i < 2 * nprocs; i++) {
+      headers.add(new ArrayList<HeaderTableItem>());
+    }
+    for (int i=fptree.headerTable.length; i-- > 0; ) {
+      headers.get(i % headers.size()).add(fptree.headerTable[i]);
+    }
+    List<FPGrowthTask> tasks=new ArrayList<FPGrowthTask>();
+    for (int i=0; i < headers.size(); i++) {
+      tasks.add(new FPGrowthTask(headers.get(i),out,list,ttree));
+    }
+    long n=0;
+    try {
+      List<Long> results=MulticoreExecutor.run(tasks);
+      for (      long i : results) {
+        n+=i;
+      }
+    }
+ catch (    Exception e) {
+      System.err.println(e.getMessage());
+    }
+    return n;
+  }
+ else {
+    long n=0;
+    for (int i=fptree.headerTable.length; i-- > 0; ) {
+      n+=grow(out,list,ttree,fptree.headerTable[i],itemset,localItemSupport,prefixItemset);
+    }
+    return n;
+  }
+}

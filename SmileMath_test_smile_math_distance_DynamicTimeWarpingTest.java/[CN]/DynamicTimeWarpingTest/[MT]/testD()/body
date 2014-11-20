@@ -1,0 +1,8 @@
+{
+  System.out.println("d");
+  assertEquals(24.57181,DynamicTimeWarping.d(x,y),1E-5);
+  assertEquals(65.82546,DynamicTimeWarping.d(x,y,10),1E-5);
+  assertEquals(38.06896,DynamicTimeWarping.d(x,y,20),1E-5);
+  assertEquals(24.57525,DynamicTimeWarping.d(x,y,30),1E-5);
+  assertEquals(24.57181,DynamicTimeWarping.d(x,y,40),1E-5);
+}

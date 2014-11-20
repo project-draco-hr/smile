@@ -1,0 +1,4 @@
+GeneticAlgorithm.Selection selection
+BitString.Crossover crossover
+double crossoverRate
+double mutationRate

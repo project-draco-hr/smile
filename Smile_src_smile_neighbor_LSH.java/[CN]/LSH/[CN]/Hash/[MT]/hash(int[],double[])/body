@@ -1,0 +1,11 @@
+{
+  long g=0;
+  for (int i=0; i < k; i++) {
+    g+=r[i] * hash(x,i);
+  }
+  int h=(int)(g % P);
+  if (h < 0) {
+    h+=P;
+  }
+  return h;
+}

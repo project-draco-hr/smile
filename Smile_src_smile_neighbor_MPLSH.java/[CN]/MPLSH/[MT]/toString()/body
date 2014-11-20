@@ -1,0 +1,3 @@
+{
+  return String.format("Multi-Probe LSH (L=%d, k=%d, H=%d, w=%.4f)",hash.size(),k,H,r);
+}

@@ -1,0 +1,4 @@
+{
+  findNeighbor(p);
+  points[index[p]=npoints++]=p;
+}

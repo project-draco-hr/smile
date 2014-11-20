@@ -1,0 +1,9 @@
+{
+  double[][] array=new double[x.length][x[0].length];
+  for (int i=0; i < x.length; i++) {
+    for (int j=0; j < x[i].length; j++) {
+      array[i][j]=Math.pow(x[i][j],n);
+    }
+  }
+  return array;
+}

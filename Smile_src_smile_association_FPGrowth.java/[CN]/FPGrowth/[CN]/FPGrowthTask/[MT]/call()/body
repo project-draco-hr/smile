@@ -1,0 +1,7 @@
+{
+  long n=0;
+  for (  HeaderTableItem header : headers) {
+    n+=grow(out,list,ttree,header,null,localItemSupport,prefixItemset);
+  }
+  return n;
+}

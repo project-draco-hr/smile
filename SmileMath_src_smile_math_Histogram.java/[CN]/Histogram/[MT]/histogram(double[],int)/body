@@ -1,0 +1,16 @@
+{
+  double min=Math.min(data);
+  double max=Math.max(data);
+  double span=max - min;
+  if (span == 0) {
+    span=k;
+  }
+  double width=span / k;
+  double[] breaks=new double[k + 1];
+  breaks[0]=min;
+  for (int i=1; i < k; i++) {
+    breaks[i]=breaks[i - 1] + width;
+  }
+  breaks[k]=max;
+  return histogram(data,breaks);
+}

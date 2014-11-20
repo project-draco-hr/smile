@@ -1,0 +1,15 @@
+{
+  double[][] sigma=cov(data,mu);
+  int n=data[0].length;
+  double[] sd=new double[n];
+  for (int i=0; i < n; i++) {
+    sd[i]=sqrt(sigma[i][i]);
+  }
+  for (int i=0; i < n; i++) {
+    for (int j=0; j <= i; j++) {
+      sigma[i][j]/=sd[i] * sd[j];
+      sigma[j][i]=sigma[i][j];
+    }
+  }
+  return sigma;
+}

@@ -1,0 +1,6 @@
+ClassifierTrainer<double[]> trainer
+ClassificationMeasure measure
+double[][] x
+int[] y
+double[][] testx
+int[] testy

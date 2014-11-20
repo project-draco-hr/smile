@@ -1,0 +1,42 @@
+{
+  int nrows=matrix.length;
+  int ncols=matrix[0].length;
+  int n=r.length, jjt, it;
+  double del;
+  Arrays.fill(r,0.0);
+  for (int k=0; k < n; k++) {
+    int i=k / ncols;
+    int j=k - i * ncols;
+    if (mask[k]) {
+      r[k]+=x[k];
+    }
+ else     if (i > 0 && i < nrows - 1 && j > 0 && j < ncols - 1) {
+      r[k]+=x[k];
+      del=-0.25 * x[k];
+      r[k - 1]+=del;
+      r[k + 1]+=del;
+      r[k - ncols]+=del;
+      r[k + ncols]+=del;
+    }
+ else     if (i > 0 && i < nrows - 1) {
+      r[k]+=x[k];
+      del=-0.5 * x[k];
+      r[k - ncols]+=del;
+      r[k + ncols]+=del;
+    }
+ else     if (j > 0 && j < ncols - 1) {
+      r[k]+=x[k];
+      del=-0.5 * x[k];
+      r[k - 1]+=del;
+      r[k + 1]+=del;
+    }
+ else {
+      jjt=i == 0 ? ncols : -ncols;
+      it=j == 0 ? 1 : -1;
+      r[k]+=x[k];
+      del=-0.5 * x[k];
+      r[k + jjt]+=del;
+      r[k + it]+=del;
+    }
+  }
+}

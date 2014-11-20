@@ -1,0 +1,13 @@
+{
+  if (itemset == null) {
+    int[] newItemset={item};
+    return newItemset;
+  }
+ else {
+    int n=itemset.length + 1;
+    int[] newItemset=new int[n];
+    newItemset[0]=item;
+    System.arraycopy(itemset,0,newItemset,1,n - 1);
+    return newItemset;
+  }
+}

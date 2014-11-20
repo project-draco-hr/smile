@@ -1,0 +1,11 @@
+{
+  if (b.length != n || x.length != n) {
+    throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but b is %d x 1 and x is %d x 1",n,n,b.length,x.length));
+  }
+  double[] r=b.clone();
+  axpy(x,r,-1.0);
+  solve(r);
+  for (int i=0; i < n; i++) {
+    x[i]-=r[i];
+  }
+}

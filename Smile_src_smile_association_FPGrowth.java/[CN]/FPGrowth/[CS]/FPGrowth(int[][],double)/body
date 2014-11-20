@@ -1,0 +1,3 @@
+{
+  this(itemsets,(int)Math.ceil(itemsets.length * minSupport));
+}

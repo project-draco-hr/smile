@@ -1,0 +1,13 @@
+{
+  System.out.println("quantile");
+  NegativeBinomialDistribution instance=new NegativeBinomialDistribution(3,0.3);
+  instance.rand();
+  assertEquals(0,instance.quantile(0),1E-7);
+  assertEquals(0,instance.quantile(0.001),1E-7);
+  assertEquals(0,instance.quantile(0.01),1E-7);
+  assertEquals(2,instance.quantile(0.1),1E-7);
+  assertEquals(3,instance.quantile(0.2),1E-7);
+  assertEquals(13,instance.quantile(0.9),1E-7);
+  assertEquals(22,instance.quantile(0.99),1E-7);
+  assertEquals(30,instance.quantile(0.999),1E-7);
+}

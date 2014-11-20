@@ -1,0 +1,30 @@
+{
+  gmin=Double.MAX_VALUE;
+  gmax=-Double.MAX_VALUE;
+  for (  SupportVector v : sv) {
+    double g=-v.g[0];
+    double a=v.alpha[0];
+    if (g < gmin && a > 0.0) {
+      svmin=v;
+      gmin=g;
+      gminindex=0;
+    }
+    if (g > gmax && a < v.C) {
+      svmax=v;
+      gmax=g;
+      gmaxindex=0;
+    }
+    g=v.g[1];
+    a=v.alpha[1];
+    if (g < gmin && a < v.C) {
+      svmin=v;
+      gmin=g;
+      gminindex=1;
+    }
+    if (g > gmax && a > 0.0) {
+      svmax=v;
+      gmax=g;
+      gmaxindex=1;
+    }
+  }
+}

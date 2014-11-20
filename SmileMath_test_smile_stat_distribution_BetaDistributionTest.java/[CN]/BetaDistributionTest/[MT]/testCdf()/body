@@ -1,0 +1,14 @@
+{
+  System.out.println("cdf");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(0,instance.cdf(-0.1),1E-5);
+  assertEquals(0,instance.cdf(0.0),1E-5);
+  assertEquals(0.114265,instance.cdf(0.1),1E-5);
+  assertEquals(0.34464,instance.cdf(0.2),1E-5);
+  assertEquals(0.579825,instance.cdf(0.3),1E-5);
+  assertEquals(0.76672,instance.cdf(0.4),1E-5);
+  assertEquals(0.890625,instance.cdf(0.5),1E-5);
+  assertEquals(1.0,instance.cdf(1.0),1E-5);
+  assertEquals(1.0,instance.cdf(1.5),1E-5);
+}

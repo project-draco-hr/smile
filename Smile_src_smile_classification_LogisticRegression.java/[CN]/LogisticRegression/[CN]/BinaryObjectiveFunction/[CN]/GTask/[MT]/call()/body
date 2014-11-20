@@ -1,0 +1,16 @@
+{
+  double f=0.0;
+  int p=w.length - 1;
+  double[] g=new double[w.length + 1];
+  for (int i=start; i < end; i++) {
+    double wx=dot(x[i],w);
+    f+=log1pe(wx) - y[i] * wx;
+    double yi=y[i] - Math.logistic(wx);
+    for (int j=0; j < p; j++) {
+      g[j]-=yi * x[i][j];
+    }
+    g[p]-=yi;
+  }
+  g[w.length]=f;
+  return g;
+}

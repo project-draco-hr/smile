@@ -1,0 +1,9 @@
+{
+  if (x.length != sigma.length)   throw new IllegalArgumentException(String.format("Array x[%d] has different dimension with Sigma[%d][%d].",x.length,sigma.length,sigma.length));
+  if (y.length != sigma.length)   throw new IllegalArgumentException(String.format("Array y[%d] has different dimension with Sigma[%d][%d].",y.length,sigma.length,sigma.length));
+  int n=x.length;
+  double[] z=new double[n];
+  for (int i=0; i < n; i++)   z[i]=x[i] - y[i];
+  double dist=Math.xax(sigmaInv,z);
+  return Math.sqrt(dist);
+}

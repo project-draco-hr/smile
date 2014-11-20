@@ -1,0 +1,3 @@
+{
+  this(data,Kmax,0.9);
+}

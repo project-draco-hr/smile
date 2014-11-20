@@ -1,0 +1,4 @@
+{
+  this.m=rbf.length;
+  this.rbf=rbf;
+}

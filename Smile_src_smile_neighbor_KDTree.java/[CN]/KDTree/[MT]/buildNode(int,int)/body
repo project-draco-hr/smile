@@ -1,0 +1,57 @@
+{
+  int d=keys[0].length;
+  Node node=new Node();
+  node.count=end - begin;
+  node.index=begin;
+  double[] lowerBound=new double[d];
+  double[] upperBound=new double[d];
+  for (int i=0; i < d; i++) {
+    lowerBound[i]=keys[index[begin]][i];
+    upperBound[i]=keys[index[begin]][i];
+  }
+  for (int i=begin + 1; i < end; i++) {
+    for (int j=0; j < d; j++) {
+      double c=keys[index[i]][j];
+      if (lowerBound[j] > c) {
+        lowerBound[j]=c;
+      }
+      if (upperBound[j] < c) {
+        upperBound[j]=c;
+      }
+    }
+  }
+  double maxRadius=-1;
+  for (int i=0; i < d; i++) {
+    double radius=(upperBound[i] - lowerBound[i]) / 2;
+    if (radius > maxRadius) {
+      maxRadius=radius;
+      node.split=i;
+      node.cutoff=(upperBound[i] + lowerBound[i]) / 2;
+    }
+  }
+  if (maxRadius == 0) {
+    node.lower=node.upper=null;
+    return node;
+  }
+  int i1=begin, i2=end - 1, size=0;
+  while (i1 <= i2) {
+    boolean i1Good=(keys[index[i1]][node.split] < node.cutoff);
+    boolean i2Good=(keys[index[i2]][node.split] >= node.cutoff);
+    if (!i1Good && !i2Good) {
+      int temp=index[i1];
+      index[i1]=index[i2];
+      index[i2]=temp;
+      i1Good=i2Good=true;
+    }
+    if (i1Good) {
+      i1++;
+      size++;
+    }
+    if (i2Good) {
+      i2--;
+    }
+  }
+  node.lower=buildNode(begin,begin + size);
+  node.upper=buildNode(begin + size,end);
+  return node;
+}

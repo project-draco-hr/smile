@@ -1,0 +1,5 @@
+{
+  this.chisq=chisq;
+  this.df=df;
+  this.pvalue=pvalue;
+}

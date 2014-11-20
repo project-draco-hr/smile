@@ -1,0 +1,4 @@
+{
+  int w=hi - lo;
+  return lo + random.nextInt(w);
+}

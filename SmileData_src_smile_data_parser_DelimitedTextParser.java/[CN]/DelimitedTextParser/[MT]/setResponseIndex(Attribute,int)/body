@@ -1,0 +1,7 @@
+{
+  if (response.type != Attribute.Type.NOMINAL && response.type != Attribute.Type.NUMERIC) {
+    throw new IllegalArgumentException("The response variable is not numeric or nominal.");
+  }
+  this.response=response;
+  this.responseIndex=index;
+}

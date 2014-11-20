@@ -1,0 +1,22 @@
+{
+  if (b[0] == 0.0) {
+    throw new IllegalArgumentException("Invalid value of b[0] == 0. The equations should be rewritten as a set of order n - 1.");
+  }
+  int n=a.length;
+  double[] u=new double[n];
+  double[] gam=new double[n];
+  double bet=b[0];
+  u[0]=r[0] / bet;
+  for (int j=1; j < n; j++) {
+    gam[j]=c[j - 1] / bet;
+    bet=b[j] - a[j] * gam[j];
+    if (bet == 0.0) {
+      throw new IllegalArgumentException("The tridagonal matrix is not of diagonal dominance.");
+    }
+    u[j]=(r[j] - a[j] * u[j - 1]) / bet;
+  }
+  for (int j=(n - 2); j >= 0; j--) {
+    u[j]-=gam[j + 1] * u[j + 1];
+  }
+  return u;
+}

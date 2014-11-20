@@ -1,0 +1,6 @@
+{
+  if (y.length != outputLayer.units) {
+    throw new IllegalArgumentException(String.format("Invalid output vector size: %d, expected: %d",y.length,outputLayer.units));
+  }
+  System.arraycopy(outputLayer.output,0,y,0,outputLayer.units);
+}

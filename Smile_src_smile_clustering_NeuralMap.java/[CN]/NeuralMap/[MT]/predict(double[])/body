@@ -1,0 +1,12 @@
+{
+  double minDist=Double.MAX_VALUE;
+  int bestCluster=0;
+  for (  Neuron neuron : neurons) {
+    double dist=Math.squaredDistance(x,neuron.w);
+    if (dist < minDist) {
+      minDist=dist;
+      bestCluster=neuron.y;
+    }
+  }
+  return bestCluster;
+}

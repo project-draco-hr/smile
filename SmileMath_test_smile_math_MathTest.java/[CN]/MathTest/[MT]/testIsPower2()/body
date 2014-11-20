@@ -1,0 +1,19 @@
+{
+  System.out.println("isPower2");
+  assertEquals(false,Math.isPower2(-1));
+  assertEquals(false,Math.isPower2(0));
+  assertEquals(true,Math.isPower2(1));
+  assertEquals(true,Math.isPower2(2));
+  assertEquals(false,Math.isPower2(3));
+  assertEquals(true,Math.isPower2(4));
+  assertEquals(true,Math.isPower2(8));
+  assertEquals(true,Math.isPower2(16));
+  assertEquals(true,Math.isPower2(32));
+  assertEquals(true,Math.isPower2(64));
+  assertEquals(true,Math.isPower2(128));
+  assertEquals(true,Math.isPower2(256));
+  assertEquals(true,Math.isPower2(512));
+  assertEquals(true,Math.isPower2(1024));
+  assertEquals(true,Math.isPower2(65536));
+  assertEquals(true,Math.isPower2(131072));
+}

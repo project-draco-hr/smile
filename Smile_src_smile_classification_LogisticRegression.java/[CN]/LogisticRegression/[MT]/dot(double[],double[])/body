@@ -1,0 +1,8 @@
+{
+  int i=0;
+  double dot=0.0;
+  for (; i < x.length; i++) {
+    dot+=x[i] * w[i];
+  }
+  return dot + w[i];
+}

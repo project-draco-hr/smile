@@ -1,0 +1,18 @@
+{
+  if (response == null) {
+    throw new IllegalArgumentException("The dataset has no response values.");
+  }
+  if (response.type != Attribute.Type.NOMINAL) {
+    throw new IllegalArgumentException("The response variable is not nominal.");
+  }
+  if (i < 0) {
+    throw new IllegalArgumentException("Invalid index: i = " + i);
+  }
+  int nrows=size();
+  if (i >= nrows) {
+    for (int k=nrows; k <= i; k++) {
+      data.add(new Datum<SparseArray>(new SparseArray()));
+    }
+  }
+  get(i).y=y;
+}

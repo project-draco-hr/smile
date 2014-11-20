@@ -1,0 +1,17 @@
+{
+  if (x1u == x1l) {
+    throw new IllegalArgumentException("Nearby control points take same value: " + x1u);
+  }
+  if (x2u == x2l) {
+    throw new IllegalArgumentException("Nearby control points take same value: " + x2u);
+  }
+  double t, u, d1=x1u - x1l, d2=x2u - x2l;
+  double[][] c=bcucof(y,y1,y2,y12,d1,d2);
+  t=(x1p - x1l) / d1;
+  u=(x2p - x2l) / d2;
+  double ansy=0.0;
+  for (int i=3; i >= 0; i--) {
+    ansy=t * ansy + ((c[i][3] * u + c[i][2]) * u + c[i][1]) * u + c[i][0];
+  }
+  return ansy;
+}

@@ -1,0 +1,36 @@
+{
+  int n1=x1.length;
+  int n2=x2.length;
+  int radius=(int)Math.round(width * Math.max(n1,n2));
+  double[][] table=new double[2][n2 + 1];
+  table[0][0]=0;
+  for (int i=1; i <= n2; i++) {
+    table[0][i]=Double.POSITIVE_INFINITY;
+  }
+  for (int i=1; i <= n1; i++) {
+    int start=1;
+    int end=n2;
+    if (radius > 0) {
+      start=Math.max(1,i - radius);
+      end=i + radius;
+      if (end < n2)       table[1][end + 1]=Double.POSITIVE_INFINITY;
+ else       end=n2;
+    }
+    table[1][start - 1]=Double.POSITIVE_INFINITY;
+    for (int j=start; j <= end; j++) {
+      double cost=distance.d(x1[i - 1],x2[j - 1]);
+      double min=table[0][j - 1];
+      if (min > table[0][j]) {
+        min=table[0][j];
+      }
+      if (min > table[1][j - 1]) {
+        min=table[1][j - 1];
+      }
+      table[1][j]=cost + min;
+    }
+    double[] swap=table[0];
+    table[0]=table[1];
+    table[1]=swap;
+  }
+  return table[0][n2];
+}

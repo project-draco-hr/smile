@@ -1,0 +1,45 @@
+{
+  if (node.trueChild != null || node.falseChild != null) {
+    throw new IllegalStateException("Split non-leaf node.");
+  }
+  int p=numFeatures;
+  double[] trueSum=new double[p];
+  int[] trueCount=new int[p];
+  int[] featureIndex=new int[p];
+  int n=Math.sum(samples);
+  double sumX=0.0;
+  for (int i=0; i < x.length; i++) {
+    if (samples[i] == 0) {
+      continue;
+    }
+    double target=samples[i] * y[i];
+    sumX+=y[i];
+    for (int j=0; j < x[i].length; ++j) {
+      int index=x[i][j];
+      trueSum[index]+=target;
+      trueCount[index]+=samples[i];
+      featureIndex[index]=j;
+    }
+  }
+  node.splitScore=0.0;
+  node.splitFeature=-1;
+  node.splitValue=-1;
+  for (int i=0; i < p; ++i) {
+    double tc=(double)trueCount[i];
+    double fc=n - tc;
+    if ((tc < 2) || (fc < 2)) {
+      continue;
+    }
+    double trueMean=trueSum[i] / tc;
+    double falseMean=(sumX - trueSum[i]) / fc;
+    double gain=(tc * trueMean * trueMean + fc * falseMean * falseMean) - n * node.output * node.output;
+    if (gain > node.splitScore) {
+      node.splitFeature=featureIndex[i];
+      node.splitValue=i;
+      node.splitScore=gain;
+      node.trueChildOutput=trueMean;
+      node.falseChildOutput=falseMean;
+    }
+  }
+  return (node.splitFeature != -1);
+}

@@ -1,0 +1,4 @@
+T[] data
+T[] medoids
+int[] y
+double[] d

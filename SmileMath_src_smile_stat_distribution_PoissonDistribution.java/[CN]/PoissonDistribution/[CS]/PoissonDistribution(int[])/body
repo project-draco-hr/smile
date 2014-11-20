@@ -1,0 +1,9 @@
+{
+  for (int i=0; i < data.length; i++) {
+    if (data[i] < 0) {
+      throw new IllegalArgumentException("Samples contain negative values.");
+    }
+  }
+  lambda=Math.mean(data);
+  entropy=(Math.log(2 * Math.PI * Math.E) + Math.log(lambda)) / 2 - 1 / (12 * lambda) - 1 / (24 * lambda * lambda) - 19 / (360 * lambda * lambda* lambda);
+}

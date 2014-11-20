@@ -1,0 +1,4 @@
+{
+  this.idx=idx;
+  dist=new ArrayList<Double>();
+}

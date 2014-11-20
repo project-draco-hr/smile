@@ -1,0 +1,12 @@
+{
+  System.out.println("Lanczos");
+  EigenValueDecomposition result=EigenValueDecomposition.decompose(new Matrix(A),3);
+  assertTrue(Math.equals(eigenValues,result.getEigenValues(),1E-7));
+  assertEquals(eigenVectors.length,result.getEigenVectors().length);
+  assertEquals(eigenVectors[0].length,result.getEigenVectors()[0].length);
+  for (int i=0; i < eigenVectors.length; i++) {
+    for (int j=0; j < eigenVectors[i].length; j++) {
+      assertEquals(Math.abs(eigenVectors[i][j]),Math.abs(result.getEigenVectors()[i][j]),1E-7);
+    }
+  }
+}

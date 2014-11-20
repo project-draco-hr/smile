@@ -1,0 +1,24 @@
+{
+  int mm=m;
+  int nn=n;
+  if (mm > N / 2) {
+    mm=N - mm;
+  }
+  if (nn > N / 2) {
+    nn=N - nn;
+  }
+  if (nn > mm) {
+    int swap=nn;
+    nn=mm;
+    mm=swap;
+  }
+  if (rng == null) {
+    if ((double)nn * mm >= 20 * N) {
+      rng=new Patchwork(N,mm,nn);
+    }
+ else {
+      rng=new Inversion(N,mm,nn);
+    }
+  }
+  return rng.rand();
+}

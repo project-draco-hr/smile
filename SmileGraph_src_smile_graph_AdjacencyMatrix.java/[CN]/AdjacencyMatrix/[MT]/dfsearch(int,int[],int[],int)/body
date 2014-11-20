@@ -1,0 +1,10 @@
+{
+  pre[v]=0;
+  for (int t=0; t < n; t++) {
+    if (graph[v][t] != 0.0 && pre[t] == -1) {
+      count=dfsearch(t,pre,ts,count);
+    }
+  }
+  ts[count++]=v;
+  return count;
+}

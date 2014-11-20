@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  NegativeBinomialDistribution instance=new NegativeBinomialDistribution(3,0.3);
+  instance.rand();
+  assertEquals(Math.sqrt(7 / 0.3),instance.sd(),1E-7);
+}

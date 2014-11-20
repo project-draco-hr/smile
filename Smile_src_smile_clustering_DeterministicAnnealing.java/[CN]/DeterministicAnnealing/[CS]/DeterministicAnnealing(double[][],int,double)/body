@@ -1,0 +1,125 @@
+{
+  if (alpha <= 0 || alpha >= 1.0) {
+    throw new IllegalArgumentException("Invalid alpha: " + alpha);
+  }
+  this.alpha=alpha;
+  int n=data.length;
+  int d=data[0].length;
+  centroids=new double[2 * Kmax][d];
+  double[][] posteriori=new double[n][2 * Kmax];
+  double[] priori=new double[2 * Kmax];
+  int np=MulticoreExecutor.getThreadPoolSize();
+  if (n >= 1000 && np >= 2) {
+    tasks=new ArrayList<UpdateThread>(np + 1);
+    int step=n / np;
+    if (step < 100) {
+      step=100;
+    }
+    int start=0;
+    int end=step;
+    for (int i=0; i < np - 1; i++) {
+      tasks.add(new UpdateThread(data,centroids,posteriori,priori,start,end));
+      start+=step;
+      end+=step;
+    }
+    tasks.add(new UpdateThread(data,centroids,posteriori,priori,start,n));
+    ctasks=new ArrayList<CentroidThread>(2 * Kmax);
+    for (int i=0; i < 2 * Kmax; i++) {
+      ctasks.add(new CentroidThread(data,centroids,posteriori,priori,i));
+    }
+  }
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[0][j]+=data[i][j];
+    }
+  }
+  for (int i=0; i < d; i++) {
+    centroids[0][i]/=n;
+    centroids[1][i]=centroids[0][i] * 1.01;
+  }
+  priori[0]=priori[1]=0.5;
+  double[][] cov=Math.cov(data,centroids[0]);
+  double[] ev=new double[d];
+  Arrays.fill(ev,1.0);
+  double lambda=Math.eigen(cov,ev,1E-4);
+  double T=2.0 * lambda + 0.01;
+  k=2;
+  boolean stop=false;
+  boolean split=false;
+  while (!stop) {
+    update(data,T,k,centroids,posteriori,priori);
+    if (k >= 2 * Kmax && split) {
+      stop=true;
+    }
+    int currentK=k;
+    for (int i=0; i < currentK; i+=2) {
+      double norm=0.0;
+      for (int j=0; j < d; j++) {
+        double diff=centroids[i][j] - centroids[i + 1][j];
+        norm+=diff * diff;
+      }
+      if (norm > 1E-2) {
+        if (k < 2 * Kmax) {
+          for (int j=0; j < d; j++) {
+            centroids[k][j]=centroids[i + 1][j];
+            centroids[k + 1][j]=centroids[i + 1][j] * 1.01;
+          }
+          priori[k]=priori[i + 1] / 2;
+          priori[k + 1]=priori[i + 1] / 2;
+          priori[i]=priori[i] / 2;
+          priori[i + 1]=priori[i] / 2;
+          k+=2;
+        }
+        if (currentK >= 2 * Kmax) {
+          split=true;
+        }
+      }
+      for (int j=0; j < d; j++) {
+        centroids[i + 1][j]=centroids[i][j] * 1.01;
+      }
+    }
+    if (split) {
+      T/=alpha;
+    }
+ else     if (k - currentK > 2) {
+      T/=alpha;
+      alpha+=5 * Math.pow(10,Math.log10(1 - alpha) - 1);
+    }
+ else {
+      if (k > currentK && k == 2 * Kmax - 2) {
+        alpha+=5 * Math.pow(10,Math.log10(1 - alpha) - 1);
+      }
+      T*=alpha;
+    }
+    if (alpha >= 1) {
+      break;
+    }
+  }
+  k=k / 2;
+  y=new int[n];
+  distortion=0.0;
+  for (int i=0; i < n; i++) {
+    double nearest=Double.MAX_VALUE;
+    for (int j=0; j < k; j+=2) {
+      double dist=Math.squaredDistance(data[i],centroids[j]);
+      if (nearest > dist) {
+        y[i]=j / 2;
+        nearest=dist;
+      }
+    }
+    distortion+=nearest;
+  }
+  size=new int[k];
+  centroids=new double[k][d];
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+    for (int j=0; j < d; j++) {
+      centroids[y[i]][j]+=data[i][j];
+    }
+  }
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[i][j]/=size[i];
+    }
+  }
+}

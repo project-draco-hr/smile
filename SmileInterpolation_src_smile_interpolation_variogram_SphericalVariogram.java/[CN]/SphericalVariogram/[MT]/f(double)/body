@@ -1,0 +1,5 @@
+{
+  if (a <= r)   return c + b;
+  double p=r / a;
+  return c + b * (1.5 * p - 0.5 * p * p* p);
+}

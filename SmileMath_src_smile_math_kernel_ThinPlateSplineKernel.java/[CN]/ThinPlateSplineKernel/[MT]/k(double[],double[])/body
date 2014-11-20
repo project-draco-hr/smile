@@ -1,0 +1,9 @@
+{
+  if (x.length != y.length)   throw new IllegalArgumentException(String.format("Arrays have different length: x[%d], y[%d]",x.length,y.length));
+  double d=0.0;
+  for (int i=0; i < x.length; i++) {
+    double dxy=x[i] - y[i];
+    d+=dxy * dxy;
+  }
+  return d / (sigma * sigma) * Math.log(Math.sqrt(d) / sigma);
+}

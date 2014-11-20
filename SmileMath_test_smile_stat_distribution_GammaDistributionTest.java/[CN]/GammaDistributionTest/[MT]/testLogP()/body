@@ -1,0 +1,14 @@
+{
+  System.out.println("logP");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertTrue(Double.isInfinite(instance.logp(-0.1)));
+  assertTrue(Double.isInfinite(instance.logp(0.0)));
+  assertEquals(-3.39515,instance.logp(1.0),1E-5);
+  assertEquals(-2.485046,instance.logp(2.0),1E-6);
+  assertEquals(-2.150306,instance.logp(3.0),1E-6);
+  assertEquals(-2.051132,instance.logp(4.0),1E-6);
+  assertEquals(-3.075694,instance.logp(10.0),1E-6);
+  assertEquals(-6.451304,instance.logp(20.0),1E-6);
+  assertEquals(-10.40228,instance.logp(30.0),1E-5);
+}

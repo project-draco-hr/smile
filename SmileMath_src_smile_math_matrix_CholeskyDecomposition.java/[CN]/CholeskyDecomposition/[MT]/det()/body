@@ -1,0 +1,7 @@
+{
+  double d=1.0;
+  for (int i=0; i < L.length; i++) {
+    d*=L[i][i];
+  }
+  return d * d;
+}

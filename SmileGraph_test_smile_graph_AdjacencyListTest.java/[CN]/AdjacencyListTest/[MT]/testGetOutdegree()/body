@@ -1,0 +1,19 @@
+{
+  System.out.println("getOutdegree");
+  assertEquals(0,g1.getOutdegree(1));
+  assertEquals(1,g2.getOutdegree(1));
+  g2.addEdge(1,1);
+  assertEquals(2,g2.getOutdegree(1));
+  assertEquals(2,g3.getOutdegree(1));
+  assertEquals(2,g3.getOutdegree(2));
+  assertEquals(2,g3.getOutdegree(3));
+  assertEquals(1,g4.getOutdegree(4));
+  assertEquals(0,g5.getOutdegree(1));
+  assertEquals(1,g6.getOutdegree(1));
+  g6.addEdge(1,1);
+  assertEquals(2,g6.getOutdegree(1));
+  assertEquals(2,g7.getOutdegree(1));
+  assertEquals(2,g7.getOutdegree(2));
+  assertEquals(2,g7.getOutdegree(3));
+  assertEquals(2,g8.getOutdegree(4));
+}

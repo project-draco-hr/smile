@@ -1,0 +1,13 @@
+{
+  System.out.println("Lanczos2");
+  A=new double[500][500];
+  A[0][0]=A[1][1]=A[2][2]=A[3][3]=2.0;
+  for (int i=4; i < 500; i++)   A[i][i]=(500 - i) / 500.0;
+  EigenValueDecomposition result=EigenValueDecomposition.decompose(new Matrix(A),6);
+  assertEquals(2.0,result.getEigenValues()[0],1E-4);
+  assertEquals(2.0,result.getEigenValues()[1],1E-4);
+  assertEquals(2.0,result.getEigenValues()[2],1E-4);
+  assertEquals(2.0,result.getEigenValues()[3],1E-4);
+  assertEquals(0.992,result.getEigenValues()[4],1E-4);
+  assertEquals(0.990,result.getEigenValues()[5],1E-4);
+}

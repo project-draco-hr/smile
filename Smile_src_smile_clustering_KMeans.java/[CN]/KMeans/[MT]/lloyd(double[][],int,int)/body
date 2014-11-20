@@ -1,0 +1,114 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int n=data.length;
+  int d=data[0].length;
+  int[][] nd=new int[k][d];
+  double distortion=Double.MAX_VALUE;
+  int[] size=new int[k];
+  double[][] centroids=new double[k][d];
+  int[] y=seed(data,k,DistanceMethod.EUCLIDEAN_MISSING_VALUES);
+  int np=MulticoreExecutor.getThreadPoolSize();
+  List<LloydThread> tasks=null;
+  if (n >= 1000 && np >= 2) {
+    tasks=new ArrayList<LloydThread>(np + 1);
+    int step=n / np;
+    if (step < 100) {
+      step=100;
+    }
+    int start=0;
+    int end=step;
+    for (int i=0; i < np - 1; i++) {
+      tasks.add(new LloydThread(data,centroids,y,start,end));
+      start+=step;
+      end+=step;
+    }
+    tasks.add(new LloydThread(data,centroids,y,start,n));
+  }
+  for (int iter=0; iter < maxIter; iter++) {
+    Arrays.fill(size,0);
+    for (int i=0; i < k; i++) {
+      Arrays.fill(centroids[i],0);
+      Arrays.fill(nd[i],0);
+    }
+    for (int i=0; i < n; i++) {
+      int m=y[i];
+      size[m]++;
+      for (int j=0; j < d; j++) {
+        if (!Double.isNaN(data[i][j])) {
+          centroids[m][j]+=data[i][j];
+          nd[m][j]++;
+        }
+      }
+    }
+    for (int i=0; i < k; i++) {
+      for (int j=0; j < d; j++) {
+        centroids[i][j]/=nd[i][j];
+      }
+    }
+    double wcss=Double.NaN;
+    if (tasks != null) {
+      try {
+        wcss=0.0;
+        for (        double ss : MulticoreExecutor.run(tasks)) {
+          wcss+=ss;
+        }
+      }
+ catch (      Exception ex) {
+        System.err.println(ex);
+        wcss=Double.NaN;
+      }
+    }
+    if (Double.isNaN(wcss)) {
+      wcss=0.0;
+      for (int i=0; i < n; i++) {
+        double nearest=Double.MAX_VALUE;
+        for (int j=0; j < k; j++) {
+          double dist=squaredDistance(data[i],centroids[j]);
+          if (nearest > dist) {
+            y[i]=j;
+            nearest=dist;
+          }
+        }
+        wcss+=nearest;
+      }
+    }
+    if (distortion <= wcss) {
+      break;
+    }
+ else {
+      distortion=wcss;
+    }
+  }
+  Arrays.fill(size,0);
+  for (int i=0; i < k; i++) {
+    Arrays.fill(centroids[i],0);
+    Arrays.fill(nd[i],0);
+  }
+  for (int i=0; i < n; i++) {
+    int m=y[i];
+    size[m]++;
+    for (int j=0; j < d; j++) {
+      if (!Double.isNaN(data[i][j])) {
+        centroids[m][j]+=data[i][j];
+        nd[m][j]++;
+      }
+    }
+  }
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[i][j]/=nd[i][j];
+    }
+  }
+  KMeans kmeans=new KMeans();
+  kmeans.k=k;
+  kmeans.distortion=distortion;
+  kmeans.size=size;
+  kmeans.centroids=centroids;
+  kmeans.y=y;
+  return kmeans;
+}

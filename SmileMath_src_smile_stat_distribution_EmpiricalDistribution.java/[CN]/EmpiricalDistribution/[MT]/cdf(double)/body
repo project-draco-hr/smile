@@ -1,0 +1,11 @@
+{
+  if (k < xMin) {
+    return 0.0;
+  }
+ else   if (k >= xMax) {
+    return 1.0;
+  }
+ else {
+    return cdf[(int)Math.floor(k - xMin)];
+  }
+}

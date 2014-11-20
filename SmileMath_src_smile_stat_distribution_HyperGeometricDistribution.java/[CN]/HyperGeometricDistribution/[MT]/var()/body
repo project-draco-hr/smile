@@ -1,0 +1,4 @@
+{
+  double r=(double)m / N;
+  return n * (N - n) * r* (1 - r) / (N - 1);
+}

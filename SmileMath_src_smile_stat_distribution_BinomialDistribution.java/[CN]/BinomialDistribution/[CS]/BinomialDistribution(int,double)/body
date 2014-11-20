@@ -1,0 +1,11 @@
+{
+  if (p < 0 || p > 1) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  if (n < 0) {
+    throw new IllegalArgumentException("Invalid n: " + n);
+  }
+  this.n=n;
+  this.p=p;
+  entropy=Math.log(2 * Math.PI * Math.E* n* p* (1 - p)) / 2;
+}

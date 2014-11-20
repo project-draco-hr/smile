@@ -1,0 +1,12 @@
+{
+  System.out.println("gamma");
+  assertTrue(Double.isInfinite(Gamma.gamma(0)));
+  assertEquals(1.0,Gamma.gamma(1),1E-7);
+  assertEquals(1.0,Gamma.gamma(2),1E-7);
+  assertEquals(2.0,Gamma.gamma(3),1E-7);
+  assertEquals(6.0,Gamma.gamma(4),1E-7);
+  assertEquals(0.886227,Gamma.gamma(1.5),1E-6);
+  assertEquals(1.329340,Gamma.gamma(2.5),1E-6);
+  assertEquals(3.323351,Gamma.gamma(3.5),1E-6);
+  assertEquals(11.63173,Gamma.gamma(4.5),1E-5);
+}

@@ -1,0 +1,3 @@
+{
+  return histogram(data,bins(data.length));
+}

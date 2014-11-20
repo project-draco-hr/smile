@@ -1,0 +1,22 @@
+{
+  if (v.taxonomy != w.taxonomy) {
+    throw new IllegalArgumentException("Concepts are not from the same taxonomy.");
+  }
+  List<Concept> vPath=v.getPathFromRoot();
+  List<Concept> wPath=w.getPathFromRoot();
+  Iterator<Concept> vIter=vPath.iterator();
+  Iterator<Concept> wIter=wPath.iterator();
+  Concept commonAncestor=null;
+  while (vIter.hasNext() && wIter.hasNext()) {
+    Concept vAncestor=vIter.next();
+    Concept wAncestor=wIter.next();
+    System.out.println(vAncestor + "\t" + wAncestor);
+    if (vAncestor != wAncestor) {
+      return commonAncestor;
+    }
+ else {
+      commonAncestor=vAncestor;
+    }
+  }
+  return commonAncestor;
+}

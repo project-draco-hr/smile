@@ -1,0 +1,22 @@
+{
+  List<T> results=new ArrayList<T>();
+  if (threads == null) {
+    for (    Callable<T> task : tasks) {
+      results.add(task.call());
+    }
+  }
+ else {
+    if (threads.getActiveCount() < nprocs) {
+      List<Future<T>> futures=threads.invokeAll(tasks);
+      for (      Future<T> future : futures) {
+        results.add(future.get());
+      }
+    }
+ else {
+      for (      Callable<T> task : tasks) {
+        results.add(task.call());
+      }
+    }
+  }
+  return results;
+}

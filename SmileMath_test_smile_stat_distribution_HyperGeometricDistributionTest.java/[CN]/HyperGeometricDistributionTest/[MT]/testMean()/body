@@ -1,0 +1,12 @@
+{
+  System.out.println("mean");
+  HyperGeometricDistribution instance=new HyperGeometricDistribution(100,30,70);
+  instance.rand();
+  assertEquals(21,instance.mean(),1E-7);
+  instance=new HyperGeometricDistribution(100,30,80);
+  instance.rand();
+  assertEquals(24,instance.mean(),1E-7);
+  instance=new HyperGeometricDistribution(100,30,60);
+  instance.rand();
+  assertEquals(18,instance.mean(),1E-7);
+}

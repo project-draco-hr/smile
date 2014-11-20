@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  LogNormalDistribution instance=new LogNormalDistribution(1.0,1.0);
+  instance.rand();
+  assertEquals(34.51261,instance.var(),1E-5);
+}

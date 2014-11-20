@@ -1,0 +1,53 @@
+{
+  PrZ[] pz=new PrZ[k];
+  for (int i=0; i < k; i++) {
+    double h=hash.hash(x,i);
+    double hmin=h - hash.umin[i];
+    if (hmin < 0.0) {
+      hmin=0.0;
+    }
+    if (h > hash.umax[i]) {
+      hmin=hash.umax[i] - hash.umin[i];
+    }
+    int qh=(int)(hmin * lookup[i].length / (hash.umax[i] - hash.umin[i] + 1));
+    pz[i]=new PrZ();
+    pz[i].m=i;
+    pz[i].prh=lookup[i][qh];
+  }
+  Arrays.sort(pz);
+  IntArrayList seq=new IntArrayList();
+  seq.add(hash.hash(x));
+  int[] range=new int[k];
+  for (int i=0; i < k; i++) {
+    range[i]=pz[i].prh.length;
+  }
+  PriorityQueue<Probe> heap=new PriorityQueue<Probe>();
+  heap.add(new Probe(range));
+  heap.peek().setProb(pz);
+  double pr=heap.peek().prob;
+  seq.add(heap.peek().hash(hash,pz));
+  heap.peek().bucket[0]=0;
+  heap.peek().last=0;
+  heap.peek().setProb(pz);
+  while (!heap.isEmpty() && pr < recall && seq.size() < T) {
+    Probe p=heap.poll();
+    seq.add(p.hash(hash,pz));
+    pr+=p.prob;
+    if (p.isShiftable()) {
+      Probe p2=p.shift();
+      p2.setProb(pz);
+      heap.offer(p2);
+    }
+    if (p.isExpandable()) {
+      Probe p2=p.expand();
+      p2.setProb(pz);
+      heap.offer(p2);
+    }
+    if (p.isExtendable()) {
+      Probe p2=p.extend();
+      p2.setProb(pz);
+      heap.offer(p2);
+    }
+  }
+  return seq;
+}

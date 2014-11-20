@@ -1,0 +1,26 @@
+{
+  Iterator<Edge> iter=graph[source].iterator();
+  if (digraph) {
+    while (iter.hasNext()) {
+      Edge e=iter.next();
+      if (e.v2 == target) {
+        iter.remove();
+      }
+    }
+  }
+ else {
+    while (iter.hasNext()) {
+      Edge e=iter.next();
+      if ((e.v1 == source && e.v2 == target) || (e.v2 == source && e.v1 == target)) {
+        iter.remove();
+      }
+    }
+    iter=graph[target].iterator();
+    while (iter.hasNext()) {
+      Edge e=iter.next();
+      if ((e.v1 == source && e.v2 == target) || (e.v2 == source && e.v1 == target)) {
+        iter.remove();
+      }
+    }
+  }
+}

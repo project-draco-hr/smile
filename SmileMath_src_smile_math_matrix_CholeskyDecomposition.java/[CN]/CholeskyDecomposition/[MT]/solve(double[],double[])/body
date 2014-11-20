@@ -1,0 +1,24 @@
+{
+  if (b.length != L.length) {
+    throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but B is %d x 1",L.length,L.length,b.length));
+  }
+  if (b.length != x.length) {
+    throw new IllegalArgumentException("b and x dimensions do not agree.");
+  }
+  int n=b.length;
+  if (x != b) {
+    System.arraycopy(b,0,x,0,n);
+  }
+  for (int k=0; k < n; k++) {
+    for (int i=0; i < k; i++) {
+      x[k]-=x[i] * L[k][i];
+    }
+    x[k]/=L[k][k];
+  }
+  for (int k=n - 1; k >= 0; k--) {
+    for (int i=k + 1; i < n; i++) {
+      x[k]-=x[i] * L[i][k];
+    }
+    x[k]/=L[k][k];
+  }
+}

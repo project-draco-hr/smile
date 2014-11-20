@@ -1,0 +1,14 @@
+{
+  System.out.println("quantile");
+  ShiftedGeometricDistribution instance=new ShiftedGeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(1,instance.quantile(0.01),1E-6);
+  assertEquals(1,instance.quantile(0.1),1E-6);
+  assertEquals(1,instance.quantile(0.2),1E-6);
+  assertEquals(1,instance.quantile(0.3),1E-6);
+  assertEquals(2,instance.quantile(0.4),1E-6);
+  assertEquals(3,instance.quantile(0.6),1E-6);
+  assertEquals(5,instance.quantile(0.8),1E-6);
+  assertEquals(7,instance.quantile(0.9),1E-6);
+  assertEquals(13,instance.quantile(0.99),1E-6);
+}

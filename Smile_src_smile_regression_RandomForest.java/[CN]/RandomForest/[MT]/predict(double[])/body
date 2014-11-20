@@ -1,0 +1,7 @@
+{
+  double y=0;
+  for (  RegressionTree tree : trees) {
+    y+=tree.predict(x);
+  }
+  return y / trees.size();
+}

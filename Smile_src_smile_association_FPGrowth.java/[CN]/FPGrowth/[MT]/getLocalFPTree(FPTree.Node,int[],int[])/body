@@ -1,0 +1,18 @@
+{
+  FPTree tree=new FPTree(localItemSupport,minSupport);
+  while (node != null) {
+    Node parent=node.parent;
+    int i=prefixItemset.length;
+    while (parent != null) {
+      if (localItemSupport[parent.id] >= minSupport) {
+        prefixItemset[--i]=parent.id;
+      }
+      parent=parent.parent;
+    }
+    if (i < prefixItemset.length) {
+      tree.add(i,prefixItemset.length,prefixItemset,node.count);
+    }
+    node=node.next;
+  }
+  return tree;
+}

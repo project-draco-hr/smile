@@ -1,0 +1,8 @@
+{
+  System.out.println("GeometricDistribution");
+  GeometricDistribution instance=new GeometricDistribution(0.4);
+  int[] data=new int[1000];
+  for (int i=0; i < data.length; i++)   data[i]=(int)instance.rand();
+  GeometricDistribution est=new GeometricDistribution(data);
+  assertEquals(0.4,est.getProb(),5E-2);
+}

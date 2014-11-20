@@ -1,0 +1,13 @@
+{
+  if (digraph) {
+    if (graph[source][target] == 0.0) {
+      graph[source][target]=1.0;
+    }
+  }
+ else {
+    if (graph[source][target] == 0.0) {
+      graph[source][target]=1.0;
+      graph[target][source]=1.0;
+    }
+  }
+}

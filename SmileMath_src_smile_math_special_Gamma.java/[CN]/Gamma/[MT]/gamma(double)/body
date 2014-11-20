@@ -1,0 +1,22 @@
+{
+  double xcopy=x;
+  double first=x + LANCZOS_SMALL_GAMMA + 0.5;
+  double second=LANCZOS_COEFF[0];
+  double fg=0.0;
+  if (x >= 0.0) {
+    if (x >= 1.0 && x - (int)x == 0.0) {
+      fg=Math.factorial((int)x - 1);
+    }
+ else {
+      first=Math.pow(first,x + 0.5) * Math.exp(-first);
+      for (int i=1; i <= LANCZOS_N; i++) {
+        second+=LANCZOS_COEFF[i] / ++xcopy;
+      }
+      fg=first * Math.sqrt(2.0 * Math.PI) * second / x;
+    }
+  }
+ else {
+    fg=-Math.PI / (x * gamma(-x) * Math.sin(Math.PI * x));
+  }
+  return fg;
+}

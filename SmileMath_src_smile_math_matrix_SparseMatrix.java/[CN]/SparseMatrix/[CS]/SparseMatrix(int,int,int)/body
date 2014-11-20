@@ -1,0 +1,7 @@
+{
+  this.nrows=nrows;
+  this.ncols=ncols;
+  rowIndex=new int[nvals];
+  colIndex=new int[ncols + 1];
+  x=new double[nvals];
+}

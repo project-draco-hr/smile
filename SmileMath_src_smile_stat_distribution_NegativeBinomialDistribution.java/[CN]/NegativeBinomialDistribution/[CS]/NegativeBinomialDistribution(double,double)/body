@@ -1,0 +1,10 @@
+{
+  if (p <= 0 || p >= 1) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  if (r <= 0) {
+    throw new IllegalArgumentException("Invalid r: " + r);
+  }
+  this.p=p;
+  this.r=r;
+}

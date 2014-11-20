@@ -1,0 +1,6 @@
+boolean[] enough
+double[] ritz
+double[] bnd
+int step
+double tol
+double eps34

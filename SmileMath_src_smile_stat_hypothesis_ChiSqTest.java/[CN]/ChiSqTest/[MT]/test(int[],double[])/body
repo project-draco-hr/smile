@@ -1,0 +1,3 @@
+{
+  return test(bins,prob,1);
+}

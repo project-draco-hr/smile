@@ -1,0 +1,7 @@
+{
+  int[] y=new int[k];
+  for (  DecisionTree tree : trees) {
+    y[tree.predict(x)]++;
+  }
+  return Math.whichMax(y);
+}

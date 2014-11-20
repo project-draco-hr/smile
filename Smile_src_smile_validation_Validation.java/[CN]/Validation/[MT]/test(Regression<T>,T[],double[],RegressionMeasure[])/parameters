@@ -1,0 +1,4 @@
+Regression<T> regression
+T[] x
+double[] y
+RegressionMeasure[] measures

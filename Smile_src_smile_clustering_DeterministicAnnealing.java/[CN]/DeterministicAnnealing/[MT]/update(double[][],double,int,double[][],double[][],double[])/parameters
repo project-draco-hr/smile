@@ -1,0 +1,6 @@
+double[][] data
+double T
+int k
+double[][] centroids
+double[][] posteriori
+double[] priori

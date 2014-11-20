@@ -1,0 +1,14 @@
+{
+  System.out.println("cdf");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(0.0,instance.cdf(-0.1),1E-7);
+  assertEquals(0.0,instance.cdf(0.0),1E-7);
+  assertEquals(0.01264681,instance.cdf(1.0),1E-7);
+  assertEquals(0.07175418,instance.cdf(2.0),1E-7);
+  assertEquals(0.1734485,instance.cdf(3.0),1E-7);
+  assertEquals(0.2975654,instance.cdf(4.0),1E-7);
+  assertEquals(0.8538087,instance.cdf(10.0),1E-7);
+  assertEquals(0.995916,instance.cdf(20.0),1E-7);
+  assertEquals(0.9999267,instance.cdf(30.0),1E-7);
+}

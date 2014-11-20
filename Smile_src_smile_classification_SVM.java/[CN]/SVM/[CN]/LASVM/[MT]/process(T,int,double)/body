@@ -1,0 +1,78 @@
+{
+  if (y != +1 && y != -1) {
+    throw new IllegalArgumentException("Invalid label: " + y);
+  }
+  if (weight <= 0.0) {
+    throw new IllegalArgumentException("Invalid instance weight: " + weight);
+  }
+  double g=y;
+  DoubleArrayList kcache=new DoubleArrayList(sv.size() + 1);
+  if (sv.size() > 0) {
+    for (    SupportVector v : sv) {
+      if (v != null) {
+        if (v.x == x) {
+          return true;
+        }
+        double k=kernel.k(v.x,x);
+        g-=v.alpha * k;
+        kcache.add(k);
+      }
+ else {
+        kcache.add(0.0);
+      }
+    }
+    minmax();
+    if (gmin < gmax) {
+      if ((y > 0 && g < gmin) || (y < 0 && g > gmax)) {
+        return false;
+      }
+    }
+  }
+  SupportVector v=new SupportVector();
+  v.x=x;
+  v.y=y;
+  v.alpha=0.0;
+  v.g=g;
+  v.k=kernel.k(x,x);
+  v.kcache=kcache;
+  if (y > 0) {
+    v.cmin=0;
+    v.cmax=weight * Cp;
+  }
+ else {
+    v.cmin=-weight * Cn;
+    v.cmax=0;
+  }
+  int i=sv.size();
+  for (; i < sv.size(); i++) {
+    if (sv.get(i) == null) {
+      sv.set(i,v);
+      kcache.set(i,v.k);
+      for (int j=0; j < sv.size(); j++) {
+        SupportVector v1=sv.get(j);
+        if (v1 != null && v1.kcache != null) {
+          v1.kcache.set(i,kcache.get(j));
+        }
+      }
+      break;
+    }
+  }
+  if (i >= sv.size()) {
+    for (int j=0; j < sv.size(); j++) {
+      SupportVector v1=sv.get(j);
+      if (v1 != null && v1.kcache != null) {
+        v1.kcache.add(kcache.get(j));
+      }
+    }
+    v.kcache.add(v.k);
+    sv.add(v);
+  }
+  if (y > 0) {
+    smo(null,v,0.0);
+  }
+ else {
+    smo(v,null,0.0);
+  }
+  minmaxflag=false;
+  return true;
+}

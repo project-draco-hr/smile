@@ -1,0 +1,46 @@
+{
+  int p=data.attributes().length;
+  System.out.println("----------- " + data.getName() + " ----------------");
+  System.out.println("----------- " + data.size() + " x "+ p+ " ----------------");
+  System.out.println("MeanImputation");
+  MissingValueImputation instance=new AverageImputation();
+  System.out.println("RMSE of 1% missing values = " + impute(data,instance,0.01));
+  System.out.println("RMSE of 5% missing values = " + impute(data,instance,0.05));
+  System.out.println("RMSE of 10% missing values = " + impute(data,instance,0.10));
+  System.out.println("RMSE of 15% missing values = " + impute(data,instance,0.15));
+  System.out.println("RMSE of 20% missing values = " + impute(data,instance,0.20));
+  System.out.println("RMSE of 25% missing values = " + impute(data,instance,0.25));
+  System.out.println("KMeansImputation");
+  instance=new KMeansImputation(10,5);
+  System.out.println("RMSE of 1% missing values = " + impute(data,instance,0.01));
+  System.out.println("RMSE of 5% missing values = " + impute(data,instance,0.05));
+  System.out.println("RMSE of 10% missing values = " + impute(data,instance,0.10));
+  System.out.println("RMSE of 15% missing values = " + impute(data,instance,0.15));
+  System.out.println("RMSE of 20% missing values = " + impute(data,instance,0.20));
+  System.out.println("RMSE of 25% missing values = " + impute(data,instance,0.25));
+  System.out.println("KNNImputation");
+  instance=new KNNImputation(10);
+  System.out.println("RMSE of 1% missing values = " + impute(data,instance,0.01));
+  System.out.println("RMSE of 5% missing values = " + impute(data,instance,0.05));
+  System.out.println("RMSE of 10% missing values = " + impute(data,instance,0.10));
+  System.out.println("RMSE of 15% missing values = " + impute(data,instance,0.15));
+  System.out.println("RMSE of 20% missing values = " + impute(data,instance,0.20));
+  System.out.println("RMSE of 25% missing values = " + impute(data,instance,0.25));
+  if (p > 15) {
+    System.out.println("SVDImputation");
+    instance=new SVDImputation(p / 5);
+    System.out.println("RMSE of 1% missing values = " + impute(data,instance,0.01));
+    System.out.println("RMSE of 5% missing values = " + impute(data,instance,0.05));
+    System.out.println("RMSE of 10% missing values = " + impute(data,instance,0.10));
+  }
+  if (p > 15) {
+    System.out.println("LLSImputation");
+    instance=new LLSImputation(10);
+    System.out.println("RMSE of 1% missing values = " + impute(data,instance,0.01));
+    System.out.println("RMSE of 5% missing values = " + impute(data,instance,0.05));
+    System.out.println("RMSE of 10% missing values = " + impute(data,instance,0.10));
+    System.out.println("RMSE of 15% missing values = " + impute(data,instance,0.15));
+    System.out.println("RMSE of 20% missing values = " + impute(data,instance,0.20));
+    System.out.println("RMSE of 25% missing values = " + impute(data,instance,0.25));
+  }
+}

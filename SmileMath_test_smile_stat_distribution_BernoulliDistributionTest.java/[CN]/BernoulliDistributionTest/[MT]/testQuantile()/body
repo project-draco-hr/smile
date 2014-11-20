@@ -1,0 +1,8 @@
+{
+  System.out.println("quantile");
+  BernoulliDistribution instance=new BernoulliDistribution(0.3);
+  instance.rand();
+  assertEquals(0,instance.quantile(0),1E-7);
+  assertEquals(0,instance.quantile(0.7),1E-7);
+  assertEquals(1,instance.quantile(1),1E-7);
+}

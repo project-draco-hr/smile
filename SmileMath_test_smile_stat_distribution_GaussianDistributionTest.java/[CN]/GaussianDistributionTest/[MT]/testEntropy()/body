@@ -1,0 +1,15 @@
+{
+  System.out.println("entropy");
+  GaussianDistribution instance=new GaussianDistribution(0.0,1.0);
+  instance.rand();
+  assertEquals(1.418939,instance.entropy(),1E-6);
+  instance=new GaussianDistribution(1.0,2.0);
+  instance.rand();
+  assertEquals(2.112086,instance.entropy(),1E-6);
+  instance=new GaussianDistribution(2.0,0.5);
+  instance.rand();
+  assertEquals(0.7257914,instance.entropy(),1E-6);
+  instance=new GaussianDistribution(3.0,3.8);
+  instance.rand();
+  assertEquals(2.753940,instance.entropy(),1E-6);
+}

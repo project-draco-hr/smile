@@ -1,0 +1,16 @@
+{
+  int m=QR.length;
+  int n=QR[0].length;
+  double[][] H=new double[m][n];
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++) {
+      if (i >= j) {
+        H[i][j]=QR[i][j];
+      }
+ else {
+        H[i][j]=0.0;
+      }
+    }
+  }
+  return H;
+}

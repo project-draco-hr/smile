@@ -1,0 +1,4 @@
+double[] q
+Node node
+double radius
+List<Neighbor<double[],E>> neighbors

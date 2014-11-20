@@ -1,0 +1,5 @@
+PrintStream out
+List<AssociationRule> list
+int[] itemset
+int support
+double confidence

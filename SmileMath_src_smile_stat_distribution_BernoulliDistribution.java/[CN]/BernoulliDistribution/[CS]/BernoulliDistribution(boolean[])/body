@@ -1,0 +1,11 @@
+{
+  double k=0.0;
+  for (  boolean b : data) {
+    if (b) {
+      k++;
+    }
+  }
+  p=k / data.length;
+  q=1 - p;
+  entropy=-p * Math.log2(p) - q * Math.log2(q);
+}

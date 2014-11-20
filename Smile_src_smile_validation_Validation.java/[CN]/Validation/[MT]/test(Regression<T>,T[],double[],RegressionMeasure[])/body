@@ -1,0 +1,13 @@
+{
+  int n=x.length;
+  double[] predictions=new double[n];
+  for (int i=0; i < n; i++) {
+    predictions[i]=regression.predict(x[i]);
+  }
+  int m=measures.length;
+  double[] results=new double[m];
+  for (int i=0; i < m; i++) {
+    results[i]=measures[i].measure(y,predictions);
+  }
+  return results;
+}

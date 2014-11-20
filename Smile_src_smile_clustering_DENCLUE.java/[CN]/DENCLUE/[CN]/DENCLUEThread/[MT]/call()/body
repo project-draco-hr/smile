@@ -1,0 +1,29 @@
+{
+  int m=samples.length;
+  int d=samples[0].length;
+  for (int i=start; i < end; i++) {
+    double diff=1.0;
+    while (diff > eps) {
+      double weight=0.0;
+      for (int j=0; j < m; j++) {
+        double w=Math.exp(gamma * Math.squaredDistance(attractors[i],samples[j]));
+        weight+=w;
+        for (int l=0; l < d; l++) {
+          attractor[l]+=w * samples[j][l];
+        }
+      }
+      for (int l=0; l < d; l++) {
+        attractor[l]/=weight;
+      }
+      weight/=m;
+      diff=weight - prob[i];
+      prob[i]=weight;
+      if (diff > 1E-5) {
+        radius[i]=2 * Math.distance(attractors[i],attractor);
+      }
+      System.arraycopy(attractor,0,attractors[i],0,d);
+      Arrays.fill(attractor,0.0);
+    }
+  }
+  return this;
+}

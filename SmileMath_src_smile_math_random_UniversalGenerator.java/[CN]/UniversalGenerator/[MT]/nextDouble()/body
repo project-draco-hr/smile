@@ -1,0 +1,23 @@
+{
+  double uni;
+  uni=u[i97] - u[j97];
+  if (uni < 0.0) {
+    uni+=1.0;
+  }
+  u[i97]=uni;
+  if (--i97 < 0) {
+    i97=96;
+  }
+  if (--j97 < 0) {
+    j97=96;
+  }
+  c-=cd;
+  if (c < 0.0) {
+    c+=cm;
+  }
+  uni-=c;
+  if (uni < 0.0) {
+    uni++;
+  }
+  return uni;
+}

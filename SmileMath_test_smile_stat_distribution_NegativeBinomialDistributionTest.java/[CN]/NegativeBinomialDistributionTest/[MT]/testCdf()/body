@@ -1,0 +1,10 @@
+{
+  System.out.println("cdf");
+  NegativeBinomialDistribution instance=new NegativeBinomialDistribution(3,0.3);
+  instance.rand();
+  assertEquals(0.027,instance.cdf(0),1E-7);
+  assertEquals(0.0837,instance.cdf(1),1E-7);
+  assertEquals(0.16308,instance.cdf(2),1E-7);
+  assertEquals(0.25569,instance.cdf(3),1E-7);
+  assertEquals(0.7975217,instance.cdf(10),1E-7);
+}

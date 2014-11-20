@@ -1,0 +1,41 @@
+{
+  double worst=population[0].fitness();
+  double[] fitness=new double[size];
+switch (selection) {
+case ROULETTE_WHEEL:
+    if (worst > 0.0) {
+      worst=0.0;
+    }
+  for (int i=0; i < size; i++) {
+    fitness[i]=population[i].fitness() - worst;
+  }
+Math.unitize1(fitness);
+return population[Math.random(fitness)];
+case SCALED_ROULETTE_WHEEL:
+for (int i=0; i < size; i++) {
+fitness[i]=population[i].fitness() - worst;
+}
+Math.unitize1(fitness);
+return population[Math.random(fitness)];
+case RANK:
+for (int i=0; i < size; i++) {
+fitness[i]=i + 1;
+}
+Math.unitize1(fitness);
+return population[Math.random(fitness)];
+case TOURNAMENT:
+Chromosome[] pool=new Chromosome[tournamentSize];
+for (int i=0; i < tournamentSize; i++) {
+pool[i]=population[Math.randomInt(size)];
+}
+Arrays.sort(pool);
+for (int i=1; i <= tournamentSize; i++) {
+double p=Math.random();
+if (p < tournamentProbability) {
+return (T)pool[tournamentSize - i];
+}
+}
+return (T)pool[tournamentSize - 1];
+}
+return null;
+}

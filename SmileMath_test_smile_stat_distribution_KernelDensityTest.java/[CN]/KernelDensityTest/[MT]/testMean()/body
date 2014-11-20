@@ -1,0 +1,7 @@
+{
+  System.out.println("mean");
+  KernelDensity instance=new KernelDensity(x);
+  double expResult=3.55417;
+  double result=instance.mean();
+  assertEquals(expResult,result,1E-5);
+}

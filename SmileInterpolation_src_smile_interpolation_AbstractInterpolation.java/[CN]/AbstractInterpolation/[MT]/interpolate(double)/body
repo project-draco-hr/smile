@@ -1,0 +1,4 @@
+{
+  int jlo=search(x);
+  return rawinterp(jlo,x);
+}

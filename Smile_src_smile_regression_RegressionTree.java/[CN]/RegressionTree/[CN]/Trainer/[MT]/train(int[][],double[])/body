@@ -1,0 +1,8 @@
+{
+  if (numFeatures <= 0) {
+    return new RegressionTree(Math.max(x) + 1,x,y,J);
+  }
+ else {
+    return new RegressionTree(numFeatures,x,y,J);
+  }
+}

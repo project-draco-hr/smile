@@ -1,0 +1,14 @@
+{
+  if (a == null) {
+    initRand();
+  }
+  double rU=Math.random() * p.length;
+  int k=(int)(rU);
+  rU-=k;
+  if (rU < q[k]) {
+    return k;
+  }
+ else {
+    return a[k];
+  }
+}

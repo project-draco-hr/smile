@@ -1,0 +1,4 @@
+double[][] centroids
+double[][] sums
+int[] counts
+int[] membership

@@ -1,0 +1,15 @@
+{
+  double d, r;
+  d=Math.sqrt(lambda);
+  if (Math.random() >= d) {
+    return 0;
+  }
+  r=Math.random() * d;
+  if (r > lambda * (1.0 - lambda)) {
+    return 0;
+  }
+  if (r > 0.5 * lambda * lambda* (1. - lambda)) {
+    return 1;
+  }
+  return 2;
+}

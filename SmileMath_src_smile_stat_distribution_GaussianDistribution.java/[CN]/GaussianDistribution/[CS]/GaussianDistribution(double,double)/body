@@ -1,0 +1,7 @@
+{
+  this.mu=mu;
+  this.sigma=sigma;
+  variance=sigma * sigma;
+  entropy=Math.log(sigma) + LOG2PIE_2;
+  pdfConstant=Math.log(sigma) + LOG2PI_2;
+}

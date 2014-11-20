@@ -1,0 +1,17 @@
+{
+  int i=0;
+  int n=d.length;
+  for (int j=1; j < n; j++) {
+    double real=d[j];
+    double img=e[j];
+    for (i=j - 1; i >= 0; i--) {
+      if (d[i] >= d[j]) {
+        break;
+      }
+      d[i + 1]=d[i];
+      e[i + 1]=e[i];
+    }
+    d[i + 1]=real;
+    e[i + 1]=img;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  StringBuilder builder=new StringBuilder();
+  builder.append("MultivariateMixture[");
+  builder.append(components.size());
+  builder.append("]:{");
+  for (  Component c : components) {
+    builder.append(" (");
+    builder.append(c.distribution);
+    builder.append(':');
+    builder.append(String.format("%.4f",c.priori));
+    builder.append(')');
+  }
+  builder.append("}");
+  return builder.toString();
+}

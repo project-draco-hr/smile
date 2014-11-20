@@ -1,0 +1,17 @@
+{
+  while (excess[u] > 0) {
+    if (seen[u] < n) {
+      int v=seen[u];
+      if ((graph[u][v] - flow[u][v] > 0) && (height[u] > height[v])) {
+        push(flow,excess,u,v);
+      }
+ else {
+        seen[u]+=1;
+      }
+    }
+ else {
+      relabel(flow,height,u);
+      seen[u]=0;
+    }
+  }
+}

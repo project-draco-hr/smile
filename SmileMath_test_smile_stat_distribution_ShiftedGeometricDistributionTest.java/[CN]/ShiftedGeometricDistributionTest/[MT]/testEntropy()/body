@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  ShiftedGeometricDistribution instance=new ShiftedGeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(2.937636,instance.entropy(),1E-6);
+}

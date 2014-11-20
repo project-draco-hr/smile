@@ -1,0 +1,6 @@
+{
+  if (shrinkage <= 0 || shrinkage > 1) {
+    throw new IllegalArgumentException("Invalid shrinkage: " + shrinkage);
+  }
+  this.shrinkage=shrinkage;
+}

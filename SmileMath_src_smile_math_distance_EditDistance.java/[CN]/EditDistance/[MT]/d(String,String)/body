@@ -1,0 +1,6 @@
+{
+  if (weight != null)   return weightedEdit(x,y);
+ else   if (x.length() == 1 || y.length() == 1)   if (damerauDistance)   return damerau(x,y);
+ else   return levenshtein(x,y);
+ else   return br(x,y);
+}

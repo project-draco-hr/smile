@@ -1,0 +1,7 @@
+{
+  double f=b;
+  for (  SupportVector v : sv) {
+    f+=(v.alpha[1] - v.alpha[0]) * kernel.k(v.x,x);
+  }
+  return f;
+}

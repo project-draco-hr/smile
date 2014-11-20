@@ -1,0 +1,6 @@
+{
+  this(freq(itemsets),minSupport);
+  for (  int[] itemset : itemsets) {
+    add(itemset);
+  }
+}

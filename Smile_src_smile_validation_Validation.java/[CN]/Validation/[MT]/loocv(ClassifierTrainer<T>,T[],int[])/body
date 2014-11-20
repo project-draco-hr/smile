@@ -1,0 +1,14 @@
+{
+  int m=0;
+  int n=x.length;
+  LOOCV loocv=new LOOCV(n);
+  for (int i=0; i < n; i++) {
+    T[] trainx=Math.slice(x,loocv.train[i]);
+    int[] trainy=Math.slice(y,loocv.train[i]);
+    Classifier<T> classifier=trainer.train(trainx,trainy);
+    if (classifier.predict(x[loocv.test[i]]) == y[loocv.test[i]]) {
+      m++;
+    }
+  }
+  return (double)m / n;
+}

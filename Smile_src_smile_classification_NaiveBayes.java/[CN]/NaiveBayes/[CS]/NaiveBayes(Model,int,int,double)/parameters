@@ -1,0 +1,4 @@
+Model model
+int k
+int p
+double sigma

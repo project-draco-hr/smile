@@ -1,0 +1,61 @@
+{
+  HMM<O> hmm=new HMM<O>(numStates,numSymbols);
+  hmm.symbols=symbols;
+  double gamma[][][]=new double[sequences.length][][];
+  double aijNum[][]=new double[numStates][numStates];
+  double aijDen[]=new double[numStates];
+  for (int k=0; k < sequences.length; k++) {
+    if (sequences[k].length <= 2) {
+      throw new IllegalArgumentException(String.format("Traning sequence %d is too short.",k));
+    }
+    int[] o=sequences[k];
+    double[][] alpha=new double[o.length][numStates];
+    double[][] beta=new double[o.length][numStates];
+    double[] scaling=new double[o.length];
+    forward(o,alpha,scaling);
+    backward(o,beta,scaling);
+    double xi[][][]=estimateXi(o,alpha,beta);
+    double g[][]=gamma[k]=estimateGamma(xi);
+    int n=o.length - 1;
+    for (int i=0; i < numStates; i++) {
+      for (int t=0; t < n; t++) {
+        aijDen[i]+=g[t][i];
+        for (int j=0; j < numStates; j++) {
+          aijNum[i][j]+=xi[t][i][j];
+        }
+      }
+    }
+  }
+  for (int i=0; i < numStates; i++) {
+    if (aijDen[i] == 0.0) {
+      System.arraycopy(a[i],0,hmm.a[i],0,numStates);
+    }
+ else {
+      for (int j=0; j < numStates; j++) {
+        hmm.a[i][j]=aijNum[i][j] / aijDen[i];
+      }
+    }
+  }
+  for (int j=0; j < sequences.length; j++) {
+    for (int i=0; i < numStates; i++) {
+      hmm.pi[i]+=gamma[j][0][i];
+    }
+  }
+  for (int i=0; i < numStates; i++) {
+    hmm.pi[i]/=sequences.length;
+  }
+  for (int i=0; i < numStates; i++) {
+    double sum=0.0;
+    for (int j=0; j < sequences.length; j++) {
+      int[] o=sequences[j];
+      for (int t=0; t < o.length; t++) {
+        hmm.b[i][o[t]]+=gamma[j][t][i];
+        sum+=gamma[j][t][i];
+      }
+    }
+    for (int j=0; j < numSymbols; j++) {
+      hmm.b[i][j]/=sum;
+    }
+  }
+  return hmm;
+}

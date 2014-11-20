@@ -1,0 +1,22 @@
+{
+  for (int i=0; i < upper.units; i++) {
+    double sum=0.0;
+    for (int j=0; j <= lower.units; j++) {
+      sum+=upper.weight[i][j] * lower.output[j];
+    }
+    if (upper != outputLayer || activationFunction == ActivationFunction.LOGISTIC_SIGMOID) {
+      upper.output[i]=Math.logistic(sum);
+    }
+ else {
+      if (activationFunction == ActivationFunction.LINEAR || activationFunction == ActivationFunction.SOFTMAX) {
+        upper.output[i]=sum;
+      }
+ else {
+        throw new UnsupportedOperationException("Unsupported activation function.");
+      }
+    }
+  }
+  if (upper == outputLayer && activationFunction == ActivationFunction.SOFTMAX) {
+    softmax();
+  }
+}

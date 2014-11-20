@@ -1,0 +1,4 @@
+T[] x
+double[] y
+MercerKernel<T> kernel
+double lambda

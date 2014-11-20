@@ -1,0 +1,5 @@
+{
+  boolean status=smo(null,null,epsgr);
+  evict();
+  return status;
+}

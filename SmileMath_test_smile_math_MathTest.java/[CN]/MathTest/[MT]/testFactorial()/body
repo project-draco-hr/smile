@@ -1,0 +1,8 @@
+{
+  System.out.println("factorial");
+  assertEquals(1.0,Math.factorial(0),1E-7);
+  assertEquals(1.0,Math.factorial(1),1E-7);
+  assertEquals(2.0,Math.factorial(2),1E-7);
+  assertEquals(6.0,Math.factorial(3),1E-7);
+  assertEquals(24.0,Math.factorial(4),1E-7);
+}

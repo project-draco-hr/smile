@@ -1,0 +1,16 @@
+{
+  int n=A.length;
+  for (int mp=n - 2; mp > 0; mp--) {
+    for (int k=mp + 1; k < n; k++) {
+      V[k][mp]=A[k][mp - 1];
+    }
+    int i=perm[mp];
+    if (i != mp) {
+      for (int j=mp; j < n; j++) {
+        V[mp][j]=V[i][j];
+        V[i][j]=0.0;
+      }
+      V[i][mp]=1.0;
+    }
+  }
+}

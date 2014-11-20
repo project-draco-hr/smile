@@ -1,0 +1,8 @@
+{
+  this.headers=headers;
+  this.out=out;
+  this.list=list;
+  this.ttree=ttree;
+  prefixItemset=new int[T0.maxItemSetSize];
+  localItemSupport=new int[T0.numItems];
+}

@@ -1,0 +1,12 @@
+{
+  if (im == 0) {
+    return String.format("%.4f",re);
+  }
+  if (re == 0) {
+    return String.format("%.4fi",im);
+  }
+  if (im < 0) {
+    return String.format("%.4f - %.4fi",re,-im);
+  }
+  return String.format("%.4f + %.4fi",re,im);
+}

@@ -1,0 +1,18 @@
+{
+  if (nd > 0) {
+    update();
+  }
+  int jl=0, jh=nq - 1, j;
+  while (jh - jl > 1) {
+    j=(jh + jl) >> 1;
+    if (p > pval[j]) {
+      jl=j;
+    }
+ else {
+      jh=j;
+    }
+  }
+  j=jl;
+  double q=qile[j] + (qile[j + 1] - qile[j]) * (p - pval[j]) / (pval[j + 1] - pval[j]);
+  return Math.max(qile[0],Math.min(qile[nq - 1],q));
+}

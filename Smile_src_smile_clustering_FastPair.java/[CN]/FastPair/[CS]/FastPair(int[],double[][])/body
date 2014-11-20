@@ -1,0 +1,28 @@
+{
+  this.points=points;
+  this.proximity=proximity;
+  npoints=points.length;
+  neighbor=new int[npoints];
+  index=new int[npoints];
+  distance=new double[npoints];
+  for (int i=0; i < npoints - 1; i++) {
+    int nbr=i + 1;
+    double nbd=Double.MAX_VALUE;
+    for (int j=i + 1; j < npoints; j++) {
+      double d=d(points[i],points[j]);
+      if (d < nbd) {
+        nbr=j;
+        nbd=d;
+      }
+    }
+    distance[points[i]]=nbd;
+    neighbor[points[i]]=points[nbr];
+    points[nbr]=points[i + 1];
+    points[i + 1]=neighbor[points[i]];
+  }
+  neighbor[points[npoints - 1]]=points[npoints - 1];
+  distance[points[npoints - 1]]=Double.MAX_VALUE;
+  for (int i=0; i < npoints; i++) {
+    index[points[i]]=i;
+  }
+}

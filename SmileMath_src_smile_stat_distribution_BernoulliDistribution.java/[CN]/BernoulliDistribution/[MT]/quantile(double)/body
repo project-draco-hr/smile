@@ -1,0 +1,11 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  if (p <= 1 - this.p) {
+    return 0;
+  }
+ else {
+    return 1;
+  }
+}

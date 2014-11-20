@@ -1,0 +1,6 @@
+{
+  System.out.println("var");
+  BinomialDistribution instance=new BinomialDistribution(100,0.3);
+  instance.rand();
+  assertEquals(21.0,instance.var(),1E-7);
+}

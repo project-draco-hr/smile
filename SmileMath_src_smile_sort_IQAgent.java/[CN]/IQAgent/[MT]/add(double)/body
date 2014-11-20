@@ -1,0 +1,12 @@
+{
+  dbuf[nd++]=datum;
+  if (datum < q0) {
+    q0=datum;
+  }
+  if (datum > qm) {
+    qm=datum;
+  }
+  if (nd == nbuf) {
+    update();
+  }
+}

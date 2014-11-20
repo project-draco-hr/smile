@@ -1,0 +1,8 @@
+{
+  int n=index.length;
+  @SuppressWarnings("unchecked") E[] x=(E[])java.lang.reflect.Array.newInstance(data.getClass().getComponentType(),n);
+  for (int i=0; i < n; i++) {
+    x[i]=data[index[i]];
+  }
+  return x;
+}

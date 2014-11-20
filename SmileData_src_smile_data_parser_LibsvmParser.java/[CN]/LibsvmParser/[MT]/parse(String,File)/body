@@ -1,0 +1,3 @@
+{
+  return parse(name,new FileInputStream(file));
+}

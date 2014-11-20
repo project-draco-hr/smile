@@ -1,0 +1,4 @@
+{
+  System.out.println("distance");
+  System.out.println(ed2.d(H1N1,H1N5));
+}

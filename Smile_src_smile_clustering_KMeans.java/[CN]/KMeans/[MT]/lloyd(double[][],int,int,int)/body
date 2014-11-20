@@ -1,0 +1,19 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  if (runs <= 0) {
+    throw new IllegalArgumentException("Invalid number of runs: " + runs);
+  }
+  KMeans best=lloyd(data,k,maxIter);
+  for (int i=1; i < runs; i++) {
+    KMeans kmeans=lloyd(data,k,maxIter);
+    if (kmeans.distortion < best.distortion) {
+      best=kmeans;
+    }
+  }
+  return best;
+}

@@ -1,0 +1,21 @@
+{
+  if (npoints < 2) {
+    throw new IllegalStateException("FastPair: not enough points to form pair");
+  }
+  double d=distance[points[0]];
+  int r=0;
+  for (int i=1; i < npoints; i++) {
+    if (distance[points[i]] < d) {
+      d=distance[points[i]];
+      r=i;
+    }
+  }
+  pair[0]=points[r];
+  pair[1]=neighbor[pair[0]];
+  if (pair[0] > pair[1]) {
+    int t=pair[0];
+    pair[0]=pair[1];
+    pair[1]=t;
+  }
+  return d;
+}

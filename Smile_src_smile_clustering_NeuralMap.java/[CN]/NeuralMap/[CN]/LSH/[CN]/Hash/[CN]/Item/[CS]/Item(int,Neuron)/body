@@ -1,0 +1,4 @@
+{
+  this.bucket=bucket;
+  this.neuron=neuron;
+}

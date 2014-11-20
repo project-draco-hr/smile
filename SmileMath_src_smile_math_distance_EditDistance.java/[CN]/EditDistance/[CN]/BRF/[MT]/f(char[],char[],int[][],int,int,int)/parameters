@@ -1,0 +1,6 @@
+char[] x
+char[] y
+int[][] FKP
+int ZERO_K
+int k
+int p

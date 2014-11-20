@@ -1,0 +1,12 @@
+{
+  for (  Datum<SparseArray> row : this) {
+    double sum=0.0;
+    for (    SparseArray.Entry e : row.x) {
+      sum+=Math.sqr(e.x);
+    }
+    sum=Math.sqrt(sum);
+    for (    SparseArray.Entry e : row.x) {
+      e.x/=sum;
+    }
+  }
+}

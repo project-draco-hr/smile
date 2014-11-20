@@ -1,0 +1,15 @@
+{
+  int j;
+  while ((j=d * (k - 1) + 2) <= N) {
+    for (int i=j + 1; i < j + d && i <= N; i++) {
+      if (less(i,j)) {
+        j=i;
+      }
+    }
+    if (!(less(j,k))) {
+      break;
+    }
+    swap(k,j);
+    k=j;
+  }
+}

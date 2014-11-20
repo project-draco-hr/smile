@@ -1,0 +1,9 @@
+{
+  double p=0.5 * Beta.regularizedIncompleteBetaFunction(0.5 * nu,0.5,nu / (nu + x * x));
+  if (x >= 0) {
+    return 1.0 - p;
+  }
+ else {
+    return p;
+  }
+}

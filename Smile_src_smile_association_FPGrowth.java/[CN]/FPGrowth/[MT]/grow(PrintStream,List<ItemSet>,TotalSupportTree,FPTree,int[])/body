@@ -1,0 +1,9 @@
+{
+  long n=0;
+  int[] prefixItemset=new int[T0.maxItemSetSize];
+  int[] localItemSupport=new int[T0.numItems];
+  for (int i=fptree.headerTable.length; i-- > 0; ) {
+    n+=grow(out,list,ttree,fptree.headerTable[i],itemset,localItemSupport,prefixItemset);
+  }
+  return n;
+}

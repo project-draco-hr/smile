@@ -1,0 +1,23 @@
+{
+  System.out.println("range");
+  List<Neighbor<String,String>> n1=new ArrayList<Neighbor<String,String>>();
+  List<Neighbor<String,String>> n2=new ArrayList<Neighbor<String,String>>();
+  for (int i=1000; i < 1100; i++) {
+    bktree.range(words.get(i),1,n1);
+    naive.range(words.get(i),1,n2);
+    assertEquals(n1.size(),n2.size());
+    String[] s1=new String[n1.size()];
+    String[] s2=new String[n2.size()];
+    for (int j=0; j < s1.length; j++) {
+      s1[j]=n1.get(j).value;
+      s2[j]=n2.get(j).value;
+    }
+    Arrays.sort(s1);
+    Arrays.sort(s2);
+    for (int j=0; j < s1.length; j++) {
+      assertEquals(s1[j],s2[j]);
+    }
+    n1.clear();
+    n2.clear();
+  }
+}

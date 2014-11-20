@@ -1,0 +1,10 @@
+{
+  System.out.println("p");
+  NegativeBinomialDistribution instance=new NegativeBinomialDistribution(3,0.3);
+  instance.rand();
+  assertEquals(0.027,instance.p(0),1E-7);
+  assertEquals(0.0567,instance.p(1),1E-7);
+  assertEquals(0.07938,instance.p(2),1E-7);
+  assertEquals(0.09261,instance.p(3),1E-7);
+  assertEquals(0.05033709,instance.p(10),1E-7);
+}

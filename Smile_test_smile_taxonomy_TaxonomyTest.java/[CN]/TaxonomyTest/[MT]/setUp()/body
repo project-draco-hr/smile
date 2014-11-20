@@ -1,0 +1,27 @@
+{
+  String[] concepts={"A","B","C","D","E","F"};
+  Concept root=instance.getRoot();
+  ad=root.addChild("");
+  e=root.addChild("E");
+  d=ad.addChild("D");
+  a=ad.addChild("A");
+  b=a.addChild("B");
+  c=a.addChild("C");
+  f=c.addChild("F");
+  System.out.println("Taxonomy created:\n");
+  System.out.println("       --|---");
+  System.out.println("       |    |");
+  System.out.println("    ---|--  |");
+  System.out.println("    |    |  |");
+  System.out.println("  --A--  |  |");
+  System.out.println("  |   |  |  |");
+  System.out.println("  B   C  D  E");
+  System.out.println("      |      ");
+  System.out.println("      F      ");
+  System.out.println();
+  System.out.println();
+  for (int i=0; i < concepts.length; i++) {
+    System.out.println(instance.getConcept(concepts[i]));
+  }
+  System.out.println();
+}

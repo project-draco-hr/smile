@@ -1,0 +1,7 @@
+{
+  System.out.println("cdf");
+  BernoulliDistribution instance=new BernoulliDistribution(0.3);
+  instance.rand();
+  assertEquals(0.7,instance.cdf(0),1E-7);
+  assertEquals(1.0,instance.cdf(1),1E-7);
+}

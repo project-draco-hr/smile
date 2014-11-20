@@ -1,0 +1,13 @@
+{
+  m=x1.length;
+  n=x2.length;
+  x1terp=new LinearInterpolation(x1,x1);
+  x2terp=new LinearInterpolation(x2,x2);
+  this.x1=x1;
+  this.x2=x2;
+  this.yv=y;
+  this.y=new double[4];
+  y1=new double[4];
+  y2=new double[4];
+  y12=new double[4];
+}

@@ -1,0 +1,3 @@
+{
+  return alpha * Math.pow(r,beta);
+}

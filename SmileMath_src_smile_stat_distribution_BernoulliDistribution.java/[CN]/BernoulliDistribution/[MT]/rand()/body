@@ -1,0 +1,8 @@
+{
+  if (Math.random() < q) {
+    return 0;
+  }
+ else {
+    return 1;
+  }
+}

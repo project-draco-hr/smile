@@ -1,0 +1,4 @@
+{
+  this.w=w;
+  this.neighbors=neighbors;
+}

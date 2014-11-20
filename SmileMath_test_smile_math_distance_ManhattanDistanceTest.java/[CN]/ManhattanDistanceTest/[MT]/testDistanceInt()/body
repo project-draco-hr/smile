@@ -1,0 +1,6 @@
+{
+  System.out.println("distance");
+  int[] x={1,2,3,4};
+  int[] y={4,3,2,1};
+  assertEquals(8,new ManhattanDistance().d(x,y),1E-6);
+}

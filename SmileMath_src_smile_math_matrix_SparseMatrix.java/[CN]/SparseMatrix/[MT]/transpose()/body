@@ -1,0 +1,25 @@
+{
+  int m=nrows, n=ncols;
+  SparseMatrix at=new SparseMatrix(n,m,x.length);
+  int[] count=new int[m];
+  for (int i=0; i < n; i++) {
+    for (int j=colIndex[i]; j < colIndex[i + 1]; j++) {
+      int k=rowIndex[j];
+      count[k]++;
+    }
+  }
+  for (int j=0; j < m; j++) {
+    at.colIndex[j + 1]=at.colIndex[j] + count[j];
+  }
+  Arrays.fill(count,0);
+  for (int i=0; i < n; i++) {
+    for (int j=colIndex[i]; j < colIndex[i + 1]; j++) {
+      int k=rowIndex[j];
+      int index=at.colIndex[k] + count[k];
+      at.rowIndex[index]=i;
+      at.x[index]=x[j];
+      count[k]++;
+    }
+  }
+  return at;
+}

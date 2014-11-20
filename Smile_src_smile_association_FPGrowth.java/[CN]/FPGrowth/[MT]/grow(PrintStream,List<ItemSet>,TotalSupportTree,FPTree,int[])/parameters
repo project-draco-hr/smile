@@ -1,0 +1,5 @@
+PrintStream out
+List<ItemSet> list
+TotalSupportTree ttree
+FPTree fptree
+int[] itemset

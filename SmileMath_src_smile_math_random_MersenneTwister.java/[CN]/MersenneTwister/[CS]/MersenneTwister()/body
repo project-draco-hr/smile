@@ -1,0 +1,3 @@
+{
+  this(MAGIC_SEED);
+}

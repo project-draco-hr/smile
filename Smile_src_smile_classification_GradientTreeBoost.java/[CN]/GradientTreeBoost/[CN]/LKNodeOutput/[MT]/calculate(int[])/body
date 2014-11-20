@@ -1,0 +1,17 @@
+{
+  int n=0;
+  double nu=0.0;
+  double de=0.0;
+  for (int i=0; i < samples.length; i++) {
+    if (samples[i] > 0) {
+      n++;
+      double abs=Math.abs(y[i]);
+      nu+=y[i];
+      de+=abs * (1.0 - abs);
+    }
+  }
+  if (de < 1E-10) {
+    return nu / n;
+  }
+  return ((k - 1.0) / k) * (nu / de);
+}

@@ -1,0 +1,3 @@
+{
+  return (long)Math.floor(Long.MAX_VALUE * (2 * nextDouble() - 1.0));
+}

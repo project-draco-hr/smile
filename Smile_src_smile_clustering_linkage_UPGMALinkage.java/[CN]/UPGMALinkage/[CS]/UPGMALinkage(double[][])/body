@@ -1,0 +1,5 @@
+{
+  this.proximity=proximity;
+  n=new int[proximity.length];
+  for (int i=0; i < n.length; i++)   n[i]=1;
+}

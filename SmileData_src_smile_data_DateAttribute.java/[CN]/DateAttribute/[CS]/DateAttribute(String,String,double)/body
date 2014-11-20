@@ -1,0 +1,4 @@
+{
+  super(Type.DATE,name,description,weight);
+  format=new SimpleDateFormat();
+}

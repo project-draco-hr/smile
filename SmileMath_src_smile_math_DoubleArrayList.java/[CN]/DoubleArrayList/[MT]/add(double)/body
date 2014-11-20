@@ -1,0 +1,4 @@
+{
+  ensureCapacity(size + 1);
+  data[size++]=val;
+}

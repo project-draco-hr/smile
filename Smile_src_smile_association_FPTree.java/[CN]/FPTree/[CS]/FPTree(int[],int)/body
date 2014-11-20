@@ -1,0 +1,25 @@
+{
+  this.itemSupport=frequency;
+  this.minSupport=minSupport;
+  root=new Node();
+  numItems=frequency.length;
+  for (  int f : frequency) {
+    if (f >= minSupport) {
+      numFreqItems++;
+    }
+  }
+  headerTable=new HeaderTableItem[numFreqItems];
+  for (int i=0, j=0; i < numItems; i++) {
+    if (frequency[i] >= minSupport) {
+      HeaderTableItem header=new HeaderTableItem(i);
+      header.count=frequency[i];
+      headerTable[j++]=header;
+    }
+  }
+  Arrays.sort(headerTable);
+  order=new int[numItems];
+  Arrays.fill(order,numItems);
+  for (int i=0; i < numFreqItems; i++) {
+    order[headerTable[i].id]=i;
+  }
+}

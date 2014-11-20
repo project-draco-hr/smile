@@ -1,0 +1,6 @@
+{
+  if (x < 0) {
+    throw new IllegalArgumentException("Invalid x: " + x);
+  }
+  return 1.0 - Beta.regularizedIncompleteBetaFunction(0.5 * nu,0.5,nu / (nu + x * x));
+}

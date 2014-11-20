@@ -1,0 +1,6 @@
+{
+  if (nu == 1) {
+    throw new UnsupportedOperationException("Mean is undefined for T distribution with nu = 1");
+  }
+  return 0.0;
+}

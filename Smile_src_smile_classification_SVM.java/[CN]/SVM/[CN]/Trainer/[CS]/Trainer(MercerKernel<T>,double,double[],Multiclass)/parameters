@@ -1,0 +1,4 @@
+MercerKernel<T> kernel
+double C
+double[] weight
+Multiclass strategy

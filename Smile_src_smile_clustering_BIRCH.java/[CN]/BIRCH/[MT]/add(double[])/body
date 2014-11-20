@@ -1,0 +1,10 @@
+{
+  if (root == null) {
+    root=new Node();
+    root.add(new Leaf(x));
+    root.update(x);
+  }
+ else {
+    root.add(x);
+  }
+}

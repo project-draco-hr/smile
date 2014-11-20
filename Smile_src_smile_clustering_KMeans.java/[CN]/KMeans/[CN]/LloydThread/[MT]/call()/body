@@ -1,0 +1,15 @@
+{
+  double wcss=0.0;
+  for (int i=start; i < end; i++) {
+    double nearest=Double.MAX_VALUE;
+    for (int j=0; j < k; j++) {
+      double dist=squaredDistance(data[i],centroids[j]);
+      if (nearest > dist) {
+        y[i]=j;
+        nearest=dist;
+      }
+    }
+    wcss+=nearest;
+  }
+  return wcss;
+}

@@ -1,0 +1,4 @@
+{
+  this.m=m;
+  this.rbf=rep(rbf,m);
+}

@@ -1,0 +1,5 @@
+T[] x
+double[] y
+Metric<T> distance
+RadialBasisFunction rbf
+T[] centers

@@ -1,0 +1,28 @@
+{
+  System.out.println("bootstrap");
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(4);
+  try {
+    AttributeDataset weather=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/weather.nominal.arff"));
+    double[][] x=weather.toArray(new double[weather.size()][]);
+    int[] y=weather.toArray(new int[weather.size()]);
+    DecisionTree.Trainer trainer=new DecisionTree.Trainer(3);
+    trainer.setAttributes(weather.attributes());
+    ClassificationMeasure[] measures={new Accuracy(),new Recall(),new Precision()};
+    double[][] results=Validation.bootstrap(100,trainer,x,y,measures);
+    for (int i=0; i < 100; i++) {
+      for (int j=0; j < measures.length; j++) {
+        System.out.format("%s = %.4f\t",measures[j],results[i][j]);
+      }
+      System.out.println();
+    }
+    System.out.println("On average:");
+    double[] avg=Math.colMean(results);
+    for (int j=0; j < measures.length; j++) {
+      System.out.format("%s = %.4f\t",measures[j],avg[j]);
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

@@ -1,0 +1,52 @@
+{
+  if (k < 1) {
+    throw new IllegalArgumentException("Invalid k: " + k);
+  }
+  IntArrayList candidates=new IntArrayList();
+  for (  Hash h : hash) {
+    BucketEntry bucket=h.get(q);
+    if (bucket != null) {
+      int m=bucket.entry.size();
+      for (int i=0; i < m; i++) {
+        int index=bucket.entry.get(i);
+        candidates.add(index);
+      }
+    }
+  }
+  Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,0,Double.MAX_VALUE);
+  @SuppressWarnings("unchecked") Neighbor<double[],E>[] neighbors=(Neighbor<double[],E>[])java.lang.reflect.Array.newInstance(neighbor.getClass(),k);
+  HeapSelect<Neighbor<double[],E>> heap=new HeapSelect<Neighbor<double[],E>>(neighbors);
+  for (int i=0; i < k; i++) {
+    heap.add(neighbor);
+  }
+  int[] cand=candidates.toArray();
+  Arrays.sort(cand);
+  int prev=-1;
+  int hit=0;
+  for (  int index : cand) {
+    if (index == prev) {
+      continue;
+    }
+ else {
+      prev=index;
+    }
+    double[] key=keys.get(index);
+    if (q == key && identicalExcluded) {
+      continue;
+    }
+    double distance=Math.distance(q,key);
+    if (distance < heap.peek().distance) {
+      heap.add(new Neighbor<double[],E>(key,data.get(index),index,distance));
+      hit++;
+    }
+  }
+  heap.sort();
+  if (hit < k) {
+    @SuppressWarnings("unchecked") Neighbor<double[],E>[] n2=(Neighbor<double[],E>[])java.lang.reflect.Array.newInstance(neighbor.getClass(),hit);
+    for (int i=0; i < hit; i++) {
+      n2[i]=neighbors[i + 1];
+    }
+    neighbors=n2;
+  }
+  return neighbors;
+}

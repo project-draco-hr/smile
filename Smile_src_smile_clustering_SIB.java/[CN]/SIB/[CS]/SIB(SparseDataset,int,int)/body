@@ -1,0 +1,72 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid parameter k = " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  int n=data.size();
+  int d=data.ncols();
+  this.k=k;
+  distortion=Double.MAX_VALUE;
+  size=new int[k];
+  centroids=new double[k][d];
+  y=seed(data,k);
+  for (int i=0; i < n; i++) {
+    size[y[i]]++;
+    for (    SparseArray.Entry e : data.get(i).x) {
+      centroids[y[i]][e.i]+=e.x;
+    }
+  }
+  for (int i=0; i < k; i++) {
+    for (int j=0; j < d; j++) {
+      centroids[i][j]/=size[i];
+    }
+  }
+  for (int iter=1, reassignment=n; iter <= maxIter && reassignment > 0; iter++) {
+    reassignment=0;
+    for (int i=0; i < n; i++) {
+      double nearest=Double.MAX_VALUE;
+      int c=-1;
+      for (int j=0; j < k; j++) {
+        double dist=Math.JensenShannonDivergence(data.get(i).x,centroids[j]);
+        if (nearest > dist) {
+          nearest=dist;
+          c=j;
+        }
+      }
+      if (c != y[i]) {
+        int o=y[i];
+        for (int j=0; j < d; j++) {
+          centroids[c][j]*=size[c];
+          centroids[o][j]*=size[o];
+        }
+        for (        SparseArray.Entry e : data.get(i).x) {
+          int j=e.i;
+          double p=e.x;
+          centroids[c][j]+=p;
+          centroids[o][j]-=p;
+          if (centroids[o][j] < 0) {
+            centroids[o][j]=0;
+          }
+        }
+        size[o]--;
+        size[c]++;
+        for (int j=0; j < d; j++) {
+          centroids[c][j]/=size[c];
+        }
+        if (size[o] > 0) {
+          for (int j=0; j < d; j++) {
+            centroids[o][j]/=size[o];
+          }
+        }
+        y[i]=c;
+        reassignment++;
+      }
+    }
+  }
+  distortion=0;
+  for (int i=0; i < n; i++) {
+    distortion+=Math.JensenShannonDivergence(data.get(i).x,centroids[y[i]]);
+  }
+}

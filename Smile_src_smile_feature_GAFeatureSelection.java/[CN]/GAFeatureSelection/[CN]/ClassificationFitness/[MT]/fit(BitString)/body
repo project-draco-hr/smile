@@ -1,0 +1,42 @@
+{
+  int p=0;
+  int[] bits=chromosome.bits();
+  for (  int b : bits) {
+    p+=b;
+  }
+  if (p == 0) {
+    return 0.0;
+  }
+  int m=x[0].length;
+  int n=x.length;
+  double[][] xx=new double[n][p];
+  for (int j=0, jj=0; j < m; j++) {
+    if (bits[j] == 1) {
+      for (int i=0; i < n; i++) {
+        xx[i][jj]=x[i][j];
+      }
+      jj++;
+    }
+  }
+  if (k != -1) {
+    return Validation.cv(k,trainer,xx,y);
+  }
+ else {
+    Classifier<double[]> classifier=trainer.train(xx,y);
+    int testn=testx.length;
+    double[][] testxx=new double[testn][p];
+    for (int j=0, jj=0; j < m; j++) {
+      if (bits[j] == 1) {
+        for (int i=0; i < testn; i++) {
+          testxx[i][jj]=testx[i][j];
+        }
+        jj++;
+      }
+    }
+    int[] prediction=new int[testn];
+    for (int i=0; i < testn; i++) {
+      prediction[i]=classifier.predict(testxx[i]);
+    }
+    return measure.measure(testy,prediction);
+  }
+}

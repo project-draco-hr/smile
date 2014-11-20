@@ -1,0 +1,77 @@
+{
+  if (pointSet.isEmpty()) {
+    Node leaf=newLeaf(p);
+    return leaf;
+  }
+ else {
+    double maxDist=max(pointSet);
+    int nextScale=Math.min(maxScale - 1,getScale(maxDist));
+    if (nextScale == Integer.MIN_VALUE) {
+      ArrayList<Node> children=new ArrayList<Node>();
+      Node leaf=newLeaf(p);
+      children.add(leaf);
+      while (pointSet.size() > 0) {
+        DistanceSet set=pointSet.get(pointSet.size() - 1);
+        pointSet.remove(pointSet.size() - 1);
+        leaf=newLeaf(set.idx);
+        children.add(leaf);
+        consumedSet.add(set);
+      }
+      Node node=new Node(p);
+      node.scale=100;
+      node.maxDist=0;
+      node.children=children;
+      return node;
+    }
+ else {
+      ArrayList<DistanceSet> far=new ArrayList<DistanceSet>();
+      split(pointSet,far,maxScale);
+      Node child=batchInsert(p,nextScale,topScale,pointSet,consumedSet);
+      if (pointSet.isEmpty()) {
+        pointSet.addAll(far);
+        return child;
+      }
+ else {
+        ArrayList<Node> children=new ArrayList<Node>();
+        children.add(child);
+        ArrayList<DistanceSet> newPointSet=new ArrayList<DistanceSet>();
+        ArrayList<DistanceSet> newConsumedSet=new ArrayList<DistanceSet>();
+        while (!pointSet.isEmpty()) {
+          DistanceSet set=pointSet.get(pointSet.size() - 1);
+          pointSet.remove(pointSet.size() - 1);
+          double newDist=set.dist.get(set.dist.size() - 1);
+          consumedSet.add(set);
+          distSplit(pointSet,newPointSet,set.getObject(),maxScale);
+          distSplit(far,newPointSet,set.getObject(),maxScale);
+          Node newChild=batchInsert(set.idx,nextScale,topScale,newPointSet,newConsumedSet);
+          newChild.parentDist=newDist;
+          children.add(newChild);
+          double fmax=getCoverRadius(maxScale);
+          for (int i=0; i < newPointSet.size(); i++) {
+            set=newPointSet.get(i);
+            set.dist.remove(set.dist.size() - 1);
+            if (set.dist.get(set.dist.size() - 1) <= fmax) {
+              pointSet.add(set);
+            }
+ else {
+              far.add(set);
+            }
+          }
+          for (int i=0; i < newConsumedSet.size(); i++) {
+            set=newConsumedSet.get(i);
+            set.dist.remove(set.dist.size() - 1);
+            consumedSet.add(set);
+          }
+          newPointSet.clear();
+          newConsumedSet.clear();
+        }
+        pointSet.addAll(far);
+        Node node=new Node(p);
+        node.scale=topScale - maxScale;
+        node.maxDist=max(consumedSet);
+        node.children=children;
+        return node;
+      }
+    }
+  }
+}

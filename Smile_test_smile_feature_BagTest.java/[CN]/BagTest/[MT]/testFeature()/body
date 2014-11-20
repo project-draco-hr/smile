@@ -1,0 +1,30 @@
+{
+  System.out.println("feature");
+  String[][] text=new String[2000][];
+  BufferedReader input=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/smile/data/text/movie.txt")));
+  try {
+    for (int i=0; i < text.length; i++) {
+      String[] words=input.readLine().trim().split("\\s+");
+      text[i]=words;
+    }
+  }
+ catch (  IOException ex) {
+    System.err.println(ex);
+  }
+ finally {
+    try {
+      input.close();
+    }
+ catch (    IOException e) {
+      System.err.println(e);
+    }
+  }
+  String[] feature={"outstanding","wonderfully","wasted","lame","awful","poorly","ridiculous","waste","worst","bland","unfunny","stupid","dull","fantastic","laughable","mess","pointless","terrific","memorable","superb","boring","badly","subtle","terrible","excellent","perfectly","masterpiece","realistic","flaws"};
+  Bag<String> bag=new Bag<String>(feature);
+  double[][] x=new double[text.length][];
+  for (int i=0; i < text.length; i++) {
+    x[i]=bag.feature(text[i]);
+    assertEquals(feature.length,x[i].length);
+  }
+  assertEquals(1.0,x[0][15],1E-7);
+}

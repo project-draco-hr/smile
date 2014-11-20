@@ -1,0 +1,18 @@
+{
+  int T=trees.size();
+  int m=measures.length;
+  double[][] results=new double[T][m];
+  int n=x.length;
+  double[] sum=new double[n];
+  double[] prediction=new double[n];
+  for (int i=0, nt=1; i < T; i++, nt++) {
+    for (int j=0; j < n; j++) {
+      sum[j]+=trees.get(i).predict(x[j]);
+      prediction[j]=sum[j] / nt;
+    }
+    for (int j=0; j < m; j++) {
+      results[i][j]=measures[j].measure(y,prediction);
+    }
+  }
+  return results;
+}

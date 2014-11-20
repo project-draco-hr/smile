@@ -1,0 +1,91 @@
+{
+  if (m <= 0) {
+    throw new IllegalArgumentException("Invalid m: " + m);
+  }
+  final double TOLX=4 * EPSILON;
+  final double STPMX=100.0;
+  int n=x.length;
+  double[] xnew=new double[n];
+  double[] gnew=new double[n];
+  double[] xi=new double[n];
+  double[][] s=new double[m][n];
+  double[][] y=new double[m][n];
+  double[] rho=new double[m];
+  double[] a=new double[m];
+  double diag=1.0;
+  double[] g=new double[n];
+  double f=func.f(x,g);
+  System.out.format("L-BFGS: initial function value: %.5g\n",f);
+  double sum=0.0;
+  for (int i=0; i < n; i++) {
+    xi[i]=-g[i];
+    sum+=x[i] * x[i];
+  }
+  double stpmax=STPMX * max(sqrt(sum),n);
+  for (int iter=1, k=0; iter <= maxIter; iter++) {
+    linesearch(func,x,f,g,xi,xnew,stpmax);
+    f=func.f(xnew,gnew);
+    for (int i=0; i < n; i++) {
+      s[k][i]=xnew[i] - x[i];
+      y[k][i]=gnew[i] - g[i];
+      x[i]=xnew[i];
+      g[i]=gnew[i];
+    }
+    double test=0.0;
+    for (int i=0; i < n; i++) {
+      double temp=abs(s[k][i]) / max(abs(x[i]),1.0);
+      if (temp > test) {
+        test=temp;
+      }
+    }
+    if (test < TOLX) {
+      System.out.format("L-BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      return f;
+    }
+    test=0.0;
+    double den=max(f,1.0);
+    for (int i=0; i < n; i++) {
+      double temp=abs(g[i]) * max(abs(x[i]),1.0) / den;
+      if (temp > test) {
+        test=temp;
+      }
+    }
+    if (test < gtol) {
+      System.out.format("L-BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      return f;
+    }
+    if (iter % 10 == 0) {
+      System.out.format("L-BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+    }
+    double ys=dot(y[k],s[k]);
+    double yy=dot(y[k],y[k]);
+    diag=ys / yy;
+    rho[k]=1.0 / ys;
+    for (int i=0; i < n; i++) {
+      xi[i]=-g[i];
+    }
+    int cp=k;
+    int bound=iter > m ? m : iter;
+    for (int i=0; i < bound; i++) {
+      a[cp]=rho[cp] * dot(s[cp],xi);
+      axpy(-a[cp],y[cp],xi);
+      if (--cp == -1) {
+        cp=m - 1;
+      }
+    }
+    for (int i=0; i < n; i++) {
+      xi[i]*=diag;
+    }
+    for (int i=0; i < bound; i++) {
+      if (++cp == m) {
+        cp=0;
+      }
+      double b=rho[cp] * dot(y[cp],xi);
+      axpy(a[cp] - b,s[cp],xi);
+    }
+    if (++k == m) {
+      k=0;
+    }
+  }
+  throw new IllegalStateException("L-BFGS: Too many iterations.");
+}

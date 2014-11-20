@@ -1,0 +1,7 @@
+{
+  System.out.println("numStates");
+  HMM hmm=new HMM(pi,a,b);
+  int expResult=2;
+  int result=hmm.numStates();
+  assertEquals(expResult,result);
+}

@@ -1,0 +1,3 @@
+TrellisNode[][] trellis
+double[] scaling
+int[] label

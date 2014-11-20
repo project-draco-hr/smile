@@ -1,0 +1,14 @@
+{
+  if (shape <= 0) {
+    throw new IllegalArgumentException("Invalid shape: " + shape);
+  }
+  if (scale <= 0) {
+    throw new IllegalArgumentException("Invalid scale: " + scale);
+  }
+  theta=scale;
+  k=shape;
+  logTheta=Math.log(theta);
+  thetaGammaK=theta * Gamma.gamma(k);
+  logGammaK=Gamma.logGamma(k);
+  entropy=k + Math.log(theta) + Gamma.logGamma(k)+ (1 - k) * Gamma.digamma(k);
+}

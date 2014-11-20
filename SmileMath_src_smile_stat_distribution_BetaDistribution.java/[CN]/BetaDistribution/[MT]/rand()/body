@@ -1,0 +1,6 @@
+{
+  if (rng == null) {
+    rng=new RejectionLogLogistic();
+  }
+  return rng.rand();
+}

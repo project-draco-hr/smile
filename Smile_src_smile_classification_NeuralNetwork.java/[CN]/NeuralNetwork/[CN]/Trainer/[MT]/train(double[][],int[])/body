@@ -1,0 +1,11 @@
+{
+  NeuralNetwork net=new NeuralNetwork(errorFunction,activationFunction,numUnits);
+  net.setLearningRate(eta);
+  net.setMomentum(alpha);
+  net.setWeightDecay(lambda);
+  for (int i=1; i <= epochs; i++) {
+    net.learn(x,y);
+    System.out.format("Neural network learning done epoch %d\n",i);
+  }
+  return net;
+}

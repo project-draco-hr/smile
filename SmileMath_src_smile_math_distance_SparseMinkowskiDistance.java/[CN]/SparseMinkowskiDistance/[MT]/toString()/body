@@ -1,0 +1,3 @@
+{
+  return String.format("Minkowski distance (p = %d)",p);
+}

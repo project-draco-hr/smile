@@ -1,0 +1,11 @@
+{
+  int m=x[0];
+  int which=0;
+  for (int i=1; i < x.length; i++) {
+    if (x[i] > m) {
+      m=x[i];
+      which=i;
+    }
+  }
+  return which;
+}

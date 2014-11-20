@@ -1,0 +1,3 @@
+{
+  return String.format("Weibull Distribution(%.4f, %.4f)",shape,scale);
+}

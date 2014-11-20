@@ -1,0 +1,7 @@
+Node node
+double[][] centroids
+int[] candidates
+int k
+double[][] sums
+int[] counts
+int[] membership

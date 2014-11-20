@@ -1,0 +1,27 @@
+{
+  if (equalVariance) {
+    int n1=x.length;
+    int n2=y.length;
+    double mu1=Math.mean(x);
+    double var1=Math.var(x);
+    double mu2=Math.mean(y);
+    double var2=Math.var(y);
+    int df=n1 + n2 - 2;
+    double svar=((n1 - 1) * var1 + (n2 - 1) * var2) / df;
+    double t=(mu1 - mu2) / Math.sqrt(svar * (1.0 / n1 + 1.0 / n2));
+    double p=Beta.regularizedIncompleteBetaFunction(0.5 * df,0.5,df / (df + t * t));
+    return new TTest(t,df,p);
+  }
+ else {
+    int n1=x.length;
+    int n2=y.length;
+    double mu1=Math.mean(x);
+    double var1=Math.var(x);
+    double mu2=Math.mean(y);
+    double var2=Math.var(y);
+    double df=Math.sqr(var1 / n1 + var2 / n2) / (Math.sqr(var1 / n1) / (n1 - 1) + Math.sqr(var2 / n2) / (n2 - 1));
+    double t=(mu1 - mu2) / Math.sqrt(var1 / n1 + var2 / n2);
+    double p=Beta.regularizedIncompleteBetaFunction(0.5 * df,0.5,df / (df + t * t));
+    return new TTest(t,df,p);
+  }
+}

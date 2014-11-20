@@ -1,0 +1,3 @@
+{
+  return "Adjusted Rand Index";
+}

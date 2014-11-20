@@ -1,0 +1,4 @@
+IMatrix A
+double[] v
+double tol
+int maxIter

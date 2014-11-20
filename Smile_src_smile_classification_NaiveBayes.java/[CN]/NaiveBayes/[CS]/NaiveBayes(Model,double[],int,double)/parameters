@@ -1,0 +1,4 @@
+Model model
+double[] priori
+int p
+double sigma

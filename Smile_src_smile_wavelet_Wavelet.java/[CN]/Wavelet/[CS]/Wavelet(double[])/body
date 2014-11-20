@@ -1,0 +1,13 @@
+{
+  if (coefficients != null) {
+    ncof=coefficients.length;
+    ioff=joff=-(ncof >> 1);
+    cc=coefficients;
+    double sig=-1.0;
+    cr=new double[ncof];
+    for (int i=0; i < ncof; i++) {
+      cr[ncof - 1 - i]=sig * cc[i];
+      sig=-sig;
+    }
+  }
+}

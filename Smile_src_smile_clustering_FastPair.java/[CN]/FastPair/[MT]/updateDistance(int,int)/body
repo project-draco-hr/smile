@@ -1,0 +1,17 @@
+{
+  double d=d(p,q);
+  if (d < distance[p]) {
+    distance[p]=q;
+    neighbor[p]=q;
+  }
+ else   if (neighbor[p] == q && d > distance[p]) {
+    findNeighbor(p);
+  }
+  if (d < distance[q]) {
+    distance[q]=p;
+    neighbor[q]=p;
+  }
+ else   if (neighbor[q] == p && d > distance[q]) {
+    findNeighbor(q);
+  }
+}

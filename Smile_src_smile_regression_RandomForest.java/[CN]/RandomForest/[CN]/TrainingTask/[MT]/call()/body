@@ -1,0 +1,19 @@
+{
+  int n=x.length;
+  Random random=new Random(Thread.currentThread().getId() * System.currentTimeMillis());
+  int[] samples=new int[n];
+  for (int i=0; i < n; i++) {
+    samples[random.nextInt(n)]++;
+  }
+  RegressionTree tree=new RegressionTree(attributes,x,y,M,S,order,samples);
+  for (int i=0; i < n; i++) {
+    if (samples[i] == 0) {
+      double pred=tree.predict(x[i]);
+synchronized (x[i]) {
+        prediction[i]+=pred;
+        oob[i]++;
+      }
+    }
+  }
+  return tree;
+}

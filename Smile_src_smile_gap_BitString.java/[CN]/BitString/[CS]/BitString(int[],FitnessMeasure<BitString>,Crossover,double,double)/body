@@ -1,0 +1,8 @@
+{
+  this.bits=bits;
+  this.length=bits.length;
+  this.measure=measure;
+  this.crossoverRate=crossoverRate;
+  this.mutationRate=mutationRate;
+  this.crossover=crossover;
+}

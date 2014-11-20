@@ -1,0 +1,18 @@
+{
+  this.nbuf=nbuf;
+  nq=251;
+  nt=0;
+  nd=0;
+  q0=1.e99;
+  qm=-1.e99;
+  pval=new double[nq];
+  dbuf=new double[nbuf];
+  qile=new double[nq];
+  for (int j=85; j <= 165; j++) {
+    pval[j]=(j - 75.) / 100.;
+  }
+  for (int j=84; j >= 0; j--) {
+    pval[j]=0.87191909 * pval[j + 1];
+    pval[250 - j]=1. - pval[j];
+  }
+}

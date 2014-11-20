@@ -1,0 +1,6 @@
+{
+  this.svm=svm;
+  this.x=x;
+  this.y=y;
+  this.weight=weight;
+}

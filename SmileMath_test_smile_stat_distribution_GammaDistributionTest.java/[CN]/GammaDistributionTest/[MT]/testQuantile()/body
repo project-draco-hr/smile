@@ -1,0 +1,13 @@
+{
+  System.out.println("quantile");
+  GammaDistribution instance=new GammaDistribution(3,2.1);
+  instance.rand();
+  assertEquals(0.4001201,instance.quantile(0.001),1E-7);
+  assertEquals(0.9156948,instance.quantile(0.01),1E-7);
+  assertEquals(2.314337,instance.quantile(0.1),1E-6);
+  assertEquals(3.223593,instance.quantile(0.2),1E-6);
+  assertEquals(5.615527,instance.quantile(0.5),1E-6);
+  assertEquals(11.17687,instance.quantile(0.9),1E-5);
+  assertEquals(17.65249,instance.quantile(0.99),1E-5);
+  assertEquals(23.58063,instance.quantile(0.999),1E-5);
+}

@@ -1,0 +1,20 @@
+{
+  if (lambda > 2E9) {
+    throw new IllegalArgumentException("Too large lambda for random number generator.");
+  }
+  if (lambda == 0) {
+    return 0;
+  }
+  if (lambda < 1.E-6) {
+    return tinyLambdaRand(lambda);
+  }
+  if (rng == null) {
+    if (lambda < 20) {
+      rng=new ModeSearch();
+    }
+ else {
+      rng=new Patchwork();
+    }
+  }
+  return rng.rand();
+}

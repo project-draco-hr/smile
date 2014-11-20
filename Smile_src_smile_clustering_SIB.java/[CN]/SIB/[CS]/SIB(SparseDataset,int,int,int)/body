@@ -1,0 +1,41 @@
+{
+  if (k < 2) {
+    throw new IllegalArgumentException("Invalid number of clusters: " + k);
+  }
+  if (maxIter <= 0) {
+    throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
+  }
+  if (runs <= 0) {
+    throw new IllegalArgumentException("Invalid number of runs: " + runs);
+  }
+  List<SIBThread> tasks=new ArrayList<SIBThread>();
+  for (int i=0; i < runs; i++) {
+    tasks.add(new SIBThread(data,k,maxIter));
+  }
+  SIB best=null;
+  try {
+    List<SIB> clusters=MulticoreExecutor.run(tasks);
+    best=clusters.get(0);
+    for (int i=1; i < runs; i++) {
+      SIB sib=clusters.get(i);
+      if (sib.distortion < best.distortion) {
+        best=sib;
+      }
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+    best=new SIB(data,k,maxIter);
+    for (int i=1; i < runs; i++) {
+      SIB sib=new SIB(data,k,maxIter);
+      if (sib.distortion < best.distortion) {
+        best=sib;
+      }
+    }
+  }
+  this.k=best.k;
+  this.distortion=best.distortion;
+  this.centroids=best.centroids;
+  this.y=best.y;
+  this.size=best.size;
+}

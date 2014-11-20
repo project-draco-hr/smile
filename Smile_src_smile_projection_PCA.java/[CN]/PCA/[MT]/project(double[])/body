@@ -1,0 +1,9 @@
+{
+  if (x.length != n) {
+    throw new IllegalArgumentException(String.format("Invalid input vector size: %d, expected: %d",x.length,n));
+  }
+  double[] y=new double[p];
+  Math.ax(projection,x,y);
+  Math.minus(y,pmu);
+  return y;
+}

@@ -1,0 +1,9 @@
+{
+  m=x1.length;
+  this.x1=x1;
+  yv=new double[m];
+  srp=new CubicSplineInterpolation1D[m];
+  for (int i=0; i < m; i++) {
+    srp[i]=new CubicSplineInterpolation1D(x2,y[i]);
+  }
+}

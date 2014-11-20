@@ -1,0 +1,3 @@
+ErrorFunction error
+ActivationFunction activation
+int numUnits

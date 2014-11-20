@@ -1,0 +1,6 @@
+{
+  if (data.length > size()) {
+    double[] tmp=toArray();
+    data=tmp;
+  }
+}

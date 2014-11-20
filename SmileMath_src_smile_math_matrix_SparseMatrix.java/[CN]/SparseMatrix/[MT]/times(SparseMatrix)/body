@@ -1,0 +1,42 @@
+{
+  if (ncols != B.nrows) {
+    throw new IllegalArgumentException(String.format("Matrix dimensions do not match for matrix multiplication: %d x %d vs %d x %d",nrows(),ncols(),B.nrows(),B.ncols()));
+  }
+  int m=nrows;
+  int anz=size();
+  int n=B.ncols;
+  int[] Bp=B.colIndex;
+  int[] Bi=B.rowIndex;
+  double[] Bx=B.x;
+  int bnz=Bp[n];
+  int[] w=new int[m];
+  double[] abj=new double[m];
+  int nzmax=Math.max(anz + bnz,m);
+  SparseMatrix C=new SparseMatrix(m,n,nzmax);
+  int[] Cp=C.colIndex;
+  int[] Ci=C.rowIndex;
+  double[] Cx=C.x;
+  int nz=0;
+  for (int j=0; j < n; j++) {
+    if (nz + m > nzmax) {
+      nzmax=2 * nzmax + m;
+      double[] Cx2=new double[nzmax];
+      int[] Ci2=new int[nzmax];
+      System.arraycopy(Ci,0,Ci2,0,nz);
+      System.arraycopy(Cx,0,Cx2,0,nz);
+      Ci=Ci2;
+      Cx=Cx2;
+      C.rowIndex=Ci;
+      C.x=Cx;
+    }
+    Cp[j]=nz;
+    for (int p=Bp[j]; p < Bp[j + 1]; p++) {
+      nz=scatter(this,Bi[p],Bx[p],w,abj,j + 1,C,nz);
+    }
+    for (int p=Cp[j]; p < nz; p++) {
+      Cx[p]=abj[Ci[p]];
+    }
+  }
+  Cp[n]=nz;
+  return C;
+}

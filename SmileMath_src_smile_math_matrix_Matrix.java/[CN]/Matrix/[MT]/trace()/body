@@ -1,0 +1,8 @@
+{
+  int n=Math.min(A.length,A[0].length);
+  double t=0.0;
+  for (int i=0; i < n; i++) {
+    t+=A[i][i];
+  }
+  return t;
+}

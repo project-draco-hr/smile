@@ -1,0 +1,5 @@
+int[] bits
+FitnessMeasure<BitString> measure
+Crossover crossover
+double crossoverRate
+double mutationRate

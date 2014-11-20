@@ -1,0 +1,13 @@
+{
+  if (key.length != data.length) {
+    throw new IllegalArgumentException("The array size of keys and data are different.");
+  }
+  this.keys=key;
+  this.data=data;
+  int n=key.length;
+  index=new int[n];
+  for (int i=0; i < n; i++) {
+    index[i]=i;
+  }
+  root=buildNode(0,n);
+}

@@ -1,0 +1,3 @@
+{
+  return evolve(generation,Double.POSITIVE_INFINITY);
+}

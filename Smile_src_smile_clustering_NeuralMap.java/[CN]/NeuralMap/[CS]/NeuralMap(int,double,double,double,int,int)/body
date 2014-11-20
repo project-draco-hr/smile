@@ -1,0 +1,7 @@
+{
+  this.d=d;
+  this.r=r;
+  this.epsBest=epsBest;
+  this.epsNeighbor=epsNeighbor;
+  lsh=new LSH(L,k,4 * r);
+}

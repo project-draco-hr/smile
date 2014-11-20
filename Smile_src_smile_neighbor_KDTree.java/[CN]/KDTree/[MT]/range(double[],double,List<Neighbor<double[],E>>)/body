@@ -1,0 +1,6 @@
+{
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  search(q,root,radius,neighbors);
+}

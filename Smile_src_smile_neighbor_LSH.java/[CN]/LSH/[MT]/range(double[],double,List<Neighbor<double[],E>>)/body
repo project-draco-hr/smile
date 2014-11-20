@@ -1,0 +1,35 @@
+{
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  IntArrayList candidates=new IntArrayList();
+  for (  Hash h : hash) {
+    BucketEntry bucket=h.get(q);
+    if (bucket != null) {
+      int m=bucket.entry.size();
+      for (int i=0; i < m; i++) {
+        int index=bucket.entry.get(i);
+        candidates.add(index);
+      }
+    }
+  }
+  int[] cand=candidates.toArray();
+  Arrays.sort(cand);
+  int prev=-1;
+  for (  int index : cand) {
+    if (index == prev) {
+      continue;
+    }
+ else {
+      prev=index;
+    }
+    double[] key=keys.get(index);
+    if (q == key && identicalExcluded) {
+      continue;
+    }
+    double distance=Math.distance(q,key);
+    if (distance <= radius) {
+      neighbors.add(new Neighbor<double[],E>(key,data.get(index),index,distance));
+    }
+  }
+}

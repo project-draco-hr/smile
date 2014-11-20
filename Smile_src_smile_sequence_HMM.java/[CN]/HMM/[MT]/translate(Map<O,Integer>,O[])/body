@@ -1,0 +1,16 @@
+{
+  if (symbols == null) {
+    throw new IllegalArgumentException("No availabe emission symbol list.");
+  }
+  int[] seq=new int[o.length];
+  for (int i=0; i < o.length; i++) {
+    Integer sym=symbols.get(o[i]);
+    if (sym != null) {
+      seq[i]=sym;
+    }
+ else {
+      throw new IllegalArgumentException("Invalid observation symbol: " + o[i]);
+    }
+  }
+  return seq;
+}

@@ -1,0 +1,4 @@
+{
+  if (q < 2)   throw new IllegalArgumentException(String.format("The size of q-ary alphabet has to be larger than 1: q = %d",q));
+  this.q=q;
+}

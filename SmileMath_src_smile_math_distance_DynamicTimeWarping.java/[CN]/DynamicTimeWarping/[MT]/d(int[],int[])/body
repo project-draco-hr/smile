@@ -1,0 +1,27 @@
+{
+  int n1=x1.length;
+  int n2=x2.length;
+  double[][] table=new double[2][n2 + 1];
+  table[0][0]=0;
+  for (int i=1; i <= n2; i++) {
+    table[0][i]=Double.POSITIVE_INFINITY;
+  }
+  for (int i=1; i <= n1; i++) {
+    table[1][0]=Double.POSITIVE_INFINITY;
+    for (int j=1; j <= n2; j++) {
+      double cost=Math.abs(x1[i - 1] - x2[j - 1]);
+      double min=table[0][j - 1];
+      if (min > table[0][j]) {
+        min=table[0][j];
+      }
+      if (min > table[1][j - 1]) {
+        min=table[1][j - 1];
+      }
+      table[1][j]=cost + min;
+    }
+    double[] swap=table[0];
+    table[0]=table[1];
+    table[1]=swap;
+  }
+  return table[0][n2];
+}

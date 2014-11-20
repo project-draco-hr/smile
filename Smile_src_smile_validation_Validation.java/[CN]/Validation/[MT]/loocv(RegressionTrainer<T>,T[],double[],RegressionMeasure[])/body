@@ -1,0 +1,17 @@
+{
+  int n=x.length;
+  double[] predictions=new double[n];
+  LOOCV loocv=new LOOCV(n);
+  for (int i=0; i < n; i++) {
+    T[] trainx=Math.slice(x,loocv.train[i]);
+    double[] trainy=Math.slice(y,loocv.train[i]);
+    Regression<T> model=trainer.train(trainx,trainy);
+    predictions[loocv.test[i]]=model.predict(x[loocv.test[i]]);
+  }
+  int m=measures.length;
+  double[] results=new double[m];
+  for (int i=0; i < m; i++) {
+    results[i]=measures[i].measure(y,predictions);
+  }
+  return results;
+}

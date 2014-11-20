@@ -1,0 +1,7 @@
+{
+  double norm=0.0;
+  for (  double n : x) {
+    norm+=Math.abs(n);
+  }
+  return norm;
+}

@@ -1,0 +1,11 @@
+{
+  System.out.println("logP");
+  ChiSquareDistribution instance=new ChiSquareDistribution(20);
+  instance.rand();
+  assertEquals(Math.log(2.559896e-18),instance.logp(0.1),1E-5);
+  assertEquals(Math.log(1.632262e-09),instance.logp(1),1E-5);
+  assertEquals(Math.log(0.01813279),instance.logp(10),1E-5);
+  assertEquals(Math.log(0.0625550),instance.logp(20),1E-5);
+  assertEquals(Math.log(7.2997e-05),instance.logp(50),1E-5);
+  assertEquals(Math.log(5.190544e-13),instance.logp(100),1E-5);
+}

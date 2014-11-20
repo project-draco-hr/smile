@@ -1,0 +1,5 @@
+double[][] x
+int[] y
+double[] priori
+double alpha
+double tol

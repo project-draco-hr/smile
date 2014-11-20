@@ -1,0 +1,25 @@
+{
+  int n=a.length;
+  int inc=1;
+  do {
+    inc*=3;
+    inc++;
+  }
+ while (inc <= n);
+  do {
+    inc/=3;
+    for (int i=inc; i < n; i++) {
+      int v=a[i];
+      int j=i;
+      while (a[j - inc] > v) {
+        a[j]=a[j - inc];
+        j-=inc;
+        if (j < inc) {
+          break;
+        }
+      }
+      a[j]=v;
+    }
+  }
+ while (inc > 1);
+}

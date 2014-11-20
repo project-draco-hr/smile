@@ -1,0 +1,4 @@
+ArrayList<DistanceSet> pointSet
+ArrayList<DistanceSet> newPointSet
+E newPoint
+int maxScale

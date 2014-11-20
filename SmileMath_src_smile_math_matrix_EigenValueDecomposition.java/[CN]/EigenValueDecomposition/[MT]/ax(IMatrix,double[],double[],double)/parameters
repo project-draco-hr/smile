@@ -1,0 +1,4 @@
+IMatrix A
+double[] x
+double[] y
+double p

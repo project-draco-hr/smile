@@ -1,0 +1,19 @@
+{
+  System.out.println("cv");
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(4);
+  try {
+    AttributeDataset iris=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/iris.arff"));
+    double[][] x=iris.toArray(new double[iris.size()][]);
+    int[] y=iris.toArray(new int[iris.size()]);
+    ClassifierTrainer<double[]> trainer=new LDA.Trainer();
+    ClassificationMeasure[] measures={new Accuracy()};
+    double[] results=Validation.cv(10,trainer,x,y,measures);
+    for (int i=0; i < measures.length; i++) {
+      System.out.println(measures[i] + " = " + results[i]);
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

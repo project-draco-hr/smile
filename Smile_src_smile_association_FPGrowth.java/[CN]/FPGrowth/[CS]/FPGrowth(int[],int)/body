@@ -1,0 +1,4 @@
+{
+  this.minSupport=minSupport;
+  T0=new FPTree(frequency,minSupport);
+}

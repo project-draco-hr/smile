@@ -1,0 +1,11 @@
+{
+  StringBuilder sb=new StringBuilder();
+  for (int i=0; i < items.length; i++) {
+    sb.append(items[i]);
+    sb.append(' ');
+  }
+  sb.append('(');
+  sb.append(support);
+  sb.append(')');
+  return sb.toString();
+}

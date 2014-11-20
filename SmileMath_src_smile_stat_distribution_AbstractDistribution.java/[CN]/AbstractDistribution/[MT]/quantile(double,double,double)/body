@@ -1,0 +1,3 @@
+{
+  return quantile(p,xmin,xmax,1.0E-6);
+}

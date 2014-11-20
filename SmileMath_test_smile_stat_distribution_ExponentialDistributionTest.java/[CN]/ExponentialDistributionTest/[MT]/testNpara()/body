@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  ExponentialDistribution instance=new ExponentialDistribution(1.0);
+  instance.rand();
+  assertEquals(1,instance.npara());
+}

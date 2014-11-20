@@ -1,0 +1,7 @@
+{
+  if (lambda < 0.0) {
+    throw new IllegalArgumentException("Invalid lambda: " + lambda);
+  }
+  this.lambda=lambda;
+  entropy=(Math.log(2 * Math.PI * Math.E) + Math.log(lambda)) / 2 - 1 / (12 * lambda) - 1 / (24 * lambda * lambda) - 19 / (360 * lambda * lambda* lambda);
+}

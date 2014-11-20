@@ -1,0 +1,17 @@
+{
+  if (x.taxonomy != y.taxonomy) {
+    throw new IllegalArgumentException("Concepts are not from the same taxonomy.");
+  }
+  List<Concept> xPath=x.getPathFromRoot();
+  List<Concept> yPath=y.getPathFromRoot();
+  Iterator<Concept> xIter=xPath.iterator();
+  Iterator<Concept> yIter=yPath.iterator();
+  int depth=0;
+  while (xIter.hasNext() && yIter.hasNext()) {
+    if (xIter.next() != yIter.next()) {
+      break;
+    }
+    depth++;
+  }
+  return xPath.size() - depth + yPath.size() - depth;
+}

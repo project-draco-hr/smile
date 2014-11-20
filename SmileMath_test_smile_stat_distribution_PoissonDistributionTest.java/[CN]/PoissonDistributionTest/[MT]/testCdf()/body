@@ -1,0 +1,14 @@
+{
+  System.out.println("cdf");
+  PoissonDistribution instance=new PoissonDistribution(3.5);
+  instance.rand();
+  assertEquals(0,instance.cdf(-1),1E-7);
+  assertEquals(0.03019738,instance.cdf(0),1E-7);
+  assertEquals(0.1358882,instance.cdf(1),1E-7);
+  assertEquals(0.3208472,instance.cdf(2),1E-7);
+  assertEquals(0.5366327,instance.cdf(3),1E-7);
+  assertEquals(0.725445,instance.cdf(4),1E-6);
+  assertEquals(0.9989806,instance.cdf(10),1E-6);
+  assertEquals(0.999999,instance.cdf(15),1E-6);
+  assertEquals(1.000000,instance.cdf(20),1E-6);
+}

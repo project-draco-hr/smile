@@ -1,0 +1,23 @@
+{
+  for (int i=0; i < data.length; i++) {
+    int n=0;
+    double sum=0.0;
+    for (    double x : data[i]) {
+      if (!Double.isNaN(x)) {
+        n++;
+        sum+=x;
+      }
+    }
+    if (n == 0) {
+      throw new MissingValueImputationException("The whole row " + i + " is missing");
+    }
+    if (n < data[i].length) {
+      double avg=sum / n;
+      for (int j=0; j < data[i].length; j++) {
+        if (Double.isNaN(data[i][j])) {
+          data[i][j]=avg;
+        }
+      }
+    }
+  }
+}

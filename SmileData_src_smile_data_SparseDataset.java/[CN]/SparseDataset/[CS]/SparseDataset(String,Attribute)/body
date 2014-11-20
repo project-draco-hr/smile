@@ -1,0 +1,6 @@
+{
+  this.name=name;
+  this.response=response;
+  numColumns=0;
+  colSize=new int[100];
+}

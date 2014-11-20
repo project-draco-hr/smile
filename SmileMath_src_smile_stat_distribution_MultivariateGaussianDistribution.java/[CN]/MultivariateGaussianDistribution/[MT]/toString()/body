@@ -1,0 +1,17 @@
+{
+  StringBuilder builder=new StringBuilder("Multivariate Gaussian Distribution:\nmu = [");
+  for (int i=0; i < mu.length; i++) {
+    builder.append(mu[i]).append(" ");
+  }
+  builder.setCharAt(builder.length() - 1,']');
+  builder.append("\nSigma = [\n");
+  for (int i=0; i < sigma.length; i++) {
+    builder.append('\t');
+    for (int j=0; j < sigma[i].length; j++) {
+      builder.append(sigma[i][j]).append(" ");
+    }
+    builder.append('\n');
+  }
+  builder.append("\t]");
+  return builder.toString();
+}

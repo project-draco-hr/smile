@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  GaussianDistribution instance=new GaussianDistribution(3.0,2.0);
+  instance.rand();
+  assertEquals(2,instance.npara());
+}

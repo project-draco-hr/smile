@@ -1,0 +1,10 @@
+{
+  if (n < 0) {
+    throw new IllegalArgumentException("n has to be nonnegative.");
+  }
+  double f=1.0;
+  for (int i=2; i <= n; i++) {
+    f*=i;
+  }
+  return f;
+}

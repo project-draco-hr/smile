@@ -1,0 +1,12 @@
+{
+  if (sigma == 0) {
+    if (x == mu) {
+      return 0.0;
+    }
+ else {
+      return Double.NEGATIVE_INFINITY;
+    }
+  }
+  double d=x - mu;
+  return -0.5 * d * d / variance - pdfConstant;
+}

@@ -1,0 +1,13 @@
+{
+  if (x.length < 2) {
+    throw new IllegalArgumentException("Array length is less than 2.");
+  }
+  double sum=0.0;
+  double sumsq=0.0;
+  for (  float xi : x) {
+    sum+=xi;
+    sumsq+=xi * xi;
+  }
+  int n=x.length - 1;
+  return sumsq / n - (sum / x.length) * (sum / n);
+}

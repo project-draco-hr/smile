@@ -1,0 +1,10 @@
+{
+  if (x < 0.0) {
+    throw new IllegalArgumentException("Invalid x: " + x);
+  }
+  if (x == 0.0) {
+    return 0.0;
+  }
+  double t=(Math.log(x) - mu) / sigma;
+  return (0.398942280401432678 / (sigma * x)) * Math.exp(-0.5 * t * t);
+}

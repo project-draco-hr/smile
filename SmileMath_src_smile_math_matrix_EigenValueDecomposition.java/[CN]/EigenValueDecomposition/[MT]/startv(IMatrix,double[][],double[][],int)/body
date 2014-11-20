@@ -1,0 +1,37 @@
+{
+  double rnm=Math.dot(wptr[0],wptr[0]);
+  double[] r=wptr[0];
+  for (int id=0; id < 3; id++) {
+    if (id > 0 || step > 0 || rnm == 0) {
+      for (int i=0; i < r.length; i++) {
+        r[i]=Math.random();
+      }
+    }
+    Math.copy(wptr[0],wptr[3]);
+    A.ax(wptr[3],wptr[0]);
+    Math.copy(wptr[0],wptr[3]);
+    rnm=Math.dot(wptr[0],wptr[3]);
+    if (rnm > 0.0) {
+      break;
+    }
+  }
+  if (rnm <= 0.0) {
+    System.err.println("Lanczos method was unable to find a starting vector within range.");
+    return -1;
+  }
+  if (step > 0) {
+    for (int i=0; i < step; i++) {
+      double t=Math.dot(wptr[3],q[i]);
+      Math.axpy(-t,q[i],wptr[0]);
+    }
+    double t=Math.dot(wptr[4],wptr[0]);
+    Math.axpy(-t,wptr[2],wptr[0]);
+    Math.copy(wptr[0],wptr[3]);
+    t=Math.dot(wptr[3],wptr[0]);
+    if (t <= Math.EPSILON * rnm) {
+      t=0.0;
+    }
+    rnm=t;
+  }
+  return Math.sqrt(rnm);
+}

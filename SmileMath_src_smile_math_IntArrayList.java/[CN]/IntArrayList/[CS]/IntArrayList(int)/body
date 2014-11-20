@@ -1,0 +1,4 @@
+{
+  data=new int[capacity];
+  size=0;
+}

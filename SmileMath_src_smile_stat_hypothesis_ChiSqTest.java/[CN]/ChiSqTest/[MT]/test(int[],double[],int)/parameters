@@ -1,0 +1,3 @@
+int[] bins
+double[] prob
+int constraints

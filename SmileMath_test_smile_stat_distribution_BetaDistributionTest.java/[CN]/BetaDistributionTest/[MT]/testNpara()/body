@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(2,instance.npara());
+}

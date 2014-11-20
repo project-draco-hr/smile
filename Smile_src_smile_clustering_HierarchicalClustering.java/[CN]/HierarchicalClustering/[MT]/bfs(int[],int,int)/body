@@ -1,0 +1,26 @@
+{
+  int n=merge.length + 1;
+  Queue<Integer> queue=new LinkedList<Integer>();
+  queue.offer(cluster);
+  for (Integer i=queue.poll(); i != null; i=queue.poll()) {
+    if (i < n) {
+      membership[i]=id;
+      continue;
+    }
+    i-=n;
+    int m1=merge[i][0];
+    if (m1 >= n) {
+      queue.offer(m1);
+    }
+ else {
+      membership[m1]=id;
+    }
+    int m2=merge[i][1];
+    if (m2 >= n) {
+      queue.offer(m2);
+    }
+ else {
+      membership[m2]=id;
+    }
+  }
+}

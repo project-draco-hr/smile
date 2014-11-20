@@ -1,0 +1,10 @@
+{
+  if (nrows() != ncols()) {
+    throw new UnsupportedOperationException("The matrix is not square.");
+  }
+  if (lu == null) {
+    lu=new LUDecomposition(A);
+    det=lu.det();
+  }
+  return lu;
+}

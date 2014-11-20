@@ -1,0 +1,39 @@
+{
+  int n=data.length;
+  int index=Math.randomInt(k);
+  T medoid=null;
+  boolean dup;
+  do {
+    dup=false;
+    medoid=data[Math.randomInt(n)];
+    for (int i=0; i < k; i++) {
+      if (medoid == medoids[i]) {
+        dup=true;
+        break;
+      }
+    }
+  }
+ while (dup);
+  medoids[index]=medoid;
+  for (int i=0; i < n; i++) {
+    double dist=distance.d(data[i],medoid);
+    if (d[i] > dist) {
+      y[i]=index;
+      d[i]=dist;
+    }
+ else     if (y[i] == index) {
+      d[i]=dist;
+      y[i]=index;
+      for (int j=0; j < k; j++) {
+        if (j != index) {
+          dist=distance.d(data[i],medoids[j]);
+          if (d[i] > dist) {
+            y[i]=j;
+            d[i]=dist;
+          }
+        }
+      }
+    }
+  }
+  return Math.sum(d);
+}

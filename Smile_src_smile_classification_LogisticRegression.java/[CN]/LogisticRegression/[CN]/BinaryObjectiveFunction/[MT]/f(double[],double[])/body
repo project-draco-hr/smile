@@ -1,0 +1,47 @@
+{
+  double f=Double.NaN;
+  int p=w.length - 1;
+  Arrays.fill(g,0.0);
+  if (gtasks != null) {
+    for (    GTask task : gtasks) {
+      task.w=w;
+    }
+    try {
+      f=0.0;
+      for (      double[] gi : MulticoreExecutor.run(gtasks)) {
+        f+=gi[w.length];
+        for (int i=0; i < w.length; i++) {
+          g[i]+=gi[i];
+        }
+      }
+    }
+ catch (    Exception ex) {
+      System.err.println(ex);
+      f=Double.NaN;
+    }
+  }
+  if (Double.isNaN(f)) {
+    f=0.0;
+    int n=x.length;
+    for (int i=0; i < n; i++) {
+      double wx=dot(x[i],w);
+      f+=log1pe(wx) - y[i] * wx;
+      double yi=y[i] - Math.logistic(wx);
+      for (int j=0; j < p; j++) {
+        g[j]-=yi * x[i][j];
+      }
+      g[p]-=yi;
+    }
+  }
+  if (lambda != 0.0) {
+    double w2=0.0;
+    for (int i=0; i < p; i++) {
+      w2+=w[i] * w[i];
+    }
+    f+=0.5 * lambda * w2;
+    for (int j=0; j < p; j++) {
+      g[j]+=lambda * w[j];
+    }
+  }
+  return f;
+}

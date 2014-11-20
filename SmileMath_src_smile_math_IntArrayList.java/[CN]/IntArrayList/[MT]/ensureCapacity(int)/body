@@ -1,0 +1,8 @@
+{
+  if (capacity > data.length) {
+    int newCap=Math.max(data.length << 1,capacity);
+    int[] tmp=new int[newCap];
+    System.arraycopy(data,0,tmp,0,data.length);
+    data=tmp;
+  }
+}

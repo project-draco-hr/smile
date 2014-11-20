@@ -1,0 +1,22 @@
+{
+  if (x.length() < y.length()) {
+    String swap=x;
+    x=y;
+    y=swap;
+  }
+  int[][] d=new int[2][y.length() + 1];
+  for (int j=0; j <= y.length(); j++) {
+    d[0][j]=j;
+  }
+  for (int i=1; i <= x.length(); i++) {
+    d[1][0]=i;
+    for (int j=1; j <= y.length(); j++) {
+      int cost=x.charAt(i - 1) == y.charAt(j - 1) ? 0 : 1;
+      d[1][j]=Math.min(d[0][j] + 1,d[1][j - 1] + 1,d[0][j - 1] + cost);
+    }
+    int[] swap=d[0];
+    d[0]=d[1];
+    d[1]=swap;
+  }
+  return d[0][y.length()];
+}

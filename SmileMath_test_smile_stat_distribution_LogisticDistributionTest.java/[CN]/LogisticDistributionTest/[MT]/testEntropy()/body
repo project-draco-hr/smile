@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  LogisticDistribution instance=new LogisticDistribution(2.0,1.0);
+  instance.rand();
+  assertEquals(2.0,instance.mean(),1E-7);
+}

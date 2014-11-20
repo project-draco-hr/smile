@@ -1,0 +1,29 @@
+{
+  System.out.println("isConnected");
+  assertFalse(g1.hasEdge(1,2));
+  assertFalse(g1.hasEdge(1,1));
+  assertTrue(g2.hasEdge(1,2));
+  assertTrue(g2.hasEdge(2,1));
+  assertTrue(g3.hasEdge(1,2));
+  assertTrue(g3.hasEdge(2,1));
+  assertTrue(g3.hasEdge(3,2));
+  assertTrue(g3.hasEdge(2,3));
+  assertTrue(g3.hasEdge(1,3));
+  assertTrue(g3.hasEdge(3,1));
+  assertFalse(g3.hasEdge(4,2));
+  assertFalse(g4.hasEdge(1,4));
+  g4.addEdge(1,4);
+  assertTrue(g4.hasEdge(1,4));
+  assertFalse(g5.hasEdge(1,2));
+  assertFalse(g5.hasEdge(1,1));
+  assertTrue(g6.hasEdge(1,2));
+  assertTrue(g6.hasEdge(2,1));
+  assertTrue(g7.hasEdge(1,2));
+  assertTrue(g7.hasEdge(2,1));
+  assertTrue(g7.hasEdge(3,2));
+  assertTrue(g7.hasEdge(2,3));
+  assertTrue(g7.hasEdge(1,3));
+  assertTrue(g7.hasEdge(3,1));
+  assertFalse(g7.hasEdge(4,2));
+  assertTrue(g8.hasEdge(1,4));
+}

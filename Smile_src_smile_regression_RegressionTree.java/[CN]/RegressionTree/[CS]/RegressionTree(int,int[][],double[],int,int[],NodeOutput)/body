@@ -1,0 +1,43 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (J < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + J);
+  }
+  this.J=J;
+  this.numFeatures=numFeatures;
+  importance=new double[numFeatures];
+  PriorityQueue<SparseBinaryTrainNode> nextSplits=new PriorityQueue<SparseBinaryTrainNode>();
+  int n=0;
+  double sum=0.0;
+  if (samples == null) {
+    n=y.length;
+    samples=new int[n];
+    for (int i=0; i < n; i++) {
+      samples[i]=1;
+      sum+=y[i];
+    }
+  }
+ else {
+    for (int i=0; i < y.length; i++) {
+      n+=samples[i];
+      sum+=samples[i] * y[i];
+    }
+  }
+  root=new Node(sum / n);
+  SparseBinaryTrainNode trainRoot=new SparseBinaryTrainNode(root,x,y,samples);
+  if (trainRoot.findBestSplit()) {
+    nextSplits.add(trainRoot);
+  }
+  for (int leaves=1; leaves < this.J; leaves++) {
+    SparseBinaryTrainNode node=nextSplits.poll();
+    if (node == null) {
+      break;
+    }
+    node.split(nextSplits);
+  }
+  if (output != null) {
+    trainRoot.calculateOutput(output);
+  }
+}

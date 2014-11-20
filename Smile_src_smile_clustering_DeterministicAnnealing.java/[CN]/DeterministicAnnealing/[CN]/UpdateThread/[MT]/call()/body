@@ -1,0 +1,20 @@
+{
+  D=0.0;
+  H=0.0;
+  for (int i=start; i < end; i++) {
+    double p=0.0;
+    for (int j=0; j < k; j++) {
+      dist[j]=Math.squaredDistance(data[i],centroids[j]);
+      posteriori[i][j]=priori[j] * Math.exp(-dist[j] / T);
+      p+=posteriori[i][j];
+    }
+    double r=0.0;
+    for (int j=0; j < k; j++) {
+      posteriori[i][j]/=p;
+      D+=posteriori[i][j] * dist[j];
+      r+=-posteriori[i][j] * Math.log(posteriori[i][j]);
+    }
+    H+=r;
+  }
+  return this;
+}

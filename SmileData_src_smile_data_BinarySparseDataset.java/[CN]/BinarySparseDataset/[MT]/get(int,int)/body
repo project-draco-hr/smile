@@ -1,0 +1,23 @@
+{
+  if (i < 0 || i >= size()) {
+    throw new IllegalArgumentException("Invalid index: i = " + i);
+  }
+  int[] x=get(i).x;
+  if (x.length == 0) {
+    return 0;
+  }
+  int low=0;
+  int high=x.length - 1;
+  int mid=(low + high) / 2;
+  while (j != x[mid] && low <= high) {
+    mid=(low + high) / 2;
+    if (j < x[mid])     high=mid - 1;
+ else     low=mid + 1;
+  }
+  if (j == x[mid]) {
+    return 1;
+  }
+ else {
+    return 0;
+  }
+}

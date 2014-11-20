@@ -1,0 +1,10 @@
+{
+  double sum=0.0;
+  for (  int x : data) {
+    if (x <= 0) {
+      throw new IllegalArgumentException("Invalid value " + x);
+    }
+    sum+=x;
+  }
+  p=data.length / sum;
+}

@@ -1,0 +1,19 @@
+{
+  Neighbor neighbor=new Neighbor(null,Double.MAX_VALUE);
+  for (int i=0; i < hash.length; i++) {
+    int bucket=hash[i].hash(x);
+    LinkedList<Hash.Item> bin=hash[i].table[bucket % H];
+    if (bin != null) {
+      for (      Hash.Item e : bin) {
+        if (e.bucket == bucket) {
+          double distance=Math.distance(x,e.neuron.w);
+          if (distance < neighbor.distance) {
+            neighbor.distance=distance;
+            neighbor.neuron=e.neuron;
+          }
+        }
+      }
+    }
+  }
+  return neighbor;
+}

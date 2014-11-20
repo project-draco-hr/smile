@@ -1,0 +1,3 @@
+KNNSearch<T,T> knn
+int[] y
+int k

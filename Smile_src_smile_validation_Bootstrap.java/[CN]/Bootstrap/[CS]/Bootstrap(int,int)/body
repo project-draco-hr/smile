@@ -1,0 +1,29 @@
+{
+  if (n < 0) {
+    throw new IllegalArgumentException("Invalid sample size: " + n);
+  }
+  if (k < 0) {
+    throw new IllegalArgumentException("Invalid number of bootstrap: " + k);
+  }
+  this.k=k;
+  train=new int[k][n];
+  test=new int[k][];
+  for (int j=0; j < k; j++) {
+    boolean[] hit=new boolean[n];
+    int hits=0;
+    for (int i=0; i < n; i++) {
+      int r=Math.randomInt(n);
+      train[j][i]=r;
+      if (!hit[r]) {
+        hits++;
+        hit[r]=true;
+      }
+    }
+    test[j]=new int[n - hits];
+    for (int i=0, p=0; i < n; i++) {
+      if (!hit[i]) {
+        test[j][p++]=i;
+      }
+    }
+  }
+}

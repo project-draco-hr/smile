@@ -1,0 +1,13 @@
+{
+  double nu=(n + 1) * p;
+  bound=(int)(nu + 11.0 * (Math.sqrt(nu) + 1.0));
+  if (bound > n) {
+    bound=n;
+  }
+  mode=(int)nu;
+  if (mode == nu && p == 0.5) {
+    mode--;
+  }
+  r1=p / (1.0 - p);
+  modeValue=Math.exp(Math.logFactorial(n) - Math.logFactorial(mode) - Math.logFactorial(n - mode) + mode * Math.log(p) + (n - mode) * Math.log(1. - p));
+}

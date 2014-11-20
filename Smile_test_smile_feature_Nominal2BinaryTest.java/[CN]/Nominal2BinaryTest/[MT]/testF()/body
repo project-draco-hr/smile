@@ -1,0 +1,22 @@
+{
+  System.out.println("f");
+  double[][] result={{1.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,1.0},{1.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,1.0,0.0},{0.0,1.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,1.0},{0.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0.0,1.0},{0.0,0.0,1.0,0.0,0.0,1.0,0.0,1.0,0.0,1.0},{0.0,0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0,0.0},{0.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,1.0,0.0},{1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,1.0},{1.0,0.0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,1.0},{0.0,0.0,1.0,0.0,1.0,0.0,0.0,1.0,0.0,1.0},{1.0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1.0,0.0},{0.0,1.0,0.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0},{0.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0},{0.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0}};
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(4);
+  try {
+    AttributeDataset weather=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/weather.nominal.arff"));
+    double[][] x=weather.toArray(new double[weather.size()][]);
+    Nominal2Binary n2b=new Nominal2Binary(weather.attributes());
+    Attribute[] attributes=n2b.attributes();
+    for (int i=0; i < x.length; i++) {
+      double[] y=new double[attributes.length];
+      for (int j=0; j < y.length; j++) {
+        y[j]=n2b.f(x[i],j);
+        assertEquals(result[i][j],y[j],1E-7);
+      }
+    }
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

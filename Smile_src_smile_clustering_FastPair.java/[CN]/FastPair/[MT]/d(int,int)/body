@@ -1,0 +1,4 @@
+{
+  if (i > j)   return proximity[i][j];
+ else   return proximity[j][i];
+}

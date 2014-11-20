@@ -1,0 +1,6 @@
+{
+  if (gaussian == null) {
+    gaussian=new GaussianDistribution(mu,sigma);
+  }
+  return Math.exp(gaussian.rand());
+}

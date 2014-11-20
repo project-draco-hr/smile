@@ -1,0 +1,4 @@
+{
+  this(mixture);
+  EM(components,data);
+}

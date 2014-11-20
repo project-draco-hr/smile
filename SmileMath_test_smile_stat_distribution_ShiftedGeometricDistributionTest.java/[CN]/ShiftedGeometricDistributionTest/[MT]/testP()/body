@@ -1,0 +1,12 @@
+{
+  System.out.println("p");
+  ShiftedGeometricDistribution instance=new ShiftedGeometricDistribution(0.3);
+  instance.rand();
+  assertEquals(0.3,instance.p(1),1E-6);
+  assertEquals(0.21,instance.p(2),1E-6);
+  assertEquals(0.147,instance.p(3),1E-6);
+  assertEquals(0.1029,instance.p(4),1E-6);
+  assertEquals(0.07203,instance.p(5),1E-6);
+  assertEquals(0.008474257,instance.p(11),1E-6);
+  assertEquals(0.0002393768,instance.p(21),1E-6);
+}

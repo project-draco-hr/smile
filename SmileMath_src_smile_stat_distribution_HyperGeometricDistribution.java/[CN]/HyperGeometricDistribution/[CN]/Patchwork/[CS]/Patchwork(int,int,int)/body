@@ -1,0 +1,37 @@
+{
+  super(N,m,n);
+  double Mp, np, p, modef, U;
+  Mp=(double)(m + 1);
+  np=(double)(n + 1);
+  L=N - m - n;
+  p=Mp / (N + 2.);
+  modef=np * p;
+  U=Math.sqrt(modef * (1. - p) * (1. - (n + 2.) / (N + 3.)) + 0.25);
+  int mode=(int)modef;
+  k2=(int)Math.ceil(modef - 0.5 - U);
+  if (k2 >= mode) {
+    k2=mode - 1;
+  }
+  k4=(int)(modef - 0.5 + U);
+  k1=k2 + k2 - mode + 1;
+  k5=k4 + k4 - mode;
+  dl=(double)(k2 - k1);
+  dr=(double)(k5 - k4);
+  r1=(np / (double)k1 - 1.) * (Mp - k1) / (double)(L + k1);
+  r2=(np / (double)k2 - 1.) * (Mp - k2) / (double)(L + k2);
+  r4=(np / (double)(k4 + 1) - 1.) * (m - k4) / (double)(L + k4 + 1);
+  r5=(np / (double)(k5 + 1) - 1.) * (m - k5) / (double)(L + k5 + 1);
+  ll=Math.log(r1);
+  lr=-Math.log(r5);
+  cPm=lnpk(mode,L,m,n);
+  f2=Math.exp(cPm - lnpk(k2,L,m,n));
+  f4=Math.exp(cPm - lnpk(k4,L,m,n));
+  f1=Math.exp(cPm - lnpk(k1,L,m,n));
+  f5=Math.exp(cPm - lnpk(k5,L,m,n));
+  p1=f2 * (dl + 1.);
+  p2=f2 * dl + p1;
+  p3=f4 * (dr + 1.) + p2;
+  p4=f4 * dr + p3;
+  p5=f1 / ll + p4;
+  p6=f5 / lr + p5;
+}

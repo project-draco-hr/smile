@@ -1,0 +1,4 @@
+{
+  if (x - Math.floor(x) != 0)   return 0.0;
+ else   return p((int)x);
+}

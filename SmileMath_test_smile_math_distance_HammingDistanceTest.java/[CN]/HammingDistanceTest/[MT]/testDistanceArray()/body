@@ -1,0 +1,6 @@
+{
+  System.out.println("distance");
+  byte[] x={1,0,1,1,1,0,1};
+  byte[] y={1,0,0,1,0,0,1};
+  assertEquals(2,HammingDistance.d(x,y));
+}

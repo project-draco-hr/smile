@@ -1,0 +1,5 @@
+DifferentiableFunction func
+double x1
+double x2
+double tol
+int maxIter

@@ -1,0 +1,10 @@
+{
+  System.out.println("IntHeapSelect Big");
+  IntHeapSelect instance=new IntHeapSelect(10);
+  for (int i=0; i < 100000000; i++) {
+    instance.add(Math.randomInt(1000000));
+  }
+  for (int j=0; j < 10; j++) {
+    System.out.println(instance.get(j));
+  }
+}

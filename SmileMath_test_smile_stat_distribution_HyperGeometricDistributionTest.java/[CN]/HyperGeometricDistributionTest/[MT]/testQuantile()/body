@@ -1,0 +1,15 @@
+{
+  System.out.println("quantile");
+  HyperGeometricDistribution instance=new HyperGeometricDistribution(100,30,70);
+  instance.rand();
+  assertEquals(0,instance.quantile(0),1E-30);
+  assertEquals(14,instance.quantile(0.001),1E-27);
+  assertEquals(16,instance.quantile(0.01),1E-25);
+  assertEquals(18,instance.quantile(0.1),1E-25);
+  assertEquals(19,instance.quantile(0.2),1E-7);
+  assertEquals(20,instance.quantile(0.3),1E-7);
+  assertEquals(24,instance.quantile(0.9),1E-8);
+  assertEquals(26,instance.quantile(0.99),1E-10);
+  assertEquals(27,instance.quantile(0.999),1E-12);
+  assertEquals(30,instance.quantile(1),1E-6);
+}

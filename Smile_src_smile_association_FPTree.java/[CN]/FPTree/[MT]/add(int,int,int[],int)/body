@@ -1,0 +1,3 @@
+{
+  root.add(index,end,itemset,support);
+}

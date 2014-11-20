@@ -1,0 +1,7 @@
+{
+  System.out.println("getFrequentItemsets");
+  FPGrowth fpgrowth=new FPGrowth(itemsets,3);
+  TotalSupportTree ttree=fpgrowth.buildTotalSupportTree();
+  long n=ttree.getFrequentItemsets(System.out);
+  assertEquals(8,n);
+}

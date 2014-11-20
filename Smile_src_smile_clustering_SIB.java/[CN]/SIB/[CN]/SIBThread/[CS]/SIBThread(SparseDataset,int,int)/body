@@ -1,0 +1,5 @@
+{
+  this.sparse=sparse;
+  this.k=k;
+  this.maxIter=maxIter;
+}

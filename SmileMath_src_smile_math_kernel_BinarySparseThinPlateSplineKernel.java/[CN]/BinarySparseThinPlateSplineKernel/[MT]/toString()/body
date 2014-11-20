@@ -1,0 +1,3 @@
+{
+  return String.format("Sparse Linear Thin Plate Spline Kernel (\u02E0 = %.4f)",sigma);
+}

@@ -1,0 +1,8 @@
+{
+  for (  Entry e : array) {
+    if (e.i == i) {
+      return e.x;
+    }
+  }
+  return 0.0;
+}

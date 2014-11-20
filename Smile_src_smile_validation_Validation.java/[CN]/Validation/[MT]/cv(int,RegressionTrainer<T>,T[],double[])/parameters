@@ -1,0 +1,4 @@
+int k
+RegressionTrainer<T> trainer
+T[] x
+double[] y

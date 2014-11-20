@@ -1,0 +1,3 @@
+{
+  return parse(name,attributes,new File(path));
+}

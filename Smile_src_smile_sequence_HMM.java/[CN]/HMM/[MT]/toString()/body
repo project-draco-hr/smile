@@ -1,0 +1,23 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append(String.format("HMM (%d states, %d emission symbols)\n",numStates,numSymbols));
+  sb.append("\tInitial state probability:\n\t\t");
+  for (int i=0; i < numStates; i++) {
+    sb.append(String.format("%.4g ",pi[i]));
+  }
+  sb.append("\n\tState transition probability:");
+  for (int i=0; i < numStates; i++) {
+    sb.append("\n\t\t");
+    for (int j=0; j < numStates; j++) {
+      sb.append(String.format("%.4g ",a[i][j]));
+    }
+  }
+  sb.append("\n\tSymbol emission probability:");
+  for (int i=0; i < numStates; i++) {
+    sb.append("\n\t\t");
+    for (int j=0; j < numSymbols; j++) {
+      sb.append(String.format("%.4g ",b[i][j]));
+    }
+  }
+  return sb.toString();
+}

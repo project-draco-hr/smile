@@ -1,0 +1,3 @@
+{
+  return interpolate(matrix,tol,2 * Math.max(matrix.length,matrix[0].length));
+}

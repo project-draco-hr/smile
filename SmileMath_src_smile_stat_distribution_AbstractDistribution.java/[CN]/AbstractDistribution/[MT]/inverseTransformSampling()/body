@@ -1,0 +1,4 @@
+{
+  double u=Math.random();
+  return quantile(u);
+}

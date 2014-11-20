@@ -1,0 +1,17 @@
+{
+  if (k == 2) {
+    svm.finish();
+  }
+ else {
+    List<ProcessTask> tasks=new ArrayList<ProcessTask>(svms.size());
+    for (    LASVM s : svms) {
+      tasks.add(new ProcessTask(s));
+    }
+    try {
+      MulticoreExecutor.run(tasks);
+    }
+ catch (    Exception e) {
+      System.err.println(e.getMessage());
+    }
+  }
+}

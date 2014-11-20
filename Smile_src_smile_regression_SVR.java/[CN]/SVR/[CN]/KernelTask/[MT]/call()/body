@@ -1,0 +1,7 @@
+{
+  double[] ki=new double[end - start];
+  for (int j=start; j < end; j++) {
+    ki[j - start]=kernel.k(i.x,sv.get(j).x);
+  }
+  return ki;
+}

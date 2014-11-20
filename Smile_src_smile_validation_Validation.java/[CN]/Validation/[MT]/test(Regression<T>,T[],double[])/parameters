@@ -1,0 +1,3 @@
+Regression<T> regression
+T[] x
+double[] y

@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  ChiSquareDistribution instance=new ChiSquareDistribution(20);
+  instance.rand();
+  assertEquals(3.229201359,instance.entropy(),1E-7);
+}

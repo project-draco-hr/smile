@@ -1,0 +1,11 @@
+{
+  double g=b[m];
+  for (int j=0; j < d; j++) {
+    g+=a[m][j] * x[j];
+  }
+  int h=(int)Math.floor(g / w);
+  if (h < 0) {
+    h+=2147483647;
+  }
+  return h;
+}

@@ -1,0 +1,10 @@
+{
+  double sum=0.0;
+  for (  int n : x) {
+    sum+=n;
+  }
+  if (sum > Integer.MAX_VALUE || sum < -Integer.MAX_VALUE) {
+    throw new ArithmeticException("Sum overflow: " + sum);
+  }
+  return (int)sum;
+}

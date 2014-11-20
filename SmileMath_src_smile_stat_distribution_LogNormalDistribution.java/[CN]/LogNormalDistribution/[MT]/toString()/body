@@ -1,0 +1,3 @@
+{
+  return String.format("Log Normal Distribution(%.4f, %.4f)",mu,sigma);
+}

@@ -1,0 +1,5 @@
+{
+  this.minSupport=minSupport;
+  this.order=order;
+  root.children=new Node[numItems];
+}

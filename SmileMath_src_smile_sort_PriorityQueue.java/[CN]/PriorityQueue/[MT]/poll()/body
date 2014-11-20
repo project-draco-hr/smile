@@ -1,0 +1,5 @@
+{
+  swap(1,n);
+  sink(1,n - 1);
+  return pq[n--];
+}

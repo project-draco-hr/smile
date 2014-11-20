@@ -1,0 +1,8 @@
+{
+  if (digraph) {
+    return getIndegree(vertex) + getOutdegree(vertex);
+  }
+ else {
+    return getOutdegree(vertex);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  System.out.println("entropy");
+  BernoulliDistribution instance=new BernoulliDistribution(0.3);
+  instance.rand();
+  assertEquals(-0.3 * Math.log2(0.3) - 0.7 * Math.log2(0.7),instance.entropy(),1E-7);
+}

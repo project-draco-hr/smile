@@ -1,0 +1,60 @@
+{
+  if (x.isEmpty())   throw new IllegalArgumentException("List x is empty.");
+  if (y.isEmpty())   throw new IllegalArgumentException("List y is empty.");
+  Iterator<SparseArray.Entry> iterX=x.iterator();
+  Iterator<SparseArray.Entry> iterY=y.iterator();
+  SparseArray.Entry a=iterX.hasNext() ? iterX.next() : null;
+  SparseArray.Entry b=iterY.hasNext() ? iterY.next() : null;
+  double dist=0.0;
+  if (weight == null) {
+    while (a != null && b != null) {
+      if (a.i < b.i) {
+        dist+=Math.abs(a.x);
+        a=iterX.hasNext() ? iterX.next() : null;
+      }
+ else       if (a.i > b.i) {
+        dist+=Math.abs(b.x);
+        b=iterY.hasNext() ? iterY.next() : null;
+      }
+ else {
+        dist+=Math.abs(a.x - b.x);
+        a=iterX.hasNext() ? iterX.next() : null;
+        b=iterY.hasNext() ? iterY.next() : null;
+      }
+    }
+    while (a != null) {
+      dist+=Math.abs(a.x);
+      a=iterX.hasNext() ? iterX.next() : null;
+    }
+    while (b != null) {
+      dist+=Math.abs(b.x);
+      b=iterY.hasNext() ? iterY.next() : null;
+    }
+  }
+ else {
+    while (a != null && b != null) {
+      if (a.i < b.i) {
+        dist+=weight[a.i] * Math.abs(a.x);
+        a=iterX.hasNext() ? iterX.next() : null;
+      }
+ else       if (a.i > b.i) {
+        dist+=weight[b.i] * Math.abs(b.x);
+        b=iterY.hasNext() ? iterY.next() : null;
+      }
+ else {
+        dist+=weight[a.i] * Math.abs(a.x - b.x);
+        a=iterX.hasNext() ? iterX.next() : null;
+        b=iterY.hasNext() ? iterY.next() : null;
+      }
+    }
+    while (a != null) {
+      dist+=weight[a.i] * Math.abs(a.x);
+      a=iterX.hasNext() ? iterX.next() : null;
+    }
+    while (b != null) {
+      dist+=weight[b.i] * Math.abs(b.x);
+      b=iterY.hasNext() ? iterY.next() : null;
+    }
+  }
+  return Math.sqrt(dist);
+}

@@ -1,0 +1,22 @@
+{
+  long n=0;
+  int[][] combinations=getPowerSet(itemset);
+  for (int i=0; i < combinations.length; i++) {
+    int[] complement=getComplement(combinations[i],itemset);
+    if (complement != null) {
+      double arc=getConfidence(combinations[i],support);
+      if (arc >= confidence) {
+        double supp=(double)support / fim.size();
+        AssociationRule ar=new AssociationRule(combinations[i],complement,supp,arc);
+        n++;
+        if (out != null) {
+          out.println(ar);
+        }
+        if (list != null) {
+          list.add(ar);
+        }
+      }
+    }
+  }
+  return n;
+}

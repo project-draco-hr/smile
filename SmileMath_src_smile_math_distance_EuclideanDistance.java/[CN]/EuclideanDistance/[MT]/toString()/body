@@ -1,0 +1,4 @@
+{
+  if (weight != null)   return "weighted Euclidean distance";
+ else   return "Euclidean distance";
+}

@@ -1,0 +1,19 @@
+{
+  if (k <= 1) {
+    throw new IllegalArgumentException("Invlaid number of bins: " + k);
+  }
+  float min=Math.min(data);
+  float max=Math.max(data);
+  float span=max - min;
+  if (span == 0) {
+    span=k;
+  }
+  float width=span / k;
+  float[] breaks=new float[k + 1];
+  breaks[0]=min;
+  for (int i=1; i < k; i++) {
+    breaks[i]=breaks[i - 1] + width;
+  }
+  breaks[k]=max;
+  return histogram(data,breaks);
+}

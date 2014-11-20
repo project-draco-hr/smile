@@ -1,0 +1,6 @@
+{
+  System.out.println("npara");
+  TDistribution instance=new TDistribution(20);
+  instance.rand();
+  assertEquals(1,instance.npara());
+}

@@ -1,0 +1,14 @@
+{
+  nsv=0;
+  nbsv=0;
+  for (  SupportVector v : sv) {
+    if (v != null) {
+      nsv++;
+      v.kcache=null;
+      if (v.alpha == v.cmin || v.alpha == v.cmax) {
+        nbsv++;
+      }
+    }
+  }
+  System.out.format("%d support vectors, %d bounded\n",nsv,nbsv);
+}

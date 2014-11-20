@@ -1,0 +1,5 @@
+{
+  this.range=range;
+  bucket=new int[range.length];
+  last=0;
+}

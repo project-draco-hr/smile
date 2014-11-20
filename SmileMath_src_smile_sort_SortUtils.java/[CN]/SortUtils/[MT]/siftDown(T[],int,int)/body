@@ -1,0 +1,13 @@
+{
+  while (2 * k <= n) {
+    int j=2 * k;
+    if (j < n && arr[j].compareTo(arr[j + 1]) < 0) {
+      j++;
+    }
+    if (arr[k].compareTo(arr[j]) >= 0) {
+      break;
+    }
+    SortUtils.swap(arr,k,j);
+    k=j;
+  }
+}

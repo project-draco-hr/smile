@@ -1,0 +1,7 @@
+{
+  System.out.println("distance");
+  double[] x={1.2793,-0.1029,-1.5852};
+  double[] y={-0.2676,-0.1717,-1.8695};
+  MahalanobisDistance instance=new MahalanobisDistance(sigma);
+  assertEquals(2.703861,instance.d(x,y),1E-6);
+}

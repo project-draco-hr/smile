@@ -1,0 +1,4 @@
+{
+  System.out.println("nrows");
+  assertEquals(3,sm.nrows());
+}

@@ -1,0 +1,50 @@
+{
+  if (threshold < 0) {
+    throw new IllegalArgumentException("Invalid threshold = " + threshold);
+  }
+  if (k < 1 || k > data.length) {
+    throw new IllegalArgumentException("Invalid dimension of feature space: " + k);
+  }
+  this.data=data;
+  this.kernel=kernel;
+  int n=data.length;
+  double[][] K=new double[n][n];
+  for (int i=0; i < n; i++) {
+    for (int j=0; j <= i; j++) {
+      K[i][j]=kernel.k(data[i],data[j]);
+      K[j][i]=K[i][j];
+    }
+  }
+  mean=Math.rowMean(K);
+  mu=Math.mean(mean);
+  for (int i=0; i < n; i++) {
+    for (int j=0; j <= i; j++) {
+      K[i][j]=K[i][j] - mean[i] - mean[j] + mu;
+      K[j][i]=K[i][j];
+    }
+  }
+  EigenValueDecomposition eigen=Math.eigen(K,k);
+  p=0;
+  for (int i=0; i < k; i++) {
+    double e=(eigen.getEigenValues()[i]/=n);
+    if (e > threshold) {
+      p++;
+    }
+ else {
+      break;
+    }
+  }
+  latent=new double[p];
+  projection=new double[p][n];
+  for (int j=0; j < p; j++) {
+    latent[j]=eigen.getEigenValues()[j];
+    double s=Math.sqrt(latent[j]);
+    for (int i=0; i < n; i++) {
+      projection[j][i]=eigen.getEigenVectors()[i][j] / s;
+    }
+  }
+  coordinates=new double[n][p];
+  for (int i=0; i < n; i++) {
+    Math.ax(projection,K[i],coordinates[i]);
+  }
+}

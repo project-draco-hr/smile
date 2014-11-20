@@ -1,0 +1,3 @@
+{
+  return Math.exp(intercept + slope * Math.log(x));
+}

@@ -1,0 +1,3 @@
+{
+  return new KMeans(bbd,data,k,maxIter);
+}

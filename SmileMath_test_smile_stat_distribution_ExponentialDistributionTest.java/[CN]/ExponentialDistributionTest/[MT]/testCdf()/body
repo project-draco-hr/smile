@@ -1,0 +1,13 @@
+{
+  System.out.println("cdf");
+  ExponentialDistribution instance=new ExponentialDistribution(2.0);
+  instance.rand();
+  assertEquals(0,instance.cdf(-0.1),1E-7);
+  assertEquals(0,instance.cdf(0.0),1E-7);
+  assertEquals(0.8646647,instance.cdf(1.0),1E-7);
+  assertEquals(0.9816844,instance.cdf(2.0),1E-7);
+  assertEquals(0.9975212,instance.cdf(3.0),1E-7);
+  assertEquals(0.9996645,instance.cdf(4.0),1E-7);
+  assertEquals(0.9999999,instance.cdf(8.0),1E-7);
+  assertEquals(1.0,instance.cdf(10.0),1E-7);
+}

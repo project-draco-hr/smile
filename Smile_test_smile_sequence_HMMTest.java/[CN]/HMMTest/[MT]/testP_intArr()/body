@@ -1,0 +1,8 @@
+{
+  System.out.println("p");
+  HMM hmm=new HMM(pi,a,b);
+  int[] o={0,0,1,1,0,1,1,0};
+  double expResult=0.003663364;
+  double result=hmm.p(o);
+  assertEquals(expResult,result,1E-9);
+}

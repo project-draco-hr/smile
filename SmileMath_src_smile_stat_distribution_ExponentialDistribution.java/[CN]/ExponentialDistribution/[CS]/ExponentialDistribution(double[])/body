@@ -1,0 +1,12 @@
+{
+  for (int i=0; i < data.length; i++) {
+    if (data[i] < 0) {
+      throw new IllegalArgumentException("Samples contain negative values.");
+    }
+  }
+  double mean=Math.mean(data);
+  if (mean == 0) {
+    throw new IllegalArgumentException("Samples are all zeros.");
+  }
+  lambda=1 / mean;
+}

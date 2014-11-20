@@ -1,0 +1,4 @@
+{
+  super(Type.STRING,name,weight);
+  values.add(null);
+}

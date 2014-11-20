@@ -1,0 +1,32 @@
+{
+  if (prob.length == 0) {
+    throw new IllegalArgumentException("Empty probability set.");
+  }
+  xMin=0;
+  xMax=prob.length - 1;
+  x=new int[prob.length];
+  p=new double[prob.length];
+  cdf=new double[prob.length];
+  mean=0.0;
+  double mean2=0.0;
+  entropy=0.0;
+  cdf[0]=prob[0];
+  for (int i=0; i < prob.length; i++) {
+    if (prob[i] < 0 || prob[i] > 1) {
+      throw new IllegalArgumentException("Invalid probability " + p[i]);
+    }
+    x[i]=i;
+    p[i]=prob[i];
+    if (i > 0) {
+      cdf[i]=cdf[i - 1] + p[i];
+    }
+    mean+=x[i] * p[i];
+    mean2+=x[i] * x[i] * p[i];
+    entropy-=p[i] * Math.log2(p[i]);
+  }
+  var=mean2 - mean * mean;
+  sd=Math.sqrt(var);
+  if (Math.abs(cdf[cdf.length - 1] - 1.0) > 1E-7) {
+    throw new IllegalArgumentException("The sum of probabilities is not 1.");
+  }
+}

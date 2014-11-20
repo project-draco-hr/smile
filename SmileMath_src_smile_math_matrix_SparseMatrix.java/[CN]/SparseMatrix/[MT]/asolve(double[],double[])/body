@@ -1,0 +1,12 @@
+{
+  for (int i=0; i < nrows; i++) {
+    double diag=0.0;
+    for (int j=colIndex[i]; j < colIndex[i + 1]; j++) {
+      if (rowIndex[j] == i) {
+        diag=this.x[j];
+        break;
+      }
+    }
+    x[i]=diag != 0.0 ? b[i] / diag : b[i];
+  }
+}

@@ -1,0 +1,12 @@
+{
+  System.out.println("cdf");
+  TDistribution instance=new TDistribution(20);
+  instance.rand();
+  assertEquals(1.581891e-09,instance.cdf(-10.0),1E-15);
+  assertEquals(0.02963277,instance.cdf(-2.0),1E-7);
+  assertEquals(0.1646283,instance.cdf(-1.0),1E-7);
+  assertEquals(0.5,instance.cdf(0.0),1E-7);
+  assertEquals(0.8353717,instance.cdf(1.0),1E-7);
+  assertEquals(0.9703672,instance.cdf(2.0),1E-7);
+  assertEquals(1.0,instance.cdf(10.0),1E-7);
+}

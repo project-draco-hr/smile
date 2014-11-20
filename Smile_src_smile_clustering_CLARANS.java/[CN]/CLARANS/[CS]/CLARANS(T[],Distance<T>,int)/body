@@ -1,0 +1,3 @@
+{
+  this(data,distance,k,(int)Math.round(0.0125 * k * (data.length - k)));
+}

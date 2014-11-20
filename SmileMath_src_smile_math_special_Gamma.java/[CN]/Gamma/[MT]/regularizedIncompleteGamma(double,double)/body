@@ -1,0 +1,16 @@
+{
+  if (s < 0.0) {
+    throw new IllegalArgumentException("Invalid s: " + s);
+  }
+  if (x < 0.0) {
+    throw new IllegalArgumentException("Invalid x: " + x);
+  }
+  double igf=0.0;
+  if (x < s + 1.0) {
+    igf=regularizedIncompleteGammaSeries(s,x);
+  }
+ else {
+    igf=regularizedIncompleteGammaFraction(s,x);
+  }
+  return igf;
+}

@@ -1,0 +1,14 @@
+{
+  Integer i=map.get(s);
+  if (i == null) {
+    if (open) {
+      i=values.size();
+      map.put(s,i);
+      values.add(s);
+    }
+ else {
+      return 0;
+    }
+  }
+  return i;
+}

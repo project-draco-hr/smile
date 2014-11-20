@@ -1,0 +1,13 @@
+{
+  if (numStates <= 0) {
+    throw new IllegalArgumentException("Invalid number of states: " + numStates);
+  }
+  if (numSymbols <= 0) {
+    throw new IllegalArgumentException("Invalid number of emission symbols: " + numSymbols);
+  }
+  this.numStates=numStates;
+  this.numSymbols=numSymbols;
+  pi=new double[numStates];
+  a=new double[numStates][numStates];
+  b=new double[numStates][numSymbols];
+}

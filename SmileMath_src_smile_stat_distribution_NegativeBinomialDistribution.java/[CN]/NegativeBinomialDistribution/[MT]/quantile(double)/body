@@ -1,0 +1,26 @@
+{
+  if (p < 0.0 || p > 1.0) {
+    throw new IllegalArgumentException("Invalid p: " + p);
+  }
+  int kl, ku, inc=1;
+  int k=(int)mean();
+  if (p < cdf(k)) {
+    do {
+      k=Math.max(k - inc,0);
+      inc*=2;
+    }
+ while (p < cdf(k) && k > 0);
+    kl=k;
+    ku=k + inc / 2;
+  }
+ else {
+    do {
+      k+=inc;
+      inc*=2;
+    }
+ while (p > cdf(k));
+    ku=k;
+    kl=k - inc / 2;
+  }
+  return quantile(p,kl,ku);
+}

@@ -1,0 +1,26 @@
+{
+  if (!full) {
+    throw new IllegalStateException("This is not a FULL singular value decomposition.");
+  }
+  if (b.length != m || x.length != n) {
+    throw new IllegalArgumentException("Dimensions do not agree.");
+  }
+  double[] tmp=new double[n];
+  for (int j=0; j < n; j++) {
+    double r=0.0;
+    if (s[j] > tol) {
+      for (int i=0; i < m; i++) {
+        r+=U[i][j] * b[i];
+      }
+      r/=s[j];
+    }
+    tmp[j]=r;
+  }
+  for (int j=0; j < n; j++) {
+    double r=0.0;
+    for (int jj=0; jj < n; jj++) {
+      r+=V[j][jj] * tmp[jj];
+    }
+    x[j]=r;
+  }
+}

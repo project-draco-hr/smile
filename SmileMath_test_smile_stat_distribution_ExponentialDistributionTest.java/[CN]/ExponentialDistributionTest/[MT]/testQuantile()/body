@@ -1,0 +1,9 @@
+{
+  System.out.println("quantile");
+  ExponentialDistribution instance=new ExponentialDistribution(2.0);
+  instance.rand();
+  assertEquals(0.05268026,instance.quantile(0.1),1E-7);
+  assertEquals(0.1783375,instance.quantile(0.3),1E-7);
+  assertEquals(0.3465736,instance.quantile(0.5),1E-7);
+  assertEquals(0.6019864,instance.quantile(0.7),1E-7);
+}

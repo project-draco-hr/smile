@@ -1,0 +1,11 @@
+{
+  int m=x.length;
+  int n=x[0].length;
+  double f=0.0;
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++) {
+      f=Math.hypot(f,x[i][j]);
+    }
+  }
+  return f;
+}

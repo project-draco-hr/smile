@@ -1,0 +1,5 @@
+{
+  RadialBasisFunction[] arr=new RadialBasisFunction[k];
+  Arrays.fill(arr,rbf);
+  return arr;
+}

@@ -1,0 +1,62 @@
+{
+  long n=1;
+  int support=header.count;
+  int item=header.id;
+  itemset=insert(itemset,item);
+  if (list != null) {
+synchronized (list) {
+      list.add(new ItemSet(itemset,support));
+    }
+  }
+  if (out != null) {
+synchronized (out) {
+      for (int i=0; i < itemset.length; i++) {
+        out.format("%d ",itemset[i]);
+      }
+      out.format("(%d)\n",support);
+    }
+  }
+  if (ttree != null) {
+synchronized (ttree) {
+      ttree.add(itemset,support);
+    }
+  }
+  if (header.node.next == null) {
+    FPTree.Node node=header.node;
+    while (node != null) {
+      FPTree.Node parent=node.parent;
+      int[] newItemset=itemset;
+      while (parent != null) {
+        n++;
+        newItemset=insert(newItemset,parent.id);
+        if (list != null) {
+synchronized (list) {
+            list.add(new ItemSet(newItemset,support));
+          }
+        }
+        if (out != null) {
+synchronized (out) {
+            for (int i=0; i < newItemset.length; i++) {
+              out.format("%d ",newItemset[i]);
+            }
+            out.format("(%d)\n",support);
+          }
+        }
+        if (ttree != null) {
+synchronized (ttree) {
+            ttree.add(newItemset,support);
+          }
+        }
+        parent=parent.parent;
+      }
+      node=node.parent;
+    }
+  }
+ else {
+    if (getLocalItemSupport(header.node,localItemSupport)) {
+      FPTree fptree=getLocalFPTree(header.node,localItemSupport,prefixItemset);
+      n+=grow(out,list,ttree,fptree,itemset,localItemSupport,prefixItemset);
+    }
+  }
+  return n;
+}

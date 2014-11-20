@@ -1,0 +1,18 @@
+{
+  long g=0;
+  for (int i=0; i < k; i++) {
+    double gi=hash(x,i);
+    if (gi < umin[i]) {
+      umin[i]=gi;
+    }
+    if (gi > umax[i]) {
+      umax[i]=gi;
+    }
+    g+=c[i] * (int)Math.floor(gi);
+  }
+  int h=(int)(g % P);
+  if (h < 0) {
+    h+=P;
+  }
+  return h;
+}

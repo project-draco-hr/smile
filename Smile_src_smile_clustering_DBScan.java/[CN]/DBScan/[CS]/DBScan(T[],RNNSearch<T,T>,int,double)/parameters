@@ -1,0 +1,4 @@
+T[] data
+RNNSearch<T,T> nns
+int minPts
+double radius

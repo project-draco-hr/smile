@@ -1,0 +1,15 @@
+{
+  System.out.println("crossover one point");
+  int[] father={1,1,1,0,1,0,0,1,0,0,0};
+  int[] mother={0,0,0,0,1,0,1,0,1,0,1};
+  BitString instance=new BitString(father,null,BitString.Crossover.SINGLE_POINT,1.0,0.0);
+  BitString another=new BitString(mother,null,BitString.Crossover.SINGLE_POINT,1.0,0.0);
+  int[] son={1,1,1,0,1,0,1,0,1,0,1};
+  int[] daughter={0,0,0,0,1,0,0,1,0,0,0};
+  BitString[] result=instance.crossover(another);
+  assertEquals(son.length,result[0].bits().length);
+  assertEquals(daughter.length,result[1].bits().length);
+  for (int i=0; i < son.length; i++) {
+    assertTrue((father[i] == result[0].bits()[i] && mother[i] == result[1].bits()[i]) || (father[i] == result[1].bits()[i] && mother[i] == result[0].bits()[i]));
+  }
+}

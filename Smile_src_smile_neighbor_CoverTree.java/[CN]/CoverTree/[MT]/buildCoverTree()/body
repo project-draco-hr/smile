@@ -1,0 +1,17 @@
+{
+  ArrayList<DistanceSet> pointSet=new ArrayList<DistanceSet>();
+  ArrayList<DistanceSet> consumedSet=new ArrayList<DistanceSet>();
+  E point=data[0];
+  int idx=0;
+  double maxDist=-1;
+  for (int i=1; i < data.length; i++) {
+    DistanceSet set=new DistanceSet(i);
+    double dist=distance.d(point,data[i]);
+    set.dist.add(dist);
+    pointSet.add(set);
+    if (dist > maxDist) {
+      maxDist=dist;
+    }
+  }
+  root=batchInsert(idx,getScale(maxDist),getScale(maxDist),pointSet,consumedSet);
+}

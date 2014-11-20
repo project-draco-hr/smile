@@ -1,0 +1,14 @@
+{
+  long n=0;
+  if (node.children == null) {
+    return n;
+  }
+  for (int i=0; i < size; i++) {
+    if (node.children[i] != null) {
+      int[] newItemset=FPGrowth.insert(itemset,node.children[i].id);
+      n+=learn(out,list,newItemset,node.children[i].support,confidence);
+      n+=learn(out,list,newItemset,i,node.children[i],confidence);
+    }
+  }
+  return n;
+}

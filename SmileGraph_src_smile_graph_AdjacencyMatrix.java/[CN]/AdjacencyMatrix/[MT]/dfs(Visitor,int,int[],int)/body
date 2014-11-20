@@ -1,0 +1,11 @@
+{
+  visitor.visit(v);
+  cc[v]=id;
+  for (int t=0; t < n; t++) {
+    if (graph[v][t] != 0.0) {
+      if (cc[t] == -1) {
+        dfs(visitor,t,cc,id);
+      }
+    }
+  }
+}

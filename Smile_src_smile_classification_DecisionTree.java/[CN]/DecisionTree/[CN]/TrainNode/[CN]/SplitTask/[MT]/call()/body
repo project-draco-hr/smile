@@ -1,0 +1,4 @@
+{
+  int[] falseCount=new int[k];
+  return findBestSplit(n,count,falseCount,impurity,j);
+}

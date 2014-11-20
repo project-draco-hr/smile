@@ -1,0 +1,5 @@
+{
+  NaiveBayes bayes=priori == null ? new NaiveBayes(model,k,p,sigma) : new NaiveBayes(model,priori,p,sigma);
+  bayes.learn(x,y);
+  return bayes;
+}

@@ -1,0 +1,18 @@
+{
+  int[] Ap=A.colIndex;
+  int[] Ai=A.rowIndex;
+  double[] Ax=A.x;
+  int[] Ci=C.rowIndex;
+  for (int p=Ap[j]; p < Ap[j + 1]; p++) {
+    int i=Ai[p];
+    if (w[i] < mark) {
+      w[i]=mark;
+      Ci[nz++]=i;
+      x[i]=beta * Ax[p];
+    }
+ else {
+      x[i]+=beta * Ax[p];
+    }
+  }
+  return nz;
+}

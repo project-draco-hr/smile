@@ -1,0 +1,4 @@
+T[] data
+Metric<T> distance
+int k
+double radius

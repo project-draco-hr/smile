@@ -1,0 +1,11 @@
+{
+  double m=Double.NEGATIVE_INFINITY;
+  for (  double[] x : matrix) {
+    for (    double y : x) {
+      if (m < y) {
+        m=y;
+      }
+    }
+  }
+  return m;
+}

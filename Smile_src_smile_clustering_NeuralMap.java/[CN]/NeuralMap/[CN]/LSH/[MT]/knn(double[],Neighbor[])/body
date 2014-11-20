@@ -1,0 +1,29 @@
+{
+  int hit=0;
+  HeapSelect<Neighbor> heap=new HeapSelect<Neighbor>(neighbors);
+  for (int i=0; i < hash.length; i++) {
+    int bucket=hash[i].hash(x);
+    LinkedList<Hash.Item> bin=hash[i].table[bucket % H];
+    if (bin != null) {
+      for (      Hash.Item e : bin) {
+        if (e.bucket == bucket) {
+          boolean existed=false;
+          for (          Neighbor n : neighbors) {
+            if (n != null && e.neuron == n.neuron) {
+              existed=true;
+              break;
+            }
+          }
+          if (!existed) {
+            double distance=Math.distance(x,e.neuron.w);
+            if (heap.peek() == null || distance < heap.peek().distance) {
+              heap.add(new Neighbor(e.neuron,distance));
+              hit++;
+            }
+          }
+        }
+      }
+    }
+  }
+  return hit;
+}

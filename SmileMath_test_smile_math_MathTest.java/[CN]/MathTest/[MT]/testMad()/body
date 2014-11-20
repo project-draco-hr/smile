@@ -1,0 +1,5 @@
+{
+  System.out.println("mad");
+  double[] data={1,1,2,2,4,6,9};
+  assertEquals(1.0,Math.mad(data),1E-5);
+}

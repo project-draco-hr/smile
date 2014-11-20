@@ -1,0 +1,8 @@
+{
+  if (k < xMin || k > xMax) {
+    return 0.0;
+  }
+ else {
+    return p[k - xMin];
+  }
+}

@@ -1,0 +1,16 @@
+{
+  int T=trees.size();
+  double[] accuracy=new double[T];
+  int n=x.length;
+  int[] label=new int[n];
+  int[][] prediction=new int[n][k];
+  Accuracy measure=new Accuracy();
+  for (int i=0; i < T; i++) {
+    for (int j=0; j < n; j++) {
+      prediction[j][trees.get(i).predict(x[j])]++;
+      label[j]=Math.whichMax(prediction[j]);
+    }
+    accuracy[i]=measure.measure(y,label);
+  }
+  return accuracy;
+}

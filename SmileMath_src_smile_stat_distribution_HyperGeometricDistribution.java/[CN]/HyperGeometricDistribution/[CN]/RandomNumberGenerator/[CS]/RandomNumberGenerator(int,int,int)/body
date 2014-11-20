@@ -1,0 +1,22 @@
+{
+  this.N=N;
+  this.m=m;
+  this.n=n;
+  fak=1;
+  addd=0;
+  if (m > N / 2) {
+    m=N - m;
+    fak=-1;
+    addd=n;
+  }
+  if (n > N / 2) {
+    n=N - n;
+    addd+=fak * m;
+    fak=-fak;
+  }
+  if (n > m) {
+    int swap=n;
+    n=m;
+    m=swap;
+  }
+}

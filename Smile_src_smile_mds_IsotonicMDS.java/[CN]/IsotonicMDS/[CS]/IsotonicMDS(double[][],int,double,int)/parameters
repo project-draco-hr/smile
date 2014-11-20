@@ -1,0 +1,4 @@
+double[][] proximity
+int k
+double tol
+int maxIter

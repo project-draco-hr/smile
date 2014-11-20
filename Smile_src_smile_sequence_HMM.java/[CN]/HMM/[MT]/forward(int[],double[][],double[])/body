@@ -1,0 +1,16 @@
+{
+  for (int k=0; k < numStates; k++) {
+    alpha[0][k]=pi[k] * b[k][o[0]];
+  }
+  scale(scaling,alpha,0);
+  for (int t=1; t < o.length; t++) {
+    for (int k=0; k < numStates; k++) {
+      double sum=0.0;
+      for (int i=0; i < numStates; i++) {
+        sum+=alpha[t - 1][i] * a[i][k];
+      }
+      alpha[t][k]=sum * b[k][o[t]];
+    }
+    scale(scaling,alpha,t);
+  }
+}

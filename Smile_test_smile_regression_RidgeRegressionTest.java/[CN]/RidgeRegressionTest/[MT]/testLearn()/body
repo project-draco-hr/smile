@@ -1,0 +1,30 @@
+{
+  System.out.println("learn");
+  RidgeRegression model=new RidgeRegression(longley,y,0.0);
+  double rss=0.0;
+  int n=longley.length;
+  for (int i=0; i < n; i++) {
+    double r=y[i] - model.predict(longley[i]);
+    assertEquals(residuals[i],r,1E-7);
+    rss+=r * r;
+  }
+  System.out.println("Training MSE = " + rss / n);
+  model=new RidgeRegression(longley,y,0.1);
+  assertEquals(-1.354007e+03,model.intercept(),1E-3);
+  assertEquals(5.457700e-02,model.coefficients()[0],1E-7);
+  assertEquals(1.198440e-02,model.coefficients()[1],1E-7);
+  assertEquals(1.261978e-02,model.coefficients()[2],1E-7);
+  assertEquals(-1.856041e-01,model.coefficients()[3],1E-7);
+  assertEquals(7.218054e-01,model.coefficients()[4],1E-7);
+  assertEquals(5.884884e-01,model.coefficients()[5],1E-7);
+  LOOCV loocv=new LOOCV(n);
+  rss=0.0;
+  for (int i=0; i < n; i++) {
+    double[][] trainx=Math.slice(longley,loocv.train[i]);
+    double[] trainy=Math.slice(y,loocv.train[i]);
+    RidgeRegression ridge=new RidgeRegression(trainx,trainy,0.1);
+    double r=y[loocv.test[i]] - ridge.predict(longley[loocv.test[i]]);
+    rss+=r * r;
+  }
+  System.out.println("LOOCV MSE = " + rss / n);
+}

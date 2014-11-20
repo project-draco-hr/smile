@@ -1,0 +1,11 @@
+{
+  if (k < 0) {
+    return 0.0;
+  }
+ else   if (k == 0) {
+    return q;
+  }
+ else {
+    return 1.0;
+  }
+}

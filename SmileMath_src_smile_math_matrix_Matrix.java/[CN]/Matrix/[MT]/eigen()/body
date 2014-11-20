@@ -1,0 +1,21 @@
+{
+  if (nrows() != ncols()) {
+    throw new UnsupportedOperationException("The matrix is not square.");
+  }
+  int n=A.length;
+  if (eigen == null || eigen.getEigenVectors().length != n) {
+    double[][] V=new double[n][n];
+    for (int i=0; i < n; i++) {
+      System.arraycopy(A[i],0,V[i],0,n);
+    }
+    eigen=EigenValueDecomposition.decompose(V,symmetric);
+    positive=true;
+    for (int i=0; i < n; i++) {
+      if (eigen.getEigenValues()[i] <= 0) {
+        positive=false;
+        break;
+      }
+    }
+  }
+  return eigen;
+}

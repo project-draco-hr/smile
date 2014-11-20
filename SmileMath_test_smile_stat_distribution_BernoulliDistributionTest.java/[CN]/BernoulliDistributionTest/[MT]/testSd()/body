@@ -1,0 +1,6 @@
+{
+  System.out.println("sd");
+  BernoulliDistribution instance=new BernoulliDistribution(0.3);
+  instance.rand();
+  assertEquals(Math.sqrt(0.21),instance.sd(),1E-7);
+}

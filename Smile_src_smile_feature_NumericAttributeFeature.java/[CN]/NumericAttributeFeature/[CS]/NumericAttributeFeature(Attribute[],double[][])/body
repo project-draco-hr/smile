@@ -1,0 +1,31 @@
+{
+  this.attributes=attributes;
+  this.scaling=Scaling.STANDARDIZATION;
+  int n=data.length;
+  int p=0;
+  for (  Attribute attribute : attributes) {
+    if (attribute instanceof NumericAttribute) {
+      p++;
+    }
+  }
+  features=new Attribute[p];
+  map=new int[p];
+  a=new double[p];
+  b=new double[p];
+  double[] x=new double[n];
+  for (int i=0, j=0; j < attributes.length; j++) {
+    Attribute attribute=attributes[j];
+    if (attribute instanceof NumericAttribute) {
+      features[i]=new NumericAttribute(attribute.name + "_" + scaling,attribute.description,attribute.weight);
+      for (int k=0; k < n; k++) {
+        x[k]=data[k][j];
+      }
+      a[i]=QuickSelect.median(x);
+      b[i]=QuickSelect.q3(x) - QuickSelect.q1(x);
+      if (b[i] == 0.0) {
+        throw new IllegalArgumentException("Attribute " + attribute + " has constant values between Q1 and Q3.");
+      }
+      map[i++]=j;
+    }
+  }
+}

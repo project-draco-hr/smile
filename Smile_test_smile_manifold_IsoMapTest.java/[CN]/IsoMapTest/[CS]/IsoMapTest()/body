@@ -1,0 +1,10 @@
+{
+  DelimitedTextParser parser=new DelimitedTextParser();
+  parser.setDelimiter("\t");
+  try {
+    swissroll=parser.parse("Swissroll",this.getClass().getResourceAsStream("/smile/data/manifold/swissroll.txt"));
+  }
+ catch (  Exception e) {
+    System.err.println(e);
+  }
+}

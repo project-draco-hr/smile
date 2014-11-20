@@ -1,0 +1,4 @@
+{
+  if (components.isEmpty())   throw new IllegalStateException("Mixture is empty!");
+  return Math.log(p(x));
+}

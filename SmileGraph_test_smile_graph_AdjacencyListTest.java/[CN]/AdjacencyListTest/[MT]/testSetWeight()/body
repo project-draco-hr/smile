@@ -1,0 +1,9 @@
+{
+  System.out.println("setWeight");
+  g4.setWeight(1,4,5.7);
+  assertEquals(5.7,g4.getWeight(1,4),1E-10);
+  assertEquals(1.0,g4.getWeight(4,1),1E-10);
+  g8.setWeight(1,4,5.7);
+  assertEquals(5.7,g8.getWeight(1,4),1E-10);
+  assertEquals(5.7,g8.getWeight(4,1),1E-10);
+}

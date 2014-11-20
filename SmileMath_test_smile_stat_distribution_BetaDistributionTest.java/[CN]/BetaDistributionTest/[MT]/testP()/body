@@ -1,0 +1,14 @@
+{
+  System.out.println("p");
+  BetaDistribution instance=new BetaDistribution(2,5);
+  instance.rand();
+  assertEquals(0,instance.p(-0.1),1E-4);
+  assertEquals(0,instance.p(0.0),1E-4);
+  assertEquals(1.9683,instance.p(0.1),1E-4);
+  assertEquals(2.4576,instance.p(0.2),1E-4);
+  assertEquals(2.1609,instance.p(0.3),1E-4);
+  assertEquals(1.5552,instance.p(0.4),1E-4);
+  assertEquals(0.9375,instance.p(0.5),1E-4);
+  assertEquals(0.0,instance.p(1.0),1E-4);
+  assertEquals(0.0,instance.p(1.5),1E-4);
+}

@@ -1,0 +1,3 @@
+{
+  this(data,kernel,data.length,threshold);
+}

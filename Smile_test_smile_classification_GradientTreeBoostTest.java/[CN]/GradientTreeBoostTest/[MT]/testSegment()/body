@@ -1,0 +1,24 @@
+{
+  System.out.println("Segment");
+  ArffParser arffParser=new ArffParser();
+  arffParser.setResponseIndex(19);
+  try {
+    AttributeDataset train=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-challenge.arff"));
+    AttributeDataset test=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-test.arff"));
+    double[][] x=train.toArray(new double[train.size()][]);
+    int[] y=train.toArray(new int[train.size()]);
+    double[][] testx=test.toArray(new double[test.size()][]);
+    int[] testy=test.toArray(new int[test.size()]);
+    GradientTreeBoost boost=new GradientTreeBoost(train.attributes(),x,y,100);
+    int error=0;
+    for (int i=0; i < testx.length; i++) {
+      if (boost.predict(testx[i]) != testy[i]) {
+        error++;
+      }
+    }
+    System.out.format("Gradient Tree Boost error rate = %.2f%%\n",100.0 * error / testx.length);
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException("x and y have different length");
+  }
+  this.n=x.length;
+  if (n < 2) {
+    throw new IllegalArgumentException("locate size error");
+  }
+  this.xx=x;
+  this.yy=y;
+  jsav=0;
+  cor=false;
+  dj=Math.min(1,(int)Math.pow(n,0.25));
+}

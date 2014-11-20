@@ -1,0 +1,11 @@
+{
+  System.out.println("p");
+  ExponentialDistribution instance=new ExponentialDistribution(2.0);
+  instance.rand();
+  assertEquals(0,instance.p(-0.1),1E-7);
+  assertEquals(2.0,instance.p(0.0),1E-7);
+  assertEquals(0.2706706,instance.p(1.0),1E-7);
+  assertEquals(0.03663128,instance.p(2.0),1E-7);
+  assertEquals(0.004957504,instance.p(3.0),1E-7);
+  assertEquals(0.0006709253,instance.p(4.0),1E-7);
+}

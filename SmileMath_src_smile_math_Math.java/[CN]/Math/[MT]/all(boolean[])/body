@@ -1,0 +1,8 @@
+{
+  for (  boolean b : x) {
+    if (!b) {
+      return false;
+    }
+  }
+  return true;
+}

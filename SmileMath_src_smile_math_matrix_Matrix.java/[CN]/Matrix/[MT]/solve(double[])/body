@@ -1,0 +1,14 @@
+{
+  if (A.length == A[0].length) {
+    if (symmetric && positive) {
+      cholesky().solve(b);
+    }
+ else {
+      LU().solve(b);
+    }
+  }
+ else {
+    QR().solve(b);
+  }
+  return b;
+}

@@ -1,0 +1,5 @@
+int k
+ClassifierTrainer<T> trainer
+T[] x
+int[] y
+ClassificationMeasure[] measures

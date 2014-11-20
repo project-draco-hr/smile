@@ -1,0 +1,45 @@
+{
+  final double TINY=1.0e-30;
+  int ni=table.length;
+  int nj=table[0].length;
+  boolean correct=false;
+  if (ni == 2 && nj == 2) {
+    correct=true;
+  }
+  double sum=0.0;
+  int nni=ni;
+  double[] sumi=new double[ni];
+  for (int i=0; i < ni; i++) {
+    for (int j=0; j < nj; j++) {
+      sumi[i]+=table[i][j];
+      sum+=table[i][j];
+    }
+    if (sumi[i] == 0.0) {
+      --nni;
+    }
+  }
+  int nnj=nj;
+  double[] sumj=new double[nj];
+  for (int j=0; j < nj; j++) {
+    for (int i=0; i < ni; i++) {
+      sumj[j]+=table[i][j];
+    }
+    if (sumj[j] == 0.0) {
+      --nnj;
+    }
+  }
+  int df=nni * nnj - nni - nnj + 1;
+  double chisq=0.0;
+  for (int i=0; i < ni; i++) {
+    for (int j=0; j < nj; j++) {
+      double expctd=sumj[j] * sumi[i] / sum;
+      double temp=table[i][j] - expctd;
+      if (correct)       temp=Math.abs(temp) - 0.5;
+      chisq+=temp * temp / (expctd + TINY);
+    }
+  }
+  double prob=Gamma.regularizedUpperIncompleteGamma(0.5 * df,0.5 * chisq);
+  int minij=nni < nnj ? nni - 1 : nnj - 1;
+  double v=Math.sqrt(chisq / (sum * minij));
+  return new CorTest(v,df,chisq,prob);
+}

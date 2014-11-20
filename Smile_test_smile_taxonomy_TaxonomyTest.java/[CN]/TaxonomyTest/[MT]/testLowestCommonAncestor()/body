@@ -1,0 +1,7 @@
+{
+  System.out.println("lowestCommonAncestor");
+  Concept result=instance.lowestCommonAncestor("A","B");
+  assertEquals(a,result);
+  result=instance.lowestCommonAncestor("E","B");
+  assertEquals(instance.getRoot(),result);
+}

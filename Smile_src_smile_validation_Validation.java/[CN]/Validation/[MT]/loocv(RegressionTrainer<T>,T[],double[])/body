@@ -1,0 +1,12 @@
+{
+  double rmse=0.0;
+  int n=x.length;
+  LOOCV loocv=new LOOCV(n);
+  for (int i=0; i < n; i++) {
+    T[] trainx=Math.slice(x,loocv.train[i]);
+    double[] trainy=Math.slice(y,loocv.train[i]);
+    Regression<T> model=trainer.train(trainx,trainy);
+    rmse+=Math.sqr(model.predict(x[loocv.test[i]]) - y[loocv.test[i]]);
+  }
+  return Math.sqrt(rmse / n);
+}

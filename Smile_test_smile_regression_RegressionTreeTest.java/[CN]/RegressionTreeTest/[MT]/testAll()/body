@@ -1,0 +1,7 @@
+{
+  test("CPU","/smile/data/weka/cpu.arff",6);
+  test("autoMPG","/smile/data/weka/regression/autoMpg.arff",7);
+  test("cal_housing","/smile/data/weka/regression/cal_housing.arff",8);
+  test("puma8nh","/smile/data/weka/regression/puma8NH.arff",8);
+  test("kin8nm","/smile/data/weka/regression/kin8nm.arff",8);
+}

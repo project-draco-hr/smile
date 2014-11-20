@@ -1,0 +1,10 @@
+{
+  if (sigma <= 0.0) {
+    throw new IllegalArgumentException("Invalid sigma: " + sigma);
+  }
+  this.mu=mu;
+  this.sigma=sigma;
+  mean=Math.exp(mu + sigma * sigma / 2);
+  var=(Math.exp(mu * mu) - 1) * Math.exp(2 * mu + sigma * sigma);
+  entropy=0.5 + 0.5 * Math.log(2 * Math.PI * sigma* sigma) + mu;
+}

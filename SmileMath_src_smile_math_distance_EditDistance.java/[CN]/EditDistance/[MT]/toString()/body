@@ -1,0 +1,4 @@
+{
+  if (damerauDistance)   return "Damerau-Levenshtein distance";
+ else   return "Levenshtein distance";
+}

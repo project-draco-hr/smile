@@ -1,0 +1,8 @@
+{
+  int n=x.length;
+  double f=Math.abs(x[0]);
+  for (int i=1; i < n; i++) {
+    f=Math.max(f,Math.abs(x[i]));
+  }
+  return f;
+}

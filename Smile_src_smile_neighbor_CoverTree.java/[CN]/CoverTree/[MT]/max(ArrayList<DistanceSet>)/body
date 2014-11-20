@@ -1,0 +1,9 @@
+{
+  double max=0.0;
+  for (  DistanceSet n : v) {
+    if (max < n.dist.get(n.dist.size() - 1)) {
+      max=n.dist.get(n.dist.size() - 1);
+    }
+  }
+  return max;
+}

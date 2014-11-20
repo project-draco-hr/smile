@@ -1,0 +1,8 @@
+{
+  if (x < 0) {
+    return Double.NEGATIVE_INFINITY;
+  }
+ else {
+    return (k - 1) * Math.log(x) - x / theta - k * logTheta - logGammaK;
+  }
+}

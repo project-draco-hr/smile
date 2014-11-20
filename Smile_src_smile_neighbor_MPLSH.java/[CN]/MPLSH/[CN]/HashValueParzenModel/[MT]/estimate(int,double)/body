@@ -1,0 +1,24 @@
+{
+  double mm=0.0, vv=0.0, ss=0.0;
+  for (int i=0; i < neighborHashValueModels.length; i++) {
+    double k=gaussian.p(neighborHashValueModels[i].H[m] - h);
+    mm+=k * neighborHashValueModels[i].mean[m];
+    vv+=k * neighborHashValueModels[i].var[m];
+    ss+=k;
+  }
+  if (ss > 1E-7) {
+    mean=mm / ss;
+    std=Math.sqrt(vv / ss);
+  }
+ else {
+    mean=h;
+    std=0.0;
+  }
+  if (std < 1E-5) {
+    std=0.0;
+    for (int i=0; i < neighborHashValueModels.length; i++) {
+      std+=neighborHashValueModels[i].var[m];
+    }
+    std=Math.sqrt(std / neighborHashValueModels.length);
+  }
+}
