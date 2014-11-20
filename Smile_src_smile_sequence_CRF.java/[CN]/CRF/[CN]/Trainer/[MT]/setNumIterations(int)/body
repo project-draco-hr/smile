@@ -1,6 +1,0 @@
-{
-  if (iters < 1) {
-    throw new IllegalArgumentException("Invalid number of iterations: " + iters);
-  }
-  this.iters=iters;
-}

@@ -1,7 +1,0 @@
-{
-  this.numClasses=numClasses;
-  potentials=new TreePotentialFunction[numClasses];
-  for (int i=0; i < numClasses; i++) {
-    potentials[i]=new TreePotentialFunction(eta);
-  }
-}

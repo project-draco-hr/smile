@@ -1,6 +1,0 @@
-{
-  double[] fs=new double[features.length + 1];
-  System.arraycopy(features,0,fs,0,features.length);
-  fs[features.length]=label;
-  return fs;
-}
