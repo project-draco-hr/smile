@@ -1,0 +1,4 @@
+{
+  setPreferredSize(new Dimension(160,160));
+  fc.addPropertyChangeListener(this);
+}

@@ -1,0 +1,15 @@
+{
+  int[][] c=new int[coord.length][2];
+  for (int i=0; i < coord.length; i++) {
+    c[i]=projection.screenProjection(coord[i]);
+  }
+  int[] x=new int[c.length];
+  for (int i=0; i < c.length; i++) {
+    x[i]=c[i][0];
+  }
+  int[] y=new int[c.length];
+  for (int i=0; i < c.length; i++) {
+    y[i]=c[i][1];
+  }
+  g2d.drawPolygon(x,y,c.length);
+}

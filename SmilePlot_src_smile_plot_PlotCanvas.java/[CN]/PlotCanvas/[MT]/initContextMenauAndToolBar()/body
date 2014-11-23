@@ -1,0 +1,58 @@
+{
+  toolbar=new JToolBar();
+  toolbar.add(new Button(saveAction));
+  toolbar.add(new Button(printAction));
+  toolbar.addSeparator();
+  toolbar.add(new Button(zoomInAction));
+  toolbar.add(new Button(zoomOutAction));
+  toolbar.add(new Button(resetAction));
+  toolbar.addSeparator();
+  toolbar.add(new Button(enlargePlotAreaAction));
+  toolbar.add(new Button(shrinkPlotAreaAction));
+  toolbar.add(new Button(increaseHeightAction));
+  toolbar.add(new Button(decreaseHeightAction));
+  toolbar.add(new Button(increaseWidthAction));
+  toolbar.add(new Button(decreaseWidthAction));
+  toolbar.addSeparator();
+  toolbar.add(new Button(propertyAction));
+  decreaseHeightAction.setEnabled(false);
+  decreaseWidthAction.setEnabled(false);
+  popup=new JPopupMenu();
+  popup.add(new JMenuItem(saveAction));
+  popup.add(new JMenuItem(printAction));
+  popup.addSeparator();
+  popup.add(new JMenuItem(zoomInAction));
+  popup.add(new JMenuItem(zoomOutAction));
+  popup.add(new JMenuItem(resetAction));
+  popup.addSeparator();
+  popup.add(new JMenuItem(enlargePlotAreaAction));
+  popup.add(new JMenuItem(shrinkPlotAreaAction));
+  popup.add(new JMenuItem(increaseHeightAction));
+  popup.add(new JMenuItem(decreaseHeightAction));
+  popup.add(new JMenuItem(increaseWidthAction));
+  popup.add(new JMenuItem(decreaseWidthAction));
+  popup.addSeparator();
+  popup.add(new JMenuItem(propertyAction));
+  AncestorListener ancestorListener=new AncestorListener(){
+    @Override public void ancestorAdded(    AncestorEvent ae){
+      boolean inScrollPane=false;
+      Container parent=getParent();
+      while (parent != null) {
+        if (parent instanceof JScrollPane) {
+          inScrollPane=true;
+          scrollPane=(JScrollPane)parent;
+          break;
+        }
+        parent=parent.getParent();
+      }
+      increaseHeightAction.setEnabled(inScrollPane);
+      increaseWidthAction.setEnabled(inScrollPane);
+    }
+    @Override public void ancestorRemoved(    AncestorEvent ae){
+    }
+    @Override public void ancestorMoved(    AncestorEvent ae){
+    }
+  }
+;
+  addAncestorListener(ancestorListener);
+}

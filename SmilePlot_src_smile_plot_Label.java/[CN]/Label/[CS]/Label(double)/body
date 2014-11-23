@@ -1,0 +1,3 @@
+{
+  this(coordToString(coord),coord);
+}

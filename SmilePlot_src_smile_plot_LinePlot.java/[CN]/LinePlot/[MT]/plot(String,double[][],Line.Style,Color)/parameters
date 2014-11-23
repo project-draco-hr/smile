@@ -1,0 +1,4 @@
+String id
+double[][] data
+Line.Style style
+Color color

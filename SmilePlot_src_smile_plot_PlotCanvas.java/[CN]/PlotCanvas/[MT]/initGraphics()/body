@@ -1,0 +1,8 @@
+{
+  if (base.dimension == 2) {
+    graphics=new Graphics(new Projection2D(this));
+  }
+ else {
+    graphics=new Graphics(new Projection3D(this));
+  }
+}

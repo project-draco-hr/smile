@@ -1,0 +1,8 @@
+{
+  if (axisLabels.length != base.getDimension()) {
+    throw new IllegalArgumentException("Axis label size don't match base dimension.");
+  }
+  for (int i=0; i < axisLabels.length; i++) {
+    axis[i].setAxisLabel(axisLabels[i]);
+  }
+}

@@ -1,0 +1,23 @@
+{
+  TableColumnModel columnModel=table.getColumnModel();
+  for (int i=0; i < columnModel.getColumnCount(); i++) {
+    TableColumn col=columnModel.getColumn(i);
+    int idx=col.getModelIndex();
+    int width=prefs.getInt(id + "-column-width-" + idx,0);
+    if (width != 0) {
+      col.setPreferredWidth(width);
+    }
+  }
+  TableColumn column[]=new TableColumn[columnModel.getColumnCount()];
+  for (int i=0; i < column.length; i++) {
+    column[i]=columnModel.getColumn(i);
+  }
+  while (columnModel.getColumnCount() > 0) {
+    columnModel.removeColumn(columnModel.getColumn(0));
+  }
+  int visibleColumnCount=prefs.getInt(id + "-visible-column-count",column.length);
+  for (int i=0; i < visibleColumnCount; i++) {
+    int idx=prefs.getInt(id + "-column-order-" + i,i);
+    columnModel.addColumn(column[idx]);
+  }
+}

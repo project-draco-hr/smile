@@ -1,0 +1,4 @@
+String id
+int[] data
+double[] breaks
+Color color

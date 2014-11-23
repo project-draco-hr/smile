@@ -1,0 +1,5 @@
+{
+  int m=(int)Math.sqrt(contentPane.getComponentCount());
+  if (m <= 0)   m=1;
+  contentPane.setLayout(new GridLayout(m,0,0,0));
+}

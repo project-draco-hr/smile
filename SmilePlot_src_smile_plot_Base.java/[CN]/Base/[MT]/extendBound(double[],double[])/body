@@ -1,0 +1,21 @@
+{
+  if (lowerBound.length != dimension || upperBound.length != dimension) {
+    throw new IllegalArgumentException("Bound size don't match the dimension.");
+  }
+  boolean extend=false;
+  for (int i=0; i < lowerBound.length; i++) {
+    if (lowerBound[i] < this.originalLowerBound[i]) {
+      this.originalLowerBound[i]=lowerBound[i];
+      extend=true;
+    }
+  }
+  for (int i=0; i < upperBound.length; i++) {
+    if (upperBound[i] > this.originalUpperBound[i]) {
+      this.originalUpperBound[i]=upperBound[i];
+      extend=true;
+    }
+  }
+  if (extend) {
+    reset();
+  }
+}

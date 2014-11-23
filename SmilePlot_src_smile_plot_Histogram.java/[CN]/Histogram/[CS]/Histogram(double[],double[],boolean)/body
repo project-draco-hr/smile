@@ -1,0 +1,4 @@
+{
+  super(histogram(data,breaks,prob));
+  this.prob=prob;
+}

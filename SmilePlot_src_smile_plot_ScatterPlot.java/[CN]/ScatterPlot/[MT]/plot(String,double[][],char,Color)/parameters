@@ -1,0 +1,4 @@
+String id
+double[][] data
+char legend
+Color color

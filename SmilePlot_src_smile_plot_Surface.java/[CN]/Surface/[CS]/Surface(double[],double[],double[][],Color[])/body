@@ -1,0 +1,4 @@
+{
+  this.palette=palette;
+  init(x,y,z);
+}

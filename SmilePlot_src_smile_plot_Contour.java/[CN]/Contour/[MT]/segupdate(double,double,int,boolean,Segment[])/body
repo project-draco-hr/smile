@@ -1,0 +1,54 @@
+{
+  Segment seglist=seg[0];
+  if (seglist == null) {
+    seg[1]=null;
+    return null;
+  }
+switch (dir) {
+case 1:
+case 3:
+    if (YMATCH(yend,seglist.y0)) {
+      if (!tail) {
+        seglist.swap();
+      }
+      seg[1]=seglist;
+      return seglist.next;
+    }
+  if (YMATCH(yend,seglist.y1)) {
+    if (tail) {
+      seglist.swap();
+    }
+    seg[1]=seglist;
+    return seglist.next;
+  }
+if (YMATCH(yend,seglist.y1)) {
+  if (tail) {
+    seglist.swap();
+  }
+  seg[1]=seglist;
+  return seglist.next;
+}
+break;
+case 2:
+case 4:
+if (XMATCH(xend,seglist.x0)) {
+if (!tail) {
+seglist.swap();
+}
+seg[1]=seglist;
+return seglist.next;
+}
+if (XMATCH(xend,seglist.x1)) {
+if (tail) {
+seglist.swap();
+}
+seg[1]=seglist;
+return seglist.next;
+}
+break;
+}
+Segment[] seg2={seglist.next,seg[1]};
+seglist.next=segupdate(xend,yend,dir,tail,seg2);
+seg[1]=seg2[1];
+return seglist;
+}

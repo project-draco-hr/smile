@@ -1,0 +1,27 @@
+{
+  super(new JFormattedTextField());
+  textField=(JFormattedTextField)getComponent();
+  this.dateFormat=dateFormat;
+  DateFormatter dateFormatter=new DateFormatter(dateFormat);
+  textField.setFormatterFactory(new DefaultFormatterFactory(dateFormatter));
+  textField.setHorizontalAlignment(JTextField.TRAILING);
+  textField.setFocusLostBehavior(JFormattedTextField.PERSIST);
+  textField.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0),"check");
+  textField.getActionMap().put("check",new AbstractAction(){
+    @Override public void actionPerformed(    ActionEvent e){
+      if (!textField.isEditValid()) {
+        Toolkit.getDefaultToolkit().beep();
+        textField.selectAll();
+      }
+ else {
+        try {
+          textField.commitEdit();
+          textField.postActionEvent();
+        }
+ catch (        java.text.ParseException ex) {
+        }
+      }
+    }
+  }
+);
+}

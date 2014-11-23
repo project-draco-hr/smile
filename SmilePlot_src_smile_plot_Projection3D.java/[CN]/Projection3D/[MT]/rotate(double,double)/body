@@ -1,0 +1,6 @@
+{
+  theta=theta - t / 100;
+  phi=phi + p / 100;
+  precompute();
+  reset();
+}

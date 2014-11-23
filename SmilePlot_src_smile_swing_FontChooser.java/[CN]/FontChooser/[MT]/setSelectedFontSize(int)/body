@@ -1,0 +1,11 @@
+{
+  String sizeString=String.valueOf(size);
+  for (int i=0; i < this.fontSizeStrings.length; i++) {
+    if (this.fontSizeStrings[i].equals(sizeString)) {
+      getFontSizeList().setSelectedIndex(i);
+      break;
+    }
+  }
+  getFontSizeTextField().setText(sizeString);
+  updateSampleFont();
+}

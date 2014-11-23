@@ -1,0 +1,14 @@
+{
+  try {
+    int p=Integer.parseInt(pageField.getText()) - 1;
+    if (setPage(p)) {
+      setActionEnabled();
+    }
+ else {
+      Toolkit.getDefaultToolkit().beep();
+    }
+  }
+ catch (  Exception ex) {
+    Toolkit.getDefaultToolkit().beep();
+  }
+}

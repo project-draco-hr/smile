@@ -1,0 +1,12 @@
+{
+  if (samplePanel == null) {
+    Border titledBorder=BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),_("Sample"));
+    Border empty=BorderFactory.createEmptyBorder(5,10,10,10);
+    Border border=BorderFactory.createCompoundBorder(titledBorder,empty);
+    samplePanel=new JPanel();
+    samplePanel.setLayout(new BorderLayout());
+    samplePanel.setBorder(border);
+    samplePanel.add(getSampleTextField(),BorderLayout.CENTER);
+  }
+  return samplePanel;
+}

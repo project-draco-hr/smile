@@ -1,0 +1,23 @@
+{
+switch (style) {
+case SOLID:
+    stroke=SOLID_STROKE;
+  break;
+case DOT:
+stroke=DOT_STROKE;
+break;
+case DASH:
+stroke=DASH_STROKE;
+break;
+case DOT_DASH:
+stroke=DOT_DASH_STROKE;
+break;
+case LONG_DASH:
+stroke=LONG_DASH_STROKE;
+break;
+default :
+stroke=SOLID_STROKE;
+break;
+}
+this.points=points;
+}

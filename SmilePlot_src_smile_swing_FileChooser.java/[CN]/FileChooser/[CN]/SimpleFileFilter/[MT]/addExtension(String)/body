@@ -1,0 +1,4 @@
+{
+  filters.add(extension.toLowerCase());
+  fullDescription=null;
+}

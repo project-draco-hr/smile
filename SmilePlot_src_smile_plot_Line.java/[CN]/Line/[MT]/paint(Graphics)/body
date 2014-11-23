@@ -1,0 +1,13 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  Stroke s=g.getStroke();
+  if (stroke != null) {
+    g.setStroke(stroke);
+  }
+  g.drawLine(points);
+  if (stroke != null) {
+    g.setStroke(s);
+  }
+  g.setColor(c);
+}

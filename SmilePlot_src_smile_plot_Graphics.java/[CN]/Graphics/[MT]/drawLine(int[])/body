@@ -1,0 +1,11 @@
+{
+  int[] x=new int[coord.length];
+  for (int i=0; i < coord.length; i++) {
+    x[i]=coord[i][0];
+  }
+  int[] y=new int[coord.length];
+  for (int i=0; i < coord.length; i++) {
+    y[i]=coord[i][1];
+  }
+  g2d.drawPolyline(x,y,coord.length);
+}

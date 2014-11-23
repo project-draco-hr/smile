@@ -1,0 +1,4 @@
+{
+  shapes.add(p);
+  repaint();
+}

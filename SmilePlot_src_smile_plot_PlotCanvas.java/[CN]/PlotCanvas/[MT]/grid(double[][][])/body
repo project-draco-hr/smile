@@ -1,0 +1,8 @@
+{
+  if (base.dimension != 2) {
+    throw new IllegalArgumentException("Grid can be only painted in a 2D canvas. Try surface() for 3D grid.");
+  }
+  Grid grid=new Grid(data);
+  add(grid);
+  return grid;
+}

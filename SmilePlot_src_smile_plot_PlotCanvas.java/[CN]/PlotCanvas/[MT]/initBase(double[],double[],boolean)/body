@@ -1,0 +1,5 @@
+{
+  base=new Base(lowerBound,upperBound,extendBound);
+  backupBase=base;
+  baseGrid=new BaseGrid(base);
+}

@@ -1,0 +1,10 @@
+{
+  if (fontStyleTextField == null) {
+    fontStyleTextField=new JTextField();
+    fontStyleTextField.addFocusListener(new TextFieldFocusHandlerForTextSelection(fontStyleTextField));
+    fontStyleTextField.addKeyListener(new TextFieldKeyHandlerForListSelectionUpDown(getFontStyleList()));
+    fontStyleTextField.getDocument().addDocumentListener(new ListSearchTextFieldDocumentHandler(getFontStyleList()));
+    fontStyleTextField.setFont(DEFAULT_FONT);
+  }
+  return fontStyleTextField;
+}

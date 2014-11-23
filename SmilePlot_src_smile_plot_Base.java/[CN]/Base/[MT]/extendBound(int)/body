@@ -1,0 +1,8 @@
+{
+  if (i < 0 || i >= dimension) {
+    throw new IllegalArgumentException("Invalid bound index: " + i);
+  }
+  extendBound[i]=true;
+  lowerBound[i]=precisionUnit[i] * (Math.floor(originalLowerBound[i] / precisionUnit[i]));
+  upperBound[i]=precisionUnit[i] * (Math.ceil(originalUpperBound[i] / precisionUnit[i]));
+}

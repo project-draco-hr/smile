@@ -1,0 +1,9 @@
+{
+  toolbar=new JToolBar(JToolBar.VERTICAL);
+  toolbar.setFloatable(false);
+  add(toolbar,BorderLayout.WEST);
+  JButton button=makeButton("save",SAVE,"Save","Save");
+  toolbar.add(button);
+  button=makeButton("print",PRINT,"Print","Print");
+  toolbar.add(button);
+}

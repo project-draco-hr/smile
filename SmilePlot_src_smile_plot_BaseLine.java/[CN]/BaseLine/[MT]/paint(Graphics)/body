@@ -1,0 +1,6 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  g.drawLineBaseRatio(points);
+  g.setColor(c);
+}

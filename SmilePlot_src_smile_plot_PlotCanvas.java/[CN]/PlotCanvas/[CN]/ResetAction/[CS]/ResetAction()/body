@@ -1,0 +1,3 @@
+{
+  super("Reset",new ImageIcon(PlotCanvas.class.getResource("images/refresh16.png")));
+}

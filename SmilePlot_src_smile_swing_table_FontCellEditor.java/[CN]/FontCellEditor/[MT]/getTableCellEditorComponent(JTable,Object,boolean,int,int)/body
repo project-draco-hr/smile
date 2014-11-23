@@ -1,0 +1,4 @@
+{
+  currentFont=(Font)value;
+  return button;
+}

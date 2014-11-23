@@ -1,0 +1,9 @@
+{
+  double[] lowerBound={0,Math.min(data)};
+  double[] upperBound={1,Math.max(data)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.add(new BoxPlot(data));
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.getAxis(0).setLabelVisible(false);
+  return canvas;
+}

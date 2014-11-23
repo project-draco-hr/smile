@@ -1,0 +1,3 @@
+double[][] data
+int nbins
+Color[] palette

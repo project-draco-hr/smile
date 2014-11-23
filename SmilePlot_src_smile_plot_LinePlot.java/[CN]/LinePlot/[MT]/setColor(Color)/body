@@ -1,0 +1,4 @@
+{
+  super.setColor(color);
+  line.setColor(color);
+}

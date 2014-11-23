@@ -1,0 +1,5 @@
+{
+  super(Color.LIGHT_GRAY);
+  this.palette=palette;
+  init(data,xbins,ybins,prob);
+}

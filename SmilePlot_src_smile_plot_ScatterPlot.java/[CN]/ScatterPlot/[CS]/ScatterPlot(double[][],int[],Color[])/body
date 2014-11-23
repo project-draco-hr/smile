@@ -1,0 +1,3 @@
+{
+  this(data,y,null,palette);
+}

@@ -1,0 +1,7 @@
+{
+  String[] labels=new String[base.dimension];
+  for (int i=0; i < base.dimension; i++) {
+    labels[i]=baseGrid.getAxis(i).getAxisLabel();
+  }
+  return labels;
+}

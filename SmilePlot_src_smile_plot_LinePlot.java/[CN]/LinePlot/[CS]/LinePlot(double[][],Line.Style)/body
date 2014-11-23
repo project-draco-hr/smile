@@ -1,0 +1,4 @@
+{
+  super(data,'.');
+  line=new Line(style,data);
+}

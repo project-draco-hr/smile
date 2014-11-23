@@ -1,0 +1,64 @@
+{
+  Color c=g.getColor();
+  if (color != null) {
+    g.setColor(color);
+  }
+  double angle=0.0;
+  double horizontalReference=0.0;
+  double verticalReference=0.0;
+  double[] coord=null;
+  if (points.size() > 1) {
+    double[] x1=points.get(0);
+    for (int i=1; i < points.size(); i++) {
+      double[] x2=points.get(i);
+      g.drawLine(x1,x2);
+      x1=x2;
+      if (label == null) {
+        if (i == points.size() / 2) {
+          coord=x1;
+          int k=i + 1;
+          if (k >= points.size()) {
+            k=i;
+          }
+          angle=Math.PI / 2;
+          double dxx=points.get(k)[0] - points.get(i)[0];
+          double dyy=points.get(k)[1] - points.get(i)[1];
+          if (dyy < 0.0) {
+            angle=-Math.PI / 2;
+          }
+          if (dxx != 0.0) {
+            angle=Math.atan(dyy / dxx) + Math.PI / 2;
+          }
+        }
+      }
+    }
+  }
+ else   if (points.size() == 1) {
+    double[] x1=points.get(0);
+    g.drawPoint('@',x1);
+    coord=x1;
+    horizontalReference=0.0;
+  }
+  if (label == null) {
+    double[] lb=g.getLowerBound();
+    double[] ub=g.getUpperBound();
+    double xrange=ub[0] - lb[0];
+    double yrange=ub[1] - lb[1];
+    if (ub[0] - coord[0] < xrange / 10) {
+      horizontalReference=1.0;
+    }
+    if (ub[1] - coord[1] < yrange / 10) {
+      horizontalReference=1.0;
+    }
+    if (coord[1] - lb[1] < yrange / 10) {
+      horizontalReference=0.0;
+    }
+    label=new Label(String.format("%.2G",level),horizontalReference,verticalReference,angle,coord);
+  }
+  if (showLevelValue && label != null) {
+    label.paint(g);
+  }
+  if (color != null) {
+    g.setColor(c);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  Font f=g.getFont();
+  if (font != null) {
+    g.setFont(font);
+  }
+  Color c=g.getColor();
+  g.setColor(getColor());
+  g.drawTextBaseRatio(text,horizontalReference,verticalReference,rotation,coord);
+  g.setColor(c);
+  if (font != null) {
+    g.setFont(f);
+  }
+}

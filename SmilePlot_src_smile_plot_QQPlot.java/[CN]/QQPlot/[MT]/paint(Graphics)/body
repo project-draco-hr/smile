@@ -1,0 +1,15 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  double[] lowerEnd=g.getLowerBound();
+  lowerEnd[0]=Math.min(lowerEnd[0],lowerEnd[1]);
+  lowerEnd[1]=lowerEnd[0];
+  double[] upperEnd=g.getUpperBound();
+  upperEnd[0]=Math.max(upperEnd[0],upperEnd[1]);
+  upperEnd[1]=upperEnd[0];
+  g.drawLine(lowerEnd,upperEnd);
+  for (int i=0; i < data.length; i++) {
+    g.drawPoint('o',data[i]);
+  }
+  g.setColor(c);
+}

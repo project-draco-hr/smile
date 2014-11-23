@@ -1,0 +1,11 @@
+{
+  super(action);
+  if (getIcon() != null) {
+    String desc=(String)action.getValue(Action.SHORT_DESCRIPTION);
+    if (desc == null) {
+      desc=getText();
+    }
+    setToolTipText(desc);
+    setText(null);
+  }
+}

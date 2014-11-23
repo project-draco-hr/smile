@@ -1,0 +1,6 @@
+{
+  this.dialog=dialog;
+  putValue(Action.DEFAULT,ACTION_NAME);
+  putValue(Action.ACTION_COMMAND_KEY,ACTION_NAME);
+  putValue(Action.NAME,_(ACTION_NAME));
+}

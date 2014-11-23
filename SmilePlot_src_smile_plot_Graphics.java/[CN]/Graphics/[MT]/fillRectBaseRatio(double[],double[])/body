@@ -1,0 +1,8 @@
+{
+  if (!(projection instanceof Projection2D)) {
+    throw new UnsupportedOperationException("Only 2D graphics supports drawing rectangles.");
+  }
+  int[] sc=projection.screenProjectionBaseRatio(topLeft);
+  int[] sc2=projection.screenProjectionBaseRatio(rightBottom);
+  g2d.fillRect(sc[0],sc[1],sc2[0] - sc[0],sc2[1] - sc[1]);
+}

@@ -1,0 +1,47 @@
+{
+  if (img == null || header == null) {
+    loadPreview();
+  }
+  if (img != null) {
+    Graphics2D g2d=(Graphics2D)g;
+    if (getWidth() < img.getWidth() || getHeight() < img.getHeight()) {
+      int x=(getWidth() - img.getWidth()) / 2;
+      int y=(getHeight() - img.getHeight()) / 2;
+      if (x < 5)       x=5;
+      if (y < 5)       y=5;
+      int width=getWidth() - 2 * x;
+      int height=getHeight() - 2 * y;
+      g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+      g2d.drawImage(img,x,y,width,height,null);
+    }
+ else {
+      int x=(getWidth() - img.getWidth()) / 2;
+      int y=(getHeight() - img.getHeight()) / 2;
+      g2d.drawImage(img,x,y,null);
+    }
+  }
+  if (header != null) {
+    Graphics2D g2d=(Graphics2D)g;
+    g2d.setFont(font);
+    g2d.setColor(color);
+    Insets insets=getInsets();
+    int x=insets.left;
+    int y=insets.top;
+    if (x < 5)     x=5;
+    if (y < 5)     y=5;
+    int begin=0;
+    int end=header.indexOf('\n',begin);
+    if (end == -1)     end=header.length();
+    while (begin >= 0 && begin < header.length()) {
+      y+=fm.getAscent();
+      if (y >= getHeight()) {
+        break;
+      }
+      g2d.drawString(header.substring(begin,end),x,y);
+      begin=end + 1;
+      end=header.indexOf('\n',begin);
+      if (end == -1)       end=header.length();
+      y+=fm.getDescent() + fm.getLeading();
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  this.table=table;
+  KeyStroke copy=KeyStroke.getKeyStroke(KeyEvent.VK_C,ActionEvent.CTRL_MASK,false);
+  KeyStroke paste=KeyStroke.getKeyStroke(KeyEvent.VK_V,ActionEvent.CTRL_MASK,false);
+  table.registerKeyboardAction(this,"Copy",copy,JComponent.WHEN_FOCUSED);
+  table.registerKeyboardAction(this,"Paste",paste,JComponent.WHEN_FOCUSED);
+  system=Toolkit.getDefaultToolkit().getSystemClipboard();
+}

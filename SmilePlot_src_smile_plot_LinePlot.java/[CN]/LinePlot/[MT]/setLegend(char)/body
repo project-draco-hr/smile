@@ -1,0 +1,4 @@
+{
+  super.setLegend(legend);
+  drawDot=true;
+}

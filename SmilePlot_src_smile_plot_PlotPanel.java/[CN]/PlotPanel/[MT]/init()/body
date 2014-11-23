@@ -1,0 +1,8 @@
+{
+  setLayout(new BorderLayout());
+  initToolBar();
+  contentPane=new JPanel();
+  contentPane.setLayout(new GridLayout(0,1,0,0));
+  contentPane.setBackground(Color.WHITE);
+  add(contentPane,BorderLayout.CENTER);
+}

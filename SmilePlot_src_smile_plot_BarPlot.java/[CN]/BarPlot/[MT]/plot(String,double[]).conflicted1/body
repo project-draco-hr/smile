@@ -1,0 +1,13 @@
+{
+  if (data[0].length != 2) {
+    throw new IllegalArgumentException("Dataset is not 2-dimensional.");
+  }
+  double[] lowerBound=Math.colMin(data);
+  double[] upperBound=Math.colMax(data);
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.getAxis(0).setGridVisible(false);
+  BarPlot plot=new BarPlot(data);
+  plot.setID(id);
+  canvas.add(plot);
+  return canvas;
+}

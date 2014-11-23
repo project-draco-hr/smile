@@ -1,0 +1,65 @@
+{
+  if (base.dimension == 2) {
+    if (mouseDoubleClicked) {
+      double x=mouseClickX - e.getX();
+      if (Math.abs(x) > 20) {
+        int s=baseGrid.getAxis(0).getLinearSlices();
+        x=x > 0 ? 1.0 / s : -1.0 / s;
+        x*=(backupBase.upperBound[0] - backupBase.lowerBound[0]);
+        base.lowerBound[0]=backupBase.lowerBound[0] + x;
+        base.upperBound[0]=backupBase.upperBound[0] + x;
+        mouseClickX=e.getX();
+      }
+      double y=mouseClickY - e.getY();
+      if (Math.abs(y) > 20) {
+        int s=baseGrid.getAxis(1).getLinearSlices();
+        y=y > 0 ? -1.0 / s : 1.0 / s;
+        y*=(backupBase.upperBound[1] - backupBase.lowerBound[1]);
+        base.lowerBound[1]=backupBase.lowerBound[1] + y;
+        base.upperBound[1]=backupBase.upperBound[1] + y;
+        mouseClickY=e.getY();
+      }
+      base.initBaseCoord();
+      graphics.projection.reset();
+      baseGrid.setBase(base);
+      repaint();
+    }
+ else {
+      String tooltip=null;
+      double[] sc=((Projection2D)(graphics.projection)).inverseProjection(e.getX(),e.getY());
+      String firstid=null;
+      for (      Shape shape : shapes) {
+        if (shape instanceof Plot) {
+          Plot plot=(Plot)shape;
+          String s=plot.getToolTip(sc);
+          if (s != null) {
+            if (tooltip == null) {
+              tooltip=s;
+              firstid=plot.getID();
+            }
+ else {
+              if (firstid != null) {
+                tooltip="<b>" + firstid + ":</b><br>"+ tooltip;
+                firstid=null;
+              }
+              String id=plot.getID();
+              if (id != null) {
+                tooltip+="<br><b>" + id + ":</b><br>"+ s;
+              }
+ else {
+                tooltip+="<br>----------<br>" + s;
+              }
+            }
+          }
+        }
+      }
+      if (tooltip != null) {
+        setToolTipText(String.format("<html>%s</html>",tooltip));
+      }
+ else {
+        setToolTipText(null);
+      }
+    }
+  }
+  e.consume();
+}

@@ -1,0 +1,9 @@
+{
+  if (labels == null) {
+    labels=new HashMap<String,Double>();
+  }
+  labels.put(label,location);
+  setSlice();
+  initGridLines();
+  initGridLabels();
+}

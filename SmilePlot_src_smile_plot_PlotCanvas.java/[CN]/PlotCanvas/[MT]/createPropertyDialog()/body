@@ -1,0 +1,36 @@
+{
+  Frame frame=(Frame)SwingUtilities.getAncestorOfClass(Frame.class,this);
+  JDialog dialog=new JDialog(frame,"Plot Properties",true);
+  Action okAction=new PropertyDialogOKAction(dialog);
+  Action cancelAction=new PropertyDialogCancelAction(dialog);
+  JButton okButton=new JButton(okAction);
+  JButton cancelButton=new JButton(cancelAction);
+  JPanel buttonsPanel=new JPanel();
+  buttonsPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
+  buttonsPanel.add(okButton);
+  buttonsPanel.add(cancelButton);
+  buttonsPanel.setBorder(BorderFactory.createEmptyBorder(25,0,10,10));
+  ActionMap actionMap=buttonsPanel.getActionMap();
+  actionMap.put(cancelAction.getValue(Action.DEFAULT),cancelAction);
+  actionMap.put(okAction.getValue(Action.DEFAULT),okAction);
+  InputMap inputMap=buttonsPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  inputMap.put(KeyStroke.getKeyStroke("ESCAPE"),cancelAction.getValue(Action.DEFAULT));
+  inputMap.put(KeyStroke.getKeyStroke("ENTER"),okAction.getValue(Action.DEFAULT));
+  String[] columnNames={"Property","Value"};
+  if (base.dimension == 2) {
+    Object[][] data={{"Title",title},{"Title Font",titleFont},{"Title Color",titleColor},{"X Axis Title",getAxis(0).getAxisLabel()},{"X Axis Range",new double[]{base.getLowerBounds()[0],base.getUpperBounds()[0]}},{"Y Axis Title",getAxis(1).getAxisLabel()},{"Y Axis Range",new double[]{base.getLowerBounds()[1],base.getUpperBounds()[1]}}};
+    propertyTable=new Table(data,columnNames);
+  }
+ else {
+    Object[][] data={{"Title",title},{"Title Font",titleFont},{"Title Color",titleColor},{"X Axis Title",getAxis(0).getAxisLabel()},{"X Axis Range",new double[]{base.getLowerBounds()[0],base.getUpperBounds()[0]}},{"Y Axis Title",getAxis(1).getAxisLabel()},{"Y Axis Range",new double[]{base.getLowerBounds()[1],base.getUpperBounds()[1]}},{"Z Axis Title",getAxis(2).getAxisLabel()},{"Z Axis Range",new double[]{base.getLowerBounds()[2],base.getUpperBounds()[2]}}};
+    propertyTable=new Table(data,columnNames);
+  }
+  propertyTable.putClientProperty("terminateEditOnFocusLost",Boolean.TRUE);
+  propertyTable.setFillsViewportHeight(true);
+  JScrollPane tablePanel=new JScrollPane(propertyTable);
+  dialog.getContentPane().add(tablePanel,BorderLayout.CENTER);
+  dialog.getContentPane().add(buttonsPanel,BorderLayout.SOUTH);
+  dialog.pack();
+  dialog.setLocationRelativeTo(frame);
+  return dialog;
+}

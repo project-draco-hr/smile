@@ -1,0 +1,3 @@
+{
+  drawText(label,horizontalReference,verticalReference,0.0,coord);
+}

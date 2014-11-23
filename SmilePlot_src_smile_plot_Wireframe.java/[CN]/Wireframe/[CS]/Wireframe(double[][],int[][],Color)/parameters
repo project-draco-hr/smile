@@ -1,0 +1,3 @@
+double[][] vertices
+int[][] edges
+Color color

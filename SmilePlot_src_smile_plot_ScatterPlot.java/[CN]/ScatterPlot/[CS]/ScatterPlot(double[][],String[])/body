@@ -1,0 +1,7 @@
+{
+  if (data.length != labels.length) {
+    throw new IllegalArgumentException("The number of points and that of labels are not same.");
+  }
+  this.data=data;
+  this.labels=labels;
+}

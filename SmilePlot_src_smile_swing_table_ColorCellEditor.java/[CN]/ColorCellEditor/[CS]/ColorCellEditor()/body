@@ -1,0 +1,13 @@
+{
+  button=new JButton(){
+    @Override public void paintComponent(    Graphics g){
+      g.setColor(getBackground());
+      g.fillRect(0,0,getWidth(),getHeight());
+    }
+  }
+;
+  button.setActionCommand(EDIT);
+  button.addActionListener(this);
+  colorChooser=new JColorChooser();
+  dialog=JColorChooser.createDialog(button,"Pick a Color",true,colorChooser,this,null);
+}

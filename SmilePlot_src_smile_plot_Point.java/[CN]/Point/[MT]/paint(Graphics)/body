@@ -1,0 +1,6 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  g.drawPoint(legend,point);
+  g.setColor(c);
+}

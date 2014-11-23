@@ -1,0 +1,4 @@
+{
+  dialogResultValue=CANCEL_OPTION;
+  dialog.setVisible(false);
+}

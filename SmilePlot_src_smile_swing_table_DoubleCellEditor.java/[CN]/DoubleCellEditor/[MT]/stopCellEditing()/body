@@ -1,0 +1,16 @@
+{
+  JFormattedTextField ftf=(JFormattedTextField)getComponent();
+  if (ftf.isEditValid()) {
+    try {
+      ftf.commitEdit();
+    }
+ catch (    java.text.ParseException ex) {
+    }
+  }
+ else {
+    Toolkit.getDefaultToolkit().beep();
+    textField.selectAll();
+    return false;
+  }
+  return super.stopCellEditing();
+}

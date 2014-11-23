@@ -1,0 +1,3 @@
+{
+  super("Last Page",new ImageIcon(PageTableModel.class.getResource("/smile/swing/images/navigate_end.png")));
+}

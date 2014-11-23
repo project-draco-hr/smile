@@ -1,0 +1,8 @@
+{
+  if (axisLabel == null) {
+    return null;
+  }
+ else {
+    return axisLabel.getText();
+  }
+}

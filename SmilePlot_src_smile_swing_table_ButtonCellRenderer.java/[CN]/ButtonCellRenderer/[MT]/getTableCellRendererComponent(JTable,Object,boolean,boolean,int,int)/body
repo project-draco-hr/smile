@@ -1,0 +1,32 @@
+{
+  if (isSelected) {
+    renderButton.setForeground(table.getSelectionForeground());
+    renderButton.setBackground(table.getSelectionBackground());
+  }
+ else {
+    renderButton.setForeground(table.getForeground());
+    renderButton.setBackground(UIManager.getColor("Button.background"));
+  }
+  if (hasFocus) {
+    renderButton.setBorder(focusBorder);
+  }
+ else {
+    renderButton.setBorder(originalBorder);
+  }
+  if (value == null) {
+    renderButton.setText("");
+    renderButton.setIcon(null);
+    renderButton.setEnabled(false);
+  }
+ else   if (value instanceof Icon) {
+    renderButton.setText("");
+    renderButton.setIcon((Icon)value);
+    renderButton.setEnabled(true);
+  }
+ else {
+    renderButton.setText(value.toString());
+    renderButton.setIcon(null);
+    renderButton.setEnabled(true);
+  }
+  return renderButton;
+}

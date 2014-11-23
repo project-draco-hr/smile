@@ -1,0 +1,16 @@
+{
+  float computedAlpha=1.0F;
+  for (  RowSorter.SortKey sortKey : table.getRowSorter().getSortKeys()) {
+    if (table.convertColumnIndexToView(sortKey.getColumn()) == column) {
+switch (sortKey.getSortOrder()) {
+case ASCENDING:
+        return new AlphaIcon(UIManager.getIcon("Table.ascendingSortIcon"),computedAlpha);
+case DESCENDING:
+      return new AlphaIcon(UIManager.getIcon("Table.descendingSortIcon"),computedAlpha);
+default :
+  }
+}
+computedAlpha*=alpha;
+}
+return null;
+}

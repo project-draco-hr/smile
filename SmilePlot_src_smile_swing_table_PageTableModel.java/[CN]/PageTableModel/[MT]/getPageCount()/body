@@ -1,0 +1,7 @@
+{
+  int pages=(int)Math.ceil((double)getRealRowCount() / pageSize);
+  if (pages == 0) {
+    pages=1;
+  }
+  return pages;
+}

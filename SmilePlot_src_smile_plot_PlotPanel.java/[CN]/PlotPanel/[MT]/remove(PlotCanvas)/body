@@ -1,0 +1,4 @@
+{
+  contentPane.remove(plot);
+  organize();
+}

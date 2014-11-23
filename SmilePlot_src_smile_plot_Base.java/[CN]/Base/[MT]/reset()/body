@@ -1,0 +1,13 @@
+{
+  for (int i=0; i < dimension; i++) {
+    lowerBound[i]=originalLowerBound[i];
+    upperBound[i]=originalUpperBound[i];
+    setPrecisionUnit(i);
+  }
+  for (int i=0; i < dimension; i++) {
+    if (extendBound[i]) {
+      extendBound(i);
+    }
+  }
+  initBaseCoord();
+}

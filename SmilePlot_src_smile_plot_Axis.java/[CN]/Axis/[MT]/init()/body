@@ -1,0 +1,6 @@
+{
+  initOrigin();
+  setSlice();
+  initGridLines();
+  initGridLabels();
+}

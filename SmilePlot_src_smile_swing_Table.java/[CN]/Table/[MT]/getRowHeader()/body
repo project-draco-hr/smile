@@ -1,0 +1,6 @@
+{
+  if (rowHeader == null) {
+    rowHeader=new RowHeader();
+  }
+  return rowHeader;
+}

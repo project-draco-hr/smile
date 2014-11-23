@@ -1,0 +1,9 @@
+{
+  double[] lowerBound={Math.min(x),Math.min(y)};
+  double[] upperBound={Math.max(x),Math.max(y)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound,false);
+  canvas.add(new Heatmap(x,y,z,palette));
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.getAxis(1).setGridVisible(false);
+  return canvas;
+}

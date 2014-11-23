@@ -1,0 +1,40 @@
+{
+  if (labels == null) {
+    double min=base.getPrecisionUnit()[index] * Math.ceil(base.getLowerBounds()[index] / base.getPrecisionUnit()[index]);
+    double max=base.getPrecisionUnit()[index] * Math.floor(base.getUpperBounds()[index] / base.getPrecisionUnit()[index]);
+    linearSlices=(int)Math.ceil(Math.round((max - min) / base.getPrecisionUnit()[index],1));
+    if (linearSlices <= 0) {
+      linearSlices=1;
+    }
+    if (linearSlices < 3) {
+      linearSlices*=2;
+    }
+    linesSlicing=new double[linearSlices + 3];
+    labelsSlicing=new double[linearSlices + 3];
+    double pitch=(max - min) / linearSlices;
+    for (int i=1; i <= linearSlices + 1; i++) {
+      linesSlicing[i]=min + (i - 1) * pitch;
+      labelsSlicing[i]=min + (i - 1) * pitch;
+    }
+    linesSlicing[0]=base.getLowerBounds()[index];
+    labelsSlicing[0]=base.getLowerBounds()[index];
+    linesSlicing[linearSlices + 2]=base.getUpperBounds()[index];
+    labelsSlicing[linearSlices + 2]=base.getUpperBounds()[index];
+  }
+ else {
+    linesSlicing=new double[labels.size() + 2];
+    labelsSlicing=new double[labels.size()];
+    gridLabelStrings=new String[labels.size()];
+    linesSlicing[0]=base.getLowerBounds()[index];
+    int i=1;
+    for (    String string : labels.keySet()) {
+      linesSlicing[i]=labels.get(string);
+      labelsSlicing[i - 1]=labels.get(string);
+      gridLabelStrings[i - 1]=string;
+      i++;
+    }
+    linesSlicing[i]=base.getUpperBounds()[index];
+    Arrays.sort(linesSlicing);
+    QuickSort.sort(labelsSlicing,gridLabelStrings);
+  }
+}

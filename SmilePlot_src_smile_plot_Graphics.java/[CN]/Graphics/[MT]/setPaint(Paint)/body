@@ -1,0 +1,3 @@
+{
+  g2d.setPaint(paint);
+}

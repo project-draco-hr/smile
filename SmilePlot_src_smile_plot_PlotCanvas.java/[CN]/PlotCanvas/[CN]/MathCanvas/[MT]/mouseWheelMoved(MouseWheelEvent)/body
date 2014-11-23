@@ -1,0 +1,22 @@
+{
+  if (e.getWheelRotation() == 0) {
+    return;
+  }
+  for (int i=0; i < base.dimension; i++) {
+    int s=baseGrid.getAxis(i).getLinearSlices();
+    double r=e.getWheelRotation() > 0 ? 1.0 / s : -1.0 / s;
+    if (r > -0.5) {
+      double d=(base.upperBound[i] - base.lowerBound[i]) * r;
+      base.lowerBound[i]-=d;
+      base.upperBound[i]+=d;
+    }
+  }
+  for (int i=0; i < base.dimension; i++) {
+    base.setPrecisionUnit(i);
+  }
+  base.initBaseCoord();
+  graphics.projection.reset();
+  baseGrid.setBase(base);
+  repaint();
+  e.consume();
+}

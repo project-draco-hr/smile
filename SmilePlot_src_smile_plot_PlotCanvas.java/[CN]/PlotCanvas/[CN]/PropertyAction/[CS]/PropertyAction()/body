@@ -1,0 +1,3 @@
+{
+  super("Properties",new ImageIcon(PlotCanvas.class.getResource("images/property16.png")));
+}

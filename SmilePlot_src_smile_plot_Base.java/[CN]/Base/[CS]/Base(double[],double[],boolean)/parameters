@@ -1,0 +1,3 @@
+double[] lowerBound
+double[] upperBound
+boolean extendBound

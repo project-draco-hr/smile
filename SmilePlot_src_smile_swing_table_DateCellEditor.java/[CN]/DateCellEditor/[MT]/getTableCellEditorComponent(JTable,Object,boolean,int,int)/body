@@ -1,0 +1,5 @@
+{
+  JFormattedTextField ftf=(JFormattedTextField)super.getTableCellEditorComponent(table,value,isSelected,row,column);
+  ftf.setValue(value);
+  return ftf;
+}

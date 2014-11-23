@@ -1,0 +1,17 @@
+{
+  int[] sc=projection.screenProjection(coord);
+  int x=sc[0];
+  int y=sc[1];
+  AffineTransform transform=g2d.getTransform();
+  FontRenderContext frc=g2d.getFontRenderContext();
+  Font font=g2d.getFont();
+  double w=font.getStringBounds(label,frc).getWidth();
+  double h=font.getSize2D();
+  if (rotation != 0) {
+    g2d.rotate(rotation,x,y);
+  }
+  x-=(int)(w * horizontalReference);
+  y+=(int)(h * verticalReference);
+  g2d.drawString(label,x,y);
+  g2d.setTransform(transform);
+}

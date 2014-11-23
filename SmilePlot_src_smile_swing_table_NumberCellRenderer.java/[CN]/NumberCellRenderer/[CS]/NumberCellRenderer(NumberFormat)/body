@@ -1,0 +1,4 @@
+{
+  this.numberFormat=numberFormat;
+  init();
+}

@@ -1,0 +1,52 @@
+{
+  Graphics2D g2d=(Graphics2D)g;
+  graphics.setGraphics(g2d);
+  Color color=g2d.getColor();
+  g2d.setColor(getBackground());
+  g2d.fillRect(0,0,getSize().width,getSize().height);
+  g2d.setColor(color);
+  baseGrid.paint(graphics);
+  graphics.clip();
+  int k=0;
+  for (  Shape s : shapes) {
+    s.paint(graphics);
+    if (s instanceof Plot) {
+      Plot p=(Plot)s;
+      if (p.getID() != null) {
+        k++;
+      }
+    }
+  }
+  graphics.clearClip();
+  if (k > 1) {
+    Font font=g2d.getFont();
+    int x=(int)(getWidth() * (1 - margin) + 20);
+    int y=(int)(getHeight() * margin + 50);
+    int width=font.getSize();
+    int height=font.getSize();
+    for (    Shape s : shapes) {
+      if (s instanceof Plot) {
+        Plot p=(Plot)s;
+        if (p.getID() != null) {
+          g2d.setColor(p.getColor());
+          g2d.fillRect(x,y,width,height);
+          g2d.drawRect(x,y,width,height);
+          g2d.drawString(p.getID(),x + 2 * width,y + height);
+          y+=2 * width;
+        }
+      }
+    }
+  }
+  if (title != null) {
+    g2d.setFont(titleFont);
+    g2d.setColor(titleColor);
+    FontMetrics fm=g.getFontMetrics();
+    int x=(getWidth() - fm.stringWidth(title)) / 2;
+    int y=(int)(getHeight() * margin) / 2;
+    g2d.drawString(title,x,y);
+  }
+  if (mouseDraggingX >= 0 && mouseDraggingY >= 0) {
+    g.drawRect(Math.min(mouseClickX,mouseDraggingX),Math.min(mouseClickY,mouseDraggingY),Math.abs(mouseClickX - mouseDraggingX),Math.abs(mouseClickY - mouseDraggingY));
+  }
+  g2d.setColor(color);
+}

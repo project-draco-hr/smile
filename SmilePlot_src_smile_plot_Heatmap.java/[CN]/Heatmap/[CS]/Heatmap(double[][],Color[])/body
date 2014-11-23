@@ -1,0 +1,5 @@
+{
+  this.z=z;
+  this.palette=palette;
+  init();
+}

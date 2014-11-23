@@ -1,0 +1,7 @@
+{
+  double[] lowerBound={Math.min(x),GaussianDistribution.getInstance().quantile(1 / (x.length + 1.0))};
+  double[] upperBound={Math.max(x),GaussianDistribution.getInstance().quantile(x.length / (x.length + 1.0))};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.add(new QQPlot(x));
+  return canvas;
+}

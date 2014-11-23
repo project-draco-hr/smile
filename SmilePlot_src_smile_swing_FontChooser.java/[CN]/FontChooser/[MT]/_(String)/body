@@ -1,0 +1,9 @@
+{
+  String value=key;
+  try {
+    value=messageCatalog.getString(key);
+  }
+ catch (  MissingResourceException e) {
+  }
+  return value;
+}

@@ -1,0 +1,9 @@
+{
+  if (value == null) {
+    setText("");
+  }
+  Font font=(Font)value;
+  setFont(font);
+  String tooltip=font.getFontName() + ", " + font.getSize();
+  setToolTipText(tooltip);
+}

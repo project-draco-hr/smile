@@ -1,0 +1,4 @@
+{
+  int index=getFontStyleList().getSelectedIndex();
+  return FONT_STYLE_CODES[index];
+}

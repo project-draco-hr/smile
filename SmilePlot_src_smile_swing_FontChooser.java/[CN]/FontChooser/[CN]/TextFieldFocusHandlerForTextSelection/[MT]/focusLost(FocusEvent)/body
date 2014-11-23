@@ -1,0 +1,4 @@
+{
+  textComponent.select(0,0);
+  updateSampleFont();
+}

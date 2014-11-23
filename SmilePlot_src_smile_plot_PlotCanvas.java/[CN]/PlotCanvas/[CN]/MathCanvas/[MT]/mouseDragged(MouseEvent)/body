@@ -1,0 +1,14 @@
+{
+  if (base.dimension == 2) {
+    mouseDraggingX=e.getX();
+    mouseDraggingY=e.getY();
+    repaint();
+  }
+ else   if (base.dimension == 3) {
+    graphics.rotate(e.getX() - mouseClickX,e.getY() - mouseClickY);
+    mouseClickX=e.getX();
+    mouseClickY=e.getY();
+    repaint();
+  }
+  e.consume();
+}

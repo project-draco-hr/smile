@@ -1,0 +1,8 @@
+{
+  if (description.length != data.length) {
+    throw new IllegalArgumentException("Data size and label size don't match.");
+  }
+  this.description=description;
+  this.data=data;
+  init();
+}

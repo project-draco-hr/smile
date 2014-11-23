@@ -1,0 +1,3 @@
+{
+  this(vertices,edges,Color.BLACK);
+}

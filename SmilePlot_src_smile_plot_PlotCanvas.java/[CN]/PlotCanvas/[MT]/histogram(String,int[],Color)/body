@@ -1,0 +1,19 @@
+{
+  if (base.dimension != 2) {
+    throw new IllegalArgumentException("Histogram can be only painted in a 2D canvas.");
+  }
+  Histogram histogram=new Histogram(data);
+  histogram.setID(id);
+  histogram.setColor(color);
+  double[] lowerBound={Math.min(data) - 0.5,0};
+  double[] upperBound={Math.max(data) + 0.5,0};
+  double[][] freq=histogram.getHistogram();
+  for (int i=0; i < freq.length; i++) {
+    if (freq[i][1] > upperBound[1]) {
+      upperBound[1]=freq[i][1];
+    }
+  }
+  extendBound(lowerBound,upperBound);
+  add(histogram);
+  return histogram;
+}

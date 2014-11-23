@@ -1,0 +1,15 @@
+{
+  FileChooser.SimpleFileFilter filter=FileChooser.SimpleFileFilter.getWritableImageFIlter();
+  JFileChooser chooser=FileChooser.getInstance();
+  chooser.setFileFilter(filter);
+  chooser.setAcceptAllFileFilterUsed(false);
+  chooser.setSelectedFiles(new File[0]);
+  int returnVal=chooser.showOpenDialog(null);
+  if (returnVal == JFileChooser.APPROVE_OPTION) {
+    File file=chooser.getSelectedFile();
+    if (!filter.accept(file)) {
+      file=new File(file.getParentFile(),file.getName() + ".png");
+    }
+    save(file);
+  }
+}

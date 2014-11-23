@@ -1,0 +1,3 @@
+{
+  super("Zoom In",new ImageIcon(PlotCanvas.class.getResource("images/zoom-in16.png")));
+}

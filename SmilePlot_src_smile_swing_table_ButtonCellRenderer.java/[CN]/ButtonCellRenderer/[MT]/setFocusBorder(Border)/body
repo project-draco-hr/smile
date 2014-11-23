@@ -1,0 +1,4 @@
+{
+  this.focusBorder=focusBorder;
+  editButton.setBorder(focusBorder);
+}

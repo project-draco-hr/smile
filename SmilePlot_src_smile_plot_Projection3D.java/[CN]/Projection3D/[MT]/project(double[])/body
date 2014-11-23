@@ -1,0 +1,7 @@
+{
+  double[] coord=new double[3];
+  coord[0]=cosTheta * xyz[1] - sinTheta * xyz[0];
+  coord[1]=cosPhi * xyz[2] - sinPhi * cosTheta * xyz[0] - sinPhi * sinTheta * xyz[1];
+  coord[2]=cosPhi * sinTheta * xyz[1] + sinPhi * xyz[2] + cosPhi * cosTheta * xyz[0];
+  return coord;
+}

@@ -1,0 +1,8 @@
+{
+  if ("selectionModel".equals(e.getPropertyName())) {
+    setSelectionModel(Table.this.getSelectionModel());
+  }
+  if ("model".equals(e.getPropertyName())) {
+    setModel(Table.this.getModel());
+  }
+}

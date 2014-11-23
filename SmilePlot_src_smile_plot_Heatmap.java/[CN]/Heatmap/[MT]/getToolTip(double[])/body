@@ -1,0 +1,11 @@
+{
+  if (rowLabels == null || columnLabels == null) {
+    return null;
+  }
+  if (coord[0] < 0.0 || coord[0] > z[0].length || coord[1] < 0.0 || coord[1] > z.length) {
+    return null;
+  }
+  int i=(int)coord[0];
+  int j=(int)(y.length - coord[1]);
+  return String.format("%s, %s",rowLabels[j],columnLabels[i]);
+}

@@ -1,0 +1,11 @@
+{
+  JFormattedTextField ftf=(JFormattedTextField)getComponent();
+  Object o=ftf.getValue();
+  if (o instanceof int[]) {
+    return o;
+  }
+ else {
+    LOGGER.log(Level.FINE,"getCellEditorValue: can't parse {0}",o);
+    return null;
+  }
+}

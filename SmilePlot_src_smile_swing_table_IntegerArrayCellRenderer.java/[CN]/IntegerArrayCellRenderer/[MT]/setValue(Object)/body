@@ -1,0 +1,15 @@
+{
+  if (value == null) {
+    setText("");
+  }
+  int[] data=(int[])value;
+  StringBuilder builder=new StringBuilder();
+  if (data.length > 0) {
+    builder.append("[").append(data[0]);
+  }
+  for (int i=1; i < data.length; i++) {
+    builder.append(", ").append(data[i]);
+  }
+  builder.append("]");
+  setText(builder.toString());
+}

@@ -1,0 +1,68 @@
+{
+  int dim=base.getDimension();
+  double[] offset=new double[dim];
+  for (int j=0; j < dim; j++) {
+    if (j != index) {
+      offset[j]=-(base.getUpperBounds()[j] - base.getLowerBounds()[j]) / 100;
+    }
+  }
+  int decimal=0;
+  String label;
+  gridLabels=new Label[labelsSlicing.length];
+  for (int i=0; i < gridLabels.length; i++) {
+    double[] labelCoord=new double[base.getDimension()];
+    System.arraycopy(base.getCoordinateSpace()[index + 1],0,labelCoord,0,base.getDimension());
+    labelCoord[index]=labelsSlicing[i];
+    if (dim == 3) {
+      if (index == 0) {
+        labelCoord[2]=base.getUpperBounds()[2] - 2 * offset[2];
+      }
+ else       if (index == 1) {
+        labelCoord[0]=base.getUpperBounds()[0] - 2 * offset[0];
+      }
+ else       if (index == 2) {
+        labelCoord[1]=base.getUpperBounds()[1] - 2 * offset[1];
+      }
+    }
+    decimal=base.getPrecisionDigits()[index];
+    if (gridLabelStrings != null) {
+      label=gridLabelStrings[i % gridLabelStrings.length];
+    }
+ else {
+      String format="%.0f";
+      if (decimal < 0) {
+        format=String.format("%%.%df",-decimal);
+      }
+      label=String.format(format,labelsSlicing[i]);
+    }
+    for (int j=0; j < dim; j++) {
+      labelCoord[j]+=offset[j];
+    }
+    if (base.getDimension() == 2) {
+      if (index == 0) {
+        if (rotation == 0.0) {
+          gridLabels[i]=new Label(label,0.5,1.0,labelCoord);
+        }
+ else {
+          gridLabels[i]=new Label(label,1.0,0.5,rotation,labelCoord);
+        }
+      }
+ else {
+        gridLabels[i]=new Label(label,1.0,0.5,labelCoord);
+      }
+    }
+ else {
+      if (index == 0) {
+        gridLabels[i]=new Label(label,0.5,-0.5,labelCoord);
+      }
+ else       if (index == 1) {
+        gridLabels[i]=new Label(label,0.5,1.0,labelCoord);
+      }
+ else       if (index == 2) {
+        gridLabels[i]=new Label(label,0.0,0.5,labelCoord);
+      }
+    }
+    gridLabels[i].setFont(gridLabelFont);
+  }
+  gridLabelStrings=null;
+}

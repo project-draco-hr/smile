@@ -1,0 +1,50 @@
+{
+  Color c=g.getColor();
+  for (int i=0; i < z.length; i++) {
+    for (int j=0; j < z[i].length; j++) {
+      if (Double.isNaN(z[i][j])) {
+        g.setColor(Color.WHITE);
+      }
+ else {
+        int k=(int)((z[i][j] - min) / width);
+        if (k < 0) {
+          k=0;
+        }
+        if (k >= palette.length) {
+          k=palette.length - 1;
+        }
+        g.setColor(palette[k]);
+      }
+      g.fillPolygon(hexagon[i][j]);
+    }
+  }
+  g.clearClip();
+  double height=0.7 / palette.length;
+  double[] start=new double[2];
+  start[0]=1.1;
+  start[1]=0.15;
+  double[] end=new double[2];
+  end[0]=1.13;
+  end[1]=start[1] - height;
+  for (int i=0; i < palette.length; i++) {
+    g.setColor(palette[i]);
+    g.fillRectBaseRatio(start,end);
+    start[1]+=height;
+    end[1]+=height;
+  }
+  g.setColor(Color.BLACK);
+  start[1]-=height;
+  end[1]=0.15 - height;
+  g.drawRectBaseRatio(start,end);
+  start[0]=1.14;
+  double log=Math.log10(Math.abs(max));
+  int decimal=1;
+  if (log < 0)   decimal=(int)-log + 1;
+  g.drawTextBaseRatio(String.valueOf(Math.round(max,decimal)),0.0,1.0,start);
+  start[1]=0.15 - height;
+  log=Math.log10(Math.abs(min));
+  decimal=1;
+  if (log < 0)   decimal=(int)-log + 1;
+  g.drawTextBaseRatio(String.valueOf(Math.round(min,decimal)),0.0,0.0,start);
+  g.setColor(c);
+}

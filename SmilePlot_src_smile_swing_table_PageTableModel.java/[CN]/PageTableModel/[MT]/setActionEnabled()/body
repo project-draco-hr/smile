@@ -1,0 +1,21 @@
+{
+  if (getPage() == 0) {
+    firstPageAction.setEnabled(false);
+    pageUpAction.setEnabled(false);
+  }
+ else {
+    firstPageAction.setEnabled(true);
+    pageUpAction.setEnabled(true);
+  }
+  if (getPage() == getPageCount() - 1) {
+    lastPageAction.setEnabled(false);
+    pageDownAction.setEnabled(false);
+  }
+ else {
+    lastPageAction.setEnabled(true);
+    pageDownAction.setEnabled(true);
+  }
+  totalRowCountLabel.setText(String.format(totalRowCountLabelFormat,getRealRowCount()));
+  pageField.setText(Integer.toString(getPage() + 1));
+  pageCountLabel.setText(String.format(pageCountLabelFormat,getPageCount()));
+}

@@ -1,0 +1,23 @@
+{
+  String newValue="";
+  try {
+    Document doc=event.getDocument();
+    newValue=doc.getText(0,doc.getLength());
+  }
+ catch (  BadLocationException ex) {
+    System.err.println(ex);
+  }
+  if (newValue.length() > 0) {
+    int index=targetList.getNextMatch(newValue,0,Position.Bias.Forward);
+    if (index < 0) {
+      index=0;
+    }
+    targetList.ensureIndexIsVisible(index);
+    String matchedName=targetList.getModel().getElementAt(index).toString();
+    if (newValue.equalsIgnoreCase(matchedName)) {
+      if (index != targetList.getSelectedIndex()) {
+        SwingUtilities.invokeLater(new ListSelector(index));
+      }
+    }
+  }
+}

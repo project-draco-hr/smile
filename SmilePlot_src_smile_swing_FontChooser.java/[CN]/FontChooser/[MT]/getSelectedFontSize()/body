@@ -1,0 +1,15 @@
+{
+  int fontSize=1;
+  String fontSizeString=getFontSizeTextField().getText();
+  while (true) {
+    try {
+      fontSize=Integer.parseInt(fontSizeString);
+      break;
+    }
+ catch (    NumberFormatException e) {
+      fontSizeString=(String)getFontSizeList().getSelectedValue();
+      getFontSizeTextField().setText(fontSizeString);
+    }
+  }
+  return fontSize;
+}

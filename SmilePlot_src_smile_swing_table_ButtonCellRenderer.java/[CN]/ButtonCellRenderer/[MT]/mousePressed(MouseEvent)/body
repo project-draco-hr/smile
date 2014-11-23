@@ -1,0 +1,5 @@
+{
+  if (table.isEditing() && table.getCellEditor() == this) {
+    isButtonColumnEditor=true;
+  }
+}

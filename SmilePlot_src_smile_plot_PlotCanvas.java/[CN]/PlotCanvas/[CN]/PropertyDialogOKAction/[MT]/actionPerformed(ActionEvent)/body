@@ -1,0 +1,27 @@
+{
+  setTitle((String)propertyTable.getValueAt(0,1));
+  setTitleFont((Font)propertyTable.getValueAt(1,1));
+  setTitleColor((Color)propertyTable.getValueAt(2,1));
+  getAxis(0).setAxisLabel((String)propertyTable.getValueAt(3,1));
+  double[] xbound=(double[])propertyTable.getValueAt(4,1);
+  base.lowerBound[0]=xbound[0];
+  base.upperBound[0]=xbound[1];
+  getAxis(1).setAxisLabel((String)propertyTable.getValueAt(5,1));
+  double[] ybound=(double[])propertyTable.getValueAt(6,1);
+  base.lowerBound[1]=ybound[0];
+  base.upperBound[1]=ybound[1];
+  if (base.dimension > 2) {
+    getAxis(2).setAxisLabel((String)propertyTable.getValueAt(7,1));
+    double[] zbound=(double[])propertyTable.getValueAt(8,1);
+    base.lowerBound[2]=zbound[0];
+    base.upperBound[2]=zbound[1];
+  }
+  for (int i=0; i < base.dimension; i++) {
+    base.setPrecisionUnit(i);
+  }
+  base.initBaseCoord();
+  graphics.projection.reset();
+  baseGrid.setBase(base);
+  dialog.setVisible(false);
+  canvas.repaint();
+}

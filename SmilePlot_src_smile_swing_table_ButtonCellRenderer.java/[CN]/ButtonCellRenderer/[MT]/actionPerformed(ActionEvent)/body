@@ -1,0 +1,6 @@
+{
+  int row=table.convertRowIndexToModel(table.getEditingRow());
+  fireEditingStopped();
+  ActionEvent event=new ActionEvent(table,ActionEvent.ACTION_PERFORMED,Integer.toString(row));
+  action.actionPerformed(event);
+}

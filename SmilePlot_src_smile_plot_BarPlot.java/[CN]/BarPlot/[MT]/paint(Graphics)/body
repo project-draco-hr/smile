@@ -1,0 +1,15 @@
+{
+  Color c=g.getColor();
+  g.setColor(Color.BLACK);
+  for (int i=0; i < data.length; i++) {
+    g.drawLine(leftBottom[i],leftTop[i]);
+    g.drawLine(leftTop[i],rightTop[i]);
+    g.drawLine(rightTop[i],rightBottom[i]);
+    g.drawLine(rightBottom[i],leftBottom[i]);
+  }
+  g.setColor(getColor());
+  for (int i=0; i < data.length; i++) {
+    g.fillPolygon(0.2f,leftBottom[i],leftTop[i],rightTop[i],rightBottom[i]);
+  }
+  g.setColor(c);
+}

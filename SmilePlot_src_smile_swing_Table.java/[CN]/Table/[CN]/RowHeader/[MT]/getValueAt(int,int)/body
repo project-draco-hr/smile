@@ -1,0 +1,9 @@
+{
+  if (dataModel instanceof PageTableModel) {
+    PageTableModel model=(PageTableModel)dataModel;
+    return Integer.valueOf(model.getPage() * model.getPageSize() + row + 1);
+  }
+ else {
+    return Integer.valueOf(row + 1);
+  }
+}

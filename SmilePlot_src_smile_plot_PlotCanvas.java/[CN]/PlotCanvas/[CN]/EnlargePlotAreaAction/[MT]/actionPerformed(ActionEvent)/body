@@ -1,0 +1,13 @@
+{
+  if (margin > 0.05) {
+    margin-=0.05;
+    graphics.projection.reset();
+    repaint();
+  }
+  if (margin <= 0.05) {
+    setEnabled(false);
+  }
+  if (!shrinkPlotAreaAction.isEnabled()) {
+    shrinkPlotAreaAction.setEnabled(true);
+  }
+}

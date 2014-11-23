@@ -1,0 +1,6 @@
+{
+  if (!(projection instanceof Projection3D)) {
+    throw new UnsupportedOperationException("Only 3D graphics supports rotation.");
+  }
+  ((Projection3D)projection).rotate(x,y);
+}

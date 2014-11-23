@@ -1,0 +1,9 @@
+{
+  double[] lowerBound={0,0};
+  double[] upperBound={z[0].length,z.length};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound,false);
+  canvas.add(new Contour(z,levels,palette));
+  canvas.getAxis(0).setLabelVisible(false);
+  canvas.getAxis(1).setLabelVisible(false);
+  return canvas;
+}

@@ -1,0 +1,16 @@
+{
+  int j=n / 4;
+  int k=n - j;
+  float h=1.0f / 6;
+  Color[] c=rainbow(k,0,h,alpha);
+  Color[] palette=new Color[n];
+  System.arraycopy(c,0,palette,0,k);
+  float s=1 - 1.0f / (2 * j);
+  float end=1.0f / (2 * j);
+  float w=(end - s) / (j - 1);
+  for (int i=k; i < n; i++) {
+    palette[i]=hsv(h,s,1.0f,alpha);
+    s+=w;
+  }
+  return palette;
+}

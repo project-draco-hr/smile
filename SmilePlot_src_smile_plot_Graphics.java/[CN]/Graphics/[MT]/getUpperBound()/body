@@ -1,0 +1,3 @@
+{
+  return projection.canvas.base.upperBound;
+}

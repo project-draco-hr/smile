@@ -1,0 +1,3 @@
+{
+  axis[i].setLabelVisible(v);
+}

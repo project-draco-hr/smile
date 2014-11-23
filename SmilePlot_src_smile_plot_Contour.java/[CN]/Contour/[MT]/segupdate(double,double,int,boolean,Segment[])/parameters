@@ -1,0 +1,5 @@
+double xend
+double yend
+int dir
+boolean tail
+Segment[] seg

@@ -1,0 +1,14 @@
+{
+  dialogResultValue=ERROR_OPTION;
+  JDialog dialog=createDialog(parent);
+  dialog.addWindowListener(new WindowAdapter(){
+    @Override public void windowClosing(    WindowEvent e){
+      dialogResultValue=CANCEL_OPTION;
+    }
+  }
+);
+  dialog.setVisible(true);
+  dialog.dispose();
+  dialog=null;
+  return dialogResultValue;
+}

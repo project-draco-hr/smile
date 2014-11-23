@@ -1,0 +1,23 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  double[] begin=new double[data[0].length];
+  double[] end=new double[data[0].length];
+  for (int i=0; i < data.length - 1; i++) {
+    for (int j=0; j < data[0].length; j++) {
+      begin[j]=data[i][j];
+      end[j]=data[i + 1][j];
+    }
+    end[end.length - 1]=data[i][end.length - 1];
+    g.drawLine(begin,end);
+  }
+  for (int i=1; i < data.length - 1; i++) {
+    for (int j=0; j < data[0].length; j++) {
+      begin[j]=data[i][j];
+      end[j]=data[i][j];
+    }
+    begin[end.length - 1]=data[i - 1][end.length - 1];
+    g.drawLine(begin,end);
+  }
+  g.setColor(c);
+}

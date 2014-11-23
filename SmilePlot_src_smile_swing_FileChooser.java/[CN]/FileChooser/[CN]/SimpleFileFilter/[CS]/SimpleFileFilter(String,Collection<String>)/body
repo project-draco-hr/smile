@@ -1,0 +1,8 @@
+{
+  if (description != null) {
+    setDescription(description);
+  }
+  for (  String extension : filters) {
+    addExtension(extension);
+  }
+}

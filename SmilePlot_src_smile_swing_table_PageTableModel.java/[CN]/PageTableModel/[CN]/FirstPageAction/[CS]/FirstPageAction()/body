@@ -1,0 +1,3 @@
+{
+  super("First Page",new ImageIcon(PageTableModel.class.getResource("/smile/swing/images/navigate_beginning.png")));
+}

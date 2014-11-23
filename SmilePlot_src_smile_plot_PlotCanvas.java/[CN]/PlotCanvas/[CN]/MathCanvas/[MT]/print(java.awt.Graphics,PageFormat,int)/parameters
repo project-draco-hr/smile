@@ -1,0 +1,3 @@
+java.awt.Graphics g
+PageFormat pf
+int page

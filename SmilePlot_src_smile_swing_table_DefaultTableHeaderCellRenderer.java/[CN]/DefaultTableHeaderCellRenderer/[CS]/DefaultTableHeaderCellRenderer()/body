@@ -1,0 +1,6 @@
+{
+  setHorizontalAlignment(CENTER);
+  setHorizontalTextPosition(LEFT);
+  setVerticalAlignment(BOTTOM);
+  setOpaque(false);
+}

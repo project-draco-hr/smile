@@ -1,0 +1,3 @@
+{
+  return rainbow(n,start,end,1.0f,1.0f,alpha);
+}

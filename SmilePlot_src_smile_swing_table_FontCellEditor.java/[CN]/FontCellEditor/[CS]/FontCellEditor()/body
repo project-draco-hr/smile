@@ -1,0 +1,6 @@
+{
+  button=new JButton("AaBbYyZz");
+  button.setActionCommand(EDIT);
+  button.addActionListener(this);
+  fontChooser=new FontChooser();
+}

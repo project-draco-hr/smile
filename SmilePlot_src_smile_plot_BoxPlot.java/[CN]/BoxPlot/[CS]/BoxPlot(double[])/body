@@ -1,0 +1,5 @@
+{
+  this.data=new double[1][];
+  this.data[0]=data;
+  init();
+}

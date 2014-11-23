@@ -1,0 +1,23 @@
+{
+  if (data.length != y.length) {
+    throw new IllegalArgumentException("Data and label size are different.");
+  }
+  int[] id=Math.unique(y);
+  Arrays.sort(id);
+  for (int i=0; i < id.length; i++) {
+    if (id[i] < 0) {
+      throw new IllegalArgumentException("Negative class label: " + id[i]);
+    }
+  }
+  int k=Math.max(id);
+  if (legends != null && k >= legends.length) {
+    throw new IllegalArgumentException("Too few legends.");
+  }
+  if (palette != null && k >= palette.length) {
+    throw new IllegalArgumentException("Too few colors.");
+  }
+  this.data=data;
+  this.y=y;
+  this.legends=legends;
+  this.palette=palette;
+}

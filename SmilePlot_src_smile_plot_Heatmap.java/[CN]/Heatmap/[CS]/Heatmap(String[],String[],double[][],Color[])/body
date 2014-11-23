@@ -1,0 +1,7 @@
+{
+  this.z=z;
+  this.columnLabels=columnLabels;
+  this.rowLabels=rowLabels;
+  this.palette=palette;
+  init();
+}

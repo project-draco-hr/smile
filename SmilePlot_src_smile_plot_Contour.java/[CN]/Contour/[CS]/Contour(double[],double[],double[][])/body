@@ -1,0 +1,12 @@
+{
+  if (x.length != z[0].length) {
+    throw new IllegalArgumentException("The dimensions of x and z don't match.");
+  }
+  if (y.length != z.length) {
+    throw new IllegalArgumentException("The dimensions of y and z don't match.");
+  }
+  this.x=x;
+  this.y=y;
+  this.z=z;
+  init();
+}

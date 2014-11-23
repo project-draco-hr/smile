@@ -1,0 +1,18 @@
+{
+  if (data.length != labels.length) {
+    throw new IllegalArgumentException("Data size and label size don't match.");
+  }
+  double[] lowerBound={0,Math.min(data)};
+  double[] upperBound={data.length,Math.max(data)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  BarPlot plot=new BarPlot(labels,data);
+  plot.setID(id);
+  canvas.add(plot);
+  double[] locations=new double[labels.length];
+  for (int i=0; i < labels.length; i++) {
+    locations[i]=i + 0.5;
+  }
+  canvas.getAxis(0).addLabel(labels,locations);
+  canvas.getAxis(0).setGridVisible(false);
+  return canvas;
+}

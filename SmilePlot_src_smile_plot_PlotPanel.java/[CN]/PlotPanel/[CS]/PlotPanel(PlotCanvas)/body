@@ -1,0 +1,7 @@
+{
+  init();
+  for (  PlotCanvas plot : plots) {
+    contentPane.add(plot);
+  }
+  organize();
+}

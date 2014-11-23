@@ -1,0 +1,6 @@
+{
+  BufferedImage bi=new BufferedImage(contentPane.getWidth(),contentPane.getHeight(),BufferedImage.TYPE_INT_ARGB);
+  Graphics2D g2d=bi.createGraphics();
+  contentPane.printAll(g2d);
+  ImageIO.write(bi,FileChooser.getExtension(file),file);
+}

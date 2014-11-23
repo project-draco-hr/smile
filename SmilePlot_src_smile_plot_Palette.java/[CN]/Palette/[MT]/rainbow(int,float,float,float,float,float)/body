@@ -1,0 +1,10 @@
+{
+  Color[] palette=new Color[n];
+  float h=start;
+  float w=(end - start) / (n - 1);
+  for (int i=0; i < n; i++) {
+    palette[i]=hsv(h,s,v,alpha);
+    h+=w;
+  }
+  return palette;
+}

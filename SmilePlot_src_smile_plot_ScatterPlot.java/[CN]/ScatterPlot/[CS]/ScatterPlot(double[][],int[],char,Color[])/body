@@ -1,0 +1,4 @@
+{
+  this(data,y,null,palette);
+  this.legend=legend;
+}

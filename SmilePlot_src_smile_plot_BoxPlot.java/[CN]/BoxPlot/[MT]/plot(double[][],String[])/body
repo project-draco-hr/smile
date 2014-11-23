@@ -1,0 +1,19 @@
+{
+  if (data.length != labels.length) {
+    throw new IllegalArgumentException("Data size and label size don't match.");
+  }
+  double[] lowerBound={0,Math.min(data)};
+  double[] upperBound={data.length,Math.max(data)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.add(new BoxPlot(labels,data));
+  double[] locations=new double[labels.length];
+  for (int i=0; i < labels.length; i++) {
+    locations[i]=i + 0.5;
+  }
+  canvas.getAxis(0).addLabel(labels,locations);
+  canvas.getAxis(0).setGridVisible(false);
+  if (labels.length > 10) {
+    canvas.getAxis(0).setRotation(-Math.PI / 2);
+  }
+  return canvas;
+}

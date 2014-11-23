@@ -1,0 +1,4 @@
+String id
+double[] data
+int k
+Color color

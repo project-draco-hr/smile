@@ -1,0 +1,11 @@
+{
+  if (e.isPopupTrigger()) {
+    popup.show(e.getComponent(),e.getX(),e.getY());
+    e.consume();
+  }
+ else {
+    mouseClickX=e.getX();
+    mouseClickY=e.getY();
+    e.consume();
+  }
+}

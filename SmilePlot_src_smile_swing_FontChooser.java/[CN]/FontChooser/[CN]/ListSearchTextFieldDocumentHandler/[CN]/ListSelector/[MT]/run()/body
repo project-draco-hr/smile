@@ -1,0 +1,3 @@
+{
+  targetList.setSelectedIndex(this.index);
+}

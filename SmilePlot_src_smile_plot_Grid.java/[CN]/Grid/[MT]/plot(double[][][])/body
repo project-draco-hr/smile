@@ -1,0 +1,24 @@
+{
+  double[] lowerBound={data[0][0][0],data[0][0][1]};
+  double[] upperBound={data[0][0][0],data[0][0][1]};
+  for (int i=0; i < data.length; i++) {
+    for (int j=0; j < data[i].length; j++) {
+      if (data[i][j][0] < lowerBound[0]) {
+        lowerBound[0]=data[i][j][0];
+      }
+      if (data[i][j][0] > upperBound[0]) {
+        upperBound[0]=data[i][j][0];
+      }
+      if (data[i][j][1] < lowerBound[1]) {
+        lowerBound[1]=data[i][j][1];
+      }
+      if (data[i][j][1] > upperBound[1]) {
+        upperBound[1]=data[i][j][1];
+      }
+    }
+  }
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  Grid grid=new Grid(data);
+  canvas.add(grid);
+  return canvas;
+}

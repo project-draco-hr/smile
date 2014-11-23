@@ -1,0 +1,13 @@
+{
+  double[] lowerBound={0,0};
+  double[] upperBound={z[0].length,z.length};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound,false);
+  canvas.add(new Heatmap(z));
+  canvas.getAxis(0).setFrameVisible(false);
+  canvas.getAxis(0).setLabelVisible(false);
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.getAxis(1).setFrameVisible(false);
+  canvas.getAxis(1).setLabelVisible(false);
+  canvas.getAxis(1).setGridVisible(false);
+  return canvas;
+}

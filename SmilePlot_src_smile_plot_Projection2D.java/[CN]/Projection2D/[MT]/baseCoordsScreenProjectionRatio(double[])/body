@@ -1,0 +1,6 @@
+{
+  double[] ratio=new double[2];
+  ratio[0]=(xy[0] - canvas.base.lowerBound[0]) / (canvas.base.upperBound[0] - canvas.base.lowerBound[0]);
+  ratio[1]=(xy[1] - canvas.base.lowerBound[1]) / (canvas.base.upperBound[1] - canvas.base.lowerBound[1]);
+  return ratio;
+}

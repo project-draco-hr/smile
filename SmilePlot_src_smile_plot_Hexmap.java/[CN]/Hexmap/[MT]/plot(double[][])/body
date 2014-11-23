@@ -1,0 +1,13 @@
+{
+  double[] lowerBound={-0.5,0.36};
+  double[] upperBound={data[0].length,data.length * 0.87 + 0.5};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound,false);
+  canvas.add(new Hexmap(data));
+  canvas.getAxis(0).setFrameVisible(false);
+  canvas.getAxis(0).setLabelVisible(false);
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.getAxis(1).setFrameVisible(false);
+  canvas.getAxis(1).setLabelVisible(false);
+  canvas.getAxis(1).setGridVisible(false);
+  return canvas;
+}

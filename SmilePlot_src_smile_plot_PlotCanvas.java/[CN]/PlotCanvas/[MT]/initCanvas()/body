@@ -1,0 +1,6 @@
+{
+  setLayout(new BorderLayout());
+  canvas=new MathCanvas();
+  add(canvas,BorderLayout.CENTER);
+  initContextMenauAndToolBar();
+}

@@ -1,0 +1,4 @@
+{
+  int realRow=row + (page * pageSize);
+  return getValueAtRealRow(realRow,col);
+}

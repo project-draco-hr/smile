@@ -1,0 +1,7 @@
+{
+  int[][] sc=new int[coord.length][];
+  for (int i=0; i < sc.length; i++) {
+    sc[i]=projection.screenProjectionBaseRatio(coord[i]);
+  }
+  drawLine(sc);
+}

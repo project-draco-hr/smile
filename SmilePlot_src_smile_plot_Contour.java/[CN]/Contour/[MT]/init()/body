@@ -1,0 +1,314 @@
+{
+  if (x == null) {
+    x=new double[z[0].length];
+    for (int i=0; i < x.length; i++) {
+      x[i]=i + 0.5;
+    }
+  }
+  if (y == null) {
+    y=new double[z.length];
+    for (int i=0; i < y.length; i++) {
+      y[i]=i + 0.5;
+    }
+    double[][] zz=new double[z.length][];
+    for (int i=0; i < z.length; i++) {
+      zz[i]=z[z.length - i - 1];
+    }
+    z=zz;
+  }
+  zMin=Math.min(z);
+  zMax=Math.max(z);
+  contours=new ArrayList<Isoline>(numLevels);
+  if (logScale && zMin <= 0.0) {
+    throw new IllegalArgumentException("Log scale is not support for non-positive data");
+  }
+  if (levels == null) {
+    if (logScale) {
+      double lowerBound=Math.ceil(Math.log10(zMin));
+      double upperBound=Math.floor(Math.log10(zMax));
+      int n=(int)Math.round(upperBound - lowerBound);
+      if (n == 0) {
+        logScale=false;
+      }
+      numLevels=n + 1;
+      levels=new double[numLevels];
+      for (int i=0; i < numLevels; i++) {
+        levels[i]=Math.pow(10,lowerBound + i);
+      }
+    }
+    if (levels == null) {
+      double digits=Math.log10(Math.abs(zMax - zMin));
+      double residual=digits - Math.floor(digits);
+      if (residual < 0.4) {
+        digits-=1.0;
+      }
+      double precisionDigits=(int)Math.floor(digits);
+      double precisionUnit=Math.pow(10,precisionDigits);
+      if (residual >= 0.4 && residual <= 0.7) {
+        precisionUnit/=2;
+        precisionDigits-=1;
+      }
+      double lowerBound=precisionUnit * (Math.ceil(zMin / precisionUnit));
+      double upperBound=precisionUnit * (Math.floor(zMax / precisionUnit));
+      numLevels=(int)Math.round((upperBound - lowerBound) / precisionUnit) + 1;
+      levels=new double[numLevels];
+      for (int i=0; i < numLevels; i++) {
+        levels[i]=lowerBound + i * precisionUnit;
+      }
+    }
+  }
+  double[] xx=new double[4];
+  double[] yy=new double[4];
+  int[] ij=new int[2];
+  int nx=x.length;
+  int ny=y.length;
+  Segment[][] segments=new Segment[ny][nx];
+  double atom=1E-7 * (zMax - zMin);
+  for (int c=0; c < levels.length; c++) {
+    double zc=levels[c];
+    for (int i=0; i < nx; i++) {
+      for (int j=0; j < ny; j++) {
+        segments[j][i]=null;
+      }
+    }
+    for (int i=0; i < nx - 1; i++) {
+      double xl=x[i];
+      double xh=x[i + 1];
+      for (int j=0; j < ny - 1; j++) {
+        double yl=y[j];
+        double yh=y[j + 1];
+        double zll=z[j][i];
+        double zhl=z[j][i + 1];
+        double zlh=z[j + 1][i];
+        double zhh=z[j + 1][i + 1];
+        if (zll == zc) {
+          zll+=atom;
+        }
+        if (zhl == zc) {
+          zhl+=atom;
+        }
+        if (zlh == zc) {
+          zlh+=atom;
+        }
+        if (zhh == zc) {
+          zhh+=atom;
+        }
+        int nacode=0;
+        if (!Double.isInfinite(zll)) {
+          nacode+=1;
+        }
+        if (!Double.isInfinite(zhl)) {
+          nacode+=2;
+        }
+        if (!Double.isInfinite(zlh)) {
+          nacode+=4;
+        }
+        if (!Double.isInfinite(zhh)) {
+          nacode+=8;
+        }
+        int k=0;
+switch (nacode) {
+case 15:
+          if (isIntersect(zll,zhl,zc)) {
+            double f=getIntersectRatio(zll,zhl,zc);
+            xx[k]=xl + f * (xh - xl);
+            yy[k]=yl;
+            k++;
+          }
+        if (isIntersect(zll,zlh,zc)) {
+          double f=getIntersectRatio(zll,zlh,zc);
+          yy[k]=yl + f * (yh - yl);
+          xx[k]=xl;
+          k++;
+        }
+      if (isIntersect(zhl,zhh,zc)) {
+        double f=getIntersectRatio(zhl,zhh,zc);
+        yy[k]=yl + f * (yh - yl);
+        xx[k]=xh;
+        k++;
+      }
+    if (isIntersect(zlh,zhh,zc)) {
+      double f=getIntersectRatio(zlh,zhh,zc);
+      xx[k]=xl + f * (xh - xl);
+      yy[k]=yh;
+      k++;
+    }
+  break;
+case 14:
+if (isIntersect(zhl,zhh,zc)) {
+  double f=getIntersectRatio(zhl,zhh,zc);
+  yy[k]=yl + f * (yh - yl);
+  xx[k]=xh;
+  k++;
+}
+if (isIntersect(zlh,zhh,zc)) {
+double f=getIntersectRatio(zlh,zhh,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yh;
+k++;
+}
+if (isIntersect(zlh,zhl,zc)) {
+double f=getIntersectRatio(zlh,zhl,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yh + f * (yl - yh);
+k++;
+}
+break;
+case 13:
+if (isIntersect(zll,zlh,zc)) {
+double f=getIntersectRatio(zll,zlh,zc);
+yy[k]=yl + f * (yh - yl);
+xx[k]=xl;
+k++;
+}
+if (isIntersect(zlh,zhh,zc)) {
+double f=getIntersectRatio(zlh,zhh,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yh;
+k++;
+}
+if (isIntersect(zll,zhh,zc)) {
+double f=getIntersectRatio(zll,zhh,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yl + f * (yh - yl);
+k++;
+}
+break;
+case 11:
+if (isIntersect(zhl,zhh,zc)) {
+double f=getIntersectRatio(zhl,zhh,zc);
+yy[k]=yl + f * (yh - yl);
+xx[k]=xh;
+k++;
+}
+if (isIntersect(zll,zhl,zc)) {
+double f=getIntersectRatio(zll,zhl,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yl;
+k++;
+}
+if (isIntersect(zll,zhh,zc)) {
+double f=getIntersectRatio(zll,zhh,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yl + f * (yh - yl);
+k++;
+}
+break;
+case 7:
+if (isIntersect(zll,zlh,zc)) {
+double f=getIntersectRatio(zll,zlh,zc);
+yy[k]=yl + f * (yh - yl);
+xx[k]=xl;
+k++;
+}
+if (isIntersect(zll,zhl,zc)) {
+double f=getIntersectRatio(zll,zhl,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yl;
+k++;
+}
+if (isIntersect(zlh,zhl,zc)) {
+double f=getIntersectRatio(zlh,zhl,zc);
+xx[k]=xl + f * (xh - xl);
+yy[k]=yh + f * (yl - yh);
+k++;
+}
+break;
+}
+Segment seglist=null;
+if (k > 0) {
+if (k == 2) {
+seglist=new Segment(xx[0],yy[0],xx[1],yy[1],seglist);
+}
+ else if (k == 4) {
+for (k=3; k >= 1; k--) {
+int m=k;
+xl=xx[k];
+for (int l=0; l < k; l++) {
+if (xx[l] > xl) {
+xl=xx[l];
+m=l;
+}
+}
+if (m != k) {
+xl=xx[k];
+yl=yy[k];
+xx[k]=xx[m];
+yy[k]=yy[m];
+xx[m]=xl;
+yy[m]=yl;
+}
+}
+seglist=new Segment(xx[0],yy[0],xx[1],yy[1],seglist);
+seglist=new Segment(xx[2],yy[2],xx[3],yy[3],seglist);
+}
+ else {
+throw new IllegalStateException("k != 2 or 4");
+}
+}
+segments[j][i]=seglist;
+}
+}
+for (int i=0; i < nx - 1; i++) {
+for (int j=0; j < ny - 1; j++) {
+Segment seglist=null;
+while ((seglist=segments[j][i]) != null) {
+ij[0]=i;
+ij[1]=j;
+Segment start=seglist;
+Segment end=seglist;
+segments[j][i]=seglist.next;
+double xend=seglist.x1;
+double yend=seglist.y1;
+int dir=0;
+while ((dir=segdir(xend,yend,ij)) != 0) {
+int ii=ij[0];
+int jj=ij[1];
+Segment[] seg={segments[jj][ii],null};
+segments[jj][ii]=segupdate(xend,yend,dir,true,seg);
+if (seg[1] == null) {
+break;
+}
+end.next=seg[1];
+end=seg[1];
+xend=end.x1;
+yend=end.y1;
+}
+end.next=null;
+ij[0]=i;
+ij[1]=j;
+xend=seglist.x0;
+yend=seglist.y0;
+dir=0;
+while ((dir=segdir(xend,yend,ij)) != 0) {
+int ii=ij[0];
+int jj=ij[1];
+Segment[] seg={segments[jj][ii],null};
+segments[jj][ii]=segupdate(xend,yend,dir,false,seg);
+if (seg[1] == null) {
+break;
+}
+seg[1].next=start;
+start=seg[1];
+xend=start.x0;
+yend=start.y0;
+}
+Isoline contour=new Isoline(zc);
+if (colors != null) {
+contour.color=colors[c];
+}
+Segment s=start;
+contour.add(s.x0,s.y0);
+while (s.next != null) {
+s=s.next;
+contour.add(s.x0,s.y0);
+}
+contour.add(s.x1,s.y1);
+if (contour.points.size() > 0) {
+contours.add(contour);
+}
+}
+}
+}
+}
+}

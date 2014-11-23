@@ -1,0 +1,12 @@
+{
+  if (data[0].length != base.dimension) {
+    throw new IllegalArgumentException("Invalid data dimension: " + data[0].length);
+  }
+  double[] lowerBound=Math.colMin(data);
+  double[] upperBound=Math.colMax(data);
+  extendBound(lowerBound,upperBound);
+  LinePlot plot=new LinePlot(data,style);
+  plot.setID(id);
+  add(plot);
+  return plot;
+}

@@ -1,0 +1,9 @@
+{
+  for (int i=0; i < FONT_STYLE_CODES.length; i++) {
+    if (FONT_STYLE_CODES[i] == style) {
+      getFontStyleList().setSelectedIndex(i);
+      break;
+    }
+  }
+  updateSampleFont();
+}

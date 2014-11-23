@@ -1,0 +1,4 @@
+String text
+double horizontalReference
+double verticalReference
+double[] coord

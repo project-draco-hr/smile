@@ -1,0 +1,23 @@
+{
+  for (int i=0; i < data.length; i++) {
+    if (coord[0] < rightBottom[i][0] && coord[0] > leftBottom[i][0] && coord[1] < rightTop[i][1] && coord[1] > rightBottom[i][1]) {
+      double lower=leftBottom[i][0];
+      double upper=rightBottom[i][0];
+      int precision=(int)Math.round(Math.log10(Math.abs(upper - lower)));
+      if (precision > 0) {
+        precision=0;
+      }
+ else {
+        precision=-precision + 1;
+      }
+      String format=String.format(" in [%%.%df, %%.%df]",precision,precision);
+      if (prob) {
+        return String.format("%.1f%%" + format,100.0 * data[i][1],lower,upper);
+      }
+ else {
+        return String.format("%d" + format,(int)data[i][1],lower,upper);
+      }
+    }
+  }
+  return null;
+}

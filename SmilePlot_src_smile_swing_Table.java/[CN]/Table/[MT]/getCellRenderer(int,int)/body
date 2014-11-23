@@ -1,0 +1,43 @@
+{
+  Object obj=getValueAt(row,column);
+  if (obj == null) {
+    return super.getCellRenderer(row,column);
+  }
+  Class<?> clazz=obj.getClass();
+  if (clazz.equals(Color.class)) {
+    return colorRenderer;
+  }
+ else   if (clazz.equals(Font.class)) {
+    return fontRenderer;
+  }
+ else   if (clazz.equals(java.sql.Date.class)) {
+    return DateCellRenderer.YYYYMMDD;
+  }
+ else   if (clazz.equals(java.sql.Time.class)) {
+    return DateCellRenderer.HHMMSS;
+  }
+ else   if (clazz.equals(java.sql.Timestamp.class)) {
+    return DateCellRenderer.ISO8601;
+  }
+ else   if (clazz.equals(byte[].class)) {
+    return byteArrayRenderer;
+  }
+ else   if (clazz.equals(short[].class)) {
+    return shortArrayRenderer;
+  }
+ else   if (clazz.equals(int[].class)) {
+    return intArrayRenderer;
+  }
+ else   if (clazz.equals(long[].class)) {
+    return longArrayRenderer;
+  }
+ else   if (clazz.equals(float[].class)) {
+    return floatArrayRenderer;
+  }
+ else   if (clazz.equals(double[].class)) {
+    return doubleArrayRenderer;
+  }
+ else {
+    return super.getCellRenderer(row,column);
+  }
+}

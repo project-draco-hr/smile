@@ -1,0 +1,13 @@
+{
+  if (e.getValueIsAdjusting() == false) {
+    @SuppressWarnings("unchecked") JList<String> list=(JList<String>)e.getSource();
+    String selectedValue=(String)list.getSelectedValue();
+    String oldValue=textComponent.getText();
+    textComponent.setText(selectedValue);
+    if (!oldValue.equalsIgnoreCase(selectedValue)) {
+      textComponent.selectAll();
+      textComponent.requestFocus();
+    }
+    updateSampleFont();
+  }
+}

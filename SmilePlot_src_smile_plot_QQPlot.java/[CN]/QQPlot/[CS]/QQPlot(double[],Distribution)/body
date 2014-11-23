@@ -1,0 +1,3 @@
+{
+  data=quantile(x,d);
+}

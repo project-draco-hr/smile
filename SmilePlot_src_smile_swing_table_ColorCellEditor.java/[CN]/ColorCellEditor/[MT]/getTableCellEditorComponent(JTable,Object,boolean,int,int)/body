@@ -1,0 +1,4 @@
+{
+  currentColor=(Color)value;
+  return button;
+}

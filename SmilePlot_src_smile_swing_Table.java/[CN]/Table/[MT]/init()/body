@@ -1,0 +1,10 @@
+{
+  setAutoResizeMode(AUTO_RESIZE_OFF);
+  setCellSelectionEnabled(true);
+  setColumnControlVisible(true);
+  setHighlighters(HighlighterFactory.createAlternateStriping());
+  setSortOrderCycle(SortOrder.ASCENDING,SortOrder.DESCENDING,SortOrder.UNSORTED);
+  TableCopyPasteAdapter.apply(this);
+  getTableHeader().setDefaultRenderer(new MultiColumnSortTableHeaderCellRenderer());
+  firePropertyChange("model",getModel(),getModel());
+}

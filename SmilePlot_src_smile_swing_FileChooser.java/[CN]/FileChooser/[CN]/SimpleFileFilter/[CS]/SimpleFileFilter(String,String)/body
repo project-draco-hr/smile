@@ -1,0 +1,8 @@
+{
+  if (description != null) {
+    setDescription(description);
+  }
+  for (int i=0; i < filters.length; i++) {
+    addExtension(filters[i]);
+  }
+}

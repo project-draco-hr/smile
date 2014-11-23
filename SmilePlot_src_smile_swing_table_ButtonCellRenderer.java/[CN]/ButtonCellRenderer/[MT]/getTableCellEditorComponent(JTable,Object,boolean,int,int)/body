@@ -1,0 +1,19 @@
+{
+  if (value == null) {
+    editButton.setText("");
+    editButton.setIcon(null);
+    editButton.setEnabled(true);
+  }
+ else   if (value instanceof Icon) {
+    editButton.setText("");
+    editButton.setIcon((Icon)value);
+    editButton.setEnabled(true);
+  }
+ else {
+    editButton.setText(value.toString());
+    editButton.setIcon(null);
+    editButton.setEnabled(true);
+  }
+  this.editorValue=value;
+  return editButton;
+}

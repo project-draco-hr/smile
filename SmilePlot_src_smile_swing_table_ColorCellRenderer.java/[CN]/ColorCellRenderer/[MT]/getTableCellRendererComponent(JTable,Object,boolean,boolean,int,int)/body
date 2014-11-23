@@ -1,0 +1,23 @@
+{
+  if (value == null) {
+    return this;
+  }
+  Color color=(Color)value;
+  setBackground(color);
+  if (isBordered) {
+    if (isSelected) {
+      if (selectedBorder == null) {
+        selectedBorder=BorderFactory.createMatteBorder(2,5,2,5,table.getSelectionBackground());
+      }
+      setBorder(selectedBorder);
+    }
+ else {
+      if (unselectedBorder == null) {
+        unselectedBorder=BorderFactory.createMatteBorder(2,5,2,5,table.getBackground());
+      }
+      setBorder(unselectedBorder);
+    }
+  }
+  setToolTipText("RGB (" + color.getRed() + ", "+ color.getGreen()+ ", "+ color.getBlue()+ ")");
+  return this;
+}

@@ -1,0 +1,8 @@
+{
+  double[] lowerBound=Math.colMin(vertices);
+  double[] upperBound=Math.colMax(vertices);
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  Wireframe frame=new Wireframe(vertices,edges);
+  canvas.add(frame);
+  return canvas;
+}

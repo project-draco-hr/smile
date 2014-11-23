@@ -1,0 +1,8 @@
+{
+  if (page < getPageCount() - 1) {
+    page++;
+    fireTableDataChanged();
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,5 @@
+String id
+double[][] data
+int[] y
+char[] legend
+Color[] palette

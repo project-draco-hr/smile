@@ -1,0 +1,11 @@
+{
+  if (fontStyleNames == null) {
+    int i=0;
+    fontStyleNames=new String[4];
+    fontStyleNames[i++]=_("Plain");
+    fontStyleNames[i++]=_("Bold");
+    fontStyleNames[i++]=_("Italic");
+    fontStyleNames[i++]=_("BoldItalic");
+  }
+  return fontStyleNames;
+}

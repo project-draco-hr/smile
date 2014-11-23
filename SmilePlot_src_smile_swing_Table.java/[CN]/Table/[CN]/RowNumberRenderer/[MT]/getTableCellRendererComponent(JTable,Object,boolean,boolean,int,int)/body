@@ -1,0 +1,16 @@
+{
+  if (table != null) {
+    JTableHeader header=table.getTableHeader();
+    if (header != null) {
+      setForeground(header.getForeground());
+      setBackground(header.getBackground());
+      setFont(header.getFont());
+    }
+  }
+  if (isSelected) {
+    setFont(getFont().deriveFont(Font.BOLD));
+  }
+  setText((value == null) ? "" : value.toString());
+  setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+  return this;
+}

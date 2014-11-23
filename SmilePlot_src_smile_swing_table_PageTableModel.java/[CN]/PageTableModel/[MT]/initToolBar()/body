@@ -1,0 +1,39 @@
+{
+  toolbar=new JToolBar();
+  toolbar.add(new Button(firstPageAction));
+  toolbar.add(new Button(pageUpAction));
+  toolbar.add(new Button(pageDownAction));
+  toolbar.add(new Button(lastPageAction));
+  toolbar.addSeparator();
+  toolbar.add(pageSizeLabel);
+  toolbar.add(pageSizeField);
+  pageSizeField.setText(Integer.toString(getPageSize()));
+  pageSizeField.setHorizontalAlignment(JTextField.RIGHT);
+  pageSizeField.setAction(pageSizeAction);
+  pageSizeField.setMaximumSize(pageSizeField.getPreferredSize());
+  toolbar.addSeparator();
+  totalRowCountLabel.setText(String.format(totalRowCountLabelFormat,getRealRowCount()));
+  toolbar.add(totalRowCountLabel);
+  toolbar.add(pageField);
+  pageField.setText(Integer.toString(getPage() + 1));
+  pageField.setHorizontalAlignment(JTextField.RIGHT);
+  pageField.setAction(gotoPageAction);
+  pageField.setMaximumSize(pageField.getPreferredSize());
+  pageCountLabel.setText(String.format(pageCountLabelFormat,getPageCount()));
+  toolbar.add(pageCountLabel);
+  setActionEnabled();
+  TableModelListener listener=new TableModelListener(){
+    @Override public void tableChanged(    TableModelEvent tme){
+      if (tme.getType() == TableModelEvent.INSERT || tme.getType() == TableModelEvent.DELETE) {
+        if (getPage() >= getPageCount()) {
+          setPage(getPageCount() - 1);
+        }
+        totalRowCountLabel.setText(String.format(totalRowCountLabelFormat,getRealRowCount()));
+        pageField.setText(Integer.toString(getPage() + 1));
+        pageCountLabel.setText(String.format(pageCountLabelFormat,getPageCount()));
+      }
+    }
+  }
+;
+  addTableModelListener(listener);
+}

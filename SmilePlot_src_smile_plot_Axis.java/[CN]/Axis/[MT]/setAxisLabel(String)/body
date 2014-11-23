@@ -1,0 +1,45 @@
+{
+  if (label == null) {
+    if (index == 0) {
+      label="X";
+    }
+ else     if (index == 1) {
+      label="Y";
+    }
+ else     if (index == 2) {
+      label="Z";
+    }
+  }
+  if (label != null) {
+    double[] position=new double[base.getDimension()];
+    if (base.getDimension() == 2) {
+      position[index]=0.5;
+      if (index == 0) {
+        position[1]=-0.1;
+        axisLabel=new BaseLabel(label,0.5,1.0,position);
+      }
+ else {
+        position[0]=-0.15;
+        axisLabel=new BaseLabel(label,0.5,0.5,-Math.PI / 2,position);
+      }
+    }
+ else {
+      if (index == 0) {
+        position[2]=1.0;
+        position[index]=0.5;
+        axisLabel=new BaseLabel(label,0.5,-2.0,position);
+      }
+ else       if (index == 1) {
+        position[0]=1.0;
+        position[index]=0.5;
+        axisLabel=new BaseLabel(label,0.5,3.0,position);
+      }
+ else       if (index == 2) {
+        position[1]=1.0;
+        position[index]=1.0;
+        axisLabel=new BaseLabel(label,-0.5,-1.0,position);
+      }
+    }
+    axisLabel.setFont(axisLabelFont);
+  }
+}

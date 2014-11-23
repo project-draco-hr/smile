@@ -1,0 +1,11 @@
+{
+  if (fontNameList == null) {
+    fontNameList=new JList<String>(getFontFamilies());
+    fontNameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    fontNameList.addListSelectionListener(new ListSelectionHandler(getFontFamilyTextField()));
+    fontNameList.setSelectedIndex(0);
+    fontNameList.setFont(DEFAULT_FONT);
+    fontNameList.setFocusable(false);
+  }
+  return fontNameList;
+}

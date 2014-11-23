@@ -1,0 +1,5 @@
+{
+  super(color);
+  this.vertices=vertices;
+  this.edges=edges;
+}

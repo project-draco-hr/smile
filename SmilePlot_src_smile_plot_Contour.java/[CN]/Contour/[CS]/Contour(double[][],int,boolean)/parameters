@@ -1,0 +1,3 @@
+double[][] z
+int numLevels
+boolean logScale

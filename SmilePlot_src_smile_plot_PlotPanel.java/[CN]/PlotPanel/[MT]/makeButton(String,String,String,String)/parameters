@@ -1,0 +1,4 @@
+String imageName
+String actionCommand
+String toolTipText
+String altText

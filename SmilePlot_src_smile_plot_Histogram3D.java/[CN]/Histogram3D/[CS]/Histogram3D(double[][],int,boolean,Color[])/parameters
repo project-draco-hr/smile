@@ -1,0 +1,4 @@
+double[][] data
+int nbins
+boolean prob
+Color[] palette

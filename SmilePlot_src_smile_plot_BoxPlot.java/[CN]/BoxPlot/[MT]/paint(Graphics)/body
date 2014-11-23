@@ -1,0 +1,46 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  double[] start=new double[2];
+  double[] end=new double[2];
+  for (int i=0; i < data.length; i++) {
+    start[0]=i + 0.4;
+    start[1]=quantiles[i][0];
+    end[0]=i + 0.6;
+    end[1]=quantiles[i][0];
+    g.drawLine(start,end);
+    start[0]=i + 0.4;
+    start[1]=quantiles[i][4];
+    end[0]=i + 0.6;
+    end[1]=quantiles[i][4];
+    g.drawLine(start,end);
+    start[0]=i + 0.2;
+    start[1]=quantiles[i][2];
+    end[0]=i + 0.8;
+    end[1]=quantiles[i][2];
+    g.drawLine(start,end);
+    start[0]=i + 0.5;
+    start[1]=quantiles[i][0];
+    end[0]=i + 0.5;
+    end[1]=quantiles[i][1];
+    g.drawLine(start,end);
+    start[0]=i + 0.5;
+    start[1]=quantiles[i][4];
+    end[0]=i + 0.5;
+    end[1]=quantiles[i][3];
+    g.drawLine(start,end);
+    start[0]=i + 0.2;
+    start[1]=quantiles[i][3];
+    end[0]=i + 0.8;
+    end[1]=quantiles[i][1];
+    g.drawRect(start,end);
+    start[0]=i + 0.5;
+    for (int j=0; j < data[i].length; j++) {
+      if (data[i][j] < quantiles[i][6] || data[i][j] > quantiles[i][7]) {
+        start[1]=data[i][j];
+        g.drawPoint('o',start);
+      }
+    }
+  }
+  g.setColor(c);
+}

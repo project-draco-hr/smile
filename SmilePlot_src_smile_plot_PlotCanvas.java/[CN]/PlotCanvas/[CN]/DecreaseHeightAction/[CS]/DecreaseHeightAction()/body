@@ -1,0 +1,3 @@
+{
+  super("Decrease Height",new ImageIcon(PlotCanvas.class.getResource("images/decrease-height16.png")));
+}

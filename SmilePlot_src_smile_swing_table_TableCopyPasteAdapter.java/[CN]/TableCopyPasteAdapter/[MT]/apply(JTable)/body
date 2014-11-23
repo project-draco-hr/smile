@@ -1,0 +1,4 @@
+{
+  TableCopyPasteAdapter adapter=new TableCopyPasteAdapter(table);
+  return adapter;
+}

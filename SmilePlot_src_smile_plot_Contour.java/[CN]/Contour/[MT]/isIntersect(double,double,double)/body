@@ -1,0 +1,6 @@
+{
+  if ((z0 - zc) * (z1 - zc) < 0.0) {
+    return true;
+  }
+  return false;
+}

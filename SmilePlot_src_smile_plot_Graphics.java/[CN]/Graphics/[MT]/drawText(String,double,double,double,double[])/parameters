@@ -1,0 +1,5 @@
+String label
+double horizontalReference
+double verticalReference
+double rotation
+double[] coord

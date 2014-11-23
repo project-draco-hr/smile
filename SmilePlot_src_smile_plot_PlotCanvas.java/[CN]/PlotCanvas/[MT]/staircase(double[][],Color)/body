@@ -1,0 +1,3 @@
+{
+  return staircase(null,data,color);
+}

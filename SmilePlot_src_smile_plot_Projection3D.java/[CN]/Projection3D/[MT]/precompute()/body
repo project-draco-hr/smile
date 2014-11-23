@@ -1,0 +1,6 @@
+{
+  sinTheta=Math.sin(theta);
+  cosTheta=Math.cos(theta);
+  sinPhi=Math.sin(phi);
+  cosPhi=Math.cos(phi);
+}

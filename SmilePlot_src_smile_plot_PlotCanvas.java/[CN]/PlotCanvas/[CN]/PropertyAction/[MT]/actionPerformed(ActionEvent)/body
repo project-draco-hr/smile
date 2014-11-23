@@ -1,0 +1,11 @@
+{
+  JDialog dialog=createPropertyDialog();
+  dialog.addWindowListener(new WindowAdapter(){
+    @Override public void windowClosing(    WindowEvent e){
+    }
+  }
+);
+  dialog.setVisible(true);
+  dialog.dispose();
+  dialog=null;
+}

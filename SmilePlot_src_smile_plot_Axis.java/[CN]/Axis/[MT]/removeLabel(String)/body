@@ -1,0 +1,8 @@
+{
+  if (labels == null) {
+    throw new IllegalStateException();
+  }
+  labels.remove(label);
+  setSlice();
+  initGridLabels();
+}

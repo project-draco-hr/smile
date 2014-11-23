@@ -1,0 +1,12 @@
+{
+  if (s <= 0) {
+    throw new IllegalArgumentException("non-positive page size: " + s);
+  }
+  if (s == pageSize) {
+    return;
+  }
+  int oldPageSize=pageSize;
+  pageSize=s;
+  page=(oldPageSize * page) / pageSize;
+  fireTableDataChanged();
+}

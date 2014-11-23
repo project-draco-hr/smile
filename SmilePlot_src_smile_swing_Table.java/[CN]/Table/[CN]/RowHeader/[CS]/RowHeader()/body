@@ -1,0 +1,14 @@
+{
+  Table.this.addPropertyChangeListener(this);
+  setSortable(false);
+  setFocusable(false);
+  setAutoCreateColumnsFromModel(false);
+  setModel(Table.this.getModel());
+  setSelectionModel(Table.this.getSelectionModel());
+  TableColumn column=new TableColumn();
+  column.setHeaderValue(" ");
+  addColumn(column);
+  column.setCellRenderer(new RowNumberRenderer());
+  getColumnModel().getColumn(0).setPreferredWidth(50);
+  setPreferredScrollableViewportSize(getPreferredSize());
+}

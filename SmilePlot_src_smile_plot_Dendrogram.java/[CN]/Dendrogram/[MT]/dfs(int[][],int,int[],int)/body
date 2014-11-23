@@ -1,0 +1,16 @@
+{
+  int n=merge.length + 1;
+  if (merge[index][0] > merge.length) {
+    i=dfs(merge,merge[index][0] - n,order,i);
+  }
+ else {
+    order[i++]=merge[index][0];
+  }
+  if (merge[index][1] > merge.length) {
+    i=dfs(merge,merge[index][1] - n,order,i);
+  }
+ else {
+    order[i++]=merge[index][1];
+  }
+  return i;
+}

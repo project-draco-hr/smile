@@ -1,0 +1,4 @@
+{
+  setPage(getPageCount() - 1);
+  setActionEnabled();
+}

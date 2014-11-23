@@ -1,0 +1,9 @@
+{
+  base.reset();
+  graphics.projection.reset();
+  baseGrid.setBase(base);
+  if (graphics.projection instanceof Projection3D) {
+    ((Projection3D)graphics.projection).setDefaultView();
+  }
+  canvas.repaint();
+}

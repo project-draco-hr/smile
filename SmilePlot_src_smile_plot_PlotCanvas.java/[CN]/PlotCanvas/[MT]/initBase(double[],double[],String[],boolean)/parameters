@@ -1,0 +1,4 @@
+double[] lowerBound
+double[] upperBound
+String[] axisLabels
+boolean extendBound

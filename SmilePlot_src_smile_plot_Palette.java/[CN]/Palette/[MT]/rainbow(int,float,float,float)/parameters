@@ -1,0 +1,4 @@
+int n
+float start
+float end
+float alpha

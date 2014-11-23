@@ -1,0 +1,11 @@
+{
+  shapes.add(p);
+  JComponent[] tb=p.getToolBar();
+  if (tb != null) {
+    toolbar.addSeparator();
+    for (    JComponent comp : tb) {
+      toolbar.add(comp);
+    }
+  }
+  repaint();
+}

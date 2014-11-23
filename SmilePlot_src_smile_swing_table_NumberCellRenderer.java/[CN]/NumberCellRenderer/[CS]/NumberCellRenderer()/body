@@ -1,0 +1,4 @@
+{
+  numberFormat=NumberFormat.getInstance();
+  init();
+}

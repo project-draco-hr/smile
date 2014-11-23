@@ -1,0 +1,3 @@
+{
+  return redblue(n,1.0f);
+}

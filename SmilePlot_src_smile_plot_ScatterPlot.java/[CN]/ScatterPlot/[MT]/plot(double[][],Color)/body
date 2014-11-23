@@ -1,0 +1,3 @@
+{
+  return plot(null,data,color);
+}

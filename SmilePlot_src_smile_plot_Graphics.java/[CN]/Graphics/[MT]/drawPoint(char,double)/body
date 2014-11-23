@@ -1,0 +1,57 @@
+{
+  int size=2;
+  int midSize=3;
+  int bigSize=4;
+  int[] sc=projection.screenProjection(coord);
+  int x=sc[0];
+  int y=sc[1];
+switch (dot) {
+case '+':
+    g2d.drawLine(x - size,y,x + size,y);
+  g2d.drawLine(x,y - size,x,y + size);
+break;
+case '-':
+g2d.drawLine(x - size,y,x + size,y);
+break;
+case '|':
+g2d.drawLine(x,y - size,x,y + size);
+break;
+case 'x':
+g2d.drawLine(x - size,y - size,x + size,y + size);
+g2d.drawLine(x + size,y - size,x - size,y + size);
+break;
+case '*':
+g2d.drawLine(x - bigSize,y,x + bigSize,y);
+g2d.drawLine(x,y - bigSize,x,y + bigSize);
+g2d.drawLine(x - midSize,y - midSize,x + midSize,y + midSize);
+g2d.drawLine(x + midSize,y - midSize,x - midSize,y + midSize);
+break;
+case 'o':
+g2d.drawOval(x - size,y - size,2 * size,2 * size);
+break;
+case 'O':
+g2d.drawOval(x - bigSize,y - bigSize,2 * bigSize,2 * bigSize);
+break;
+case '@':
+g2d.fillOval(x - size,y - size,2 * size,2 * size);
+break;
+case '#':
+g2d.fillOval(x - bigSize,y - bigSize,2 * bigSize,2 * bigSize);
+break;
+case 's':
+g2d.drawRect(x - size,y - size,2 * size,2 * size);
+break;
+case 'S':
+g2d.drawRect(x - bigSize,y - bigSize,2 * bigSize,2 * bigSize);
+break;
+case 'q':
+g2d.fillRect(x - size,y - size,2 * size,2 * size);
+break;
+case 'Q':
+g2d.fillRect(x - bigSize,y - bigSize,2 * bigSize,2 * bigSize);
+break;
+default :
+g2d.drawRect(x,y,1,1);
+break;
+}
+}

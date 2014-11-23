@@ -1,0 +1,108 @@
+{
+  if (data.length == 0) {
+    throw new IllegalArgumentException("array is empty.");
+  }
+  if (data[0].length != 2) {
+    throw new IllegalArgumentException("dimension is not 2.");
+  }
+  double xmin=data[0][0];
+  double xmax=data[0][0];
+  double ymin=data[0][1];
+  double ymax=data[0][1];
+  for (int i=1; i < data.length; i++) {
+    if (xmin > data[i][0]) {
+      xmin=data[i][0];
+    }
+    if (xmax < data[i][0]) {
+      xmax=data[i][0];
+    }
+    if (ymin > data[i][1]) {
+      ymin=data[i][1];
+    }
+    if (ymax < data[i][1]) {
+      ymax=data[i][1];
+    }
+  }
+  double xspan=xmax - xmin;
+  double xwidth=xspan / xbins;
+  double yspan=ymax - ymin;
+  double ywidth=yspan / ybins;
+  freq=new double[xbins * ybins][3];
+  freq[0][0]=xmin + xwidth / 2;
+  freq[0][1]=ymin + ywidth / 2;
+  for (int i=0; i < xbins; i++) {
+    for (int j=0; j < ybins; j++) {
+      freq[j * xbins + i][0]=freq[0][0] + xwidth * i;
+      freq[j * xbins + i][1]=freq[0][1] + ywidth * j;
+    }
+  }
+  for (int k=0; k < data.length; k++) {
+    int i=(int)((data[k][0] - xmin) / xwidth);
+    if (i >= xbins) {
+      i=xbins - 1;
+    }
+    int j=(int)((data[k][1] - ymin) / ywidth);
+    if (j >= ybins) {
+      j=ybins - 1;
+    }
+    freq[j * xbins + i][2]++;
+  }
+  if (prob) {
+    for (int i=0; i < freq.length; i++) {
+      freq[i][2]/=data.length;
+    }
+  }
+  max=Double.NEGATIVE_INFINITY;
+  for (int i=0; i < freq.length; i++) {
+    if (freq[i][2] > max) {
+      max=freq[i][2];
+    }
+  }
+  if (palette != null) {
+    width=max / palette.length;
+  }
+  topNW=new double[freq.length][3];
+  topNE=new double[freq.length][3];
+  topSW=new double[freq.length][3];
+  topSE=new double[freq.length][3];
+  bottomNW=new double[freq.length][3];
+  bottomNE=new double[freq.length][3];
+  bottomSW=new double[freq.length][3];
+  bottomSE=new double[freq.length][3];
+  for (int i=0; i < freq.length; i++) {
+    topNW[i][0]=freq[i][0] - xwidth / 2;
+    topNW[i][1]=freq[i][1] + ywidth / 2;
+    topNW[i][2]=freq[i][2];
+    topNE[i][0]=freq[i][0] + xwidth / 2;
+    topNE[i][1]=freq[i][1] + ywidth / 2;
+    topNE[i][2]=freq[i][2];
+    topSW[i][0]=freq[i][0] - xwidth / 2;
+    topSW[i][1]=freq[i][1] - ywidth / 2;
+    topSW[i][2]=freq[i][2];
+    topSE[i][0]=freq[i][0] + xwidth / 2;
+    topSE[i][1]=freq[i][1] - ywidth / 2;
+    topSE[i][2]=freq[i][2];
+    bottomNW[i][0]=freq[i][0] - xwidth / 2;
+    bottomNW[i][1]=freq[i][1] + ywidth / 2;
+    bottomNW[i][2]=0;
+    bottomNE[i][0]=freq[i][0] + xwidth / 2;
+    bottomNE[i][1]=freq[i][1] + ywidth / 2;
+    bottomNE[i][2]=0;
+    bottomSW[i][0]=freq[i][0] - xwidth / 2;
+    bottomSW[i][1]=freq[i][1] - ywidth / 2;
+    bottomSW[i][2]=0;
+    bottomSE[i][0]=freq[i][0] + xwidth / 2;
+    bottomSE[i][1]=freq[i][1] - ywidth / 2;
+    bottomSE[i][2]=0;
+  }
+  z=new double[6 * freq.length];
+  order=new int[6 * freq.length];
+  zTopNW=new double[freq.length];
+  zTopNE=new double[freq.length];
+  zTopSW=new double[freq.length];
+  zTopSE=new double[freq.length];
+  zBottomNW=new double[freq.length];
+  zBottomNE=new double[freq.length];
+  zBottomSW=new double[freq.length];
+  zBottomSE=new double[freq.length];
+}

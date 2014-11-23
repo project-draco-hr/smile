@@ -1,0 +1,12 @@
+{
+  printer.setPrintable(painter);
+  if (printer.printDialog(printAttributes)) {
+    try {
+      printer.print(printAttributes);
+    }
+ catch (    PrinterException ex) {
+      System.err.println(ex);
+      JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    }
+  }
+}

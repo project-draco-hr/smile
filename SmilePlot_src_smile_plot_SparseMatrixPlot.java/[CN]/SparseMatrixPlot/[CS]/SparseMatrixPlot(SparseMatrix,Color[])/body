@@ -1,0 +1,37 @@
+{
+  this.sparse=sparse;
+  this.palette=palette;
+  int m=sparse.nrows();
+  int n=sparse.ncols();
+  x=new double[n];
+  for (int i=0; i < x.length; i++) {
+    x[i]=i + 0.5;
+  }
+  y=new double[m];
+  for (int i=0; i < y.length; i++) {
+    y[i]=y.length - i - 0.5;
+  }
+  min=Double.POSITIVE_INFINITY;
+  max=Double.NEGATIVE_INFINITY;
+  for (  double z : sparse.values()) {
+    if (z < min) {
+      min=z;
+    }
+    if (z > max) {
+      max=z;
+    }
+  }
+  double[] values=new double[sparse.size()];
+  int i=0;
+  for (  double z : sparse.values()) {
+    if (!Double.isNaN(z)) {
+      values[i++]=z;
+    }
+  }
+  if (i > 0) {
+    Arrays.sort(values,0,i);
+    min=values[(int)Math.round(0.01 * i)];
+    max=values[(int)Math.round(0.99 * (i - 1))];
+    width=(max - min) / palette.length;
+  }
+}

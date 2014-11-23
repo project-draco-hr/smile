@@ -1,0 +1,4 @@
+{
+  shapes.clear();
+  repaint();
+}

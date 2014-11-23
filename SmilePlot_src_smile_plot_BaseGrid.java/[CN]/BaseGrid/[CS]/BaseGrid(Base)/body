@@ -1,0 +1,7 @@
+{
+  this.base=base;
+  axis=new Axis[base.getDimension()];
+  for (int i=0; i < base.getDimension(); i++) {
+    axis[i]=new Axis(base,i);
+  }
+}

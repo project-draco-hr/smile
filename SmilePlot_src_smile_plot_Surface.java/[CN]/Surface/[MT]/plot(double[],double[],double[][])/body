@@ -1,0 +1,8 @@
+{
+  double[] lowerBound={Math.min(x),Math.min(y),Math.min(z)};
+  double[] upperBound={Math.max(x),Math.max(y),Math.max(z)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  Surface surface=new Surface(x,y,z);
+  canvas.add(surface);
+  return canvas;
+}

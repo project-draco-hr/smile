@@ -1,0 +1,7 @@
+{
+  double[] lowerBound={Math.min(x),Math.min(y)};
+  double[] upperBound={Math.max(x),Math.max(y)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.add(new QQPlot(x,y));
+  return canvas;
+}

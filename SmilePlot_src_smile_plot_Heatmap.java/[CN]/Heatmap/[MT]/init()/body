@@ -1,0 +1,30 @@
+{
+  if (x == null) {
+    x=new double[z[0].length];
+    for (int i=0; i < x.length; i++) {
+      x[i]=i + 0.5;
+    }
+  }
+  if (y == null) {
+    y=new double[z.length];
+    for (int i=0; i < y.length; i++) {
+      y[i]=y.length - i - 0.5;
+    }
+  }
+  int n=z.length * z[0].length;
+  double[] values=new double[n];
+  int i=0;
+  for (  double[] zi : z) {
+    for (    double zij : zi) {
+      if (!Double.isNaN(zij)) {
+        values[i++]=zij;
+      }
+    }
+  }
+  if (i > 0) {
+    Arrays.sort(values,0,i);
+    min=values[(int)Math.round(0.01 * i)];
+    max=values[(int)Math.round(0.99 * (i - 1))];
+    width=(max - min) / palette.length;
+  }
+}

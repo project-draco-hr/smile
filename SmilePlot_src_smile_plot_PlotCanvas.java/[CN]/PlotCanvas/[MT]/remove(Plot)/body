@@ -1,0 +1,10 @@
+{
+  shapes.remove(p);
+  JComponent[] tb=p.getToolBar();
+  if (tb != null) {
+    for (    JComponent comp : tb) {
+      toolbar.remove(comp);
+    }
+  }
+  repaint();
+}

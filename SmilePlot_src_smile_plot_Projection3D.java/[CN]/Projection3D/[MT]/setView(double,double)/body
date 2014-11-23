@@ -1,0 +1,6 @@
+{
+  this.theta=theta;
+  this.phi=phi;
+  precompute();
+  reset();
+}

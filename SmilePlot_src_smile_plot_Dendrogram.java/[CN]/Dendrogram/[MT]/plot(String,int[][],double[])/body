@@ -1,0 +1,12 @@
+{
+  int n=merge.length + 1;
+  Dendrogram dendrogram=new Dendrogram(merge,height);
+  double[] lowerBound={-n / 100,0};
+  double[] upperBound={n + n / 100,1.01 * dendrogram.getHeight()};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound,false);
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.getAxis(0).setLabelVisible(false);
+  dendrogram.setID(id);
+  canvas.add(dendrogram);
+  return canvas;
+}

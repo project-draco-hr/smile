@@ -1,0 +1,7 @@
+{
+  this.text=text;
+  this.horizontalReference=horizontalReference;
+  this.verticalReference=verticalReference;
+  this.rotation=rotation;
+  this.coord=coord;
+}

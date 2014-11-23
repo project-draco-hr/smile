@@ -1,0 +1,33 @@
+{
+  this.labels=labels;
+  this.z=z;
+  this.palette=palette;
+  double s=Math.sqrt(0.75);
+  hexagon=new double[z.length][z[0].length][6][2];
+  for (int i=0; i < z.length; i++) {
+    for (int j=0; j < z[i].length; j++) {
+      for (int r=0; r < hexagon[i][j].length; r++) {
+        double a=Math.PI / 3.0 * r;
+        hexagon[i][j][r][0]=j + Math.sin(a) / 2;
+        if (i % 2 == 1)         hexagon[i][j][r][0]+=0.5;
+        hexagon[i][j][r][1]=(z.length - i) * s + Math.cos(a) / 2;
+      }
+    }
+  }
+  int n=z.length * z[0].length;
+  double[] values=new double[n];
+  int i=0;
+  for (  double[] zi : z) {
+    for (    double zij : zi) {
+      if (!Double.isNaN(zij)) {
+        values[i++]=zij;
+      }
+    }
+  }
+  if (i > 0) {
+    Arrays.sort(values,0,i);
+    min=values[(int)Math.round(0.01 * i)];
+    max=values[(int)Math.round(0.99 * (i - 1))];
+    width=(max - min) / palette.length;
+  }
+}

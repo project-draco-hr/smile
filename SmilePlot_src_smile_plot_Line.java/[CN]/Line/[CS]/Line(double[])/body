@@ -1,0 +1,4 @@
+{
+  this.points=points;
+  stroke=SOLID_STROKE;
+}

@@ -1,0 +1,49 @@
+{
+  Object obj=getValueAt(row,column);
+  if (obj == null) {
+    return super.getCellEditor(row,column);
+  }
+  Class<?> clazz=obj.getClass();
+  if (clazz.equals(Color.class)) {
+    return colorEditor;
+  }
+ else   if (clazz.equals(Font.class)) {
+    return fontEditor;
+  }
+ else   if (clazz.equals(java.sql.Date.class)) {
+    return DateCellEditor.YYYYMMDD;
+  }
+ else   if (clazz.equals(java.sql.Time.class)) {
+    return DateCellEditor.HHMMSS;
+  }
+ else   if (clazz.equals(java.sql.Timestamp.class)) {
+    return DateCellEditor.ISO8601;
+  }
+ else   if (clazz.equals(java.util.Date.class)) {
+    return DateCellEditor.YYYYMMDD_HHMMSS;
+  }
+ else   if (clazz.equals(Byte.TYPE)) {
+    return byteEditor;
+  }
+ else   if (clazz.equals(Short.TYPE)) {
+    return shortEditor;
+  }
+ else   if (clazz.equals(Integer.TYPE)) {
+    return intEditor;
+  }
+ else   if (clazz.equals(Float.TYPE)) {
+    return floatEditor;
+  }
+ else   if (clazz.equals(Double.TYPE)) {
+    return doubleEditor;
+  }
+ else   if (clazz.equals(int[].class)) {
+    return intArrayEditor;
+  }
+ else   if (clazz.equals(double[].class)) {
+    return doubleArrayEditor;
+  }
+ else {
+    return super.getCellEditor(row,column);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  if (margin < 0.0 || margin >= 0.3) {
+    throw new IllegalArgumentException("Invalid margin: " + margin);
+  }
+  this.margin=margin;
+  repaint();
+}

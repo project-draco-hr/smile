@@ -1,0 +1,15 @@
+{
+  quantiles=new double[data.length][8];
+  for (int i=0; i < data.length; i++) {
+    int n=data[i].length;
+    Arrays.sort(data[i]);
+    quantiles[i][1]=data[i][n / 4];
+    quantiles[i][2]=data[i][n / 2];
+    quantiles[i][3]=data[i][3 * n / 4];
+    quantiles[i][5]=quantiles[i][3] - quantiles[i][1];
+    quantiles[i][6]=quantiles[i][1] - 1.5 * quantiles[i][5];
+    quantiles[i][7]=quantiles[i][3] + 1.5 * quantiles[i][5];
+    quantiles[i][0]=quantiles[i][6] < data[i][0] ? data[i][0] : quantiles[i][6];
+    quantiles[i][4]=quantiles[i][7] > data[i][data[i].length - 1] ? data[i][data[i].length - 1] : quantiles[i][7];
+  }
+}

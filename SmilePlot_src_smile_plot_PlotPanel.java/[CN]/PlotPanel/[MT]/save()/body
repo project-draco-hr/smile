@@ -1,0 +1,11 @@
+{
+  JFileChooser fc=FileChooser.getInstance();
+  fc.setFileFilter(FileChooser.SimpleFileFilter.getWritableImageFIlter());
+  fc.setAcceptAllFileFilterUsed(false);
+  fc.setSelectedFiles(new File[0]);
+  int returnVal=fc.showOpenDialog(this);
+  if (returnVal == JFileChooser.APPROVE_OPTION) {
+    File file=fc.getSelectedFile();
+    save(file);
+  }
+}

@@ -1,0 +1,27 @@
+{
+  if (lowerBound.length != upperBound.length) {
+    throw new IllegalArgumentException("Lower bound and upper bound size don't match.");
+  }
+  if (lowerBound.length != 2 && lowerBound.length != 3) {
+    throw new IllegalArgumentException("Invalid bound dimension: " + lowerBound.length);
+  }
+  dimension=lowerBound.length;
+  for (int i=0; i < dimension; i++) {
+    if (lowerBound[i] > upperBound[i]) {
+      throw new IllegalArgumentException("Lower bound is larger than upper bound.");
+    }
+    if (lowerBound[i] == upperBound[i]) {
+      lowerBound[i]-=1.0;
+      upperBound[i]+=1.0;
+    }
+  }
+  this.originalLowerBound=lowerBound;
+  this.originalUpperBound=upperBound;
+  this.extendBound=new boolean[dimension];
+  Arrays.fill(this.extendBound,extendBound);
+  precisionDigits=new int[dimension];
+  precisionUnit=new double[dimension];
+  this.lowerBound=new double[dimension];
+  this.upperBound=new double[dimension];
+  reset();
+}

@@ -1,0 +1,4 @@
+{
+  this(data,y,legends,(Color[])null);
+  setColor(color);
+}

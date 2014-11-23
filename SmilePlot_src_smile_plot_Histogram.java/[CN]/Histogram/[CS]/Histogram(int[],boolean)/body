@@ -1,0 +1,3 @@
+{
+  this(data,smile.math.Histogram.bins(data.length),prob);
+}

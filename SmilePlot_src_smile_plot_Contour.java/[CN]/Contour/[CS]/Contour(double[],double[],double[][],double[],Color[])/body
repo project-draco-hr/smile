@@ -1,0 +1,18 @@
+{
+  if (x.length != z[0].length) {
+    throw new IllegalArgumentException("The dimensions of x and z don't match.");
+  }
+  if (y.length != z.length) {
+    throw new IllegalArgumentException("The dimensions of y and z don't match.");
+  }
+  if (levels.length != colors.length) {
+    throw new IllegalArgumentException("The number of levels and colors don't match.");
+  }
+  this.x=x;
+  this.y=y;
+  this.z=z;
+  this.levels=levels;
+  this.colors=colors;
+  showLevelValue=false;
+  init();
+}

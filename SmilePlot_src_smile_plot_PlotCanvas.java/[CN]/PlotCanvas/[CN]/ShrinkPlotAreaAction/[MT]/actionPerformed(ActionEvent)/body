@@ -1,0 +1,13 @@
+{
+  if (margin < 0.3) {
+    margin+=0.05;
+    graphics.projection.reset();
+    repaint();
+  }
+  if (margin >= 0.3) {
+    setEnabled(false);
+  }
+  if (!enlargePlotAreaAction.isEnabled()) {
+    enlargePlotAreaAction.setEnabled(true);
+  }
+}

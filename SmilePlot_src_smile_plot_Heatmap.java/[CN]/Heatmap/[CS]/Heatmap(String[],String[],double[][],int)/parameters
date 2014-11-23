@@ -1,0 +1,4 @@
+String[] rowLabels
+String[] columnLabels
+double[][] z
+int k

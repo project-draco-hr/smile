@@ -1,0 +1,32 @@
+{
+  if (e.isPopupTrigger()) {
+    popup.show(e.getComponent(),e.getX(),e.getY());
+    e.consume();
+  }
+ else {
+    if (mouseDraggingX != -1 && mouseDraggingY != -1) {
+      mouseDraggingX=-1;
+      mouseDraggingY=-1;
+      if (base.dimension == 2) {
+        if (Math.abs(e.getX() - mouseClickX) > 20 && Math.abs(e.getY() - mouseClickY) > 20) {
+          double[] sc1=((Projection2D)(graphics.projection)).inverseProjection(mouseClickX,mouseClickY);
+          double[] sc2=((Projection2D)(graphics.projection)).inverseProjection(e.getX(),e.getY());
+          if (Math.min(sc1[0],sc2[0]) < base.upperBound[0] && Math.max(sc1[0],sc2[0]) > base.lowerBound[0] && Math.min(sc1[1],sc2[1]) < base.upperBound[1] && Math.max(sc1[1],sc2[1]) > base.lowerBound[1]) {
+            base.lowerBound[0]=Math.max(base.lowerBound[0],Math.min(sc1[0],sc2[0]));
+            base.upperBound[0]=Math.min(base.upperBound[0],Math.max(sc1[0],sc2[0]));
+            base.lowerBound[1]=Math.max(base.lowerBound[1],Math.min(sc1[1],sc2[1]));
+            base.upperBound[1]=Math.min(base.upperBound[1],Math.max(sc1[1],sc2[1]));
+            for (int i=0; i < base.dimension; i++) {
+              base.setPrecisionUnit(i);
+            }
+            base.initBaseCoord();
+            graphics.projection.reset();
+            baseGrid.setBase(base);
+          }
+        }
+      }
+      repaint();
+      e.consume();
+    }
+  }
+}

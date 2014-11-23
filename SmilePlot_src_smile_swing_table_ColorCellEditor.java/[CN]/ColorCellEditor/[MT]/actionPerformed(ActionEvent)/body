@@ -1,0 +1,11 @@
+{
+  String cmd=e.getActionCommand();
+  if (EDIT.equals(cmd)) {
+    button.setBackground(currentColor);
+    dialog.setVisible(true);
+    fireEditingStopped();
+  }
+ else {
+    currentColor=colorChooser.getColor();
+  }
+}

@@ -1,0 +1,12 @@
+{
+  StringBuilder s=new StringBuilder(String.format("Base[%d]{",dimension));
+  for (int i=0; i < baseCoords.length; i++) {
+    s.append("[");
+    for (int j=0; j < baseCoords[i].length; j++) {
+      s.append(baseCoords[i][j]).append(',');
+    }
+    s.setCharAt(s.length() - 1,']');
+  }
+  s.append('}');
+  return s.toString();
+}

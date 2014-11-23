@@ -1,0 +1,6 @@
+{
+  if (singleton == null) {
+    singleton=new Printer();
+  }
+  return singleton;
+}

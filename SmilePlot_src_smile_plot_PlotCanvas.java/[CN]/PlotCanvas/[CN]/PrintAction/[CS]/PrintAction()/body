@@ -1,0 +1,3 @@
+{
+  super("Print",new ImageIcon(PlotCanvas.class.getResource("images/print16.png")));
+}

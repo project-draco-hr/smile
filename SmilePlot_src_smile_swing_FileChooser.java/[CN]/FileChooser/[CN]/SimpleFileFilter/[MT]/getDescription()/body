@@ -1,0 +1,10 @@
+{
+  if (fullDescription == null) {
+    fullDescription=description == null ? "(" : description + " (";
+    for (    String extension : filters) {
+      fullDescription+="." + extension;
+    }
+    fullDescription+=")";
+  }
+  return fullDescription;
+}

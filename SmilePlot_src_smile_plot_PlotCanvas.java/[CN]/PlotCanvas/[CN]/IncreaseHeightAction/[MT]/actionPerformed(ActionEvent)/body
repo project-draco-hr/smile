@@ -1,0 +1,10 @@
+{
+  Dimension d=getSize();
+  d.height+=100;
+  setPreferredSize(d);
+  invalidate();
+  scrollPane.getParent().validate();
+  if (!decreaseHeightAction.isEnabled()) {
+    decreaseHeightAction.setEnabled(true);
+  }
+}

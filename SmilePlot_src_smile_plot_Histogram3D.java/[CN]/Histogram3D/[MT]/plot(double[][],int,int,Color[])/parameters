@@ -1,0 +1,4 @@
+double[][] data
+int xbins
+int ybins
+Color[] palette

@@ -1,0 +1,11 @@
+{
+  String cmd=e.getActionCommand();
+  if (EDIT.equals(cmd)) {
+    button.setFont(currentFont);
+    fontChooser.setSelectedFont(currentFont);
+    if (fontChooser.showDialog(button) == FontChooser.OK_OPTION) {
+      currentFont=fontChooser.getSelectedFont();
+    }
+    fireEditingStopped();
+  }
+}

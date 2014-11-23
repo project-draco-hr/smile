@@ -1,0 +1,16 @@
+{
+  Histogram histogram=new Histogram(data,breaks,prob);
+  histogram.setID(id);
+  double[] lowerBound={Math.min(data),0};
+  double[] upperBound={Math.max(data),0};
+  double[][] freq=histogram.getHistogram();
+  for (int i=0; i < freq.length; i++) {
+    if (freq[i][1] > upperBound[1]) {
+      upperBound[1]=freq[i][1];
+    }
+  }
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.add(histogram);
+  return canvas;
+}

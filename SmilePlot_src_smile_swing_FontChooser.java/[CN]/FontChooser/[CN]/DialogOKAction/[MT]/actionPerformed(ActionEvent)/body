@@ -1,0 +1,4 @@
+{
+  dialogResultValue=OK_OPTION;
+  dialog.setVisible(false);
+}

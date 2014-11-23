@@ -1,0 +1,15 @@
+{
+  String cmd=e.getActionCommand();
+  if (SAVE.equals(cmd)) {
+    try {
+      save();
+    }
+ catch (    IOException ex) {
+      System.err.println(ex);
+      JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    }
+  }
+ else   if (PRINT.equals(cmd)) {
+    print();
+  }
+}

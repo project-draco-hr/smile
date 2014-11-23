@@ -1,0 +1,4 @@
+{
+  super(Color.LIGHT_GRAY);
+  init(data,xbins,ybins,prob);
+}

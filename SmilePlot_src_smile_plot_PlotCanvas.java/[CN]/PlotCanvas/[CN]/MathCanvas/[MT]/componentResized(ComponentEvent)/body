@@ -1,0 +1,8 @@
+{
+  if (graphics != null) {
+    base.initBaseCoord();
+    graphics.projection.reset();
+    baseGrid.setBase(base);
+  }
+  repaint();
+}

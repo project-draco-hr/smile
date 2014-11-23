@@ -1,0 +1,8 @@
+{
+  int x=(int)(projection.canvas.getWidth() * projection.canvas.margin);
+  int y=(int)(projection.canvas.getHeight() * projection.canvas.margin);
+  int w=(int)(projection.canvas.getWidth() * (1 - 2 * projection.canvas.margin));
+  int h=(int)(projection.canvas.getHeight() * (1 - 2 * projection.canvas.margin));
+  originalClip=g2d.getClip();
+  g2d.clipRect(x,y,w,h);
+}

@@ -1,0 +1,11 @@
+{
+  double[] lowerBound={0,Math.min(data)};
+  double[] upperBound={data.length,Math.max(data)};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  BarPlot plot=new BarPlot(data);
+  plot.setID(id);
+  canvas.add(plot);
+  canvas.getAxis(0).setGridVisible(false);
+  canvas.getAxis(0).setLabelVisible(false);
+  return canvas;
+}

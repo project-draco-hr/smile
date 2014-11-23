@@ -1,0 +1,35 @@
+{
+  max=Math.max(z);
+  min=Math.min(z);
+  if (palette != null) {
+    width=(max - min) / palette.length;
+  }
+  int m=z.length;
+  int n=z[0].length;
+  triangles=new int[2 * m * n][6];
+  az=new double[2 * m * n];
+  order=new int[az.length];
+  zc=new double[m][n];
+  data=new double[m][n][3];
+  for (int i=0, k=0; i < m; i++) {
+    for (int j=0; j < n; j++, k+=2) {
+      data[i][j][0]=i + 0.5;
+      data[i][j][1]=j + 0.5;
+      data[i][j][2]=z[i][j];
+      if (i < m - 1 && j < n - 1) {
+        triangles[k][0]=i;
+        triangles[k][1]=j;
+        triangles[k][2]=i + 1;
+        triangles[k][3]=j;
+        triangles[k][4]=i;
+        triangles[k][5]=j + 1;
+        triangles[k + 1][0]=i + 1;
+        triangles[k + 1][1]=j + 1;
+        triangles[k + 1][2]=i + 1;
+        triangles[k + 1][3]=j;
+        triangles[k + 1][4]=i;
+        triangles[k + 1][5]=j + 1;
+      }
+    }
+  }
+}

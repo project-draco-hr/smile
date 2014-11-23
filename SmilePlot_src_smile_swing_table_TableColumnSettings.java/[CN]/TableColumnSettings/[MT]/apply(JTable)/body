@@ -1,0 +1,5 @@
+{
+  this.table=table;
+  restoreSettings();
+  table.getColumnModel().addColumnModelListener(this);
+}

@@ -1,0 +1,34 @@
+{
+  super(new JFormattedTextField());
+  textField=(JFormattedTextField)getComponent();
+  minimum=new Double(min);
+  maximum=new Double(max);
+  doubleFormat=NumberFormat.getNumberInstance();
+  NumberFormatter doubleFormatter=new NumberFormatter(doubleFormat);
+  doubleFormatter.setFormat(doubleFormat);
+  doubleFormatter.setOverwriteMode(false);
+  doubleFormatter.setMinimum(minimum);
+  doubleFormatter.setMaximum(maximum);
+  textField.setFormatterFactory(new DefaultFormatterFactory(doubleFormatter));
+  textField.setValue(minimum);
+  textField.setHorizontalAlignment(JTextField.TRAILING);
+  textField.setFocusLostBehavior(JFormattedTextField.PERSIST);
+  textField.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0),"check");
+  textField.getActionMap().put("check",new AbstractAction(){
+    @Override public void actionPerformed(    ActionEvent e){
+      if (!textField.isEditValid()) {
+        Toolkit.getDefaultToolkit().beep();
+        textField.selectAll();
+      }
+ else {
+        try {
+          textField.commitEdit();
+          textField.postActionEvent();
+        }
+ catch (        java.text.ParseException ex) {
+        }
+      }
+    }
+  }
+);
+}

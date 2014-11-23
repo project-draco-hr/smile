@@ -1,0 +1,4 @@
+{
+  dateFormat=new SimpleDateFormat(format);
+  setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
+}

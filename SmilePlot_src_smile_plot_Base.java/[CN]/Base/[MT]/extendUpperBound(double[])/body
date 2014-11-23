@@ -1,0 +1,15 @@
+{
+  if (bound.length != dimension) {
+    throw new IllegalArgumentException("Bound size don't match the dimension.");
+  }
+  boolean extend=false;
+  for (int i=0; i < bound.length; i++) {
+    if (bound[i] > originalUpperBound[i]) {
+      originalUpperBound[i]=bound[i];
+      extend=true;
+    }
+  }
+  if (extend) {
+    reset();
+  }
+}

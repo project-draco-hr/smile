@@ -1,0 +1,16 @@
+{
+  String imgLocation="images/" + imageName + "16.png";
+  URL imageURL=PlotCanvas.class.getResource(imgLocation);
+  JButton button=new JButton();
+  button.setActionCommand(actionCommand);
+  button.setToolTipText(toolTipText);
+  button.addActionListener(this);
+  if (imageURL != null) {
+    button.setIcon(new ImageIcon(imageURL,altText));
+  }
+ else {
+    button.setText(altText);
+    System.err.println("Resource not found: " + imgLocation);
+  }
+  return button;
+}

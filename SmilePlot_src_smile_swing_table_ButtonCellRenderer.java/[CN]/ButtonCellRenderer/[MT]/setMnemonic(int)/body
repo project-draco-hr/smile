@@ -1,0 +1,5 @@
+{
+  this.mnemonic=mnemonic;
+  renderButton.setMnemonic(mnemonic);
+  editButton.setMnemonic(mnemonic);
+}

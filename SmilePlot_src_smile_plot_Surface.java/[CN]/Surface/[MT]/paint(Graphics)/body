@@ -1,0 +1,41 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  for (int i=0; i < data.length; i++) {
+    for (int j=0; j < data[i].length - 1; j++) {
+      g.drawLine(data[i][j],data[i][j + 1]);
+    }
+  }
+  for (int i=0; i < data.length - 1; i++) {
+    for (int j=0; j < data[i].length; j++) {
+      g.drawLine(data[i][j],data[i + 1][j]);
+    }
+  }
+  if (palette != null) {
+    int m=data.length;
+    int n=data[0].length;
+    Projection3D p3d=(Projection3D)g.projection;
+    for (int i=0; i < m; i++) {
+      for (int j=0; j < n; j++) {
+        zc[i][j]=p3d.z(data[i][j]);
+      }
+    }
+    for (int i=0; i < triangles.length; i++) {
+      az[i]=(zc[triangles[i][0]][triangles[i][1]] + zc[triangles[i][2]][triangles[i][3]] + zc[triangles[i][4]][triangles[i][5]]);
+    }
+    for (int i=0; i < order.length; i++) {
+      order[i]=i;
+    }
+    QuickSort.sort(az,order);
+    for (    int i : order) {
+      double avg=(data[triangles[i][0]][triangles[i][1]][2] + data[triangles[i][2]][triangles[i][3]][2] + data[triangles[i][4]][triangles[i][5]][2]) / 3.0;
+      int k=(int)((avg - min) / width);
+      if (k == palette.length) {
+        k=palette.length - 1;
+      }
+      g.setColor(palette[k]);
+      g.fillPolygon(data[triangles[i][0]][triangles[i][1]],data[triangles[i][2]][triangles[i][3]],data[triangles[i][4]][triangles[i][5]]);
+    }
+  }
+  g.setColor(c);
+}

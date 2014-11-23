@@ -1,0 +1,18 @@
+{
+  if (upperBound[i] > lowerBound[i]) {
+    double digits=Math.log10(Math.abs(upperBound[i] - lowerBound[i]));
+    double residual=digits - Math.floor(digits);
+    if (residual < 0.2) {
+      digits-=1.0;
+    }
+    precisionDigits[i]=(int)Math.floor(digits);
+    precisionUnit[i]=Math.pow(10,precisionDigits[i]);
+    if (residual >= 0.2 && residual <= 0.7) {
+      precisionUnit[i]/=2;
+      precisionDigits[i]-=1;
+    }
+  }
+ else {
+    precisionUnit[i]=0.1;
+  }
+}

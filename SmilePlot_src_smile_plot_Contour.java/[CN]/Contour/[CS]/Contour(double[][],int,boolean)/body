@@ -1,0 +1,6 @@
+{
+  this.z=z;
+  this.numLevels=numLevels;
+  this.logScale=logScale;
+  init();
+}

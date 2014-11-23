@@ -1,0 +1,10 @@
+{
+  try {
+    int s=Integer.parseInt(pageSizeField.getText());
+    setPageSize(s);
+    setActionEnabled();
+  }
+ catch (  Exception ex) {
+    Toolkit.getDefaultToolkit().beep();
+  }
+}

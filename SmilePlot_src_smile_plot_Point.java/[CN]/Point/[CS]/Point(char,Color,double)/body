@@ -1,0 +1,5 @@
+{
+  super(color);
+  this.legend=legend;
+  this.point=point;
+}

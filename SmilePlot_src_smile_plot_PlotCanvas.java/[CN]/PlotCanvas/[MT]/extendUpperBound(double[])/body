@@ -1,0 +1,5 @@
+{
+  base.extendUpperBound(bound);
+  baseGrid.setBase(base);
+  repaint();
+}

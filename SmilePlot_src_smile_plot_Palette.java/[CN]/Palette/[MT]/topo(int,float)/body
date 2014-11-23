@@ -1,0 +1,29 @@
+{
+  int j=n / 3;
+  int k=n / 3;
+  int i=n - j - k;
+  Color[] palette=new Color[n];
+  float h=43 / 60.0f;
+  float hw=(31 / 60.0f - h) / (i - 1);
+  int l=0;
+  for (; l < i; l++) {
+    palette[l]=hsv(h,1.0f,1.0f,alpha);
+    h+=hw;
+  }
+  h=23 / 60.0f;
+  hw=(11 / 60.0f - h) / (j - 1);
+  for (; l < i + j; l++) {
+    palette[l]=hsv(h,1.0f,1.0f,alpha);
+    h+=hw;
+  }
+  h=10 / 60.0f;
+  hw=(6 / 60.0f - h) / (k - 1);
+  float s=1.0f;
+  float sw=(0.3f - s) / (k - 1);
+  for (; l < n; l++) {
+    palette[l]=hsv(h,s,1.0f,alpha);
+    h+=hw;
+    s+=sw;
+  }
+  return palette;
+}

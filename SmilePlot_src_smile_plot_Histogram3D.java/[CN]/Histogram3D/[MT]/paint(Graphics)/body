@@ -1,0 +1,93 @@
+{
+  Color c=g.getColor();
+  Projection3D p3d=(Projection3D)g.projection;
+  for (int i=0; i < freq.length; i++) {
+    zTopNW[i]=p3d.z(topNW[i]);
+    zTopNE[i]=p3d.z(topNE[i]);
+    zTopSW[i]=p3d.z(topSW[i]);
+    zTopSE[i]=p3d.z(topSE[i]);
+    zBottomNW[i]=p3d.z(bottomNW[i]);
+    zBottomNE[i]=p3d.z(bottomNE[i]);
+    zBottomSW[i]=p3d.z(bottomSW[i]);
+    zBottomSE[i]=p3d.z(bottomSE[i]);
+  }
+  for (int i=0, k=0; i < freq.length; i++, k+=6) {
+    z[k]=(zTopNW[i] + zTopNE[i] + zTopSE[i]+ zTopSW[i]);
+    z[k + 1]=(zTopNW[i] + zTopNE[i] + zBottomNE[i]+ zBottomNW[i]);
+    z[k + 2]=(zTopSW[i] + zTopSE[i] + zBottomSE[i]+ zBottomSW[i]);
+    z[k + 3]=(zTopNE[i] + zTopSE[i] + zBottomSE[i]+ zBottomNE[i]);
+    z[k + 4]=(zTopNW[i] + zTopSW[i] + zBottomSW[i]+ zBottomNW[i]);
+    z[k + 5]=(zBottomNW[i] + zBottomNE[i] + zBottomSE[i]+ zBottomSW[i]);
+  }
+  for (int i=0; i < order.length; i++) {
+    order[i]=i;
+  }
+  QuickSort.sort(z,order);
+  for (  int k : order) {
+    int i=k / 6;
+    if (topNW[i][2] != bottomNW[i][2]) {
+      if (palette == null) {
+        g.setColor(getColor());
+      }
+ else {
+        int p=(int)(freq[i][2] / width);
+        if (p == palette.length) {
+          p=palette.length - 1;
+        }
+        g.setColor(palette[p]);
+      }
+      int j=k % 6;
+switch (j) {
+case 0:
+        g.fillPolygon(topNW[i],topNE[i],topSE[i],topSW[i]);
+      g.setColor(Color.BLACK);
+    g.drawLine(topNW[i],topNE[i]);
+  g.drawLine(topNE[i],topSE[i]);
+g.drawLine(topSE[i],topSW[i]);
+g.drawLine(topSW[i],topNW[i]);
+break;
+case 1:
+g.fillPolygon(topNW[i],topNE[i],bottomNE[i],bottomNW[i]);
+g.setColor(Color.BLACK);
+g.drawLine(topNW[i],topNE[i]);
+g.drawLine(bottomNW[i],topNW[i]);
+g.drawLine(bottomNE[i],topNE[i]);
+g.drawLine(bottomNE[i],bottomNW[i]);
+break;
+case 2:
+g.fillPolygon(topSW[i],topSE[i],bottomSE[i],bottomSW[i]);
+g.setColor(Color.BLACK);
+g.drawLine(topSW[i],topSE[i]);
+g.drawLine(bottomSW[i],topSW[i]);
+g.drawLine(bottomSE[i],topSE[i]);
+g.drawLine(bottomSE[i],bottomSW[i]);
+break;
+case 3:
+g.fillPolygon(topNE[i],topSE[i],bottomSE[i],bottomNE[i]);
+g.setColor(Color.BLACK);
+g.drawLine(topNE[i],topSE[i]);
+g.drawLine(bottomSE[i],topSE[i]);
+g.drawLine(bottomNE[i],topNE[i]);
+g.drawLine(bottomSE[i],bottomNE[i]);
+break;
+case 4:
+g.fillPolygon(topNW[i],topSW[i],bottomSW[i],bottomNW[i]);
+g.setColor(Color.BLACK);
+g.drawLine(topNW[i],topSW[i]);
+g.drawLine(bottomNW[i],topNW[i]);
+g.drawLine(bottomSW[i],topSW[i]);
+g.drawLine(bottomNW[i],bottomSW[i]);
+break;
+case 5:
+g.fillPolygon(bottomNW[i],bottomNE[i],bottomSE[i],bottomSW[i]);
+g.setColor(Color.BLACK);
+g.drawLine(bottomNW[i],bottomNE[i]);
+g.drawLine(bottomNE[i],bottomSE[i]);
+g.drawLine(bottomSE[i],bottomSW[i]);
+g.drawLine(bottomSW[i],bottomNW[i]);
+break;
+}
+}
+}
+g.setColor(c);
+}

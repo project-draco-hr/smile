@@ -1,0 +1,16 @@
+{
+  Histogram3D histogram=new Histogram3D(data,xbins,ybins,palette);
+  double[] min=Math.colMin(data);
+  double[] max=Math.colMax(data);
+  double[] lowerBound={min[0],min[1],0};
+  double[] upperBound={max[0],max[1],0};
+  double[][] freq=histogram.getHistogram();
+  for (int i=0; i < freq.length; i++) {
+    if (freq[i][2] > upperBound[2]) {
+      upperBound[2]=freq[i][2];
+    }
+  }
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.add(histogram);
+  return canvas;
+}

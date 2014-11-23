@@ -1,0 +1,7 @@
+{
+  double[] lowerBound={Math.min(x),d.quantile(1 / (x.length + 1.0))};
+  double[] upperBound={Math.max(x),d.quantile(x.length / (x.length + 1.0))};
+  PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
+  canvas.add(new QQPlot(x,d));
+  return canvas;
+}

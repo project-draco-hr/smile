@@ -1,0 +1,12 @@
+{
+  if (e.getClickCount() == 2) {
+    mouseDoubleClicked=true;
+    backupBase=base;
+  }
+ else {
+    mouseDoubleClicked=false;
+  }
+  mouseClickX=e.getX();
+  mouseClickY=e.getY();
+  e.consume();
+}

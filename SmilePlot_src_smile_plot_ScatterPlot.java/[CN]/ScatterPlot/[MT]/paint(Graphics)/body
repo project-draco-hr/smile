@@ -1,0 +1,30 @@
+{
+  Color c=g.getColor();
+  g.setColor(getColor());
+  if (labels != null) {
+    for (int i=0; i < data.length; i++) {
+      g.drawText(labels[i],data[i]);
+    }
+  }
+ else {
+    if (y == null) {
+      for (int i=0; i < data.length; i++) {
+        g.drawPoint(legend,data[i]);
+      }
+    }
+ else {
+      for (int i=0; i < data.length; i++) {
+        if (palette != null) {
+          g.setColor(palette[y[i]]);
+        }
+        if (legends != null) {
+          g.drawPoint(legends[y[i]],data[i]);
+        }
+ else {
+          g.drawPoint(legend,data[i]);
+        }
+      }
+    }
+  }
+  g.setColor(c);
+}

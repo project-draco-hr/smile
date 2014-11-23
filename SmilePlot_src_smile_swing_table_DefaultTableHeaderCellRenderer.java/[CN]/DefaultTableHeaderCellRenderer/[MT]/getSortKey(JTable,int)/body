@@ -1,0 +1,11 @@
+{
+  RowSorter rowSorter=table.getRowSorter();
+  if (rowSorter == null) {
+    return null;
+  }
+  List sortedColumns=rowSorter.getSortKeys();
+  if (sortedColumns.size() > 0) {
+    return (SortKey)sortedColumns.get(0);
+  }
+  return null;
+}

@@ -1,0 +1,6 @@
+{
+  line.paint(g);
+  if (drawDot) {
+    super.paint(g);
+  }
+}

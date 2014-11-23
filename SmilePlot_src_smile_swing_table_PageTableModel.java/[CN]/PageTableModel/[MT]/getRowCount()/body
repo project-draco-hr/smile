@@ -1,0 +1,8 @@
+{
+  if (page == getPageCount() - 1) {
+    return getRealRowCount() - pageSize * (getPageCount() - 1);
+  }
+ else {
+    return Math.min(pageSize,getRealRowCount());
+  }
+}

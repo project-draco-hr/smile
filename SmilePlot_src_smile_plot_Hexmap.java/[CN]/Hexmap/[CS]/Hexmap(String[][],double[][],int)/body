@@ -1,0 +1,3 @@
+{
+  this(labels,z,Palette.jet(k,1.0f));
+}

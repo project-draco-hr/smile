@@ -1,0 +1,31 @@
+{
+  if (YMATCH(yend,y[ij[1]])) {
+    if (ij[1] == 0) {
+      return 0;
+    }
+    ij[1]-=1;
+    return 3;
+  }
+  if (XMATCH(xend,x[ij[0]])) {
+    if (ij[0] == 0) {
+      return 0;
+    }
+    ij[0]-=1;
+    return 4;
+  }
+  if (YMATCH(yend,y[ij[1] + 1])) {
+    if (ij[1] >= y.length - 1) {
+      return 0;
+    }
+    ij[1]+=1;
+    return 1;
+  }
+  if (XMATCH(xend,x[ij[0] + 1])) {
+    if (ij[0] >= x.length - 1) {
+      return 0;
+    }
+    ij[0]+=1;
+    return 2;
+  }
+  return 0;
+}

@@ -1,0 +1,7 @@
+{
+  this.z=z;
+  this.levels=levels;
+  this.colors=colors;
+  showLevelValue=false;
+  init();
+}

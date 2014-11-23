@@ -1,0 +1,6 @@
+{
+  this.base=base;
+  this.index=index;
+  setAxisLabel(label);
+  init();
+}

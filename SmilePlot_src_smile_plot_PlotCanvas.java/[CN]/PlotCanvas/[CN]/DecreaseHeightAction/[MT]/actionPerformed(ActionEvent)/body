@@ -1,0 +1,12 @@
+{
+  Dimension d=getSize();
+  d.height-=100;
+  Dimension vd=scrollPane.getViewport().getSize();
+  if (d.height <= vd.height) {
+    d.height=vd.height;
+    decreaseHeightAction.setEnabled(false);
+  }
+  setPreferredSize(d);
+  invalidate();
+  scrollPane.getParent().validate();
+}

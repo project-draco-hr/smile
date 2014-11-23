@@ -1,0 +1,8 @@
+{
+  setBackground(Color.white);
+  setDoubleBuffered(true);
+  addComponentListener(this);
+  addMouseListener(this);
+  addMouseMotionListener(this);
+  addMouseWheelListener(this);
+}

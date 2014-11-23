@@ -1,0 +1,37 @@
+{
+  if (file == null) {
+    img=null;
+    header=null;
+    return;
+  }
+  if (SimpleFileFilter.readableImageFilter.accept(file)) {
+    try {
+      img=ImageIO.read(file);
+    }
+ catch (    IOException ex) {
+      System.err.println(ex);
+    }
+  }
+ else {
+    try {
+      FileReader reader=new FileReader(file);
+      int len=reader.read(buf,0,buf.length);
+      reader.close();
+      boolean binary=false;
+      for (int i=0; i < len; i++) {
+        if (buf[i] >= 0 && buf[i] < 0x1F) {
+          if (buf[i] != 0x09 && buf[i] != 0x0A && buf[i] != 0x0C && buf[i] != 0x0D) {
+            binary=true;
+            break;
+          }
+        }
+      }
+      if (!binary) {
+        header=new String(buf,0,len);
+      }
+    }
+ catch (    IOException ex) {
+      System.err.println(ex);
+    }
+  }
+}

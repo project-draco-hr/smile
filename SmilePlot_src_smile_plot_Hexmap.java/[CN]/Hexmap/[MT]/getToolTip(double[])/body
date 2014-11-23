@@ -1,0 +1,22 @@
+{
+  if (labels == null) {
+    return null;
+  }
+  if (coord[0] < -0.5 || coord[0] > z[0].length || coord[1] < 0.36 || coord[1] > z.length * 0.87 + 0.5) {
+    return null;
+  }
+  int x=(int)(coord[0] + 0.5);
+  int y=(int)(z.length - (coord[1] - 0.5) / 0.87);
+  for (int i=-3; i < 3; i++) {
+    for (int j=-3; j < 3; j++) {
+      int xi=x + i;
+      int yj=y + j;
+      if (xi >= 0 && xi < hexagon[0].length && yj >= 0 && yj < hexagon.length) {
+        if (Math.contains(hexagon[yj][xi],coord)) {
+          return labels[yj][xi];
+        }
+      }
+    }
+  }
+  return null;
+}

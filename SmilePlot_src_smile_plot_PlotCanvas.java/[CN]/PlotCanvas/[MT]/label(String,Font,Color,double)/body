@@ -1,0 +1,6 @@
+{
+  Label label=new Label(text,coord);
+  label.setFont(font);
+  label.setColor(color);
+  add(label);
+}
