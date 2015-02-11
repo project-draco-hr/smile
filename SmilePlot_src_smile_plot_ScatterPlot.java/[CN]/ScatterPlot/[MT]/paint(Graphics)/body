@@ -15,10 +15,10 @@
  else {
       for (int i=0; i < data.length; i++) {
         if (palette != null) {
-          g.setColor(palette[y[i]]);
+          g.setColor(palette[valueLookupTable.get(y[i])]);
         }
         if (legends != null) {
-          g.drawPoint(legends[y[i]],data[i]);
+          g.drawPoint(legends[valueLookupTable.get(y[i])],data[i]);
         }
  else {
           g.drawPoint(legend,data[i]);
