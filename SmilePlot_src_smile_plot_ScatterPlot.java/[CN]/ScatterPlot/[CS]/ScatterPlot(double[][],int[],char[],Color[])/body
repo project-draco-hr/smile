@@ -4,16 +4,15 @@
   }
   int[] id=Math.unique(y);
   Arrays.sort(id);
+  classLookupTable=new HashMap<Integer,Integer>(id.length);
   for (int i=0; i < id.length; i++) {
-    if (id[i] < 0) {
-      throw new IllegalArgumentException("Negative class label: " + id[i]);
-    }
+    classLookupTable.put(id[i],i);
   }
-  int k=Math.max(id);
-  if (legends != null && k >= legends.length) {
+  int k=id.length;
+  if (legends != null && k > legends.length) {
     throw new IllegalArgumentException("Too few legends.");
   }
-  if (palette != null && k >= palette.length) {
+  if (palette != null && k > palette.length) {
     throw new IllegalArgumentException("Too few colors.");
   }
   this.data=data;
