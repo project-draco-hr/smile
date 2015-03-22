@@ -1,0 +1,25 @@
+{
+  if (e.getSource() == lambdaSlider) {
+    lambda=lambdaSlider.getValue();
+    if (lambda == 0)     lambda=1;
+    PoissonDistribution dist=new PoissonDistribution(lambda);
+    double[][] p=new double[21][2];
+    double[][] q=new double[21][2];
+    for (int i=0; i < p.length; i++) {
+      p[i][0]=i;
+      p[i][1]=dist.p(p[i][0]);
+      q[i][0]=i;
+      q[i][1]=dist.cdf(p[i][0]);
+    }
+    pdf.clear();
+    pdf.add(new BarPlot(p));
+    cdf.clear();
+    cdf.staircase(q,Color.BLACK);
+    double[] data=new double[500];
+    for (int i=0; i < data.length; i++) {
+      data[i]=dist.rand();
+    }
+    histogram.clear();
+    histogram.histogram(data,10,Color.BLUE);
+  }
+}

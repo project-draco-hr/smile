@@ -1,0 +1,21 @@
+{
+  super(new GridLayout(1,2));
+  double[] x=new double[5000];
+  for (int j=0; j < x.length; j++) {
+    x[j]=Math.random();
+  }
+  double[] y=new double[500];
+  for (int j=0; j < y.length; j++) {
+    y[j]=j / 500.0;
+  }
+  PlotCanvas canvas=QQPlot.plot(x,y);
+  canvas.setTitle("Uniform (Smile)");
+  add(canvas);
+  double[] x3=new double[5000];
+  for (int j=0; j < x3.length; j++) {
+    x3[j]=GaussianDistribution.getInstance().rand();
+  }
+  canvas=QQPlot.plot(x3);
+  canvas.setTitle("Gaussian");
+  add(canvas);
+}

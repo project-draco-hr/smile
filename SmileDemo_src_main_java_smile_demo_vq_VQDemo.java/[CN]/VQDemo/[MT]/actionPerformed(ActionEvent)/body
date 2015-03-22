@@ -1,0 +1,46 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    try {
+      clusterNumber=Integer.parseInt(clusterNumberField.getText().trim());
+      if (clusterNumber < 2) {
+        JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumber,"Error",JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+      if (clusterNumber > dataset[datasetIndex].length / 2) {
+        JOptionPane.showMessageDialog(this,"Too large K: " + clusterNumber,"Error",JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+    }
+ catch (    Exception ex) {
+      JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+ else   if ("datasetBox".equals(e.getActionCommand())) {
+    datasetIndex=datasetBox.getSelectedIndex();
+    if (dataset[datasetIndex] == null) {
+      DelimitedTextParser parser=new DelimitedTextParser();
+      parser.setDelimiter("[\t ]+");
+      try {
+        AttributeDataset data=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+        dataset[datasetIndex]=data.toArray(new double[data.size()][]);
+      }
+ catch (      Exception ex) {
+        JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+        System.err.println(ex);
+      }
+    }
+    remove(canvas);
+    if (dataset[datasetIndex].length < 500) {
+      pointLegend='o';
+    }
+ else {
+      pointLegend='.';
+    }
+    canvas=ScatterPlot.plot(dataset[datasetIndex],pointLegend);
+    add(canvas,BorderLayout.CENTER);
+    validate();
+  }
+}

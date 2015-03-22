@@ -1,0 +1,5 @@
+{
+  Parameter param=parameters.get(name);
+  if (param != null)   return param.value;
+ else   return null;
+}

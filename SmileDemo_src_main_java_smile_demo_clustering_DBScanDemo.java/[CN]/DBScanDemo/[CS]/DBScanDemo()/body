@@ -1,0 +1,10 @@
+{
+  optionPane.remove(optionPane.getComponentCount() - 1);
+  optionPane.remove(optionPane.getComponentCount() - 1);
+  minPtsField=new JTextField(Integer.toString(minPts),5);
+  optionPane.add(new JLabel("MinPts:"));
+  optionPane.add(minPtsField);
+  rangeField=new JTextField(Double.toString(range),5);
+  optionPane.add(new JLabel("Range:"));
+  optionPane.add(rangeField);
+}

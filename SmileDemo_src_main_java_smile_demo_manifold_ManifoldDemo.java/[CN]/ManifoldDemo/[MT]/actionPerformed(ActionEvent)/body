@@ -1,0 +1,36 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    datasetIndex=datasetBox.getSelectedIndex();
+    if (dataset[datasetIndex] == null) {
+      DelimitedTextParser parser=new DelimitedTextParser();
+      parser.setDelimiter("[\t]+");
+      try {
+        dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+      }
+ catch (      Exception ex) {
+        JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+        System.err.println(ex);
+      }
+    }
+    double[][] data=dataset[datasetIndex].toArray(new double[dataset[datasetIndex].size()][]);
+    if (data.length < 500) {
+      pointLegend='o';
+    }
+ else {
+      pointLegend='.';
+    }
+    try {
+      k=Integer.parseInt(knnField.getText().trim());
+      if (k < 2 || k > 30) {
+        JOptionPane.showMessageDialog(this,"Invalid K: " + k,"Error",JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+    }
+ catch (    Exception ex) {
+      JOptionPane.showMessageDialog(this,"Invalid K: " + knnField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+}

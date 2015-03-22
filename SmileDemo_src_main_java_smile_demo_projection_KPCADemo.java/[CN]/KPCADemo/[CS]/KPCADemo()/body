@@ -1,0 +1,5 @@
+{
+  gammaNumberField=new JTextField(Double.toString(gamma[datasetIndex]),5);
+  optionPane.add(new JLabel("Gaussian Kernel gamma:"));
+  optionPane.add(gammaNumberField);
+}

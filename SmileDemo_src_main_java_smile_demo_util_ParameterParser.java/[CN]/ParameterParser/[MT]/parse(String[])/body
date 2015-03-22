@@ -1,0 +1,51 @@
+{
+  List<String> extras=new ArrayList<String>();
+  List<String> filteredArgs=filterMonadics(args);
+  for (int i=0; i < filteredArgs.size(); i++) {
+    String key=filteredArgs.get(i);
+    if (key.equalsIgnoreCase("-h") || key.equalsIgnoreCase("-help")) {
+      System.out.println(usage);
+      System.exit(0);
+    }
+    if (parameters.containsKey(key)) {
+      Parameter param=parameters.get(key);
+      param.value=filteredArgs.get(i + 1);
+switch (param.paramType) {
+case INTEGER:
+        try {
+          Integer.parseInt(param.value);
+        }
+ catch (        Exception ex) {
+          System.err.println("Invalid parameter " + param.name + ' '+ param.value);
+          System.err.println(usage);
+          System.exit(1);
+        }
+      break;
+case FLOAT:
+    try {
+      Double.parseDouble(param.value);
+    }
+ catch (    Exception ex) {
+      System.err.println("Invalid parameter " + param.name + ' '+ param.value);
+      System.err.println(usage);
+      System.exit(1);
+    }
+  break;
+default :
+}
+i++;
+}
+ else {
+extras.add(key);
+}
+}
+for (String key : parameters.keySet()) {
+Parameter param=parameters.get(key);
+if (param.mandatory && param.value == null) {
+System.err.println("Missing mandatory parameter: " + key);
+System.err.println(usage);
+System.exit(1);
+}
+}
+return extras;
+}

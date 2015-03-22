@@ -1,0 +1,9 @@
+{
+  PCADemo demo=new PCADemo();
+  JFrame f=new JFrame("Principal Component Analysis");
+  f.setSize(new Dimension(1000,1000));
+  f.setLocationRelativeTo(null);
+  f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  f.getContentPane().add(demo);
+  f.setVisible(true);
+}

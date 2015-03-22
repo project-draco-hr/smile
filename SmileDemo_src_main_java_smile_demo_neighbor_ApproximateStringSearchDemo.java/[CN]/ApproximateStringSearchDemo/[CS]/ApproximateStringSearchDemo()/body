@@ -1,0 +1,16 @@
+{
+  super(new BorderLayout());
+  startButton=new JButton("Start");
+  startButton.setActionCommand("startButton");
+  startButton.addActionListener(this);
+  knnField=new JTextField(Integer.toString(knn),5);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(startButton);
+  optionPane.add(new JLabel("K:"));
+  optionPane.add(knnField);
+  add(optionPane,BorderLayout.NORTH);
+  canvas=new JPanel(new GridLayout(1,2));
+  canvas.setBackground(Color.WHITE);
+  add(canvas,BorderLayout.CENTER);
+}

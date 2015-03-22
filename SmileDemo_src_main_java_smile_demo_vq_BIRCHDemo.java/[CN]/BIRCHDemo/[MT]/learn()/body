@@ -1,0 +1,65 @@
+{
+  try {
+    B=Integer.parseInt(BNumberField.getText().trim());
+    if (B < 2) {
+      JOptionPane.showMessageDialog(this,"Invalid B: " + B,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(null,"Invalid B: " + BNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  try {
+    T=Double.parseDouble(TNumberField.getText().trim());
+    if (T <= 0) {
+      JOptionPane.showMessageDialog(this,"Invalid T: " + T,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid T: " + TNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  try {
+    minPts=Integer.parseInt(minPtsNumberField.getText().trim());
+    if (minPts < 0) {
+      JOptionPane.showMessageDialog(this,"Invalid minPts: " + minPts,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid minPts: " + minPtsNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  long clock=System.currentTimeMillis();
+  BIRCH birch=new BIRCH(2,B,T);
+  for (int i=0; i < dataset[datasetIndex].length; i++)   birch.add(dataset[datasetIndex][i]);
+  if (birch.partition(clusterNumber,minPts) < clusterNumber) {
+    JOptionPane.showMessageDialog(this,"The number of non-outlier leaves is less than " + clusterNumber + ". Try larger T.","ERROR",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  int[] membership=new int[dataset[datasetIndex].length];
+  int[] clusterSize=new int[clusterNumber];
+  for (int i=0; i < dataset[datasetIndex].length; i++) {
+    membership[i]=birch.predict(dataset[datasetIndex][i]);
+    if (membership[i] != Clustering.OUTLIER) {
+      clusterSize[membership[i]]++;
+    }
+  }
+  System.out.format("BIRCH clusterings %d samples in %dms\n",dataset[datasetIndex].length,System.currentTimeMillis() - clock);
+  PlotCanvas plot=ScatterPlot.plot(birch.centroids(),'@');
+  for (int k=0; k < clusterNumber; k++) {
+    if (clusterSize[k] > 0) {
+      double[][] cluster=new double[clusterSize[k]][];
+      for (int i=0, j=0; i < dataset[datasetIndex].length; i++) {
+        if (membership[i] == k) {
+          cluster[j++]=dataset[datasetIndex][i];
+        }
+      }
+      plot.points(cluster,pointLegend,Palette.COLORS[k % Palette.COLORS.length]);
+    }
+  }
+  plot.points(birch.centroids(),'@');
+  return plot;
+}

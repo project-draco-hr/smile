@@ -1,0 +1,8 @@
+{
+  numLocalField=new JTextField(Integer.toString(numLocal),5);
+  maxNeighborField=new JTextField(Integer.toString(maxNeighbor),5);
+  optionPane.add(new JLabel("NumLocal:"));
+  optionPane.add(numLocalField);
+  optionPane.add(new JLabel("MaxNeighbor:"));
+  optionPane.add(maxNeighborField);
+}

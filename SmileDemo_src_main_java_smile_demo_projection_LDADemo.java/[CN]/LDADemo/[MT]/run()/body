@@ -1,0 +1,13 @@
+{
+  startButton.setEnabled(false);
+  datasetBox.setEnabled(false);
+  JComponent plot=learn();
+  if (plot != null) {
+    if (canvas != null)     remove(canvas);
+    canvas=plot;
+    add(plot,BorderLayout.CENTER);
+  }
+  validate();
+  startButton.setEnabled(true);
+  datasetBox.setEnabled(true);
+}

@@ -1,0 +1,28 @@
+{
+  if (e.getSource() == kSlider) {
+    k=kSlider.getValue();
+    if (k == 0)     k=1;
+    ChiSquareDistribution dist=new ChiSquareDistribution(k);
+    double[][] p=new double[100][2];
+    double[][] q=new double[100][2];
+    for (int i=0; i < p.length; i++) {
+      p[i][0]=i / 2.0;
+      p[i][1]=dist.p(p[i][0]);
+      q[i][0]=i / 2.0;
+      q[i][1]=dist.cdf(p[i][0]);
+    }
+    pdf.clear();
+    pdf.line(p,Line.Style.SOLID,Color.BLUE);
+    cdf.clear();
+    cdf.line(q,Line.Style.SOLID,Color.BLUE);
+    double[] data=new double[500];
+    for (int i=0; i < data.length; i++) {
+      data[i]=dist.rand();
+    }
+    histogram.clear();
+    histogram.histogram(data,20,Color.BLUE);
+    qqplot.clear();
+    qqplot.add(new QQPlot(data,dist));
+    canvas.repaint();
+  }
+}

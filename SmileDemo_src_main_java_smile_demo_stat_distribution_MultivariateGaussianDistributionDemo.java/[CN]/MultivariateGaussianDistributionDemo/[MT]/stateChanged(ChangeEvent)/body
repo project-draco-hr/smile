@@ -1,0 +1,18 @@
+{
+  if (e.getSource() == sigma1Slider || e.getSource() == sigma2Slider) {
+    sigma[0]=Math.sqr(sigma1Slider.getValue() / 10.0);
+    sigma[1]=Math.sqr(sigma2Slider.getValue() / 10.0);
+    if (sigma[0] == 0)     sigma[0]=0.01;
+    if (sigma[1] == 0)     sigma[1]=0.01;
+    MultivariateGaussianDistribution g=new MultivariateGaussianDistribution(mu,sigma);
+    for (int i=0; i < m; i++) {
+      for (int j=0; j < n; j++) {
+        z[i][j][0]=6.0 * (i - m / 2) / m;
+        z[i][j][1]=6.0 * (j - n / 2) / n;
+        double[] point={z[i][j][0],z[i][j][1]};
+        z[i][j][2]=g.p(point);
+      }
+    }
+    pdf.repaint();
+  }
+}

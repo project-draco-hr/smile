@@ -1,0 +1,9 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+ else   if ("datasetBox".equals(e.getActionCommand())) {
+    datasetIndex=datasetBox.getSelectedIndex();
+  }
+}

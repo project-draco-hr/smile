@@ -1,0 +1,56 @@
+{
+  try {
+    T=Double.parseDouble(TNumberField.getText().trim());
+    if (T <= 0) {
+      JOptionPane.showMessageDialog(this,"Invalid T: " + T,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid T: " + TNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  long clock=System.currentTimeMillis();
+  NeuralMap cortex=new NeuralMap(2,T,0.05,0.0006,5,3);
+  for (int i=0; i < 5; i++) {
+    for (    double[] x : dataset[datasetIndex]) {
+      cortex.update(x);
+    }
+  }
+  cortex.purge(16);
+  cortex.partition(clusterNumber,16);
+  System.out.format("Cortex clusterings %d samples in %dms\n",dataset[datasetIndex].length,System.currentTimeMillis() - clock);
+  int[] y=new int[dataset[datasetIndex].length];
+  int[] clusterSize=new int[clusterNumber];
+  for (int i=0; i < dataset[datasetIndex].length; i++) {
+    y[i]=cortex.predict(dataset[datasetIndex][i]);
+    if (y[i] != Clustering.OUTLIER) {
+      clusterSize[y[i]]++;
+    }
+  }
+  List<NeuralMap.Neuron> nodes=cortex.neurons();
+  double[][] x=new double[nodes.size()][];
+  for (int i=0; i < x.length; i++) {
+    x[i]=nodes.get(i).w;
+  }
+  PlotCanvas plot=ScatterPlot.plot(x,'@');
+  for (int k=0; k < clusterNumber; k++) {
+    if (clusterSize[k] > 0) {
+      double[][] cluster=new double[clusterSize[k]][];
+      for (int i=0, j=0; i < dataset[datasetIndex].length; i++) {
+        if (y[i] == k) {
+          cluster[j++]=dataset[datasetIndex][i];
+        }
+      }
+      plot.points(cluster,pointLegend,Palette.COLORS[k % Palette.COLORS.length]);
+    }
+  }
+  for (int i=0; i < nodes.size(); i++) {
+    NeuralMap.Neuron neuron=nodes.get(i);
+    for (    NeuralMap.Neuron neighbor : neuron.neighbors) {
+      plot.line(neuron.w,neighbor.w);
+    }
+  }
+  plot.points(x,'@');
+  return plot;
+}

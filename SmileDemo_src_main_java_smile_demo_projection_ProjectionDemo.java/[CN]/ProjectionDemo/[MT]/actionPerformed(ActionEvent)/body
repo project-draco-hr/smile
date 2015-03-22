@@ -1,0 +1,39 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    datasetIndex=datasetBox.getSelectedIndex();
+    if (dataset[datasetIndex] == null) {
+      DelimitedTextParser parser=new DelimitedTextParser();
+      parser.setDelimiter("[\t]+");
+      if (datasetIndex < 5 && datasetIndex != 3) {
+        parser.setColumnNames(true);
+      }
+      if (datasetIndex == 1) {
+        parser.setRowNames(true);
+      }
+      if (datasetIndex == 0) {
+        parser.setResponseIndex(new NominalAttribute("class"),4);
+      }
+      if (datasetIndex == 3) {
+        parser.setResponseIndex(new NominalAttribute("class"),16);
+      }
+      if (datasetIndex >= 5) {
+        parser.setResponseIndex(new NominalAttribute("class"),4);
+      }
+      try {
+        dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+      }
+ catch (      Exception ex) {
+        JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+        System.out.println(ex);
+      }
+    }
+    if (dataset[datasetIndex].size() < 500) {
+      pointLegend='o';
+    }
+ else {
+      pointLegend='.';
+    }
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+}

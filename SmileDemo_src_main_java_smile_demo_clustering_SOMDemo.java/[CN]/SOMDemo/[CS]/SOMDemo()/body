@@ -1,0 +1,8 @@
+{
+  widthField=new JTextField(Integer.toString(width),10);
+  optionPane.add(new JLabel("Width:"));
+  optionPane.add(widthField);
+  heightField=new JTextField(Integer.toString(height),10);
+  optionPane.add(new JLabel("Height:"));
+  optionPane.add(heightField);
+}

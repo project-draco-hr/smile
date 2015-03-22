@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("ChiSquare Distribution");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new ChiSquareDistributionDemo());
+  frame.setVisible(true);
+}

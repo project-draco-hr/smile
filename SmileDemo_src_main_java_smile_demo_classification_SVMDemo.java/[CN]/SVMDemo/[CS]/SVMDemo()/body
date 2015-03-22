@@ -1,0 +1,8 @@
+{
+  gammaField=new JTextField(Double.toString(gamma),5);
+  optionPane.add(new JLabel("\u02E0:"));
+  optionPane.add(gammaField);
+  cField=new JTextField(Double.toString(C),5);
+  optionPane.add(new JLabel("C:"));
+  optionPane.add(cField);
+}

@@ -1,0 +1,30 @@
+{
+  super(new GridLayout(1,0));
+  DefaultMutableTreeNode top=new DefaultMutableTreeNode("Smile");
+  createNodes(top);
+  tree=new JTree(top);
+  tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  tree.addTreeSelectionListener(this);
+  JScrollPane treeView=new JScrollPane(tree);
+  JPanel placeholder=new JPanel(new BorderLayout());
+  placeholder.setBackground(Color.white);
+  logPane=new JTextArea();
+  logPane.setEditable(false);
+  JScrollPane logView=new JScrollPane(logPane);
+  redirectSystemStreams();
+  workspace=new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+  workspace.setTopComponent(placeholder);
+  workspace.setBottomComponent(logView);
+  workspace.setDividerLocation(700);
+  JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+  splitPane.setLeftComponent(treeView);
+  splitPane.setRightComponent(workspace);
+  Dimension minimumSize=new Dimension(100,50);
+  placeholder.setMinimumSize(minimumSize);
+  logView.setMinimumSize(minimumSize);
+  workspace.setMinimumSize(minimumSize);
+  treeView.setMinimumSize(minimumSize);
+  splitPane.setDividerLocation(300);
+  splitPane.setPreferredSize(new Dimension(1000,800));
+  add(splitPane);
+}

@@ -1,0 +1,38 @@
+{
+  JPanel pane=new JPanel(new GridLayout(1,2));
+  try {
+    sigma=Double.parseDouble(sigmaField.getText().trim());
+  }
+ catch (  Exception ex) {
+    JOptionPane.showMessageDialog(this,"Invalid t: " + sigmaField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return pane;
+  }
+  sigmaField.setEnabled(false);
+  double[][] data=dataset[datasetIndex].toArray(new double[dataset[datasetIndex].size()][]);
+  if (data.length > 1000) {
+    double[][] x=new double[1000][];
+    for (int i=0; i < 1000; i++) {
+      x[i]=data[i];
+    }
+    data=x;
+  }
+  long clock=System.currentTimeMillis();
+  LaplacianEigenmap eigenmap=new LaplacianEigenmap(data,2,k,sigma);
+  System.out.format("Learn Laplacian Eigenmap from %d samples in %dms\n",data.length,System.currentTimeMillis() - clock);
+  double[][] y=eigenmap.getCoordinates();
+  PlotCanvas plot=new PlotCanvas(Math.colMin(y),Math.colMax(y));
+  plot.points(y,'o',Color.RED);
+  int n=y.length;
+  Graph graph=eigenmap.getNearestNeighborGraph();
+  for (int i=0; i < n; i++) {
+    for (int j=0; j < i; j++) {
+      if (graph.hasEdge(i,j)) {
+        plot.line(y[i],y[j]);
+      }
+    }
+  }
+  plot.setTitle("Laplacian Eigenmap");
+  pane.add(plot);
+  sigmaField.setEnabled(true);
+  return pane;
+}

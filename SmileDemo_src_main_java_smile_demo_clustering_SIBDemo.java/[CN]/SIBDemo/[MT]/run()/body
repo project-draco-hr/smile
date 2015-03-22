@@ -1,0 +1,7 @@
+{
+  startButton.setEnabled(false);
+  datasetBox.setEnabled(false);
+  clustering();
+  startButton.setEnabled(true);
+  datasetBox.setEnabled(true);
+}

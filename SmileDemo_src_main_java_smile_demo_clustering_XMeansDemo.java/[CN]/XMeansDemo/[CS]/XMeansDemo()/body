@@ -1,0 +1,7 @@
+{
+  optionPane.remove(optionPane.getComponentCount() - 1);
+  optionPane.remove(optionPane.getComponentCount() - 1);
+  maxClusterNumberField=new JTextField(Integer.toString(maxClusterNumber),5);
+  optionPane.add(new JLabel("Max K:"));
+  optionPane.add(maxClusterNumberField);
+}

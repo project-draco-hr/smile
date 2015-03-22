@@ -1,0 +1,40 @@
+{
+  super(new BorderLayout());
+  Hashtable<Integer,JLabel> labelTable=new Hashtable<Integer,JLabel>();
+  for (int i=0; i <= 30; i+=10) {
+    labelTable.put(new Integer(i),new JLabel(String.valueOf(i / 10.0)));
+  }
+  sigma1Slider=new JSlider(0,30,(int)(sigma[0] * 10));
+  sigma1Slider.addChangeListener(this);
+  sigma1Slider.setLabelTable(labelTable);
+  sigma1Slider.setMajorTickSpacing(10);
+  sigma1Slider.setMinorTickSpacing(2);
+  sigma1Slider.setPaintTicks(true);
+  sigma1Slider.setPaintLabels(true);
+  sigma2Slider=new JSlider(0,30,(int)(sigma[1] * 10));
+  sigma2Slider.addChangeListener(this);
+  sigma2Slider.setLabelTable(labelTable);
+  sigma2Slider.setMajorTickSpacing(10);
+  sigma2Slider.setMinorTickSpacing(2);
+  sigma2Slider.setPaintTicks(true);
+  sigma2Slider.setPaintLabels(true);
+  optionPane=new JPanel();
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(new JLabel("<html>\u03C3<sub>1</sub>:</html>"));
+  optionPane.add(sigma1Slider);
+  optionPane.add(new JLabel("<html>\u03C3<sub>2</sub>:</html>"));
+  optionPane.add(sigma2Slider);
+  add(optionPane,BorderLayout.NORTH);
+  MultivariateGaussianDistribution g=new MultivariateGaussianDistribution(mu,sigma);
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++) {
+      z[i][j][0]=6.0 * (i - m / 2) / m;
+      z[i][j][1]=6.0 * (j - n / 2) / n;
+      double[] point={z[i][j][0],z[i][j][1]};
+      z[i][j][2]=g.p(point);
+    }
+  }
+  pdf=Surface.plot(z);
+  pdf.setTitle("Multivariate Gaussian");
+  add(pdf,BorderLayout.CENTER);
+}

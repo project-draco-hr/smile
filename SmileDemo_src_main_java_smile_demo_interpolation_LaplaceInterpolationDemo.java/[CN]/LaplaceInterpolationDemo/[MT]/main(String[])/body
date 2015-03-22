@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("Laplace Interpolation");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new LaplaceInterpolationDemo());
+  frame.setVisible(true);
+}

@@ -1,0 +1,59 @@
+{
+  super(new BorderLayout());
+  Hashtable<Integer,JLabel> shapeLabelTable=new Hashtable<Integer,JLabel>();
+  for (int i=0; i <= 10; i+=2) {
+    shapeLabelTable.put(new Integer(i),new JLabel(String.valueOf(i)));
+  }
+  shapeSlider=new JSlider(0,10,(int)Math.round(shape));
+  shapeSlider.addChangeListener(this);
+  shapeSlider.setLabelTable(shapeLabelTable);
+  shapeSlider.setMajorTickSpacing(2);
+  shapeSlider.setMinorTickSpacing(1);
+  shapeSlider.setPaintTicks(true);
+  shapeSlider.setPaintLabels(true);
+  Hashtable<Integer,JLabel> scaleLabelTable=new Hashtable<Integer,JLabel>();
+  for (int i=0; i <= 50; i+=10) {
+    scaleLabelTable.put(new Integer(i),new JLabel(String.valueOf(i / 10)));
+  }
+  scaleSlider=new JSlider(0,50,(int)Math.round(scale * 10));
+  scaleSlider.addChangeListener(this);
+  scaleSlider.setLabelTable(scaleLabelTable);
+  scaleSlider.setMajorTickSpacing(10);
+  scaleSlider.setMinorTickSpacing(2);
+  scaleSlider.setPaintTicks(true);
+  scaleSlider.setPaintLabels(true);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(new JLabel("Shape:"));
+  optionPane.add(shapeSlider);
+  optionPane.add(new JLabel("Scale:"));
+  optionPane.add(scaleSlider);
+  add(optionPane,BorderLayout.NORTH);
+  canvas=new JPanel(new GridLayout(2,2));
+  add(canvas,BorderLayout.CENTER);
+  WeibullDistribution dist=new WeibullDistribution(shape,scale);
+  double[][] p=new double[100][2];
+  double[][] q=new double[100][2];
+  for (int i=0; i < p.length; i++) {
+    p[i][0]=i / 20.0;
+    p[i][1]=dist.p(p[i][0]);
+    q[i][0]=i / 20.0;
+    q[i][1]=dist.cdf(p[i][0]);
+  }
+  pdf=LinePlot.plot(p,Line.Style.SOLID,Color.BLUE);
+  pdf.setTitle("PDF");
+  canvas.add(pdf);
+  cdf=LinePlot.plot(q,Line.Style.SOLID,Color.BLUE);
+  cdf.setTitle("CDF");
+  canvas.add(cdf);
+  double[] data=new double[500];
+  for (int i=0; i < data.length; i++) {
+    data[i]=dist.rand();
+  }
+  histogram=Histogram.plot(data,20);
+  histogram.setTitle("Histogram");
+  canvas.add(histogram);
+  qqplot=QQPlot.plot(data,dist);
+  qqplot.setTitle("Q-Q Plot");
+  canvas.add(qqplot);
+}

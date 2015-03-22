@@ -1,0 +1,15 @@
+{
+  if (datasetBox.getSelectedIndex() != datasetIndex) {
+    datasetBox.setSelectedIndex(datasetIndex);
+    double[][] data=dataset[datasetIndex].toArray(new double[dataset[datasetIndex].size()][]);
+    int[] label=dataset[datasetIndex].toArray(new int[dataset[datasetIndex].size()]);
+    PlotCanvas canvas=ScatterPlot.plot(data,'o');
+    for (int i=0; i < data.length; i++) {
+      canvas.point('o',Palette.COLORS[label[i]],data[i]);
+    }
+    BorderLayout layout=(BorderLayout)getLayout();
+    remove(layout.getLayoutComponent(BorderLayout.CENTER));
+    add(canvas,BorderLayout.CENTER);
+    validate();
+  }
+}

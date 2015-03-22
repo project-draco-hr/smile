@@ -1,0 +1,5 @@
+{
+  gaussianWidthField=new JTextField(Double.toString(gaussianWidth),5);
+  optionPane.add(new JLabel("Width:"));
+  optionPane.add(gaussianWidthField);
+}

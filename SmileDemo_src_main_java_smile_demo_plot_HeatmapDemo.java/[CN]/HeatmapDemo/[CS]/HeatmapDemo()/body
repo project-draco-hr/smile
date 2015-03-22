@@ -1,0 +1,42 @@
+{
+  super(new GridLayout(2,4));
+  setBackground(Color.white);
+  int n=81;
+  double[] x=new double[n];
+  for (int i=0; i < n; i++)   x[i]=-2.0 + 0.05 * i;
+  int m=81;
+  double[] y=new double[m];
+  for (int i=0; i < m; i++)   y[i]=-2.0 + 0.05 * i;
+  double[][] z=new double[m][n];
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++)     z[i][j]=x[j] * Math.exp(-x[j] * x[j] - y[i] * y[i]);
+  }
+  PlotCanvas canvas=Heatmap.plot(z,Palette.jet(256));
+  canvas.add(new Contour(z));
+  canvas.setTitle("jet");
+  add(canvas);
+  canvas=Heatmap.plot(x,y,z,Palette.redblue(256));
+  canvas.add(new Contour(x,y,z));
+  canvas.setTitle("redblue");
+  add(canvas);
+  canvas=Heatmap.plot(z,Palette.redgreen(256));
+  canvas.add(new Contour(z));
+  canvas.setTitle("redgreen");
+  add(canvas);
+  canvas=Heatmap.plot(x,y,z,Palette.heat(256));
+  canvas.add(new Contour(x,y,z));
+  canvas.setTitle("heat");
+  add(canvas);
+  canvas=Heatmap.plot(z,Palette.terrain(256));
+  canvas.add(new Contour(z));
+  canvas.setTitle("terrain");
+  add(canvas);
+  canvas=Heatmap.plot(x,y,z,Palette.rainbow(256));
+  canvas.add(new Contour(x,y,z));
+  canvas.setTitle("rainbow");
+  add(canvas);
+  canvas=Heatmap.plot(z,Palette.topo(256));
+  canvas.add(new Contour(z));
+  canvas.setTitle("topo");
+  add(canvas);
+}

@@ -1,0 +1,12 @@
+{
+  super(new GridLayout(1,1));
+  String[] labels=new String[10];
+  double[] data=new double[10];
+  for (int j=0; j < data.length; j++) {
+    labels[j]="V" + (j + 1);
+    data[j]=Math.random() - 0.5;
+  }
+  PlotCanvas canvas=BarPlot.plot(data,labels);
+  canvas.setTitle("Bar Plot");
+  add(canvas);
+}

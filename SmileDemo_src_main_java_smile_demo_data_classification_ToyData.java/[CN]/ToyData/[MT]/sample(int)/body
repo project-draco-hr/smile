@@ -1,0 +1,17 @@
+{
+  double[][] samples=new double[2 * n][];
+  MultivariateGaussianDistribution[] gauss=new MultivariateGaussianDistribution[k];
+  for (int i=0; i < k; i++) {
+    gauss[i]=new MultivariateGaussianDistribution(m[i],v);
+  }
+  for (int i=0; i < n; i++) {
+    samples[i]=gauss[Math.random(prob)].rand();
+  }
+  for (int i=0; i < k; i++) {
+    gauss[i]=new MultivariateGaussianDistribution(m[k + i],v);
+  }
+  for (int i=0; i < n; i++) {
+    samples[n + i]=gauss[Math.random(prob)].rand();
+  }
+  return samples;
+}

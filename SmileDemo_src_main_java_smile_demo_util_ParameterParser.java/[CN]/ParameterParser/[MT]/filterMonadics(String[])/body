@@ -1,0 +1,11 @@
+{
+  List<String> filteredArgs=new ArrayList<String>();
+  for (  String arg : args) {
+    filteredArgs.add(arg);
+    Parameter param=parameters.get(arg);
+    if (param != null && param.paramType == ParameterType.MONADIC) {
+      filteredArgs.add("1");
+    }
+  }
+  return filteredArgs;
+}

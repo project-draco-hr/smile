@@ -1,0 +1,27 @@
+{
+  try {
+    range=Double.parseDouble(rangeField.getText().trim());
+    if (range <= 0) {
+      JOptionPane.showMessageDialog(this,"Invalid Range: " + range,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid range: " + rangeField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  long clock=System.currentTimeMillis();
+  MEC<double[]> mec=new MEC<double[]>(dataset[datasetIndex],new EuclideanDistance(),clusterNumber,range);
+  System.out.format("MEC clusterings %d samples in %dms\n",dataset[datasetIndex].length,System.currentTimeMillis() - clock);
+  PlotCanvas plot=ScatterPlot.plot(dataset[datasetIndex],pointLegend);
+  for (int k=0; k < mec.getNumClusters(); k++) {
+    double[][] cluster=new double[mec.getClusterSize()[k]][];
+    for (int i=0, j=0; i < dataset[datasetIndex].length; i++) {
+      if (mec.getClusterLabel()[i] == k) {
+        cluster[j++]=dataset[datasetIndex][i];
+      }
+    }
+    plot.points(cluster,pointLegend,Palette.COLORS[k % Palette.COLORS.length]);
+  }
+  return plot;
+}

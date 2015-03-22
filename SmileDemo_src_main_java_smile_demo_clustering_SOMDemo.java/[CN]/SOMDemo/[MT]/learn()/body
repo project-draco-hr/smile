@@ -1,0 +1,69 @@
+{
+  try {
+    width=Integer.parseInt(widthField.getText().trim());
+    if (width < 1) {
+      JOptionPane.showMessageDialog(this,"Invalid width: " + width,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid width: " + widthField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  try {
+    height=Integer.parseInt(heightField.getText().trim());
+    if (height < 1) {
+      JOptionPane.showMessageDialog(this,"Invalid height: " + height,"Error",JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid height: " + heightField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+  long clock=System.currentTimeMillis();
+  SOM som=new SOM(dataset[datasetIndex],width,height);
+  System.out.format("SOM clusterings %d samples in %dms\n",dataset[datasetIndex].length,System.currentTimeMillis() - clock);
+  JPanel pane=new JPanel(new GridLayout(2,3));
+  PlotCanvas plot=ScatterPlot.plot(dataset[datasetIndex],pointLegend);
+  plot.grid(som.map());
+  plot.setTitle("SOM Grid");
+  pane.add(plot);
+  int[] membership=som.partition(clusterNumber);
+  int[] clusterSize=new int[clusterNumber];
+  for (int i=0; i < membership.length; i++) {
+    clusterSize[membership[i]]++;
+  }
+  plot=ScatterPlot.plot(dataset[datasetIndex],pointLegend);
+  plot.setTitle("Hierarchical Clustering");
+  for (int k=0; k < clusterNumber; k++) {
+    double[][] cluster=new double[clusterSize[k]][];
+    for (int i=0, j=0; i < dataset[datasetIndex].length; i++) {
+      if (membership[i] == k) {
+        cluster[j++]=dataset[datasetIndex][i];
+      }
+    }
+    plot.points(cluster,pointLegend,Palette.COLORS[k % Palette.COLORS.length]);
+  }
+  pane.add(plot);
+  double[][] umatrix=som.umatrix();
+  double[] umatrix1=new double[umatrix.length * umatrix[0].length];
+  for (int i=0, k=0; i < umatrix.length; i++) {
+    for (int j=0; j < umatrix[i].length; j++, k++)     umatrix1[k]=umatrix[i][j];
+  }
+  plot=Histogram.plot(null,umatrix1,20);
+  plot.setTitle("U-Matrix Histogram");
+  pane.add(plot);
+  GaussianMixture mixture=new GaussianMixture(umatrix1);
+  double w=(Math.max(umatrix1) - Math.min(umatrix1)) / 24;
+  double[][] p=new double[50][2];
+  for (int i=0; i < p.length; i++) {
+    p[i][0]=Math.min(umatrix1) + i * w;
+    p[i][1]=mixture.p(p[i][0]) * w;
+  }
+  plot.line(p,Color.RED);
+  plot=Hexmap.plot(umatrix,Palette.jet(256));
+  plot.setTitle("U-Matrix");
+  pane.add(plot);
+  return pane;
+}

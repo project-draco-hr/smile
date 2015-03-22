@@ -1,0 +1,4 @@
+{
+  sparseBox=new JCheckBox("Sparse Random Projection");
+  optionPane.add(sparseBox);
+}

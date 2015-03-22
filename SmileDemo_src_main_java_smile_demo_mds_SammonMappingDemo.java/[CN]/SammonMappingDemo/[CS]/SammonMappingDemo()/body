@@ -1,0 +1,19 @@
+{
+  startButton=new JButton("Start");
+  startButton.setActionCommand("startButton");
+  startButton.addActionListener(this);
+  datasetBox=new JComboBox<String>();
+  for (int i=0; i < datasetName.length; i++) {
+    datasetBox.addItem(datasetName[i]);
+  }
+  datasetBox.setSelectedIndex(0);
+  datasetBox.setActionCommand("datasetBox");
+  datasetBox.addActionListener(this);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(startButton);
+  optionPane.add(new JLabel("Dataset:"));
+  optionPane.add(datasetBox);
+  setLayout(new BorderLayout());
+  add(optionPane,BorderLayout.NORTH);
+}
