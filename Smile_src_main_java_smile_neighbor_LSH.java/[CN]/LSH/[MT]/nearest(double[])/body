@@ -1,26 +1,7 @@
 {
-  IntArrayList candidates=new IntArrayList();
-  for (  Hash h : hash) {
-    BucketEntry bucket=h.get(q);
-    if (bucket != null) {
-      int m=bucket.entry.size();
-      for (int i=0; i < m; i++) {
-        int index=bucket.entry.get(i);
-        candidates.add(index);
-      }
-    }
-  }
+  Set<Integer> candidates=obtainCandidates(q);
   Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,-1,Double.MAX_VALUE);
-  int[] cand=candidates.toArray();
-  Arrays.sort(cand);
-  int prev=-1;
-  for (  int index : cand) {
-    if (index == prev) {
-      continue;
-    }
- else {
-      prev=index;
-    }
+  for (  int index : candidates) {
     double[] key=keys.get(index);
     if (q == key && identicalExcluded) {
       continue;
