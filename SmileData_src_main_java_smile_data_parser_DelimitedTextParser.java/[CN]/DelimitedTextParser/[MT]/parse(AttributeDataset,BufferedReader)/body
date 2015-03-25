@@ -15,7 +15,7 @@
     if (line.startsWith(comment)) {
       continue;
     }
-    String[] s=line.split(delimiter,-1);
+    String[] s=line.split(delimiter,0);
     if (s.length != n) {
       throw new ParseException(String.format("%d columns, expected %d",s.length,n),s.length);
     }
