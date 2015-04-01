@@ -1,0 +1,13 @@
+{
+  SNLSH<String> lsh=new SNLSH<String>(8,2);
+  for (  String t : texts) {
+    lsh.put(t,t);
+  }
+  List<Neighbor<String,String>> ns=Lists.newArrayList();
+  lsh.range(texts[0],10,ns);
+  System.out.println("-------test range begin-------");
+  for (  Neighbor<String,String> n : ns) {
+    System.out.println(n.key + "  distance: " + n.distance);
+  }
+  System.out.println("-----test range end ----------");
+}

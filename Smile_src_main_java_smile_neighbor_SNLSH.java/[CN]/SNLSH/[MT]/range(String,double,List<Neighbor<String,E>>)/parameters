@@ -1,0 +1,3 @@
+String q
+double radius
+List<Neighbor<String,E>> neighbors

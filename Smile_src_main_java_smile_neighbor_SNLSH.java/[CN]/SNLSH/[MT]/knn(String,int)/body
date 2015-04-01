@@ -9,7 +9,7 @@
   for (  int index : candidates) {
     long sign=signs.get(index);
     double distance=HammingDistance.d(fpq,sign);
-    if (!keys.get(index).equals(q)) {
+    if (!keys.get(index).equals(q) && identicalExcluded) {
       heap.add(new Neighbor<String,E>(keys.get(index),data.get(index),index,distance));
     }
   }

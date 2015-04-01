@@ -1,3 +1,0 @@
-Long q
-double radius
-List<Neighbor<Long,String>> neighbors
