@@ -1,0 +1,8 @@
+{
+  if (n > 0) {
+    return heap[0];
+  }
+ else {
+    return null;
+  }
+}

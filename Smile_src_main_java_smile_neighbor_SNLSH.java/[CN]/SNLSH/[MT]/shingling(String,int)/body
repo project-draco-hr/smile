@@ -1,0 +1,15 @@
+{
+  if (shingleSize < 1) {
+    throw new IllegalArgumentException("Invalid shingle size!");
+  }
+  Set<String> shingles=Sets.newHashSet();
+  if (text.length() <= shingleSize) {
+    shingles.add(text);
+  }
+ else {
+    for (int i=0; i + shingleSize <= text.length(); i++) {
+      shingles.add(text.substring(i,i + shingleSize));
+    }
+  }
+  return shingles;
+}

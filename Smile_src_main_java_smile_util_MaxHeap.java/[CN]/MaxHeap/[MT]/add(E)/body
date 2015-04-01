@@ -1,0 +1,12 @@
+{
+  if (n < k) {
+    heap[n++]=e;
+    bubbleUp();
+  }
+ else {
+    if (e.compareTo(top()) < 0) {
+      heap[0]=e;
+      bubbleDown();
+    }
+  }
+}

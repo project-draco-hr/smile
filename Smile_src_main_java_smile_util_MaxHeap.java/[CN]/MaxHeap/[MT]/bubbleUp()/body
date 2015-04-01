@@ -1,0 +1,9 @@
+{
+  int i=n - 1;
+  E e=heap[i];
+  while (i > 0 && heap[parent(i)].compareTo(e) < 0) {
+    heap[i]=heap[parent(i)];
+    i=parent(i);
+  }
+  heap[i]=e;
+}
