@@ -1,0 +1,3 @@
+int numFeatures
+int numClasses
+double eta

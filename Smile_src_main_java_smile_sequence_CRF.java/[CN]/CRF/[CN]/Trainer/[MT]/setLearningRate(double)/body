@@ -1,0 +1,6 @@
+{
+  if (eta <= 0.0) {
+    throw new IllegalArgumentException("Invalid learning rate: " + eta);
+  }
+  this.eta=eta;
+}

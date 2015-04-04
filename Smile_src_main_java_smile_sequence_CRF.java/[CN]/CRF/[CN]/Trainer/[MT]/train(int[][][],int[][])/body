@@ -1,0 +1,27 @@
+{
+  CRF crf=new CRF(numFeatures,numClasses,eta);
+  double[][] scaling=new double[sequences.length][];
+  TrellisNode[][][] trellis=new TrellisNode[sequences.length][][];
+  for (int i=0; i < sequences.length; i++) {
+    scaling[i]=new double[sequences[i].length];
+    trellis[i]=crf.getTrellis(sequences[i]);
+  }
+  List<GradientTask> gradientTasks=new ArrayList<GradientTask>();
+  for (int i=0; i < sequences.length; i++) {
+    gradientTasks.add(new GradientTask(crf,trellis[i],scaling[i],labels[i]));
+  }
+  List<BoostingTask> boostingTasks=new ArrayList<BoostingTask>();
+  for (int i=0; i < numClasses; i++) {
+    boostingTasks.add(new BoostingTask(crf.potentials[i],trellis,i));
+  }
+  for (int iter=0; iter < iters; iter++) {
+    try {
+      MulticoreExecutor.run(gradientTasks);
+      MulticoreExecutor.run(boostingTasks);
+    }
+ catch (    Exception e) {
+      System.err.println(e.getMessage());
+    }
+  }
+  return crf;
+}

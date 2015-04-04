@@ -1,0 +1,19 @@
+{
+  for (int l=0, m=0; l < trellis.length; l++) {
+    y[m++]=trellis[l][0][i].target[0];
+    for (int t=1; t < trellis[l].length; t++) {
+      for (int j=0; j < numClasses; j++) {
+        y[m++]=trellis[l][t][i].target[j];
+      }
+    }
+  }
+  if (x != null) {
+    RegressionTree tree=new RegressionTree(attributes,x,y,maxLeaves,order,samples,null);
+    potential.add(tree);
+  }
+ else {
+    RegressionTree tree=new RegressionTree(numFeatures + numClasses + 1,sparseX,y,maxLeaves,samples,null);
+    potential.add(tree);
+  }
+  return null;
+}

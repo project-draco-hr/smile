@@ -1,0 +1,21 @@
+{
+  int n=trellis.length - 1;
+  for (int i=0; i < numClasses; i++) {
+    trellis[n][i].beta=1.0;
+  }
+  for (int t=n; t-- > 0; ) {
+    for (int i=0; i < numClasses; i++) {
+      trellis[t][i].beta=0.0;
+      for (int j=0; j < numClasses; j++) {
+        trellis[t][i].beta+=trellis[t + 1][j].expScores[i] * trellis[t + 1][j].beta;
+      }
+    }
+    double sum=0.0;
+    for (int i=0; i < numClasses; i++) {
+      sum+=trellis[t][i].beta;
+    }
+    for (int i=0; i < numClasses; i++) {
+      trellis[t][i].beta/=sum;
+    }
+  }
+}

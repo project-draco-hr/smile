@@ -1,0 +1,80 @@
+{
+  int p=0;
+  int k=0;
+  IntDataset dataset=new IntDataset();
+  ArrayList<int[][]> x=new ArrayList<int[][]>();
+  ArrayList<int[]> y=new ArrayList<int[]>();
+  ArrayList<int[]> seq=new ArrayList<int[]>();
+  ArrayList<Integer> label=new ArrayList<Integer>();
+  int id=1;
+  BufferedReader input=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(resource)));
+  try {
+    String[] words=input.readLine().split(" ");
+    int nseq=Integer.valueOf(words[0]);
+    k=Integer.valueOf(words[1]);
+    p=Integer.valueOf(words[2]);
+    String line=null;
+    while ((line=input.readLine()) != null) {
+      words=line.split(" ");
+      int seqid=Integer.valueOf(words[0]);
+      int pos=Integer.valueOf(words[1]);
+      int len=Integer.valueOf(words[2]);
+      int[] feature=new int[len];
+      for (int i=0; i < len; i++) {
+        try {
+          feature[i]=Integer.valueOf(words[i + 3]);
+        }
+ catch (        Exception ex) {
+          System.err.println(ex);
+        }
+      }
+      if (seqid == id) {
+        seq.add(feature);
+        label.add(Integer.valueOf(words[len + 3]));
+      }
+ else {
+        id=seqid;
+        int[][] xx=new int[seq.size()][];
+        int[] yy=new int[seq.size()];
+        for (int i=0; i < seq.size(); i++) {
+          xx[i]=seq.get(i);
+          yy[i]=label.get(i);
+        }
+        x.add(xx);
+        y.add(yy);
+        seq=new ArrayList<int[]>();
+        label=new ArrayList<Integer>();
+        seq.add(feature);
+        label.add(Integer.valueOf(words[len + 3]));
+      }
+    }
+    int[][] xx=new int[seq.size()][];
+    int[] yy=new int[seq.size()];
+    for (int i=0; i < seq.size(); i++) {
+      xx[i]=seq.get(i);
+      yy[i]=label.get(i);
+    }
+    x.add(xx);
+    y.add(yy);
+  }
+ catch (  IOException ex) {
+    System.err.println(ex);
+  }
+ finally {
+    try {
+      input.close();
+    }
+ catch (    IOException e) {
+      System.err.println(e);
+    }
+  }
+  dataset.p=p;
+  dataset.k=k;
+  dataset.x=new int[x.size()][][];
+  dataset.y=new int[y.size()][];
+  for (int i=0; i < dataset.x.length; i++) {
+    dataset.x[i]=x.get(i);
+    dataset.y[i]=y.get(i);
+  }
+  return dataset;
+}

@@ -1,0 +1,40 @@
+{
+  int n=x.length;
+  double[][] trellis=new double[n][numClasses];
+  int[][] psy=new int[n][numClasses];
+  int p=x[0].length;
+  int[] features=featureset(x[0],numClasses);
+  for (int j=0; j < numClasses; j++) {
+    trellis[0][j]=potentials[j].f(features);
+    psy[0][j]=0;
+  }
+  for (int t=1; t < n; t++) {
+    System.arraycopy(x[t],0,features,0,p);
+    for (int i=0; i < numClasses; i++) {
+      double max=Double.NEGATIVE_INFINITY;
+      int maxPsy=0;
+      for (int j=0; j < numClasses; j++) {
+        features[p]=numFeatures + j;
+        double delta=potentials[i].f(features) + trellis[t - 1][j];
+        if (max < delta) {
+          max=delta;
+          maxPsy=j;
+        }
+      }
+      trellis[t][i]=max;
+      psy[t][i]=maxPsy;
+    }
+  }
+  int[] label=new int[n];
+  double max=Double.NEGATIVE_INFINITY;
+  for (int i=0; i < numClasses; i++) {
+    if (max < trellis[n - 1][i]) {
+      max=trellis[n - 1][i];
+      label[n - 1]=i;
+    }
+  }
+  for (int t=n - 1; t-- > 0; ) {
+    label[t]=psy[t + 1][label[t + 1]];
+  }
+  return label;
+}

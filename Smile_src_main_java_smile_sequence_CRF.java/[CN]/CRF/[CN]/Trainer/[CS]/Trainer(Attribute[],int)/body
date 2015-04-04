@@ -1,0 +1,13 @@
+{
+  if (numClasses < 2) {
+    throw new IllegalArgumentException("Invalid number of classes: " + numClasses);
+  }
+  this.numClasses=numClasses;
+  this.attributes=new Attribute[attributes.length + 1];
+  System.arraycopy(attributes,0,this.attributes,0,attributes.length);
+  String[] values=new String[numClasses + 1];
+  for (int i=0; i <= numClasses; i++) {
+    values[i]=Integer.toString(i);
+  }
+  this.attributes[attributes.length]=new NominalAttribute("Previous Position Label",values);
+}
