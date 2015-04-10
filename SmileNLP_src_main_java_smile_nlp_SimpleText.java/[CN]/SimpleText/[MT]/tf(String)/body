@@ -1,0 +1,7 @@
+{
+  Integer f=freq.get(term);
+  if (f == null) {
+    return 0;
+  }
+  return f;
+}

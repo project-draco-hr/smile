@@ -1,0 +1,28 @@
+{
+  System.out.println("WSJ");
+  load("D:\\sourceforge\\corpora\\PennTreebank\\PennTreebank2\\TAGGED\\POS\\WSJ");
+  String[][] x=sentences.toArray(new String[sentences.size()][]);
+  PennTreebankPOS[][] y=labels.toArray(new PennTreebankPOS[labels.size()][]);
+  int n=x.length;
+  int k=10;
+  CrossValidation cv=new CrossValidation(n,k);
+  int error=0;
+  int total=0;
+  for (int i=0; i < k; i++) {
+    String[][] trainx=Math.slice(x,cv.train[i]);
+    PennTreebankPOS[][] trainy=Math.slice(y,cv.train[i]);
+    String[][] testx=Math.slice(x,cv.test[i]);
+    PennTreebankPOS[][] testy=Math.slice(y,cv.test[i]);
+    HMMPOSTagger tagger=HMMPOSTagger.learn(trainx,trainy);
+    for (int j=0; j < testx.length; j++) {
+      PennTreebankPOS[] label=tagger.tag(testx[j]);
+      total+=label.length;
+      for (int l=0; l < label.length; l++) {
+        if (label[l] != testy[j][l]) {
+          error++;
+        }
+      }
+    }
+  }
+  System.out.format("Error rate = %.2f as %d of %d\n",100.0 * error / total,error,total);
+}

@@ -1,0 +1,55 @@
+{
+  int index=1;
+  int suffixIndex=0;
+  Map<String,Integer> symbol=new HashMap<String,Integer>();
+  Map<String,Integer> suffix=new HashMap<String,Integer>();
+  for (int i=0; i < sentences.length; i++) {
+    for (int j=0; j < sentences[i].length; j++) {
+      Integer sym=symbol.get(sentences[i][j]);
+      if (sym == null) {
+        symbol.put(sentences[i][j],index++);
+      }
+      if (sentences[i][j].length() > 2) {
+        String s=sentences[i][j].substring(sentences[i][j].length() - 2);
+        sym=suffix.get(s);
+        if (sym == null) {
+          suffix.put(s,suffixIndex++);
+        }
+      }
+    }
+  }
+  int numStates=PennTreebankPOS.values().length;
+  double[] pi=new double[numStates];
+  double[][] a=new double[numStates][numStates];
+  double[][] b=new double[numStates][symbol.size() + 1];
+  double[][] c=new double[numStates][suffix.size()];
+  PennTreebankPOS[] tags=PennTreebankPOS.values();
+  for (int i=0; i < numStates; i++) {
+    if (tags[i].open) {
+      b[i][0]=1.0;
+    }
+  }
+  for (int i=0; i < sentences.length; i++) {
+    int[] tag=translate(labels[i]);
+    int[][] obs=translate(symbol,suffix,sentences[i]);
+    pi[tag[0]]++;
+    b[tag[0]][obs[0][0]]++;
+    if (obs[0][1] >= 0) {
+      c[tag[0]][obs[0][1]]++;
+    }
+    for (int j=1; j < obs.length; j++) {
+      a[tag[j - 1]][tag[j]]++;
+      b[tag[j]][obs[j][0]]++;
+      if (obs[j][1] >= 0) {
+        c[tag[j]][obs[j][1]]++;
+      }
+    }
+  }
+  Math.unitize1(pi);
+  for (int i=0; i < numStates; i++) {
+    Math.unitize1(a[i]);
+    Math.unitize1(b[i]);
+    Math.unitize1(c[i]);
+  }
+  return new HMMPOSTagger(symbol,suffix,pi,a,b,c);
+}

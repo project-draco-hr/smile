@@ -1,0 +1,11 @@
+int termFreq
+int docLen
+double avgDocLen
+int titleTermFreq
+int titleLen
+double avgTitleLen
+int anchorTermFreq
+int anchorLen
+double avgAnchorLen
+long N
+long n

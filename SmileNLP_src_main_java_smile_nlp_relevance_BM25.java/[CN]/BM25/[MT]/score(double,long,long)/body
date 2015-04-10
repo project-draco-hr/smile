@@ -1,0 +1,6 @@
+{
+  if (freq <= 0)   return 0.0;
+  double tf=(k1 + 1) * freq / (freq + k1);
+  double idf=Math.log((N - n + 0.5) / (n + 0.5));
+  return (tf + delta) * idf;
+}

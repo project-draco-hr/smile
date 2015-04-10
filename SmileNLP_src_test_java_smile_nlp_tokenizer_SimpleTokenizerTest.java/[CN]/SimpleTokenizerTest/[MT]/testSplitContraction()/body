@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize contraction");
+  String text="Here are some examples of contractions: 'tis, " + "'twas, ain't, aren't, Can't, could've, couldn't, didn't, doesn't, " + "don't, hasn't, he'd, he'll, he's, how'd, how'll, how's, i'd, i'll, i'm, "+ "i've, isn't, it's, might've, mightn't, must've, mustn't, Shan't, "+ "she'd, she'll, she's, should've, shouldn't, that'll, that's, "+ "there's, they'd, they'll, they're, they've, wasn't, we'd, we'll, "+ "we're, weren't, what'd, what's, when'd, when'll, when's, "+ "where'd, where'll, where's, who'd, who'll, who's, why'd, why'll, "+ "why's, Won't, would've, wouldn't, you'd, you'll, you're, you've";
+  String[] expResult={"Here","are","some","examples","of","contractions",":","'t","is",",","'t","was",",","am","not",",","are","not",",","Can","not",",","could","'ve",",","could","not",",","did","not",",","does","not",",","do","not",",","has","not",",","he","'d",",","he","'ll",",","he","'s",",","how","'d",",","how","'ll",",","how","'s",",","i","'d",",","i","'ll",",","i","'m",",","i","'ve",",","is","not",",","it","'s",",","might","'ve",",","might","not",",","must","'ve",",","must","not",",","Shall","not",",","she","'d",",","she","'ll",",","she","'s",",","should","'ve",",","should","not",",","that","'ll",",","that","'s",",","there","'s",",","they","'d",",","they","'ll",",","they","'re",",","they","'ve",",","was","not",",","we","'d",",","we","'ll",",","we","'re",",","were","not",",","what","'d",",","what","'s",",","when","'d",",","when","'ll",",","when","'s",",","where","'d",",","where","'ll",",","where","'s",",","who","'d",",","who","'ll",",","who","'s",",","why","'d",",","why","'ll",",","why","'s",",","Will","not",",","would","'ve",",","would","not",",","you","'d",",","you","'ll",",","you","'re",",","you","'ve"};
+  SimpleTokenizer instance=new SimpleTokenizer(true);
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}

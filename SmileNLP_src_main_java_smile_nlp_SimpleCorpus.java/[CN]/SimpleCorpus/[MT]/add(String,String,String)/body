@@ -1,0 +1,60 @@
+{
+  ArrayList<String> bag=new ArrayList<String>();
+  for (  String sentence : splitter.split(body)) {
+    String[] tokens=tokenizer.split(sentence);
+    for (int i=0; i < tokens.length; i++) {
+      tokens[i]=tokens[i].toLowerCase();
+    }
+    for (    String w : tokens) {
+      boolean keep=true;
+      if (punctuations != null && punctuations.contains(w)) {
+        keep=false;
+      }
+ else       if (stopWords != null && stopWords.contains(w)) {
+        keep=false;
+      }
+      if (keep) {
+        size++;
+        bag.add(w);
+        Integer f=freq.get(w);
+        if (f == null) {
+          f=1;
+        }
+ else {
+          f=f + 1;
+        }
+        freq.put(w,f);
+      }
+    }
+    for (int i=0; i < tokens.length - 1; i++) {
+      String w1=tokens[i];
+      String w2=tokens[i + 1];
+      if (freq.containsKey(w1) && freq.containsKey(w2)) {
+        Bigram bigram=new Bigram(w1,w2);
+        Integer f=freq2.get(bigram);
+        if (f == null) {
+          f=1;
+        }
+ else {
+          f=f + 1;
+        }
+        freq2.put(bigram,f);
+      }
+    }
+  }
+  String[] words=new String[bag.size()];
+  for (int i=0; i < words.length; i++) {
+    words[i]=bag.get(i);
+  }
+  SimpleText doc=new SimpleText(id,title,body,words);
+  docs.add(doc);
+  for (  String term : doc.unique()) {
+    List<SimpleText> hit=invertedFile.get(term);
+    if (hit == null) {
+      hit=new ArrayList<SimpleText>();
+      invertedFile.put(term,hit);
+    }
+    hit.add(doc);
+  }
+  return doc;
+}

@@ -1,0 +1,25 @@
+{
+switch (ch) {
+case 'a':
+case 'e':
+case 'i':
+case 'o':
+case 'u':
+    return true;
+case 'y':
+{
+switch (prev) {
+case 'a':
+case 'e':
+case 'i':
+case 'o':
+case 'u':
+      return false;
+default :
+    return true;
+}
+}
+default :
+return false;
+}
+}

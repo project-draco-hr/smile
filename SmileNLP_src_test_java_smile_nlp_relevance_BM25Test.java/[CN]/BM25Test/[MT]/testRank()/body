@@ -1,0 +1,12 @@
+{
+  System.out.println("rank");
+  int freq=3;
+  int docSize=100;
+  int avgDocSize=150;
+  int N=10000000;
+  int n=1000;
+  BM25 instance=new BM25(2.0,0.75,0.0);
+  double expResult=18.419481;
+  double result=instance.score(freq,docSize,avgDocSize,N,n);
+  assertEquals(expResult,result,1E-6);
+}

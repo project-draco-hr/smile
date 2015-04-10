@@ -1,0 +1,7 @@
+{
+  double p=(double)c2 / N;
+  double p1=(double)c12 / c1;
+  double p2=(double)(c2 - c12) / (N - c1);
+  double logLambda=logL(c12,c1,p) + logL(c2 - c12,N - c1,p) - logL(c12,c1,p1) - logL(c2 - c12,N - c1,p2);
+  return -2 * logLambda;
+}

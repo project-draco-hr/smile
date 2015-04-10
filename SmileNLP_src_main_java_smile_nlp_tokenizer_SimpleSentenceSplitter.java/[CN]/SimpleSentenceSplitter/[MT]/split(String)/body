@@ -1,0 +1,95 @@
+{
+  ArrayList<String> sentences=new ArrayList<String>();
+  int len=0;
+  text=REGEX_CARRIAGE_RETURN.matcher(text).replaceAll(" ");
+  text=text.replace('\031',' ');
+  text=REGEX_FORGOTTEN_SPACE.matcher(text).replaceAll("$1$2\031$3");
+  text=text + "\n";
+  Matcher matcher=REGEX_SENTENCE.matcher(text);
+  StringBuilder currentSentence=new StringBuilder();
+  int end=0;
+  while (matcher.find()) {
+    end=matcher.end();
+    String sentence=matcher.group(1).trim();
+    String punctuation=matcher.group(2);
+    String stuffAfterPeriod=matcher.group(3);
+    if (stuffAfterPeriod == null) {
+      stuffAfterPeriod=matcher.group(5);
+      if (stuffAfterPeriod == null) {
+        stuffAfterPeriod="";
+      }
+ else {
+        end=matcher.end(5);
+      }
+    }
+ else {
+      end=matcher.end(3);
+    }
+    String[] words=REGEX_WHITESPACE.split(sentence);
+    len+=words.length;
+    String nextWord=matcher.group(4);
+    if (nextWord == null) {
+      nextWord="";
+    }
+    if (punctuation.compareTo(".") == 0) {
+      Matcher lastWordMatcher=REGEX_LAST_WORD.matcher(sentence);
+      String lastWord="";
+      if (lastWordMatcher.find()) {
+        lastWord=lastWordMatcher.group();
+      }
+      if ((!lastWord.matches(".*[AEIOUaeiou]+.*") && lastWord.matches(".*[a-z]+.*") && !lastWord.matches(".*[y]+.*")) || lastWord.matches("([a-zA-Z][\\.])+") || (lastWord.matches("^[A-Za-z]$") && !lastWord.matches("^[I]$"))|| EnglishAbbreviations.contains(lastWord.toLowerCase())) {
+        if (EnglishDictionary.CONCISE.contains(nextWord) && len > 6) {
+          currentSentence.append(sentence);
+          currentSentence.append(punctuation);
+          currentSentence.append(stuffAfterPeriod.trim());
+          sentences.add(currentSentence.toString());
+          currentSentence=new StringBuilder();
+          len=0;
+        }
+ else {
+          currentSentence.append(sentence);
+          currentSentence.append(punctuation);
+          if (stuffAfterPeriod.indexOf('\031') == -1) {
+            currentSentence.append(' ');
+          }
+        }
+      }
+ else {
+        currentSentence.append(sentence);
+        currentSentence.append(punctuation);
+        currentSentence.append(stuffAfterPeriod.trim());
+        sentences.add(currentSentence.toString());
+        currentSentence=new StringBuilder();
+        len=0;
+      }
+    }
+ else {
+      if (punctuation.matches("[!?]") || (punctuation.compareTo(":") == 0 && len > 6)) {
+        currentSentence.append(sentence);
+        currentSentence.append(punctuation);
+        currentSentence.append(stuffAfterPeriod.trim());
+        sentences.add(currentSentence.toString());
+        currentSentence=new StringBuilder();
+        len=0;
+      }
+ else {
+        currentSentence.append(sentence);
+        currentSentence.append(punctuation);
+        if (stuffAfterPeriod.indexOf('\031') == -1) {
+          currentSentence.append(' ');
+        }
+      }
+    }
+  }
+  if (end < text.length()) {
+    String lastPart=text.substring(end).trim();
+    if (!lastPart.isEmpty()) {
+      sentences.add(lastPart);
+    }
+  }
+  String[] result=new String[sentences.size()];
+  for (int i=0; i < result.length; i++) {
+    result[i]=sentences.get(i).replaceAll("\031","");
+  }
+  return result;
+}

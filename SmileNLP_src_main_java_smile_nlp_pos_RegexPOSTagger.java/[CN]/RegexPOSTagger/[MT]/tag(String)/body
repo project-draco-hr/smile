@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < REGEX.length; i++) {
+    if (REGEX[i].matcher(word).matches()) {
+      return REGEX_POS[i];
+    }
+  }
+  return null;
+}

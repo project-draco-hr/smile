@@ -1,0 +1,48 @@
+{
+  int n=sentence.length;
+  int[][] o=translate(symbol,suffix,sentence);
+  int[] s=new int[n];
+  int numStates=pi.length;
+  double[][] delta=new double[n][numStates];
+  int[][] psy=new int[n][numStates];
+  for (int i=0; i < numStates; i++) {
+    if (o[0][0] == 0 && o[0][1] >= 0) {
+      delta[0][i]=log(pi[i]) + log(c[i][o[0][1]]);
+    }
+ else {
+      delta[0][i]=log(pi[i]) + log(b[i][o[0][0]]);
+    }
+  }
+  for (int t=1; t < n; t++) {
+    for (int k=0; k < numStates; k++) {
+      double maxDelta=Double.NEGATIVE_INFINITY;
+      int maxPsy=-1;
+      for (int i=0; i < numStates; i++) {
+        double thisDelta=delta[t - 1][i] + log(a[i][k]);
+        if (maxDelta < thisDelta) {
+          maxDelta=thisDelta;
+          maxPsy=i;
+        }
+      }
+      if (o[t][0] == 0 && o[t][1] >= 0) {
+        delta[t][k]=maxDelta + log(c[k][o[t][1]]);
+      }
+ else {
+        delta[t][k]=maxDelta + log(b[k][o[t][0]]);
+      }
+      psy[t][k]=maxPsy;
+    }
+  }
+  n=o.length - 1;
+  double maxDelta=Double.NEGATIVE_INFINITY;
+  for (int i=0; i < numStates; i++) {
+    if (maxDelta < delta[n][i]) {
+      maxDelta=delta[n][i];
+      s[n]=i;
+    }
+  }
+  for (int t=n; t-- > 0; ) {
+    s[t]=psy[t + 1][s[t + 1]];
+  }
+  return s;
+}

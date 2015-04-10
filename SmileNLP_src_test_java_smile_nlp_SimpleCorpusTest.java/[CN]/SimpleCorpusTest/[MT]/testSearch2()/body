@@ -1,0 +1,9 @@
+{
+  System.out.println("search 'romantic comedy'");
+  String[] terms={"romantic","comedy"};
+  Iterator<Relevance> hits=corpus.search(new BM25(),terms);
+  while (hits.hasNext()) {
+    Relevance hit=hits.next();
+    System.out.println(hit.doc() + "\t" + hit.score());
+  }
+}

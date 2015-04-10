@@ -1,0 +1,7 @@
+{
+  Integer f=freq2.get(bigram);
+  if (f == null) {
+    return 0;
+  }
+  return f;
+}

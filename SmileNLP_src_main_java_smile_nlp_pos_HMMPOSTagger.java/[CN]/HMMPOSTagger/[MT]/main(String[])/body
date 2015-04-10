@@ -1,0 +1,19 @@
+{
+  List<String[]> sentences=new ArrayList<String[]>();
+  List<PennTreebankPOS[]> labels=new ArrayList<PennTreebankPOS[]>();
+  load("D:\\sourceforge\\corpora\\PennTreebank\\PennTreebank2\\TAGGED\\POS\\WSJ",sentences,labels);
+  load("D:\\sourceforge\\corpora\\PennTreebank\\PennTreebank2\\TAGGED\\POS\\BROWN",sentences,labels);
+  String[][] x=sentences.toArray(new String[sentences.size()][]);
+  PennTreebankPOS[][] y=labels.toArray(new PennTreebankPOS[labels.size()][]);
+  HMMPOSTagger tagger=HMMPOSTagger.learn(x,y);
+  try {
+    FileOutputStream fos=new FileOutputStream("hmmpostagger.model");
+    ObjectOutputStream oos=new ObjectOutputStream(fos);
+    oos.writeObject(tagger);
+    oos.flush();
+    oos.close();
+  }
+ catch (  Exception ex) {
+    System.err.println(ex);
+  }
+}

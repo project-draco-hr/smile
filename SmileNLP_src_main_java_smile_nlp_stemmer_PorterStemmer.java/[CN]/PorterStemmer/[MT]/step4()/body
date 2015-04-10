@@ -1,0 +1,40 @@
+{
+switch (b[k]) {
+case 'e':
+    if (endWith("icate")) {
+      r("ic");
+      break;
+    }
+  if (endWith("ative")) {
+    r("");
+    break;
+  }
+if (endWith("alize")) {
+  r("al");
+  break;
+}
+break;
+case 'i':
+if (endWith("iciti")) {
+r("ic");
+break;
+}
+break;
+case 'l':
+if (endWith("ical")) {
+r("ic");
+break;
+}
+if (endWith("ful")) {
+r("");
+break;
+}
+break;
+case 's':
+if (endWith("ness")) {
+r("");
+break;
+}
+break;
+}
+}

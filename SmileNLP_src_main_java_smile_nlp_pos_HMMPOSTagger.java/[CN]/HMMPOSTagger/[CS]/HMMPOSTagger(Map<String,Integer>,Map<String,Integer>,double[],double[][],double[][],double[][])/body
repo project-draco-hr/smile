@@ -1,0 +1,20 @@
+{
+  if (pi.length != PennTreebankPOS.values().length) {
+    throw new IllegalArgumentException("The number of states is different from the size of Penn Treebank tagset.");
+  }
+  if (a[0].length != PennTreebankPOS.values().length) {
+    throw new IllegalArgumentException("Invlid state transition probability size.");
+  }
+  if (b[0].length != symbol.size() + 1) {
+    throw new IllegalArgumentException("Invlid symbol emission probability size.");
+  }
+  if (c[0].length != suffix.size()) {
+    throw new IllegalArgumentException("Invlid symbol suffix emission probability size.");
+  }
+  this.pi=pi;
+  this.a=a;
+  this.b=b;
+  this.c=c;
+  this.symbol=symbol;
+  this.suffix=suffix;
+}

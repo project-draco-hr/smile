@@ -1,0 +1,6 @@
+Map<String,Integer> symbol
+Map<String,Integer> suffix
+double[] pi
+double[][] a
+double[][] b
+double[][] c

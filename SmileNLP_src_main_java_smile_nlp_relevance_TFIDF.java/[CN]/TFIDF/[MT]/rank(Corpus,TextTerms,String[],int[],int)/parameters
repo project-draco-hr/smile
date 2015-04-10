@@ -1,0 +1,5 @@
+Corpus corpus
+TextTerms doc
+String[] terms
+int[] tf
+int n

@@ -1,0 +1,8 @@
+{
+  Node child=root.get(key[0]);
+  if (child == null) {
+    child=new Node(key[0]);
+    root.put(key[0],child);
+  }
+  child.addChild(key,value,1);
+}

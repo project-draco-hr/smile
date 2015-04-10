@@ -1,0 +1,8 @@
+{
+  for (  Node child : children) {
+    if (child.key.equals(key)) {
+      return child;
+    }
+  }
+  return null;
+}

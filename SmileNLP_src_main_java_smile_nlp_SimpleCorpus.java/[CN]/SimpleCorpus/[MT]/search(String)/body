@@ -1,0 +1,4 @@
+{
+  ArrayList<Text> hits=new ArrayList<Text>(invertedFile.get(term));
+  return hits.iterator();
+}

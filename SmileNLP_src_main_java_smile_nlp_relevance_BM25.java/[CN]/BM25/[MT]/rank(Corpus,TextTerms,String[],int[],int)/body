@@ -1,0 +1,10 @@
+{
+  int N=corpus.getNumDocuments();
+  int docSize=doc.size();
+  int avgDocSize=corpus.getAverageDocumentSize();
+  double r=0.0;
+  for (int i=0; i < terms.length; i++) {
+    r+=score(tf[i],docSize,avgDocSize,N,n);
+  }
+  return r;
+}

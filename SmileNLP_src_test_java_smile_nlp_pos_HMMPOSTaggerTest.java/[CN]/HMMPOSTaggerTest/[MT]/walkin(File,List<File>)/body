@@ -1,0 +1,16 @@
+{
+  String pattern=".POS";
+  File[] listFile=dir.listFiles();
+  if (listFile != null) {
+    for (    File file : listFile) {
+      if (file.isDirectory()) {
+        walkin(file,files);
+      }
+ else {
+        if (file.getName().endsWith(pattern)) {
+          files.add(file);
+        }
+      }
+    }
+  }
+}

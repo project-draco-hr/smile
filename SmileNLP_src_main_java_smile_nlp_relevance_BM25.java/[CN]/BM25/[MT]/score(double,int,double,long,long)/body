@@ -1,0 +1,6 @@
+{
+  if (freq <= 0)   return 0.0;
+  double tf=freq * (k1 + 1) / (freq + k1 * (1 - b + b * docSize / avgDocSize));
+  double idf=Math.log((N - n + 0.5) / (n + 0.5));
+  return (tf + delta) * idf;
+}

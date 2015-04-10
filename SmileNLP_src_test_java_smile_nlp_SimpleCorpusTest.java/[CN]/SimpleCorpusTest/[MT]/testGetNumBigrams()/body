@@ -1,0 +1,4 @@
+{
+  System.out.println("getNumBigrams");
+  assertEquals(16321,corpus.getNumBigrams());
+}

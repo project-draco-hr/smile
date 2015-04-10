@@ -1,0 +1,8 @@
+{
+  int l=s.length();
+  int o=j + 1;
+  for (int i=0; i < l; i++) {
+    b[o + i]=s.charAt(i);
+  }
+  k=j + l;
+}
