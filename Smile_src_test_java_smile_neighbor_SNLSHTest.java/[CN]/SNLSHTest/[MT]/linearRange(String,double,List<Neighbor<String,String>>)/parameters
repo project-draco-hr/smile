@@ -1,0 +1,3 @@
+String q
+double d
+List<Neighbor<String,String>> neighbors
