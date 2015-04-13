@@ -9,5 +9,4 @@
   data=Lists.newArrayList();
   keys=Lists.newArrayList();
   signs=Lists.newArrayList();
-  this.shingleSize=shingleSize;
 }

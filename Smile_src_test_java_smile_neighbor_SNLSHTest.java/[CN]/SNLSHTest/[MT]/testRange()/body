@@ -1,5 +1,5 @@
 {
-  SNLSH<String> lsh=new SNLSH<String>(8,2);
+  SNLSH<String> lsh=new SNLSH<String>(8);
   for (  String t : texts) {
     lsh.put(t,t);
   }

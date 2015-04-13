@@ -1,0 +1,9 @@
+{
+  trainData=loadData("/smile/data/msrp/msr_paraphrase_train.txt");
+  testData=loadData("/smile/data/msrp/msr_paraphrase_test.txt");
+  signCache=new HashMap<String,Long>();
+  for (  String q : trainData) {
+    long sign=SimHash.simhash64(q);
+    signCache.put(q,sign);
+  }
+}

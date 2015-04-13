@@ -1,0 +1,11 @@
+{
+  @SuppressWarnings("unchecked") Neighbor<String,String>[] neighbors=(Neighbor<String,String>[])Array.newInstance(Neighbor.class,k);
+  MaxHeap<Neighbor<String,String>> heap=new MaxHeap<Neighbor<String,String>>(neighbors);
+  long sign1=SimHash.simhash64(q);
+  for (  String t : trainData) {
+    long sign2=signCache.get(t);
+    double distance=HammingDistance.d(sign1,sign2);
+    heap.add(new Neighbor<String,String>(t,t,0,distance));
+  }
+  return heap.toSortedArray();
+}

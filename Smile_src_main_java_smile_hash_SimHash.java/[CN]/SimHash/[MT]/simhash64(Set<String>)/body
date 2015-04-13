@@ -1,9 +1,10 @@
 {
-  if (shingles == null || shingles.isEmpty()) {
+  final int BITS=64;
+  if (words == null || words.isEmpty()) {
     return 0;
   }
   int[] bits=new int[BITS];
-  for (  String s : shingles) {
+  for (  String s : words) {
     long hc=hf.hashString(s,Charsets.UTF_8).padToLong();
     for (int i=0; i < BITS; i++) {
       if (((hc >>> i) & 1) == 1) {
