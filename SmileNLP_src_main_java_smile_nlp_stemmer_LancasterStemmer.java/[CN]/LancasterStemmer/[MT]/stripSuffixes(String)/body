@@ -1,0 +1,122 @@
+{
+  int ruleok=0;
+  int Continue=0;
+  int pll=0;
+  int xl;
+  int pfv;
+  int prt;
+  int ir;
+  int iw;
+  char ll;
+  String rule="";
+  String stem="";
+  boolean intact=true;
+  stem=cleanup(word.toLowerCase());
+  pll=0;
+  while ((pll + 1 < stem.length()) && ((stem.charAt(pll + 1) >= 'a') && (stem.charAt(pll + 1) <= 'z'))) {
+    pll++;
+  }
+  if (pll < 1) {
+    Continue=-1;
+  }
+  pfv=firstVowel(stem,pll);
+  iw=stem.length() - 1;
+  while (Continue != -1) {
+    Continue=0;
+    ll=stem.charAt(pll);
+    if ((ll >= 'a') && (ll <= 'z')) {
+      prt=INDEX[charCode(ll)];
+    }
+ else {
+      prt=-1;
+    }
+    if (prt == -1) {
+      Continue=-1;
+    }
+    if (Continue == 0) {
+      rule=RULES.get(prt);
+      while (Continue == 0) {
+        ruleok=0;
+        if (rule.charAt(0) != ll) {
+          Continue=-1;
+          ruleok=-1;
+        }
+        ir=1;
+        iw=pll - 1;
+        while (ruleok == 0) {
+          if ((rule.charAt(ir) >= '0') && (rule.charAt(ir) <= '9')) {
+            ruleok=1;
+          }
+ else           if (rule.charAt(ir) == '*') {
+            if (intact) {
+              ir=ir + 1;
+              ruleok=1;
+            }
+ else {
+              ruleok=-1;
+            }
+          }
+ else           if (rule.charAt(ir) != stem.charAt(iw)) {
+            ruleok=-1;
+          }
+ else           if (iw <= pfv) {
+            ruleok=-1;
+          }
+ else {
+            ir=ir + 1;
+            iw=iw - 1;
+          }
+        }
+        if (ruleok == 1) {
+          xl=0;
+          while (!((rule.charAt(ir + xl + 1) >= '.') && (rule.charAt(ir + xl + 1) <= '>'))) {
+            xl++;
+          }
+          xl=pll + xl + 48 - ((int)(rule.charAt(ir)));
+          if (pfv == 0) {
+            if (xl < 1) {
+              ruleok=-1;
+            }
+ else {
+            }
+          }
+ else           if ((xl < 2) | (xl < pfv)) {
+            ruleok=-1;
+          }
+ else {
+          }
+        }
+        if (ruleok == 1) {
+          intact=false;
+          pll=pll + 48 - ((int)(rule.charAt(ir)));
+          ir++;
+          stem=stem.substring(0,(pll + 1));
+          while ((ir < rule.length()) && (('a' <= rule.charAt(ir)) && (rule.charAt(ir) <= 'z'))) {
+            stem+=rule.charAt(ir);
+            ir++;
+            pll++;
+          }
+          if ((rule.charAt(ir)) == '.') {
+            Continue=-1;
+          }
+ else {
+            Continue=1;
+          }
+        }
+ else {
+          prt=prt + 1;
+          if (prt >= RULES.size()) {
+            Continue=-1;
+          }
+ else {
+            rule=RULES.get(prt);
+            if (rule.charAt(0) != ll) {
+              Continue=-1;
+            }
+          }
+        }
+      }
+    }
+  }
+  return stem;
+}

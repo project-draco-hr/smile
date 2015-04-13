@@ -1,0 +1,16 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (getClass() != obj.getClass()) {
+    return false;
+  }
+  final BigramCollocation other=(BigramCollocation)obj;
+  if ((this.w1 == null) ? (other.w1 != null) : !this.w1.equals(other.w1)) {
+    return false;
+  }
+  if ((this.w2 == null) ? (other.w2 != null) : !this.w2.equals(other.w2)) {
+    return false;
+  }
+  return true;
+}

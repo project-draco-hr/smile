@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize roman numeral");
+  String text="S.. or S: means \"twice\" (as in \"twice a third\").";
+  String[] expResult={"S..","or","S",":","means","\"","twice","\"","(","as","in","\"","twice","a","third","\"",")","."};
+  PennTreebankTokenizer instance=PennTreebankTokenizer.getInstance();
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}

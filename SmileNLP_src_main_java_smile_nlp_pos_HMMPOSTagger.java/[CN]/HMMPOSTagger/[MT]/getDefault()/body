@@ -1,0 +1,13 @@
+{
+  if (DEFAULT_TAGGER == null) {
+    try {
+      ObjectInputStream ois=new ObjectInputStream(HMMPOSTagger.class.getResourceAsStream("/smile/nlp/pos/hmmpostagger.model"));
+      DEFAULT_TAGGER=(HMMPOSTagger)ois.readObject();
+      ois.close();
+    }
+ catch (    Exception ex) {
+      System.err.println(ex);
+    }
+  }
+  return DEFAULT_TAGGER;
+}

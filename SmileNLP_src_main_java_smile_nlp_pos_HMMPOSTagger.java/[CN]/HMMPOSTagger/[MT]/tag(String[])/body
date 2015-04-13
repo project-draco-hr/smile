@@ -1,0 +1,14 @@
+{
+  int[] s=viterbi(sentence);
+  int n=sentence.length;
+  PennTreebankPOS[] pos=new PennTreebankPOS[n];
+  for (int i=0; i < n; i++) {
+    if (symbol.get(sentence[i]) == null) {
+      pos[i]=RegexPOSTagger.tag(sentence[i]);
+    }
+    if (pos[i] == null) {
+      pos[i]=PennTreebankPOS.values()[s[i]];
+    }
+  }
+  return pos;
+}

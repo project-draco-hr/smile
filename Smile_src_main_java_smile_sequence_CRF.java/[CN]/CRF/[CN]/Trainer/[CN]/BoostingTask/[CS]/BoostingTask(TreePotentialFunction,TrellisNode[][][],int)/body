@@ -1,0 +1,50 @@
+{
+  this.potential=potential;
+  this.trellis=trellis;
+  this.i=i;
+  if (numFeatures <= 0) {
+    trainer=new RegressionTree.Trainer(attributes,maxLeaves);
+  }
+ else {
+    trainer=new RegressionTree.Trainer(numFeatures + numClasses + 1,maxLeaves);
+  }
+  int n=0;
+  for (int l=0; l < trellis.length; l++) {
+    n+=1 + (trellis[l].length - 1) * numClasses;
+  }
+  random=new smile.math.Random(System.currentTimeMillis());
+  y=new double[n];
+  if (numFeatures <= 0) {
+    x=new double[n][];
+    for (int l=0, m=0; l < trellis.length; l++) {
+      x[m++]=trellis[l][0][i].samples[0];
+      for (int t=1; t < trellis[l].length; t++) {
+        for (int j=0; j < numClasses; j++) {
+          x[m++]=trellis[l][t][i].samples[j];
+        }
+      }
+    }
+    int p=x[0].length;
+    double[] a=new double[n];
+    order=new int[p][];
+    for (int j=0; j < p; j++) {
+      if (attributes[j] instanceof NumericAttribute) {
+        for (int l=0; l < n; l++) {
+          a[l]=x[l][j];
+        }
+        order[j]=QuickSort.sort(a);
+      }
+    }
+  }
+ else {
+    sparseX=new int[n][];
+    for (int l=0, m=0; l < trellis.length; l++) {
+      sparseX[m++]=trellis[l][0][i].sparseSamples[0];
+      for (int t=1; t < trellis[l].length; t++) {
+        for (int j=0; j < numClasses; j++) {
+          sparseX[m++]=trellis[l][t][i].sparseSamples[j];
+        }
+      }
+    }
+  }
+}

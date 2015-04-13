@@ -1,0 +1,93 @@
+{
+  if (k == 0) {
+    return;
+  }
+switch (b[k - 1]) {
+case 'a':
+    if (endWith("al")) {
+      break;
+    }
+  return;
+case 'c':
+if (endWith("ance")) {
+  break;
+}
+if (endWith("ence")) {
+break;
+}
+return;
+case 'e':
+if (endWith("er")) {
+break;
+}
+return;
+case 'i':
+if (endWith("ic")) {
+break;
+}
+return;
+case 'l':
+if (endWith("able")) {
+break;
+}
+if (endWith("ible")) {
+break;
+}
+return;
+case 'n':
+if (endWith("ant")) {
+break;
+}
+if (endWith("ement")) {
+break;
+}
+if (endWith("ment")) {
+break;
+}
+if (endWith("ent")) {
+break;
+}
+return;
+case 'o':
+if (endWith("ion") && j >= 0 && (b[j] == 's' || b[j] == 't')) {
+break;
+}
+if (endWith("ou")) {
+break;
+}
+return;
+case 's':
+if (endWith("ism")) {
+break;
+}
+return;
+case 't':
+if (endWith("ate")) {
+break;
+}
+if (endWith("iti")) {
+break;
+}
+return;
+case 'u':
+if (endWith("ous")) {
+break;
+}
+return;
+case 'v':
+if (endWith("ive")) {
+break;
+}
+return;
+case 'z':
+if (endWith("ize")) {
+break;
+}
+return;
+default :
+return;
+}
+if (m() > 1) {
+k=j;
+}
+}

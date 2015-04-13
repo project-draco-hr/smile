@@ -1,0 +1,8 @@
+{
+  if (anchor == null) {
+    anchor=linkLabel;
+  }
+ else {
+    anchor=anchor + " " + linkLabel;
+  }
+}

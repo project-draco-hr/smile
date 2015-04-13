@@ -1,0 +1,7 @@
+{
+  int[] seq=new int[tags.length];
+  for (int i=0; i < tags.length; i++) {
+    seq[i]=tags[i].ordinal();
+  }
+  return seq;
+}

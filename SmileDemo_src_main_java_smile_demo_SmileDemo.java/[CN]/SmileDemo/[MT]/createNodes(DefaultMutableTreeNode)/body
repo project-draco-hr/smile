@@ -98,6 +98,16 @@
   category.add(algorithm);
   algorithm=new DefaultMutableTreeNode(new LaplaceInterpolationDemo());
   category.add(algorithm);
+  category=new DefaultMutableTreeNode("Nearest Neighbor Search");
+  top.add(category);
+  algorithm=new DefaultMutableTreeNode(new NearestNeighborDemo());
+  category.add(algorithm);
+  algorithm=new DefaultMutableTreeNode(new KNNDemo());
+  category.add(algorithm);
+  algorithm=new DefaultMutableTreeNode(new RNNSearchDemo());
+  category.add(algorithm);
+  algorithm=new DefaultMutableTreeNode(new ApproximateStringSearchDemo());
+  category.add(algorithm);
   category=new DefaultMutableTreeNode("Distributions");
   top.add(category);
   category2=new DefaultMutableTreeNode("Discrete");

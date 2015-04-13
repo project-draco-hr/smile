@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize abbreviation");
+  String text="Here are some examples of abbreviations: A.B., abbr., " + "acad., A.D., alt., A.M., B.C., etc.";
+  String[] expResult={"Here","are","some","examples","of","abbreviations",":","A.B.",",","abbr.",",","acad.",",","A.D.",",","alt.",",","A.M.",",","B.C.",",","etc.","."};
+  SimpleTokenizer instance=new SimpleTokenizer();
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}

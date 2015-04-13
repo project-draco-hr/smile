@@ -1,0 +1,31 @@
+{
+  System.out.println("find");
+  SimpleCorpus corpus=new SimpleCorpus();
+  BufferedReader input=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/smile/data/text/quote.tok.gt9.5000")));
+  try {
+    String line=null;
+    int id=0;
+    while ((line=input.readLine()) != null) {
+      line=line.trim();
+      if (!line.isEmpty()) {
+        corpus.add(String.valueOf(id),null,line);
+      }
+    }
+  }
+ catch (  IOException ex) {
+  }
+ finally {
+    try {
+      input.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+  double p=0.0001;
+  BigramCollocationFinder instance=new BigramCollocationFinder(5);
+  BigramCollocation[] result=instance.find(corpus,p);
+  assertEquals(57,result.length);
+  for (int i=0; i < result.length; i++) {
+    System.out.println(result[i]);
+  }
+}

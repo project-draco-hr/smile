@@ -1,0 +1,7 @@
+{
+  Node child=root.get(key[0]);
+  if (child != null) {
+    return child.getChild(key,1);
+  }
+  return null;
+}

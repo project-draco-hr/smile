@@ -1,0 +1,4 @@
+SentenceSplitter splitter
+Tokenizer tokenizer
+StopWords stopWords
+Punctuations punctuations

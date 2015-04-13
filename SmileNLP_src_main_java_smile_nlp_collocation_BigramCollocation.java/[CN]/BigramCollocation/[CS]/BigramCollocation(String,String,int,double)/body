@@ -1,0 +1,6 @@
+{
+  this.w1=w1;
+  this.w2=w2;
+  this.frequency=frequency;
+  this.score=score;
+}

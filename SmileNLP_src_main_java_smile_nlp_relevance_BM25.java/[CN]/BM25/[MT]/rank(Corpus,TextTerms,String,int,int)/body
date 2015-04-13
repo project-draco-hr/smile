@@ -1,0 +1,7 @@
+{
+  if (tf <= 0)   return 0.0;
+  int N=corpus.getNumDocuments();
+  int docSize=doc.size();
+  int avgDocSize=corpus.getAverageDocumentSize();
+  return score(tf,docSize,avgDocSize,N,n);
+}

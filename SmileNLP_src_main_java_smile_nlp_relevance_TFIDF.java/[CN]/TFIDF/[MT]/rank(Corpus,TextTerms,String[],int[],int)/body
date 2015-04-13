@@ -1,0 +1,9 @@
+{
+  int N=corpus.getNumDocuments();
+  int maxtf=doc.maxtf();
+  double r=0.0;
+  for (int i=0; i < terms.length; i++) {
+    r+=rank(tf[i],maxtf,N,n);
+  }
+  return r;
+}

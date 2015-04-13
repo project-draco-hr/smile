@@ -1,0 +1,12 @@
+{
+  if (i < 2 || !isConsonant(i) || isConsonant(i - 1) || !isConsonant(i - 2)) {
+    return false;
+  }
+{
+    int ch=b[i];
+    if (ch == 'w' || ch == 'x' || ch == 'y') {
+      return false;
+    }
+  }
+  return true;
+}

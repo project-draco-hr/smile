@@ -1,0 +1,11 @@
+{
+  if (index >= key.length) {
+    return value;
+  }
+  for (  Node child : children) {
+    if (child.key.equals(key[index])) {
+      return child.getChild(key,index + 1);
+    }
+  }
+  return null;
+}

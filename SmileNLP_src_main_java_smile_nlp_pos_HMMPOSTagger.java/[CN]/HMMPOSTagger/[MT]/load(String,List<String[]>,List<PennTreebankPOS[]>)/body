@@ -1,0 +1,48 @@
+{
+  List<File> files=new ArrayList<File>();
+  walkin(new File(dir),files);
+  for (  File file : files) {
+    try {
+      FileInputStream stream=new FileInputStream(file);
+      BufferedReader reader=new BufferedReader(new InputStreamReader(stream));
+      String line=null;
+      List<String> sent=new ArrayList<String>();
+      List<PennTreebankPOS> label=new ArrayList<PennTreebankPOS>();
+      while ((line=reader.readLine()) != null) {
+        line=line.trim();
+        if (line.isEmpty()) {
+          if (sent.size() > 0) {
+            sentences.add(sent.toArray(new String[sent.size()]));
+            labels.add(label.toArray(new PennTreebankPOS[label.size()]));
+            sent.clear();
+            label.clear();
+          }
+        }
+ else         if (!line.startsWith("===") && !line.startsWith("*x*")) {
+          String[] words=line.split("\\s");
+          for (          String word : words) {
+            String[] w=word.split("/");
+            if (w.length == 2) {
+              sent.add(w[0]);
+              int pos=w[1].indexOf('|');
+              String tag=pos == -1 ? w[1] : w[1].substring(0,pos);
+              if (tag.equals("PRP$R"))               tag="PRP$";
+              if (tag.equals("JJSS"))               tag="JJS";
+              label.add(PennTreebankPOS.getValue(tag));
+            }
+          }
+        }
+      }
+      if (sent.size() > 0) {
+        sentences.add(sent.toArray(new String[sent.size()]));
+        labels.add(label.toArray(new PennTreebankPOS[label.size()]));
+        sent.clear();
+        label.clear();
+      }
+      reader.close();
+    }
+ catch (    Exception e) {
+      System.err.println(e);
+    }
+  }
+}

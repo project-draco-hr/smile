@@ -1,0 +1,6 @@
+{
+  if (tf == 0)   return 0.0;
+  int N=corpus.getNumDocuments();
+  int maxtf=doc.maxtf();
+  return rank(tf,maxtf,N,n);
+}

@@ -1,0 +1,19 @@
+{
+  boundary.setText(text);
+  ArrayList<String> words=new ArrayList<String>();
+  int start=boundary.first();
+  int end=boundary.next();
+  while (end != BreakIterator.DONE) {
+    String word=text.substring(start,end).trim();
+    if (word.length() > 0) {
+      words.add(word);
+    }
+    start=end;
+    end=boundary.next();
+  }
+  String[] array=new String[words.size()];
+  for (int i=0; i < array.length; i++) {
+    array[i]=words.get(i);
+  }
+  return array;
+}

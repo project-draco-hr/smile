@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize");
+  String text="Good muffins cost $3.88\nin New York.  Please buy " + "me\ntwo of them.\n\nYou cannot eat them. I gonna eat them. " + "Thanks.";
+  String[] expResult={"Good","muffins","cost","$","3.88","in","New","York.","Please","buy","me","two","of","them",".","You","can","not","eat","them.","I","gon","na","eat","them.","Thanks","."};
+  PennTreebankTokenizer instance=PennTreebankTokenizer.getInstance();
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}

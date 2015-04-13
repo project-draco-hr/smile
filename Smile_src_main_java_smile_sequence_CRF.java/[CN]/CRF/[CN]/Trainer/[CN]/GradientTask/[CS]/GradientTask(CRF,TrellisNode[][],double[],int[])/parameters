@@ -1,0 +1,4 @@
+CRF crf
+TrellisNode[][] trellis
+double[] scaling
+int[] label

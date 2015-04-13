@@ -1,0 +1,4 @@
+{
+  System.out.println("getNumTerms");
+  assertEquals(13976,corpus.getNumTerms());
+}

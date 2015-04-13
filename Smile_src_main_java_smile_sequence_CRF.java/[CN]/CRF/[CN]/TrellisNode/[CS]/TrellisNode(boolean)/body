@@ -1,0 +1,8 @@
+{
+  if (sparse) {
+    sparseSamples=new int[numClasses][];
+  }
+ else {
+    samples=new double[numClasses][];
+  }
+}

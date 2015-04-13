@@ -1,0 +1,10 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (getClass() != obj.getClass()) {
+    return false;
+  }
+  final NGram other=(NGram)obj;
+  return Arrays.equals(words,other.words);
+}
