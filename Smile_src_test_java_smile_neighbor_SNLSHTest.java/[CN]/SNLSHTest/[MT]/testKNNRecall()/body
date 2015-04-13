@@ -20,5 +20,5 @@
     recall+=1.0 * hit / k;
   }
   recall/=testData.size();
-  System.out.println("recall is " + recall);
+  System.out.println("SNLSH KNN recall is " + recall);
 }

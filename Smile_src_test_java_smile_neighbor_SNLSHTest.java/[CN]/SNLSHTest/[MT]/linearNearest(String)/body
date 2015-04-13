@@ -1,0 +1,15 @@
+{
+  Neighbor<String,String> neighbor=new Neighbor<String,String>(null,null,0,0);
+  long sign1=SimHash.simhash64(q);
+  double minDist=Double.MAX_VALUE;
+  String minKey=null;
+  for (  String t : trainData) {
+    long sign2=signCache.get(t);
+    double distance=HammingDistance.d(sign1,sign2);
+    if (distance < minDist) {
+      minDist=distance;
+      minKey=t;
+    }
+  }
+  return new Neighbor<String,String>(minKey,minKey,0,minDist);
+}

@@ -1,0 +1,16 @@
+{
+  SNLSH<String> lsh=new SNLSH<String>(8);
+  for (  String t : trainData) {
+    lsh.put(t,t);
+  }
+  double recall=0.0;
+  for (  String q : testData) {
+    Neighbor<String,String> n1=lsh.nearest(q);
+    Neighbor<String,String> n2=linearNearest(q);
+    if (n1.value.equals(n2.value)) {
+      recall++;
+    }
+  }
+  recall/=testData.size();
+  System.out.println("SNLSH Nearest recall is " + recall);
+}
