@@ -1,0 +1,17 @@
+{
+  if (k < 1) {
+    throw new IllegalArgumentException("Invalid k: " + k);
+  }
+  long fpq=simhash64(q);
+  Set<Integer> candidates=obtainCandidates(q);
+  @SuppressWarnings("unchecked") Neighbor<List<String>,E>[] neighbors=(Neighbor<List<String>,E>[])Array.newInstance(Neighbor.class,k);
+  MaxHeap<Neighbor<List<String>,E>> heap=new MaxHeap<Neighbor<List<String>,E>>(neighbors);
+  for (  int index : candidates) {
+    long sign=signs.get(index);
+    double distance=HammingDistance.d(fpq,sign);
+    if (!keys.get(index).equals(q) && identicalExcluded) {
+      heap.add(new Neighbor<List<String>,E>(keys.get(index),data.get(index),index,distance));
+    }
+  }
+  return heap.toSortedArray();
+}

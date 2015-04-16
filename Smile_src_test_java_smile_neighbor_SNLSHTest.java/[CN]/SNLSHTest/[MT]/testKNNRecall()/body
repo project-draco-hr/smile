@@ -1,13 +1,10 @@
 {
-  SNLSH<String> lsh=new SNLSH<String>(8);
-  for (  String t : trainData) {
-    lsh.put(t,t);
-  }
+  SNLSH<List<String>> lsh=createLSH(trainData);
   double recall=0.0;
-  for (  String q : testData) {
+  for (  List<String> q : testData) {
     int k=3;
-    Neighbor<String,String>[] n1=lsh.knn(q,k);
-    Neighbor<String,String>[] n2=linearKNN(q,k);
+    Neighbor<List<String>,List<String>>[] n1=lsh.knn(q,k);
+    Neighbor<List<String>,List<String>>[] n2=linearKNN(q,k);
     int hit=0;
     for (int m=0; m < n1.length && n1[m] != null; m++) {
       for (int n=0; n < n2.length && n2[n] != null; n++) {

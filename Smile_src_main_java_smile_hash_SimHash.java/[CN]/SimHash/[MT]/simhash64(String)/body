@@ -1,4 +1,0 @@
-{
-  Set<String> set=words(text);
-  return simhash64(set);
-}

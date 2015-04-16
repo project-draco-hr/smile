@@ -1,0 +1,13 @@
+{
+  long sign1=SimHash.simhash64(q);
+  for (  List<String> t : trainData) {
+    if (t.equals(q)) {
+      continue;
+    }
+    long sign2=signCache.get(t);
+    double distance=HammingDistance.d(sign1,sign2);
+    if (distance <= d) {
+      neighbors.add(new Neighbor<List<String>,List<String>>(t,t,0,distance));
+    }
+  }
+}

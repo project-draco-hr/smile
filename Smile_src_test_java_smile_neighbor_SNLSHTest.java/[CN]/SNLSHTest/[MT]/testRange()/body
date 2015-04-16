@@ -1,12 +1,9 @@
 {
-  SNLSH<String> lsh=new SNLSH<String>(8);
-  for (  String t : texts) {
-    lsh.put(t,t);
-  }
-  List<Neighbor<String,String>> ns=Lists.newArrayList();
-  lsh.range(texts[0],10,ns);
+  SNLSH<List<String>> lsh=createLSH(toyData);
+  List<Neighbor<List<String>,List<String>>> ns=new ArrayList<Neighbor<List<String>,List<String>>>();
+  lsh.range(tokenize(texts[0]," "),10,ns);
   System.out.println("-------test range begin-------");
-  for (  Neighbor<String,String> n : ns) {
+  for (  Neighbor<List<String>,List<String>> n : ns) {
     System.out.println(n.key + "  distance: " + n.distance);
   }
   System.out.println("-----test range end ----------");

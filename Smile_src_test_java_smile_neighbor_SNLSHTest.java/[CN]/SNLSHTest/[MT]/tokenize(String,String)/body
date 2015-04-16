@@ -1,0 +1,14 @@
+{
+  List<String> tokens=new LinkedList<String>();
+  if (line == null || line.length() == 0) {
+    throw new IllegalArgumentException("Line should not be blank!");
+  }
+  String[] ss=line.split(regex);
+  for (  String s : ss) {
+    if (s == null || s.length() == 0) {
+      continue;
+    }
+    tokens.add(s);
+  }
+  return tokens;
+}

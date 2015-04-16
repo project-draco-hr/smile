@@ -1,10 +1,7 @@
 {
-  SNLSH<String> lsh=new SNLSH<String>(8);
-  for (  String t : texts) {
-    lsh.put(t,t);
-  }
+  SNLSH<List<String>> lsh=createLSH(toyData);
   System.out.println("----------test nearest start:-------");
-  Neighbor<String,String> n=lsh.nearest(texts[0]);
+  Neighbor<List<String>,List<String>> n=lsh.nearest(tokenize(texts[0]," "));
   System.out.println("neighbor" + " : " + n.key + " distance: "+ n.distance);
   System.out.println("----------test nearest end-------");
 }

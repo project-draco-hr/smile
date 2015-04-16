@@ -1,0 +1,16 @@
+{
+  int index=data.size();
+  data.add(v);
+  keys.add(tokens);
+  long sign=simhash64(tokens);
+  signs.add(sign);
+  for (int i=0; i < bands.length; i++) {
+    long bandKey=bandHash(sign,i);
+    Bucket bucket=bands[i].get(bandKey);
+    if (bucket == null) {
+      bucket=new Bucket();
+    }
+    bucket.add(index);
+    bands[i].put(bandKey,bucket);
+  }
+}

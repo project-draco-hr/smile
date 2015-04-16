@@ -1,10 +1,10 @@
 {
-  List<String> data=Lists.newArrayList();
+  List<List<String>> data=new ArrayList<List<String>>();
   List<String> lines=IOUtils.readLines(this.getClass().getResourceAsStream(path));
   for (  String line : lines) {
-    List<String> s=Splitter.on("\t").omitEmptyStrings().splitToList(line);
-    data.add(s.get(s.size() - 1));
-    data.add(s.get(s.size() - 2));
+    List<String> s=tokenize(line,"\t");
+    data.add(tokenize(s.get(s.size() - 1)," "));
+    data.add(tokenize(s.get(s.size() - 2)," "));
   }
   return data.subList(2,data.size());
 }

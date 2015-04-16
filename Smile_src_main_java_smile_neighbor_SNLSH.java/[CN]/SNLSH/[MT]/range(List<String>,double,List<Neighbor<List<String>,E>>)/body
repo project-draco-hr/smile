@@ -1,0 +1,16 @@
+{
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  long fpq=simhash64(q);
+  Set<Integer> candidates=obtainCandidates(q);
+  for (  int index : candidates) {
+    double distance=HammingDistance.d(fpq,signs.get(index));
+    if (distance <= radius) {
+      if (keys.get(index).equals(q) && identicalExcluded) {
+        continue;
+      }
+      neighbors.add(new Neighbor<List<String>,E>(keys.get(index),data.get(index),index,distance));
+    }
+  }
+}

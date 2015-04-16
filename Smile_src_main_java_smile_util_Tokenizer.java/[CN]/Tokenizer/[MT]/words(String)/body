@@ -1,5 +1,0 @@
-{
-  Set<String> set=Sets.newHashSet();
-  set.addAll(Splitter.on(" ").omitEmptyStrings().splitToList(text));
-  return set;
-}

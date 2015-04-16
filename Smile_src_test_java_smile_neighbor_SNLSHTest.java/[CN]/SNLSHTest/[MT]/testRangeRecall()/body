@@ -1,14 +1,11 @@
 {
-  SNLSH<String> lsh=new SNLSH<String>(8);
-  for (  String t : trainData) {
-    lsh.put(t,t);
-  }
+  SNLSH<List<String>> lsh=createLSH(trainData);
   double dist=15.0;
   double recall=0.0;
-  for (  String q : testData) {
-    List<Neighbor<String,String>> n1=Lists.newArrayList();
+  for (  List<String> q : testData) {
+    List<Neighbor<List<String>,List<String>>> n1=new ArrayList<Neighbor<List<String>,List<String>>>();
     lsh.range(q,dist,n1);
-    List<Neighbor<String,String>> n2=Lists.newArrayList();
+    List<Neighbor<List<String>,List<String>>> n2=new ArrayList<Neighbor<List<String>,List<String>>>();
     linearRange(q,dist,n2);
     int hit=0;
     for (int m=0; m < n1.size(); m++) {

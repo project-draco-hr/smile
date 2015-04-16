@@ -6,7 +6,7 @@
   bands=(Band[])Array.newInstance(Band.class,bandSize);
   Arrays.fill(bands,new Band());
   this.mask=-1 >>> (BITS / bandSize * (bandSize - 1));
-  data=Lists.newArrayList();
-  keys=Lists.newArrayList();
-  signs=Lists.newArrayList();
+  data=new ArrayList<E>();
+  keys=new ArrayList<List<String>>();
+  signs=new ArrayList<Long>();
 }

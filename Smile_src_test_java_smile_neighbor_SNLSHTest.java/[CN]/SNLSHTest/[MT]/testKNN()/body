@@ -1,9 +1,7 @@
 {
-  SNLSH<String> lsh=new SNLSH<String>(8);
-  for (  String t : texts) {
-    lsh.put(t,t);
-  }
-  Neighbor<String,String>[] ns=lsh.knn(texts[0],10);
+  SNLSH<List<String>> lsh=createLSH(toyData);
+  List<String> tokens=tokenize(texts[0]," ");
+  Neighbor<List<String>,List<String>>[] ns=lsh.knn(tokens,10);
   System.out.println("-----test knn: ------");
   for (int i=0; i < ns.length; i++) {
     System.out.println("neighbor" + i + " : "+ ns[i].key+ " distance: "+ ns[i].distance);

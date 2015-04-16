@@ -1,0 +1,7 @@
+{
+  SNLSH<List<String>> lsh=new SNLSH<List<String>>(8);
+  for (  List<String> tokens : data) {
+    lsh.put(tokens,tokens);
+  }
+  return lsh;
+}
