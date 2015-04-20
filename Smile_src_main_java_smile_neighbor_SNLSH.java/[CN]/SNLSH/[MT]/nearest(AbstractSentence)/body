@@ -1,0 +1,7 @@
+{
+  Neighbor<AbstractSentence,E>[] ns=knn(q,1);
+  if (ns.length > 0) {
+    return ns[0];
+  }
+  return new Neighbor<AbstractSentence,E>(null,null,-1,Double.MAX_VALUE);
+}

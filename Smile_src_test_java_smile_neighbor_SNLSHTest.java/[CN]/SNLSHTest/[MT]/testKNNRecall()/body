@@ -1,10 +1,10 @@
 {
-  SNLSH<List<String>> lsh=createLSH(trainData);
+  SNLSH<SNLSH.AbstractSentence> lsh=createLSH(trainData);
   double recall=0.0;
-  for (  List<String> q : testData) {
+  for (  SNLSH.AbstractSentence q : testData) {
     int k=3;
-    Neighbor<List<String>,List<String>>[] n1=lsh.knn(q,k);
-    Neighbor<List<String>,List<String>>[] n2=linearKNN(q,k);
+    Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] n1=lsh.knn(q,k);
+    Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] n2=linearKNN(q,k);
     int hit=0;
     for (int m=0; m < n1.length && n1[m] != null; m++) {
       for (int n=0; n < n2.length && n2[n] != null; n++) {

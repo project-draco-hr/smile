@@ -1,11 +1,11 @@
 {
-  SNLSH<List<String>> lsh=createLSH(trainData);
+  SNLSH<SNLSH.AbstractSentence> lsh=createLSH(trainData);
   double dist=15.0;
   double recall=0.0;
-  for (  List<String> q : testData) {
-    List<Neighbor<List<String>,List<String>>> n1=new ArrayList<Neighbor<List<String>,List<String>>>();
+  for (  Sentence q : testData) {
+    List<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> n1=new ArrayList<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>();
     lsh.range(q,dist,n1);
-    List<Neighbor<List<String>,List<String>>> n2=new ArrayList<Neighbor<List<String>,List<String>>>();
+    List<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> n2=new ArrayList<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>();
     linearRange(q,dist,n2);
     int hit=0;
     for (int m=0; m < n1.size(); m++) {

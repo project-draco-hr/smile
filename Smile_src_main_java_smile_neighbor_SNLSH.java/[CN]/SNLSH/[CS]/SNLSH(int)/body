@@ -7,6 +7,6 @@
   Arrays.fill(bands,new Band());
   this.mask=-1 >>> (BITS / bandSize * (bandSize - 1));
   data=new ArrayList<E>();
-  keys=new ArrayList<List<String>>();
+  keys=new ArrayList<AbstractSentence>();
   signs=new ArrayList<Long>();
 }

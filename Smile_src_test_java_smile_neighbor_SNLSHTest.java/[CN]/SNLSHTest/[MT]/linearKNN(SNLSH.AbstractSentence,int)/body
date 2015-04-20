@@ -1,0 +1,14 @@
+{
+  @SuppressWarnings("unchecked") Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] neighbors=(Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[])Array.newInstance(Neighbor.class,k);
+  MaxHeap<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> heap=new MaxHeap<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>(neighbors);
+  long sign1=simhash64(q.tokens);
+  for (  Sentence sentence : trainData) {
+    if (sentence.line.equals(q.line)) {
+      continue;
+    }
+    long sign2=signCache.get(sentence.line);
+    double distance=HammingDistance.d(sign1,sign2);
+    heap.add(new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(sentence,sentence,0,distance));
+  }
+  return heap.toSortedArray();
+}

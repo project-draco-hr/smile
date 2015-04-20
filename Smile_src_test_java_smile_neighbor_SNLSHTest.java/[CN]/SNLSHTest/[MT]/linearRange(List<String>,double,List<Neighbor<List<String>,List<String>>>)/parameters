@@ -1,3 +1,0 @@
-List<String> q
-double d
-List<Neighbor<List<String>,List<String>>> neighbors

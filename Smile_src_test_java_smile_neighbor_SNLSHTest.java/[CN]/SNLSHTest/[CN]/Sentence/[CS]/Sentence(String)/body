@@ -1,0 +1,4 @@
+{
+  this.line=line;
+  this.tokens=tokenize(line);
+}

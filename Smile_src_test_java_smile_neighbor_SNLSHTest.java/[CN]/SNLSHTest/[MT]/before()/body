@@ -1,13 +1,13 @@
 {
   trainData=loadData("/smile/data/msrp/msr_paraphrase_train.txt");
   testData=loadData("/smile/data/msrp/msr_paraphrase_test.txt");
-  signCache=new HashMap<List<String>,Long>();
-  for (  List<String> tokens : trainData) {
-    long sign=simhash64(tokens);
-    signCache.put(tokens,sign);
+  signCache=new HashMap<String,Long>();
+  for (  Sentence sentence : trainData) {
+    long sign=simhash64(sentence.tokens);
+    signCache.put(sentence.line,sign);
   }
-  toyData=new ArrayList<List<String>>();
+  toyData=new ArrayList<Sentence>();
   for (  String text : texts) {
-    toyData.add(tokenize(text," "));
+    toyData.add(new Sentence(text));
   }
 }
