@@ -1,7 +1,7 @@
 {
   @SuppressWarnings("unchecked") Neighbor<List<String>,List<String>>[] neighbors=(Neighbor<List<String>,List<String>>[])Array.newInstance(Neighbor.class,k);
   MaxHeap<Neighbor<List<String>,List<String>>> heap=new MaxHeap<Neighbor<List<String>,List<String>>>(neighbors);
-  long sign1=SimHash.simhash64(q);
+  long sign1=simhash64(q);
   for (  List<String> t : trainData) {
     if (t.equals(q)) {
       continue;

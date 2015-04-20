@@ -1,5 +1,5 @@
 {
-  long sign1=SimHash.simhash64(q);
+  long sign1=simhash64(q);
   double minDist=Double.MAX_VALUE;
   List<String> minKey=null;
   for (  List<String> t : trainData) {
