@@ -1,14 +1,31 @@
 {
   @SuppressWarnings("unchecked") Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] neighbors=(Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[])Array.newInstance(Neighbor.class,k);
-  MaxHeap<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> heap=new MaxHeap<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>(neighbors);
+  HeapSelect<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> heap=new HeapSelect<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>(neighbors);
+  Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> neighbor=new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(null,null,0,Double.MAX_VALUE);
+  for (int i=0; i < k; i++) {
+    heap.add(neighbor);
+  }
   long sign1=simhash64(q.tokens);
+  int hit=0;
   for (  Sentence sentence : trainData) {
     if (sentence.line.equals(q.line)) {
       continue;
     }
     long sign2=signCache.get(sentence.line);
     double distance=HammingDistance.d(sign1,sign2);
-    heap.add(new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(sentence,sentence,0,distance));
+    if (distance < heap.peek().distance) {
+      heap.add(new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(sentence,sentence,0,distance));
+      hit++;
+    }
   }
-  return heap.toSortedArray();
+  heap.sort();
+  if (hit < k) {
+    @SuppressWarnings("unchecked") Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] n2=(Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[])Array.newInstance(Neighbor.class,hit);
+    int start=k - hit;
+    for (int i=0; i < hit; i++) {
+      n2[i]=neighbors[i + start];
+    }
+    neighbors=n2;
+  }
+  return neighbors;
 }

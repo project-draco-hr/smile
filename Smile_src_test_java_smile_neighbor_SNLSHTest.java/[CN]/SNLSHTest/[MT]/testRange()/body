@@ -4,7 +4,7 @@
   lsh.range(new Sentence(texts[0]),10,ns);
   System.out.println("-------test range begin-------");
   for (  Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> n : ns) {
-    System.out.println(n.key + "  distance: " + n.distance);
+    System.out.println(n.key.line + "  distance: " + n.distance);
   }
   System.out.println("-----test range end ----------");
 }

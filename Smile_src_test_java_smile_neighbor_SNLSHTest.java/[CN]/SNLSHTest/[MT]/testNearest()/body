@@ -2,6 +2,6 @@
   SNLSH<SNLSH.AbstractSentence> lsh=createLSH(toyData);
   System.out.println("----------test nearest start:-------");
   Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> n=lsh.nearest((SNLSH.AbstractSentence)new Sentence(texts[0]));
-  System.out.println("neighbor" + " : " + n.key + " distance: "+ n.distance);
+  System.out.println("neighbor" + " : " + n.key.line + " distance: "+ n.distance);
   System.out.println("----------test nearest end-------");
 }
