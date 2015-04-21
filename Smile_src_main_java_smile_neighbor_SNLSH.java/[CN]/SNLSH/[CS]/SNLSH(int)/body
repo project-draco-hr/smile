@@ -1,0 +1,12 @@
+{
+  if (bandSize < 2 || bandSize > 32) {
+    throw new IllegalArgumentException("Invalid band size!");
+  }
+  this.bandSize=bandSize;
+  bands=(Band[])Array.newInstance(Band.class,bandSize);
+  Arrays.fill(bands,new Band());
+  this.mask=-1 >>> (BITS / bandSize * (bandSize - 1));
+  data=new ArrayList<E>();
+  keys=new ArrayList<AbstractSentence>();
+  signs=new ArrayList<Long>();
+}

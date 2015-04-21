@@ -1,0 +1,13 @@
+{
+  SNLSH<SNLSH.AbstractSentence> lsh=createLSH(trainData);
+  double recall=0.0;
+  for (  SNLSH.AbstractSentence q : testData) {
+    Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> n1=lsh.nearest(q);
+    Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> n2=linearNearest(q);
+    if (n1.value.equals(n2.value)) {
+      recall++;
+    }
+  }
+  recall/=testData.size();
+  System.out.println("SNLSH Nearest recall is " + recall);
+}

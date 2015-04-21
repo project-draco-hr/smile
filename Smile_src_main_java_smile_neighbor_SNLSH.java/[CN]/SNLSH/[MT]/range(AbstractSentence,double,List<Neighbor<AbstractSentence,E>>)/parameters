@@ -1,0 +1,3 @@
+AbstractSentence q
+double radius
+List<Neighbor<AbstractSentence,E>> neighbors
