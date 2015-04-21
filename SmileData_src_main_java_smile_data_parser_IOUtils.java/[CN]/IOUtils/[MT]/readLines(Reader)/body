@@ -1,0 +1,11 @@
+{
+  BufferedReader reader=input instanceof BufferedReader ? (BufferedReader)input : new BufferedReader(input);
+  List<String> list=new ArrayList<String>();
+  String line=reader.readLine();
+  while (line != null) {
+    list.add(line);
+    line=reader.readLine();
+  }
+  reader.close();
+  return list;
+}

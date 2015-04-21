@@ -1,0 +1,4 @@
+{
+  final InputStreamReader reader=new InputStreamReader(input,charset);
+  return readLines(reader);
+}
