@@ -1,5 +1,0 @@
-{
-  E[] arr=Arrays.copyOfRange(heap,0,n);
-  Arrays.sort(arr,0,n);
-  return arr;
-}
