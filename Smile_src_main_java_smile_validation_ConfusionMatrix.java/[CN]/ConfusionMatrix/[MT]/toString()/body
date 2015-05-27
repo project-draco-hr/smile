@@ -1,0 +1,12 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("ROW=truth and COL=predicted\n\n");
+  for (int i=0; i < matrix.length; i++) {
+    sb.append("class " + i + "\t: ");
+    for (int j=0; j < matrix.length; j++) {
+      sb.append(matrix[i][j] + "\t| ");
+    }
+    sb.append("\n");
+  }
+  return sb.toString().trim();
+}
