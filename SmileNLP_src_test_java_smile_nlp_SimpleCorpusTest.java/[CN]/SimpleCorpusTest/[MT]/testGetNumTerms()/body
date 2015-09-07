@@ -1,4 +1,4 @@
 {
   System.out.println("getNumTerms");
-  assertEquals(13976,corpus.getNumTerms());
+  assertEquals(14335,corpus.getNumTerms());
 }

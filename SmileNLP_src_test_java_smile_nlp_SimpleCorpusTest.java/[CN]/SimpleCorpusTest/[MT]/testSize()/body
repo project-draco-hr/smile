@@ -1,4 +1,4 @@
 {
   System.out.println("size");
-  assertEquals(52093,corpus.size());
+  assertEquals(51797,corpus.size());
 }
