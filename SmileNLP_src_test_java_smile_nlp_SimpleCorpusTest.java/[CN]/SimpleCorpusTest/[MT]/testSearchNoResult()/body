@@ -1,0 +1,5 @@
+{
+  System.out.println("search 'romantic'");
+  Iterator<Relevance> hits=corpus.search(new BM25(),"find");
+  assertEquals(Collections.emptyIterator(),hits);
+}
