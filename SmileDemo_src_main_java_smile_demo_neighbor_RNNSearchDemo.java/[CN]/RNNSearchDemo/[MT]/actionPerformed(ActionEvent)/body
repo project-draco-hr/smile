@@ -1,0 +1,17 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    try {
+      radius=Double.parseDouble(radiusField.getText().trim());
+      if (radius <= 0.0) {
+        JOptionPane.showMessageDialog(this,"Invalid Radius: " + radius,"Error",JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+    }
+ catch (    Exception ex) {
+      JOptionPane.showMessageDialog(this,"Invalid Radius: " + radiusField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+}

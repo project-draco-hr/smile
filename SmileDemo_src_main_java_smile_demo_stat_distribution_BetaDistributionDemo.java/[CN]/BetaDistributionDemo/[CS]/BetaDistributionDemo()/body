@@ -1,0 +1,55 @@
+{
+  super(new BorderLayout());
+  Hashtable<Integer,JLabel> labelTable=new Hashtable<Integer,JLabel>();
+  for (int i=0; i <= 100; i+=20) {
+    labelTable.put(new Integer(i),new JLabel(String.valueOf(i / 10)));
+  }
+  alphaSlider=new JSlider(0,100,(int)Math.round(alpha * 10));
+  alphaSlider.addChangeListener(this);
+  alphaSlider.setLabelTable(labelTable);
+  alphaSlider.setMajorTickSpacing(10);
+  alphaSlider.setMinorTickSpacing(2);
+  alphaSlider.setPaintTicks(true);
+  alphaSlider.setPaintLabels(true);
+  betaSlider=new JSlider(0,100,(int)Math.round(beta * 10));
+  betaSlider.addChangeListener(this);
+  betaSlider.setLabelTable(labelTable);
+  betaSlider.setMajorTickSpacing(10);
+  betaSlider.setMinorTickSpacing(2);
+  betaSlider.setPaintTicks(true);
+  betaSlider.setPaintLabels(true);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(new JLabel("\u03B1:"));
+  optionPane.add(alphaSlider);
+  optionPane.add(new JLabel("\u03B2:"));
+  optionPane.add(betaSlider);
+  add(optionPane,BorderLayout.NORTH);
+  canvas=new JPanel(new GridLayout(2,2));
+  add(canvas,BorderLayout.CENTER);
+  BetaDistribution dist=new BetaDistribution(alpha,beta);
+  double[][] p=new double[99][2];
+  double[][] q=new double[99][2];
+  for (int i=0; i < p.length; i++) {
+    p[i][0]=(i + 1) / 100.0;
+    p[i][1]=dist.p(p[i][0]);
+    q[i][0]=(i + 1) / 100.0;
+    q[i][1]=dist.cdf(p[i][0]);
+  }
+  pdf=LinePlot.plot(p,Line.Style.SOLID,Color.BLUE);
+  pdf.setTitle("PDF");
+  canvas.add(pdf);
+  cdf=LinePlot.plot(q,Line.Style.SOLID,Color.BLUE);
+  cdf.setTitle("CDF");
+  canvas.add(cdf);
+  double[] data=new double[500];
+  for (int i=0; i < data.length; i++) {
+    data[i]=dist.rand();
+  }
+  histogram=Histogram.plot(data,20);
+  histogram.setTitle("Histogram");
+  canvas.add(histogram);
+  qqplot=QQPlot.plot(data,dist);
+  qqplot.setTitle("Q-Q Plot");
+  canvas.add(qqplot);
+}

@@ -1,0 +1,8 @@
+{
+  unitsField=new JTextField(Integer.toString(units),5);
+  optionPane.add(new JLabel("Hidden Neurons:"));
+  optionPane.add(unitsField);
+  epochsField=new JTextField(Integer.toString(epochs),5);
+  optionPane.add(new JLabel("Epochs:"));
+  optionPane.add(epochsField);
+}

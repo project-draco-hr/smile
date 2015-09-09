@@ -1,0 +1,5 @@
+{
+  if (x == 0.0)   x=0.01;
+  if (x == 1.0)   x=0.99;
+  return k * Math.log(x) + (n - k) * Math.log(1 - x);
+}

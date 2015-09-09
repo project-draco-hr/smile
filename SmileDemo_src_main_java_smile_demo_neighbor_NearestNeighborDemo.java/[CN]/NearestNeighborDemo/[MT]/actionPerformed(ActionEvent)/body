@@ -1,0 +1,6 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+}

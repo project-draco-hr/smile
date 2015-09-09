@@ -1,0 +1,16 @@
+{
+  clusterNumberField.setText(Integer.toString(clusterNumber));
+  if (datasetBox.getSelectedIndex() != datasetIndex) {
+    datasetBox.setSelectedIndex(datasetIndex);
+    remove(canvas);
+    if (dataset[datasetIndex].length < 500) {
+      pointLegend='o';
+    }
+ else {
+      pointLegend='.';
+    }
+    canvas=ScatterPlot.plot(dataset[datasetIndex],pointLegend);
+    add(canvas,BorderLayout.CENTER);
+    validate();
+  }
+}

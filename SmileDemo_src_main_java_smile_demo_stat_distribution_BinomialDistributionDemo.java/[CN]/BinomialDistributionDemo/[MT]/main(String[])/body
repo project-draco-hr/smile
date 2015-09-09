@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("Binomial Distribution");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new BinomialDistributionDemo());
+  frame.setVisible(true);
+}

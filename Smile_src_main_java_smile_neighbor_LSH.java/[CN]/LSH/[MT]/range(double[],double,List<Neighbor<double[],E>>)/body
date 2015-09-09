@@ -1,0 +1,16 @@
+{
+  if (radius <= 0.0) {
+    throw new IllegalArgumentException("Invalid radius: " + radius);
+  }
+  Set<Integer> candidates=obtainCandidates(q);
+  for (  int index : candidates) {
+    double[] key=keys.get(index);
+    if (q == key && identicalExcluded) {
+      continue;
+    }
+    double distance=Math.distance(q,key);
+    if (distance <= radius) {
+      neighbors.add(new Neighbor<double[],E>(key,data.get(index),index,distance));
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    try {
+      knn=Integer.parseInt(knnField.getText().trim());
+      if (knn < 1) {
+        JOptionPane.showMessageDialog(this,"Invalid K: " + knn,"Error",JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+    }
+ catch (    Exception ex) {
+      JOptionPane.showMessageDialog(this,"Invalid K: " + knnField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+}

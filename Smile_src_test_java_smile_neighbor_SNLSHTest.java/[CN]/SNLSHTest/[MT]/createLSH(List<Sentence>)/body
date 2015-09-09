@@ -1,0 +1,7 @@
+{
+  SNLSH<SNLSH.AbstractSentence> lsh=new SNLSH<SNLSH.AbstractSentence>(8);
+  for (  Sentence sentence : data) {
+    lsh.put(sentence,sentence);
+  }
+  return lsh;
+}

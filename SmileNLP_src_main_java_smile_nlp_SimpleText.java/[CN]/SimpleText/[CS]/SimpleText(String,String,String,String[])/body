@@ -1,0 +1,17 @@
+{
+  super(id,title,body);
+  this.words=words;
+  for (  String w : words) {
+    Integer f=freq.get(w);
+    if (f == null) {
+      f=1;
+    }
+ else {
+      f=f + 1;
+    }
+    freq.put(w,f);
+    if (f > maxtf) {
+      maxtf=f;
+    }
+  }
+}

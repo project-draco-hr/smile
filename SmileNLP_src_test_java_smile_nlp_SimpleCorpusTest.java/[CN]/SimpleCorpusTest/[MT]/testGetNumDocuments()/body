@@ -1,0 +1,4 @@
+{
+  System.out.println("getNumDocuments");
+  assertEquals(5000,corpus.getNumDocuments());
+}

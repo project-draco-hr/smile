@@ -1,0 +1,117 @@
+{
+  startButton.setEnabled(false);
+  logNSlider.setEnabled(false);
+  dimensionSlider.setEnabled(false);
+  knnField.setEnabled(false);
+  logN=logNSlider.getValue();
+  dimension=dimensionSlider.getValue();
+  System.out.println("Generating dataset...");
+  int n=(int)Math.pow(10,logN);
+  double[][] data=new double[n][];
+  for (int i=0; i < n; i++) {
+    data[i]=new double[dimension];
+    for (int j=0; j < dimension; j++) {
+      data[i][j]=Math.random();
+    }
+  }
+  int[] perm=Math.permutate(n);
+  System.out.println("Building searching data structure...");
+  long time=System.currentTimeMillis();
+  LinearSearch<double[]> naive=new LinearSearch<double[]>(data,new EuclideanDistance());
+  int naiveBuild=(int)(System.currentTimeMillis() - time);
+  time=System.currentTimeMillis();
+  KDTree<double[]> kdtree=new KDTree<double[]>(data,data);
+  int kdtreeBuild=(int)(System.currentTimeMillis() - time);
+  time=System.currentTimeMillis();
+  CoverTree<double[]> cover=new CoverTree<double[]>(data,new EuclideanDistance());
+  int coverBuild=(int)(System.currentTimeMillis() - time);
+  System.out.println("Perform 1000 searches...");
+  double radius=0.0;
+  List<Neighbor<double[],double[]>[]> answers=new ArrayList<Neighbor<double[],double[]>[]>(1000);
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    answers.add(naive.knn(data[perm[i]],knn));
+    for (int j=0; j < answers.get(i).length; j++) {
+      radius+=answers.get(i)[j].distance;
+    }
+  }
+  int naiveSearch=(int)(System.currentTimeMillis() - time);
+  radius/=1000 * knn;
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    kdtree.knn(data[perm[i]],knn);
+  }
+  int kdtreeSearch=(int)(System.currentTimeMillis() - time);
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    cover.knn(data[perm[i]],knn);
+  }
+  int coverSearch=(int)(System.currentTimeMillis() - time);
+  time=System.currentTimeMillis();
+  LSH<double[]> lsh=new LSH<double[]>(dimension,5,(int)Math.log2(dimension),4 * radius,1017881);
+  for (int i=0; i < n; i++) {
+    lsh.put(data[i],data[i]);
+  }
+  int lshBuild=(int)(System.currentTimeMillis() - time);
+  time=System.currentTimeMillis();
+  MPLSH<double[]> mplsh=new MPLSH<double[]>(dimension,2,(int)Math.log2(n),4 * radius,1017881);
+  for (int i=0; i < n; i++) {
+    mplsh.put(data[i],data[i]);
+  }
+  double[][] train=new double[1000][];
+  for (int i=0; i < train.length; i++) {
+    train[i]=data[perm[i]];
+  }
+  mplsh.learn(kdtree,train,1.5 * radius);
+  int mplshBuild=(int)(System.currentTimeMillis() - time);
+  double lshRecall=0.0;
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    Neighbor<double[],double[]>[] neighbors=lsh.knn(data[perm[i]],knn);
+    int hit=0;
+    for (int p=0; p < knn && answers.get(i)[p] != null; p++) {
+      for (int q=0; q < knn && neighbors[q] != null; q++) {
+        if (answers.get(i)[p].index == neighbors[q].index) {
+          hit++;
+          break;
+        }
+      }
+    }
+    lshRecall+=1.0 * hit / knn;
+  }
+  int lshSearch=(int)(System.currentTimeMillis() - time);
+  lshRecall/=1000;
+  System.out.format("The recall of LSH is %.1f%%\n",lshRecall * 100);
+  double mplshRecall=0.0;
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    Neighbor<double[],double[]>[] neighbors=mplsh.knn(data[perm[i]],knn,0.95,10);
+    int hit=0;
+    for (int p=0; p < knn && answers.get(i)[p] != null; p++) {
+      for (int q=0; q < knn && neighbors[q] != null; q++) {
+        if (answers.get(i)[p].index == neighbors[q].index) {
+          hit++;
+          break;
+        }
+      }
+    }
+    mplshRecall+=1.0 * hit / knn;
+  }
+  int mplshSearch=(int)(System.currentTimeMillis() - time);
+  mplshRecall/=1000;
+  System.out.format("The recall of MPLSH is %.1f%%\n",mplshRecall * 100);
+  canvas.removeAll();
+  double[] buildTime={naiveBuild,kdtreeBuild,coverBuild,lshBuild,mplshBuild};
+  PlotCanvas build=BarPlot.plot(buildTime,label);
+  build.setTitle("Build Time");
+  canvas.add(build);
+  double[] searchTime={naiveSearch,kdtreeSearch,coverSearch,lshSearch,mplshSearch};
+  PlotCanvas search=BarPlot.plot(searchTime,label);
+  search.setTitle("Search Time");
+  canvas.add(search);
+  validate();
+  startButton.setEnabled(true);
+  logNSlider.setEnabled(true);
+  dimensionSlider.setEnabled(true);
+  knnField.setEnabled(true);
+}

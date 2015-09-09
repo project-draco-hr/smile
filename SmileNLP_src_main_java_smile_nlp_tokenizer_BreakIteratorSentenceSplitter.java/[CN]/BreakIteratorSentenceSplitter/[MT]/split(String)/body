@@ -1,0 +1,13 @@
+{
+  boundary.setText(text);
+  ArrayList<String> sentences=new ArrayList<String>();
+  int start=boundary.first();
+  for (int end=boundary.next(); end != BreakIterator.DONE; start=end, end=boundary.next()) {
+    sentences.add(text.substring(start,end).trim());
+  }
+  String[] array=new String[sentences.size()];
+  for (int i=0; i < array.length; i++) {
+    array[i]=sentences.get(i);
+  }
+  return array;
+}

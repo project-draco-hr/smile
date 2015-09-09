@@ -1,0 +1,32 @@
+{
+  if (p <= 0.0 || p >= 1.0) {
+    throw new IllegalArgumentException("Invalid p = " + p);
+  }
+  double cutoff=chisq.quantile(p);
+  ArrayList<BigramCollocation> bigrams=new ArrayList<BigramCollocation>();
+  Iterator<Bigram> iterator=corpus.getBigrams();
+  while (iterator.hasNext()) {
+    Bigram bigram=iterator.next();
+    int c12=corpus.getBigramFrequency(bigram);
+    if (c12 > minFreq) {
+      int c1=corpus.getTermFrequency(bigram.w1);
+      int c2=corpus.getTermFrequency(bigram.w2);
+      double score=likelihoodRatio(c1,c2,c12,corpus.size());
+      if (score > cutoff) {
+        bigrams.add(new BigramCollocation(bigram.w1,bigram.w2,c12,score));
+      }
+    }
+  }
+  int n=bigrams.size();
+  BigramCollocation[] collocations=new BigramCollocation[n];
+  for (int i=0; i < n; i++) {
+    collocations[i]=bigrams.get(i);
+  }
+  Arrays.sort(collocations);
+  for (int i=0; i < n / 2; i++) {
+    BigramCollocation b=collocations[i];
+    collocations[i]=collocations[n - i - 1];
+    collocations[n - i - 1]=b;
+  }
+  return collocations;
+}

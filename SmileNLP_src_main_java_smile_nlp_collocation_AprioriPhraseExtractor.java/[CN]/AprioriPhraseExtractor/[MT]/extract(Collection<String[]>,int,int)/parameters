@@ -1,0 +1,3 @@
+Collection<String[]> sentences
+int maxNGramSize
+int minFrequency

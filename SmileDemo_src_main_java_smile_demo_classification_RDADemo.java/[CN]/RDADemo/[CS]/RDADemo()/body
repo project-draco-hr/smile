@@ -1,0 +1,5 @@
+{
+  alphaField=new JTextField(Double.toString(alpha),5);
+  optionPane.add(new JLabel("\u03B1:"));
+  optionPane.add(alphaField);
+}

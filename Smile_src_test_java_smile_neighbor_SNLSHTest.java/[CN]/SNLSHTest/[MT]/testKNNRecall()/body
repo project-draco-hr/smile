@@ -1,0 +1,21 @@
+{
+  SNLSH<SNLSH.AbstractSentence> lsh=createLSH(trainData);
+  double recall=0.0;
+  for (  SNLSH.AbstractSentence q : testData) {
+    int k=3;
+    Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] n1=lsh.knn(q,k);
+    Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] n2=linearKNN(q,k);
+    int hit=0;
+    for (int m=0; m < n1.length && n1[m] != null; m++) {
+      for (int n=0; n < n2.length && n2[n] != null; n++) {
+        if (n1[m].value.equals(n2[n].value)) {
+          hit++;
+          break;
+        }
+      }
+    }
+    recall+=1.0 * hit / k;
+  }
+  recall/=testData.size();
+  System.out.println("SNLSH KNN recall is " + recall);
+}

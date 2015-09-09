@@ -1,0 +1,3 @@
+String dir
+List<String[]> sentences
+List<PennTreebankPOS[]> labels

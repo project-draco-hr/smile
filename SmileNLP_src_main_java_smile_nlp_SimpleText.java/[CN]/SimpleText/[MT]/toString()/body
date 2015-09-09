@@ -1,0 +1,3 @@
+{
+  return String.format("Document[%s%s]",getID(),getTitle() == null ? "" : " -- " + getTitle());
+}

@@ -1,0 +1,10 @@
+{
+  word=cleanup(word.toLowerCase());
+  if ((word.length() > 3) && (stripPrefix)) {
+    word=stripPrefixes(word);
+  }
+  if (word.length() > 3) {
+    word=stripSuffixes(word);
+  }
+  return word;
+}

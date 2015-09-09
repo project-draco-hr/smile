@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("Interpolation 2D");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new Interpolation2Demo());
+  frame.setVisible(true);
+}

@@ -1,0 +1,11 @@
+{
+  String[] prefixes={"kilo","micro","milli","intra","ultra","mega","nano","pico","pseudo"};
+  int last=prefixes.length;
+  for (int i=0; i < last; i++) {
+    if ((word.startsWith(prefixes[i])) && (word.length() > prefixes[i].length())) {
+      word=word.substring(prefixes[i].length());
+      return word;
+    }
+  }
+  return word;
+}

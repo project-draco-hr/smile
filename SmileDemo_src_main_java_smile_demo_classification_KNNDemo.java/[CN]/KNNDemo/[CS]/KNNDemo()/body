@@ -1,0 +1,5 @@
+{
+  kField=new JTextField(Integer.toString(k),5);
+  optionPane.add(new JLabel("K:"));
+  optionPane.add(kField);
+}

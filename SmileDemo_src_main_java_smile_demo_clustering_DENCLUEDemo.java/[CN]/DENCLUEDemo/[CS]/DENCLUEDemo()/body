@@ -1,0 +1,8 @@
+{
+  optionPane.remove(optionPane.getComponentCount() - 1);
+  kField=new JTextField(Integer.toString(k),5);
+  optionPane.add(kField);
+  sigmaField=new JTextField(Double.toString(sigma),5);
+  optionPane.add(new JLabel("Sigma:"));
+  optionPane.add(sigmaField);
+}

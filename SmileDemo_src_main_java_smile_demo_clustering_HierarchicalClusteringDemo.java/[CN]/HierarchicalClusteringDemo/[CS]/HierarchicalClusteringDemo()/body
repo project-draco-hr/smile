@@ -1,0 +1,13 @@
+{
+  linkageBox=new JComboBox<String>();
+  linkageBox.addItem("Single");
+  linkageBox.addItem("Complete");
+  linkageBox.addItem("UPGMA");
+  linkageBox.addItem("WPGMA");
+  linkageBox.addItem("UPGMC");
+  linkageBox.addItem("WPGMC");
+  linkageBox.addItem("Ward");
+  linkageBox.setSelectedIndex(0);
+  optionPane.add(new JLabel("Linkage:"));
+  optionPane.add(linkageBox);
+}

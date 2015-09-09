@@ -1,0 +1,5 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append('(').append(Arrays.toString(words)).append(", ").append(freq).append(')');
+  return sb.toString();
+}

@@ -1,0 +1,19 @@
+{
+  String[] files={"Rectangle.txt","Circle.txt","Ring.txt","Complex1.txt","Complex2.txt","Complex3.txt","HiLoDensity.txt","Discrete.txt","Complex4.txt","MovingJumpingRectangle.txt","MovingRectangle.txt","JumpingRectangle.txt","RMouseRectangle.txt"};
+  for (int k=0; k < files.length; k++) {
+    NeuralGasData sample=new NeuralGasData();
+    if (k == 7)     sample.initDiscreteSignals();
+    try {
+      FileWriter fstream=new FileWriter(files[k]);
+      BufferedWriter out=new BufferedWriter(fstream);
+      for (int i=0; i < 5000; i++) {
+        sample.getSignal(k);
+        out.write(sample.SignalX + "\t" + sample.SignalY+ "\n");
+      }
+      out.close();
+    }
+ catch (    Exception e) {
+      System.err.println("Error: " + e.getMessage());
+    }
+  }
+}

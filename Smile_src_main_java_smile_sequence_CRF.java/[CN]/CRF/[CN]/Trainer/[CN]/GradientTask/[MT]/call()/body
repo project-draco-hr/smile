@@ -1,0 +1,6 @@
+{
+  crf.forward(trellis,scaling);
+  crf.backward(trellis);
+  crf.setTargets(trellis,scaling,label);
+  return null;
+}

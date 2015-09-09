@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("Staircase Plot");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new ScatterPlotDemo());
+  frame.setVisible(true);
+}

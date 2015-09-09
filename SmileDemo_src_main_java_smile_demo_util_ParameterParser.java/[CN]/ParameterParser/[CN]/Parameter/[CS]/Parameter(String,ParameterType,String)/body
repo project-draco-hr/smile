@@ -1,0 +1,4 @@
+{
+  this(name,paraType,false);
+  this.value=defaultValue;
+}

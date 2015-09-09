@@ -1,0 +1,6 @@
+{
+  this.crf=crf;
+  this.trellis=trellis;
+  this.scaling=scaling;
+  this.label=label;
+}

@@ -1,0 +1,38 @@
+{
+  if (dataset == null) {
+    dataset=new double[datasetName.length][][];
+    DelimitedTextParser parser=new DelimitedTextParser();
+    parser.setDelimiter("[\t ]+");
+    try {
+      AttributeDataset data=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+      dataset[datasetIndex]=data.toArray(new double[data.size()][]);
+    }
+ catch (    Exception e) {
+      JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+      System.out.println(e);
+    }
+  }
+  addAncestorListener(this);
+  startButton=new JButton("Start");
+  startButton.setActionCommand("startButton");
+  startButton.addActionListener(this);
+  datasetBox=new JComboBox<String>();
+  for (int i=0; i < datasetName.length; i++) {
+    datasetBox.addItem(datasetName[i]);
+  }
+  datasetBox.setSelectedIndex(0);
+  datasetBox.setActionCommand("datasetBox");
+  datasetBox.addActionListener(this);
+  clusterNumberField=new JTextField(Integer.toString(clusterNumber),5);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(startButton);
+  optionPane.add(new JLabel("Dataset:"));
+  optionPane.add(datasetBox);
+  optionPane.add(new JLabel("K:"));
+  optionPane.add(clusterNumberField);
+  setLayout(new BorderLayout());
+  add(optionPane,BorderLayout.NORTH);
+  canvas=ScatterPlot.plot(dataset[datasetIndex],'.');
+  add(canvas,BorderLayout.CENTER);
+}

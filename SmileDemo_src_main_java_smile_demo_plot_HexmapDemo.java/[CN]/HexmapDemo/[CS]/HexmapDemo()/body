@@ -1,0 +1,35 @@
+{
+  super(new GridLayout(2,4));
+  setBackground(Color.white);
+  int n=41;
+  double[] x=new double[n];
+  for (int i=0; i < n; i++)   x[i]=-2.0 + 0.1 * i;
+  int m=41;
+  double[] y=new double[m];
+  for (int i=0; i < m; i++)   y[i]=-2.0 + 0.1 * i;
+  double[][] z=new double[m][n];
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++)     z[i][j]=x[j] * Math.exp(-x[j] * x[j] - y[i] * y[i]);
+  }
+  PlotCanvas canvas=Hexmap.plot(z,Palette.jet(256));
+  canvas.setTitle("jet");
+  add(canvas);
+  canvas=Hexmap.plot(z,Palette.redblue(256));
+  canvas.setTitle("redblue");
+  add(canvas);
+  canvas=Hexmap.plot(z,Palette.redgreen(256));
+  canvas.setTitle("redgreen");
+  add(canvas);
+  canvas=Hexmap.plot(z,Palette.heat(256));
+  canvas.setTitle("Hex");
+  add(canvas);
+  canvas=Hexmap.plot(z,Palette.terrain(256));
+  canvas.setTitle("terrain");
+  add(canvas);
+  canvas=Hexmap.plot(z,Palette.rainbow(256));
+  canvas.setTitle("rainbow");
+  add(canvas);
+  canvas=Hexmap.plot(z,Palette.topo(256));
+  canvas.setTitle("topo");
+  add(canvas);
+}

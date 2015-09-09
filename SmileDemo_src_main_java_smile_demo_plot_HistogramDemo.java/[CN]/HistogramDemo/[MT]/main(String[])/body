@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("Histogram");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new HistogramDemo());
+  frame.setVisible(true);
+}

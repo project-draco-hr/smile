@@ -1,0 +1,5 @@
+{
+  sigmaField=new JTextField(Double.toString(sigma),5);
+  optionPane.add(new JLabel("t:"));
+  optionPane.add(sigmaField);
+}

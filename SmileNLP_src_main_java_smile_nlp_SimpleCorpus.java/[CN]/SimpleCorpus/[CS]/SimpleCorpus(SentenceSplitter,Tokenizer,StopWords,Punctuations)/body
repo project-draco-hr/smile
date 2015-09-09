@@ -1,0 +1,6 @@
+{
+  this.splitter=splitter;
+  this.tokenizer=tokenizer;
+  this.stopWords=stopWords;
+  this.punctuations=punctuations;
+}

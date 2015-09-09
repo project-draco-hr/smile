@@ -1,0 +1,4 @@
+{
+  if (tf == 0)   return 0.0;
+  return (a + (1 - a) * tf / maxtf) * Math.log((double)N / n);
+}

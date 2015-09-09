@@ -1,0 +1,28 @@
+{
+  if (e.getSource() == sigmaSlider) {
+    sigma=sigmaSlider.getValue() / 10.0;
+    if (sigma == 0)     sigma=0.01;
+    LogisticDistribution dist=new LogisticDistribution(0,sigma);
+    double[][] p=new double[200][2];
+    double[][] q=new double[200][2];
+    for (int i=0; i < p.length; i++) {
+      p[i][0]=(i - 100) / 10.0;
+      p[i][1]=dist.p(p[i][0]);
+      q[i][0]=(i - 100) / 10.0;
+      q[i][1]=dist.cdf(p[i][0]);
+    }
+    pdf.clear();
+    pdf.line(p,Line.Style.SOLID,Color.BLUE);
+    cdf.clear();
+    cdf.line(q,Line.Style.SOLID,Color.BLUE);
+    double[] data=new double[500];
+    for (int i=0; i < data.length; i++) {
+      data[i]=dist.rand();
+    }
+    histogram.clear();
+    histogram.histogram(data,20,Color.BLUE);
+    qqplot.clear();
+    qqplot.add(new QQPlot(data,dist));
+    canvas.repaint();
+  }
+}

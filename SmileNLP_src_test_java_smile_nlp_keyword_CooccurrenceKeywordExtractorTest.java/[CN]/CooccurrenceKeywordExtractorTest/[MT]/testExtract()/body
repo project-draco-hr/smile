@@ -1,0 +1,12 @@
+{
+  System.out.println("extract");
+  Scanner scanner=new Scanner(this.getClass().getResourceAsStream("/smile/data/text/turing.txt"));
+  String text=scanner.useDelimiter("\\Z").next();
+  scanner.close();
+  CooccurrenceKeywordExtractor instance=new CooccurrenceKeywordExtractor();
+  ArrayList<NGram> result=instance.extract(text);
+  assertEquals(10,result.size());
+  for (  NGram ngram : result) {
+    System.out.println(ngram);
+  }
+}

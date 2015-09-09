@@ -1,0 +1,46 @@
+{
+  super(new BorderLayout());
+  Hashtable<Integer,JLabel> labelTable=new Hashtable<Integer,JLabel>();
+  for (int i=0; i <= 20; i+=10) {
+    labelTable.put(new Integer(i),new JLabel(String.valueOf(i / 10)));
+  }
+  sigmaSlider=new JSlider(0,20,(int)Math.round(sigma * 10));
+  sigmaSlider.addChangeListener(this);
+  sigmaSlider.setLabelTable(labelTable);
+  sigmaSlider.setMajorTickSpacing(10);
+  sigmaSlider.setMinorTickSpacing(1);
+  sigmaSlider.setPaintTicks(true);
+  sigmaSlider.setPaintLabels(true);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(new JLabel("\u03C3:"));
+  optionPane.add(sigmaSlider);
+  add(optionPane,BorderLayout.NORTH);
+  canvas=new JPanel(new GridLayout(2,2));
+  add(canvas,BorderLayout.CENTER);
+  LogNormalDistribution dist=new LogNormalDistribution(0,sigma);
+  double[][] p=new double[100][2];
+  double[][] q=new double[100][2];
+  for (int i=0; i < p.length; i++) {
+    p[i][0]=(i + 1) / 20.0;
+    p[i][1]=dist.p(p[i][0]);
+    q[i][0]=(i + 1) / 20.0;
+    q[i][1]=dist.cdf(p[i][0]);
+  }
+  pdf=LinePlot.plot(p,Line.Style.SOLID,Color.BLUE);
+  pdf.setTitle("PDF");
+  canvas.add(pdf);
+  cdf=LinePlot.plot(q,Line.Style.SOLID,Color.BLUE);
+  cdf.setTitle("CDF");
+  canvas.add(cdf);
+  double[] data=new double[500];
+  for (int i=0; i < data.length; i++) {
+    data[i]=dist.rand();
+  }
+  histogram=Histogram.plot(data,20);
+  histogram.setTitle("Histogram");
+  canvas.add(histogram);
+  qqplot=QQPlot.plot(data,dist);
+  qqplot.setTitle("Q-Q Plot");
+  canvas.add(qqplot);
+}

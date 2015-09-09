@@ -1,0 +1,9 @@
+{
+  IsoMapDemo demo=new IsoMapDemo();
+  JFrame f=new JFrame("IsoMap");
+  f.setSize(new Dimension(1000,1000));
+  f.setLocationRelativeTo(null);
+  f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  f.getContentPane().add(demo);
+  f.setVisible(true);
+}

@@ -1,0 +1,13 @@
+{
+  long sign1=simhash64(q.tokens);
+  for (  Sentence sentence : trainData) {
+    if (sentence.line.equals(q.line)) {
+      continue;
+    }
+    long sign2=signCache.get(sentence.line);
+    double distance=HammingDistance.d(sign1,sign2);
+    if (distance <= d) {
+      neighbors.add(new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(sentence,sentence,0,distance));
+    }
+  }
+}

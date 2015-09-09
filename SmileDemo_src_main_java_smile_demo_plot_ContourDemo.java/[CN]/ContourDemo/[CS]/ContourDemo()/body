@@ -1,0 +1,20 @@
+{
+  super(new GridLayout(1,2));
+  setBackground(Color.white);
+  int n=41;
+  double[] x=new double[n];
+  for (int i=0; i < n; i++)   x[i]=-2.0 + 0.1 * i;
+  int m=51;
+  double[] y=new double[m];
+  for (int i=0; i < m; i++)   y[i]=-2.0 + 0.1 * i;
+  double[][] z=new double[m][n];
+  for (int i=0; i < m; i++) {
+    for (int j=0; j < n; j++)     z[i][j]=x[j] * Math.exp(-x[j] * x[j] - y[i] * y[i]);
+  }
+  add(Contour.plot(x,y,z));
+  double[] c=new double[9];
+  for (int i=0; i < c.length; i++) {
+    c[i]=-0.4 + 0.1 * i;
+  }
+  add(Contour.plot(x,y,z,c,Palette.jet(c.length)));
+}

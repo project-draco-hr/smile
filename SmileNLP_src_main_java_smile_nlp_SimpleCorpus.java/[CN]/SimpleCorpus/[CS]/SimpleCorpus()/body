@@ -1,0 +1,3 @@
+{
+  this(SimpleSentenceSplitter.getInstance(),new SimpleTokenizer(),EnglishStopWords.DEFAULT,EnglishPunctuations.getInstance());
+}

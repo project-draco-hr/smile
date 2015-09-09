@@ -1,0 +1,27 @@
+{
+  super(new GridLayout(2,2));
+  double[] x1={0,1,2,3};
+  double[] x2={0,1,2,3};
+  double[][] y={{1,2,4,1},{6,3,5,2},{4,2,1,5},{5,4,2,3}};
+  PlotCanvas canvas=Heatmap.plot(y,Palette.jet(256));
+  canvas.setTitle("Original");
+  add(canvas);
+  BicubicInterpolation bicubic=new BicubicInterpolation(x1,x2,y);
+  double[][] yy=new double[101][101];
+  for (int i=0; i <= 100; i++)   for (int j=0; j <= 100; j++)   yy[i][j]=bicubic.interpolate(i * 0.03,j * 0.03);
+  canvas=Heatmap.plot(yy,Palette.jet(256));
+  canvas.setTitle("Bicubic");
+  add(canvas);
+  BilinearInterpolation bilinear=new BilinearInterpolation(x1,x2,y);
+  double[][] zz=new double[101][101];
+  for (int i=0; i <= 100; i++)   for (int j=0; j <= 100; j++)   zz[i][j]=bilinear.interpolate(i * 0.03,j * 0.03);
+  canvas=Heatmap.plot(zz,Palette.jet(256));
+  canvas.setTitle("Blinear");
+  add(canvas);
+  CubicSplineInterpolation2D spline=new CubicSplineInterpolation2D(x1,x2,y);
+  double[][] ww=new double[101][101];
+  for (int i=0; i <= 100; i++)   for (int j=0; j <= 100; j++)   ww[i][j]=spline.interpolate(i * 0.03,j * 0.03);
+  canvas=Heatmap.plot(ww,Palette.jet(256));
+  canvas.setTitle("Cubic Spline");
+  add(canvas);
+}

@@ -1,0 +1,5 @@
+{
+  lambdaField=new JTextField(Double.toString(lambda),5);
+  optionPane.add(new JLabel("\u03BB:"));
+  optionPane.add(lambdaField);
+}

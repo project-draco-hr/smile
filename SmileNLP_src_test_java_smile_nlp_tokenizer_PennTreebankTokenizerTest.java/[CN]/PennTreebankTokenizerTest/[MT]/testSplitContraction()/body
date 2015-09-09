@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize contraction");
+  String text="Here are some examples of contractions: 'tis, " + "'twas, ain't, aren't, can't, could've, couldn't, didn't, doesn't, " + "don't, hasn't, he'd, he'll, he's, how'd, how'll, how's, i'd, i'll, i'm, "+ "i've, isn't, it's, might've, mightn't, must've, mustn't, shan't, "+ "she'd, she'll, she's, should've, shouldn't, that'll, that's, "+ "there's, they'd, they'll, they're, they've, wasn't, we'd, we'll, "+ "we're, weren't, what'd, what's, when'd, when'll, when's, "+ "where'd, where'll, where's, who'd, who'll, who's, why'd, why'll, "+ "why's, won't, would've, wouldn't, you'd, you'll, you're, you've";
+  String[] expResult={"Here","are","some","examples","of","contractions",":","'t","is",",","'t","was",",","ai","n't",",","are","n't",",","ca","n't",",","could","'ve",",","could","n't",",","did","n't",",","does","n't",",","do","n't",",","has","n't",",","he","'d",",","he","'ll",",","he","'s",",","how","'d",",","how","'ll",",","how","'s",",","i","'d",",","i","'ll",",","i","'m",",","i","'ve",",","is","n't",",","it","'s",",","might","'ve",",","might","n't",",","must","'ve",",","must","n't",",","sha","n't",",","she","'d",",","she","'ll",",","she","'s",",","should","'ve",",","should","n't",",","that","'ll",",","that","'s",",","there","'s",",","they","'d",",","they","'ll",",","they","'re",",","they","'ve",",","was","n't",",","we","'d",",","we","'ll",",","we","'re",",","were","n't",",","what","'d",",","what","'s",",","when","'d",",","when","'ll",",","when","'s",",","where","'d",",","where","'ll",",","where","'s",",","who","'d",",","who","'ll",",","who","'s",",","why","'d",",","why","'ll",",","why","'s",",","wo","n't",",","would","'ve",",","would","n't",",","you","'d",",","you","'ll",",","you","'re",",","you","'ve"};
+  PennTreebankTokenizer instance=PennTreebankTokenizer.getInstance();
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}

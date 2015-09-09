@@ -1,0 +1,6 @@
+{
+  int hash=5;
+  hash=37 * hash + w1.hashCode();
+  hash=37 * hash + w2.hashCode();
+  return hash;
+}

@@ -1,0 +1,70 @@
+{
+  startButton.setEnabled(false);
+  knnField.setEnabled(false);
+  if (data == null) {
+    System.out.print("Loading dataset...");
+    List<String> words=new ArrayList<String>();
+    try {
+      InputStream stream=this.getClass().getResourceAsStream("/smile/neighbor/index.noun");
+      BufferedReader input=new BufferedReader(new InputStreamReader(stream));
+      String line=input.readLine();
+      while (line != null) {
+        if (!line.startsWith(" ")) {
+          String[] w=line.split("\\s");
+          words.add(w[0].replace('_',' '));
+        }
+        line=input.readLine();
+      }
+    }
+ catch (    Exception e) {
+      System.err.println(e);
+    }
+    data=words.toArray(new String[1]);
+    System.out.println(words.size() + " words");
+    System.out.println("Building searching data structure...");
+    long time=System.currentTimeMillis();
+    naive=new LinearSearch<String>(data,new EditDistance(50,true));
+    int naiveBuild=(int)(System.currentTimeMillis() - time) / 1000;
+    time=System.currentTimeMillis();
+    bktree=new BKTree<String>(new EditDistance(50,true));
+    bktree.add(data);
+    int bktreeBuild=(int)(System.currentTimeMillis() - time) / 1000;
+    time=System.currentTimeMillis();
+    cover=new CoverTree<String>(data,new EditDistance(50,true));
+    int coverBuild=(int)(System.currentTimeMillis() - time) / 1000;
+    double[] buildTime={naiveBuild,bktreeBuild,coverBuild};
+    PlotCanvas build=BarPlot.plot(buildTime,label);
+    build.setTitle("Build Time");
+    canvas.add(build);
+    validate();
+  }
+  int[] perm=Math.permutate(data.length);
+  System.out.println("Perform 1000 searches...");
+  long time=System.currentTimeMillis();
+  List<Neighbor<String,String>> neighbors=new ArrayList<Neighbor<String,String>>();
+  for (int i=0; i < 1000; i++) {
+    naive.range(data[perm[i]],knn,neighbors);
+    neighbors.clear();
+  }
+  int naiveSearch=(int)(System.currentTimeMillis() - time) / 1000;
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    bktree.range(data[perm[i]],knn,neighbors);
+    neighbors.clear();
+  }
+  int kdtreeSearch=(int)(System.currentTimeMillis() - time) / 1000;
+  time=System.currentTimeMillis();
+  for (int i=0; i < 1000; i++) {
+    cover.range(data[perm[i]],knn,neighbors);
+    neighbors.clear();
+  }
+  int coverSearch=(int)(System.currentTimeMillis() - time) / 1000;
+  double[] searchTime={naiveSearch,kdtreeSearch,coverSearch};
+  PlotCanvas search=BarPlot.plot(searchTime,label);
+  search.setTitle("Search Time of k = " + knn);
+  canvas.add(search);
+  if (canvas.getComponentCount() > 3)   canvas.setLayout(new GridLayout(2,2));
+  validate();
+  startButton.setEnabled(true);
+  knnField.setEnabled(true);
+}

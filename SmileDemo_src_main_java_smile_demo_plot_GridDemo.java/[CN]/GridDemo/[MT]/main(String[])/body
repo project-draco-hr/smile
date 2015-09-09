@@ -1,0 +1,7 @@
+{
+  JFrame frame=new JFrame("Grid Plot");
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setLocationRelativeTo(null);
+  frame.getContentPane().add(new GridDemo());
+  frame.setVisible(true);
+}

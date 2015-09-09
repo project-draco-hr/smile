@@ -1,0 +1,18 @@
+{
+  Set<Integer> candidates=obtainCandidates(q);
+  Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,-1,Double.MAX_VALUE);
+  for (  int index : candidates) {
+    double[] key=keys.get(index);
+    if (q == key && identicalExcluded) {
+      continue;
+    }
+    double distance=Math.distance(q,key);
+    if (distance < neighbor.distance) {
+      neighbor.index=index;
+      neighbor.distance=distance;
+      neighbor.key=key;
+      neighbor.value=data.get(index);
+    }
+  }
+  return neighbor;
+}

@@ -1,0 +1,38 @@
+{
+  try {
+    clusterNumber=Integer.parseInt(clusterNumberField.getText().trim());
+    if (clusterNumber < 2) {
+      JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumber,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+  }
+ catch (  Exception e) {
+    JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+  if (dataset[datasetIndex] == null) {
+    try {
+      SparseDatasetParser parser=new SparseDatasetParser(1);
+      dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+      for (int i=dataset[datasetIndex].size(); i-- > 0; ) {
+        if (dataset[datasetIndex].get(i).x.isEmpty()) {
+          dataset[datasetIndex].remove(i);
+        }
+      }
+      dataset[datasetIndex].unitize1();
+    }
+ catch (    Exception ex) {
+      JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+      System.err.println(ex);
+    }
+  }
+  System.out.println("The dataset " + datasetName[datasetIndex] + " has "+ dataset[datasetIndex].size()+ " documents and "+ dataset[datasetIndex].ncols()+ " words.");
+  long clock=System.currentTimeMillis();
+  SIB sib=new SIB(dataset[datasetIndex],clusterNumber,20);
+  outputArea.setText("");
+  for (int j=0; j < dataset[datasetIndex].ncols(); j++) {
+    for (int i=0; i < clusterNumber; i++) {
+      outputArea.append(String.format("%.5f\t",sib.centroids()[i][j]));
+    }
+    outputArea.append("\n");
+  }
+  System.out.format("SIB clusterings %d samples in %dms\n",dataset[datasetIndex].size(),System.currentTimeMillis() - clock);
+}

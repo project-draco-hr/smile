@@ -1,0 +1,7 @@
+{
+  double score=0.0;
+  for (  RegressionTree tree : trees) {
+    score+=eta * tree.predict(features);
+  }
+  return score;
+}

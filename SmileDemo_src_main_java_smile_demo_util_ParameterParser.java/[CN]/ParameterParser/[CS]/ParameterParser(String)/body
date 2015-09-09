@@ -1,0 +1,4 @@
+{
+  this.usage=usage;
+  parameters=new HashMap<String,Parameter>();
+}

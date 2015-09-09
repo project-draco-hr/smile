@@ -1,0 +1,5 @@
+{
+  rangeField=new JTextField(Double.toString(range),5);
+  optionPane.add(new JLabel("Range:"));
+  optionPane.add(rangeField);
+}

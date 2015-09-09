@@ -1,0 +1,18 @@
+{
+  if (index >= key.length) {
+    if (this.value == null) {
+      size++;
+    }
+    this.value=value;
+    return;
+  }
+  for (  Node child : children) {
+    if (child.key.equals(key[index])) {
+      child.addChild(key,value,index + 1);
+      return;
+    }
+  }
+  Node child=new Node(key[index]);
+  children.addFirst(child);
+  child.addChild(key,value,index + 1);
+}

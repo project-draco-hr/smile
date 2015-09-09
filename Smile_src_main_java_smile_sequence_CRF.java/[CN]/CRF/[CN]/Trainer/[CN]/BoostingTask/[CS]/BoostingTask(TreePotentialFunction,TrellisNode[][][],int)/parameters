@@ -1,0 +1,3 @@
+TreePotentialFunction potential
+TrellisNode[][][] trellis
+int i

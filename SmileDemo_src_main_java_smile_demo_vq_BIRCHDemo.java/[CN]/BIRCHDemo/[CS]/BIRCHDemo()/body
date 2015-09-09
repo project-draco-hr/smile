@@ -1,0 +1,11 @@
+{
+  BNumberField=new JTextField(Integer.toString(B),5);
+  TNumberField=new JTextField(Double.toString(T),5);
+  minPtsNumberField=new JTextField(Integer.toString(minPts),5);
+  optionPane.add(new JLabel("B:"));
+  optionPane.add(BNumberField);
+  optionPane.add(new JLabel("T:"));
+  optionPane.add(TNumberField);
+  optionPane.add(new JLabel("minPts:"));
+  optionPane.add(minPtsNumberField);
+}

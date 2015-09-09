@@ -1,0 +1,8 @@
+{
+  corBox=new JComboBox<String>();
+  corBox.addItem("Covariance");
+  corBox.addItem("Correlation");
+  corBox.setSelectedIndex(0);
+  optionPane.add(new JLabel("Scaling:"));
+  optionPane.add(corBox);
+}

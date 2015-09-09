@@ -1,0 +1,8 @@
+{
+  DefaultMutableTreeNode node=(DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+  if (node != null && node.isLeaf()) {
+    int pos=workspace.getDividerLocation();
+    workspace.setTopComponent((JPanel)node.getUserObject());
+    workspace.setDividerLocation(pos);
+  }
+}

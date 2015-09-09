@@ -1,0 +1,23 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    datasetIndex=datasetBox.getSelectedIndex();
+    if (dataset[datasetIndex] == null) {
+      DelimitedTextParser parser=new DelimitedTextParser();
+      parser.setDelimiter("[\t]+");
+      parser.setRowNames(true);
+      parser.setColumnNames(true);
+      if (datasetIndex == 2 || datasetIndex == 3) {
+        parser.setRowNames(false);
+      }
+      try {
+        dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+      }
+ catch (      Exception ex) {
+        JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+        System.err.println(ex);
+      }
+    }
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+}

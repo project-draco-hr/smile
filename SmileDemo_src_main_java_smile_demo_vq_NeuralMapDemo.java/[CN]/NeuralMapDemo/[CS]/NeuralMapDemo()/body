@@ -1,0 +1,5 @@
+{
+  TNumberField=new JTextField(Double.toString(T),5);
+  optionPane.add(new JLabel("T:"));
+  optionPane.add(TNumberField);
+}

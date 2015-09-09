@@ -1,0 +1,9 @@
+{
+  System.out.println("get");
+  assertEquals(PennTreebankPOS.NN,EnglishPOSLexicon.get("1000000000000")[0]);
+  assertEquals(PennTreebankPOS.NN,EnglishPOSLexicon.get("absorbent cotton")[0]);
+  assertEquals(PennTreebankPOS.JJ,EnglishPOSLexicon.get("absorbing")[0]);
+  assertEquals(PennTreebankPOS.VB,EnglishPOSLexicon.get("displease")[0]);
+  assertEquals(PennTreebankPOS.RB,EnglishPOSLexicon.get("disposedly")[0]);
+  assertEquals(3,EnglishPOSLexicon.get("disperse").length);
+}

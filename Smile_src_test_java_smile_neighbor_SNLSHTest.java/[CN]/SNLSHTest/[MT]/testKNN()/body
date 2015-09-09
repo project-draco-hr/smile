@@ -1,0 +1,10 @@
+{
+  SNLSH<SNLSH.AbstractSentence> lsh=createLSH(toyData);
+  SNLSH.AbstractSentence sentence=new Sentence(texts[0]);
+  Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] ns=lsh.knn(sentence,10);
+  System.out.println("-----test knn: ------");
+  for (int i=0; i < ns.length; i++) {
+    System.out.println("neighbor" + i + " : "+ ns[i].key.line+ ". distance: "+ ns[i].distance);
+  }
+  System.out.println("------test knn end------");
+}

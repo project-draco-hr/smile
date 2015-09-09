@@ -1,0 +1,37 @@
+{
+  if ("startButton".equals(e.getActionCommand())) {
+    Thread thread=new Thread(this);
+    thread.start();
+  }
+ else   if ("datasetBox".equals(e.getActionCommand())) {
+    datasetIndex=datasetBox.getSelectedIndex();
+    if (dataset[datasetIndex] == null) {
+      DelimitedTextParser parser=new DelimitedTextParser();
+      parser.setDelimiter("[\t ]+");
+      parser.setResponseIndex(new NominalAttribute("class"),0);
+      try {
+        dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+      }
+ catch (      Exception ex) {
+        JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
+        System.err.println(ex);
+      }
+    }
+    double[][] data=dataset[datasetIndex].toArray(new double[dataset[datasetIndex].size()][]);
+    int[] label=dataset[datasetIndex].toArray(new int[dataset[datasetIndex].size()]);
+    if (data.length < 500) {
+      pointLegend='o';
+    }
+ else {
+      pointLegend='.';
+    }
+    PlotCanvas canvas=ScatterPlot.plot(data,pointLegend);
+    for (int i=0; i < data.length; i++) {
+      canvas.point(pointLegend,Palette.COLORS[label[i]],data[i]);
+    }
+    BorderLayout layout=(BorderLayout)getLayout();
+    remove(layout.getLayoutComponent(BorderLayout.CENTER));
+    add(canvas,BorderLayout.CENTER);
+    validate();
+  }
+}

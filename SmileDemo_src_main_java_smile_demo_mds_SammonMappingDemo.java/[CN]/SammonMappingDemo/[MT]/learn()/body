@@ -1,0 +1,25 @@
+{
+  JPanel pane=new JPanel(new GridLayout(1,2));
+  double[][] data=dataset[datasetIndex].toArray(new double[dataset[datasetIndex].size()][]);
+  String[] labels=dataset[datasetIndex].toArray(new String[dataset[datasetIndex].size()]);
+  if (labels[0] == null) {
+    Attribute[] attr=dataset[datasetIndex].attributes();
+    labels=new String[attr.length];
+    for (int i=0; i < labels.length; i++) {
+      labels[i]=attr[i].name;
+    }
+  }
+  long clock=System.currentTimeMillis();
+  SammonMapping sammon=new SammonMapping(data,2);
+  System.out.format("Learn Sammon's Mapping (k=2) from %d samples in %dms\n",data.length,System.currentTimeMillis() - clock);
+  PlotCanvas plot=ScatterPlot.plot(sammon.getCoordinates(),labels);
+  plot.setTitle("Sammon's Mapping (k = 2)");
+  pane.add(plot);
+  clock=System.currentTimeMillis();
+  sammon=new SammonMapping(data,3);
+  System.out.format("Learn Sammon's Mapping (k=3) from %d samples in %dms\n",data.length,System.currentTimeMillis() - clock);
+  plot=ScatterPlot.plot(sammon.getCoordinates(),labels);
+  plot.setTitle("Sammon's Mapping (k = 3)");
+  pane.add(plot);
+  return pane;
+}

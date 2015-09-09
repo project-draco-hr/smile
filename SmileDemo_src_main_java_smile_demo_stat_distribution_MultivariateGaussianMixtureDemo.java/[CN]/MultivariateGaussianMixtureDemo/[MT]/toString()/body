@@ -1,0 +1,3 @@
+{
+  return "Multivariate Gaussian Mixture";
+}

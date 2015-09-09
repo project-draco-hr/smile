@@ -1,0 +1,40 @@
+{
+  super(new BorderLayout());
+  startButton=new JButton("Start");
+  startButton.setActionCommand("startButton");
+  startButton.addActionListener(this);
+  Hashtable<Integer,JLabel> logNLabelTable=new Hashtable<Integer,JLabel>();
+  for (int i=3; i <= 7; i++) {
+    logNLabelTable.put(new Integer(i),new JLabel(String.valueOf(i)));
+  }
+  logNSlider=new JSlider(3,7,logN);
+  logNSlider.setLabelTable(logNLabelTable);
+  logNSlider.setMajorTickSpacing(1);
+  logNSlider.setPaintTicks(true);
+  logNSlider.setPaintLabels(true);
+  Hashtable<Integer,JLabel> dimensionLabelTable=new Hashtable<Integer,JLabel>();
+  dimensionLabelTable.put(new Integer(2),new JLabel(String.valueOf(2)));
+  for (int i=20; i <= 120; i+=20) {
+    dimensionLabelTable.put(new Integer(i),new JLabel(String.valueOf(i)));
+  }
+  dimensionSlider=new JSlider(2,128,dimension);
+  dimensionSlider.setLabelTable(dimensionLabelTable);
+  dimensionSlider.setMajorTickSpacing(20);
+  dimensionSlider.setMinorTickSpacing(5);
+  dimensionSlider.setPaintTicks(true);
+  dimensionSlider.setPaintLabels(true);
+  radiusField=new JTextField(Double.toString(radius),5);
+  optionPane=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPane.setBorder(BorderFactory.createRaisedBevelBorder());
+  optionPane.add(startButton);
+  optionPane.add(new JLabel("log N:"));
+  optionPane.add(logNSlider);
+  optionPane.add(new JLabel("Dimension:"));
+  optionPane.add(dimensionSlider);
+  optionPane.add(new JLabel("Radius:"));
+  optionPane.add(radiusField);
+  add(optionPane,BorderLayout.NORTH);
+  canvas=new JPanel(new GridLayout(1,2));
+  canvas.setBackground(Color.WHITE);
+  add(canvas,BorderLayout.CENTER);
+}

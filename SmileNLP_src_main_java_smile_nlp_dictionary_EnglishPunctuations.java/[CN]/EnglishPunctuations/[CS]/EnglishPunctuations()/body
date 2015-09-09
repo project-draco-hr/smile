@@ -1,0 +1,24 @@
+{
+  dict.add("[");
+  dict.add("]");
+  dict.add("(");
+  dict.add(")");
+  dict.add("{");
+  dict.add("}");
+  dict.add("<");
+  dict.add(">");
+  dict.add(":");
+  dict.add(",");
+  dict.add(";");
+  dict.add("-");
+  dict.add("--");
+  dict.add("---");
+  dict.add("!");
+  dict.add("?");
+  dict.add(".");
+  dict.add("...");
+  dict.add("`");
+  dict.add("'");
+  dict.add("\"");
+  dict.add("/");
+}
