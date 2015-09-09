@@ -1,4 +1,9 @@
 {
-  ArrayList<Text> hits=new ArrayList<Text>(invertedFile.get(term));
-  return hits.iterator();
+  if (invertedFile.containsKey(term)) {
+    ArrayList<Text> hits=new ArrayList<Text>(invertedFile.get(term));
+    return hits.iterator();
+  }
+ else {
+    return Collections.emptyIterator();
+  }
 }
