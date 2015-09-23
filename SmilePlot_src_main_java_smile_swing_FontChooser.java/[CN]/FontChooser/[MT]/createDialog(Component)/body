@@ -1,6 +1,6 @@
 {
   Frame frame=parent instanceof Frame ? (Frame)parent : (Frame)SwingUtilities.getAncestorOfClass(Frame.class,parent);
-  JDialog dialog=new JDialog(frame,_("SelectFont"),true);
+  JDialog dialog=new JDialog(frame,getMessage("SelectFont"),true);
   Action okAction=new DialogOKAction(dialog);
   Action cancelAction=new DialogCancelAction(dialog);
   JButton okButton=new JButton(okAction);

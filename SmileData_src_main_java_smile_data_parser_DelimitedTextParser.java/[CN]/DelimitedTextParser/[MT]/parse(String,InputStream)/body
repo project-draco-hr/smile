@@ -1,46 +1,46 @@
 {
-  BufferedReader reader=new BufferedReader(new InputStreamReader(stream));
-  String line=reader.readLine();
-  while (line != null) {
-    if (line.isEmpty() || line.startsWith(comment)) {
-      line=reader.readLine();
-    }
- else {
-      break;
-    }
-  }
-  if (line == null) {
-    throw new IOException("Empty data source.");
-  }
-  String[] s=line.split(delimiter,0);
-  int start=0;
-  int dimension=s.length;
-  if (hasRowNames) {
-    dimension--;
-    start=1;
-  }
-  if (responseIndex >= s.length) {
-    throw new ParseException("Invalid response variable index: " + responseIndex,responseIndex);
-  }
-  if (responseIndex >= 0) {
-    dimension--;
-  }
-  Attribute[] attributes=new Attribute[dimension];
-  if (hasColumnNames) {
-    for (int i=0, j=start; i < dimension; j++) {
-      if (j != responseIndex) {
-        attributes[i++]=new NumericAttribute(s[j]);
+  try (BufferedReader reader=new BufferedReader(new InputStreamReader(stream))){
+    String line=reader.readLine();
+    while (line != null) {
+      if (line.isEmpty() || line.startsWith(comment)) {
+        line=reader.readLine();
       }
+ else {
+        break;
+      }
+    }
+    if (line == null) {
+      throw new IOException("Empty data source.");
+    }
+    String[] s=line.split(delimiter,0);
+    int start=0;
+    int dimension=s.length;
+    if (hasRowNames) {
+      dimension--;
+      start=1;
+    }
+    if (responseIndex >= s.length) {
+      throw new ParseException("Invalid response variable index: " + responseIndex,responseIndex);
+    }
+    if (responseIndex >= 0) {
+      dimension--;
+    }
+    Attribute[] attributes=new Attribute[dimension];
+    if (hasColumnNames) {
+      for (int i=0, j=start; i < dimension; j++) {
+        if (j != responseIndex) {
+          attributes[i++]=new NumericAttribute(s[j]);
+        }
  else {
 switch (response.type) {
 case NOMINAL:
-          response=new NominalAttribute(s[j]);
-        break;
+            response=new NominalAttribute(s[j]);
+          break;
 case NUMERIC:
-      response=new NumericAttribute(s[j]);
-    break;
+        response=new NumericAttribute(s[j]);
+      break;
 default :
-  throw new IllegalStateException("Invalid response variable type.");
+    throw new IllegalStateException("Invalid response variable type.");
 }
 }
 }
@@ -84,3 +84,4 @@ a.setOpen(false);
 }
 return data;
 }
+ }

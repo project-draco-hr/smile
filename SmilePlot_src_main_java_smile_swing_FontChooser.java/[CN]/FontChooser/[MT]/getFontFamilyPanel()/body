@@ -11,7 +11,7 @@
     p.setLayout(new BorderLayout());
     p.add(getFontFamilyTextField(),BorderLayout.NORTH);
     p.add(scrollPane,BorderLayout.CENTER);
-    JLabel label=new JLabel(_("FontName"));
+    JLabel label=new JLabel(getMessage("FontName"));
     label.setHorizontalAlignment(JLabel.LEFT);
     label.setHorizontalTextPosition(JLabel.LEFT);
     label.setLabelFor(getFontFamilyTextField());

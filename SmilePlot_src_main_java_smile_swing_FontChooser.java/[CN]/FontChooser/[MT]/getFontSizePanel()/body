@@ -11,7 +11,7 @@
     p.setLayout(new BorderLayout());
     p.add(getFontSizeTextField(),BorderLayout.NORTH);
     p.add(scrollPane,BorderLayout.CENTER);
-    JLabel label=new JLabel(_("FontSize"));
+    JLabel label=new JLabel(getMessage("FontSize"));
     label.setHorizontalAlignment(JLabel.LEFT);
     label.setHorizontalTextPosition(JLabel.LEFT);
     label.setLabelFor(getFontSizeTextField());

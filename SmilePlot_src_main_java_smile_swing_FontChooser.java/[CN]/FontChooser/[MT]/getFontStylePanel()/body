@@ -11,7 +11,7 @@
     p.setLayout(new BorderLayout());
     p.add(getFontStyleTextField(),BorderLayout.NORTH);
     p.add(scrollPane,BorderLayout.CENTER);
-    JLabel label=new JLabel(_("FontStyle"));
+    JLabel label=new JLabel(getMessage("FontStyle"));
     label.setHorizontalAlignment(JLabel.LEFT);
     label.setHorizontalTextPosition(JLabel.LEFT);
     label.setLabelFor(getFontStyleTextField());

@@ -1,6 +1,6 @@
 {
   if (samplePanel == null) {
-    Border titledBorder=BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),_("Sample"));
+    Border titledBorder=BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getMessage("Sample"));
     Border empty=BorderFactory.createEmptyBorder(5,10,10,10);
     Border border=BorderFactory.createCompoundBorder(titledBorder,empty);
     samplePanel=new JPanel();
