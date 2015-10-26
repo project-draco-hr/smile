@@ -36,6 +36,6 @@
     assertTrue(error < 95);
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    ex.printStackTrace();
   }
 }

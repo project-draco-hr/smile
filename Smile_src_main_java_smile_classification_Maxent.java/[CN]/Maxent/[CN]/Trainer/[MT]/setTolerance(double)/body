@@ -1,3 +1,4 @@
 {
   this.tol=tol;
+  return this;
 }

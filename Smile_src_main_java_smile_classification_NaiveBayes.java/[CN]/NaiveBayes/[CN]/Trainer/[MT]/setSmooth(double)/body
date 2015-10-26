@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid add-k smoothing parameter: " + sigma);
   }
   this.sigma=sigma;
+  return this;
 }

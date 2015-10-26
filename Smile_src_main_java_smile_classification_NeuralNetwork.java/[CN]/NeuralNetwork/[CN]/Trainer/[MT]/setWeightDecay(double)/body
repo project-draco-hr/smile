@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid momentum factor: " + alpha);
   }
   this.lambda=lambda;
+  return this;
 }

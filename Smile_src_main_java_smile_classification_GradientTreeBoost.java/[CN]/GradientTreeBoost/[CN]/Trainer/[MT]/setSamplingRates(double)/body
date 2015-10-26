@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid sampling fraction: " + f);
   }
   this.f=f;
+  return this;
 }

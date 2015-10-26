@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invlaid number of trees: " + T);
   }
   this.T=T;
+  return this;
 }

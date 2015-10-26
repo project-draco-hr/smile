@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid mapping space dimension: " + L);
   }
   this.L=L;
+  return this;
 }

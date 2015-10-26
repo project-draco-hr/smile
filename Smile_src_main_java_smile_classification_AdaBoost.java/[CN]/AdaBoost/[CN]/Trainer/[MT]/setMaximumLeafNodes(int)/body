@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid number of leaf nodes: " + J);
   }
   this.J=J;
+  return this;
 }

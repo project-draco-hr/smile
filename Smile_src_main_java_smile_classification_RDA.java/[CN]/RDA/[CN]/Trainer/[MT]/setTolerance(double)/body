@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid tol: " + tol);
   }
   this.tol=tol;
+  return this;
 }

@@ -1,3 +1,4 @@
 {
   this.normalized=normalized;
+  return this;
 }

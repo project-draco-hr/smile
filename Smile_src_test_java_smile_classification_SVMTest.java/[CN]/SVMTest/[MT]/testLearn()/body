@@ -56,6 +56,6 @@
     assertTrue(error <= 5);
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    ex.printStackTrace();
   }
 }
