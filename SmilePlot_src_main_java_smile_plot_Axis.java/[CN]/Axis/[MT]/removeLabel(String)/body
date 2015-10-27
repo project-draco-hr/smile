@@ -5,4 +5,5 @@
   labels.remove(label);
   setSlice();
   initGridLabels();
+  return this;
 }

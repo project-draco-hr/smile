@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid elitism: " + elitism);
   }
   this.elitism=elitism;
+  return this;
 }

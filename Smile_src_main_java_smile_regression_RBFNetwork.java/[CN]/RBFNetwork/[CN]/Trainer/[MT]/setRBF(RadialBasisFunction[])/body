@@ -1,4 +1,5 @@
 {
   this.m=rbf.length;
   this.rbf=rbf;
+  return this;
 }

@@ -3,4 +3,5 @@
     throw new IndexOutOfBoundsException(String.valueOf(index));
   }
   data[index]=val;
+  return this;
 }

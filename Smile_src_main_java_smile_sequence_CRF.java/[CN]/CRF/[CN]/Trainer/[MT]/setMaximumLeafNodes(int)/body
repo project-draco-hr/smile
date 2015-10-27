@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid number of leaf nodes: " + maxLeaves);
   }
   this.maxLeaves=maxLeaves;
+  return this;
 }

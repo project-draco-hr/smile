@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid of number of iterations of local search: " + t);
   }
   this.t=t;
+  return this;
 }

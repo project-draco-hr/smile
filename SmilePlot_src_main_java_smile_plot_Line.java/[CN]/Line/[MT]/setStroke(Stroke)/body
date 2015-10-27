@@ -1,3 +1,4 @@
 {
   this.stroke=stroke;
+  return this;
 }

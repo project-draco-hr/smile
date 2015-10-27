@@ -1,3 +1,4 @@
 {
   this.titleFont=font;
+  return this;
 }

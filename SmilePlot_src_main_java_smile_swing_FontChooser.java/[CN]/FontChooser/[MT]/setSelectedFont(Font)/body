@@ -2,4 +2,5 @@
   setSelectedFontFamily(font.getFamily());
   setSelectedFontStyle(font.getStyle());
   setSelectedFontSize(font.getSize());
+  return this;
 }

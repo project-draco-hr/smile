@@ -1,3 +1,4 @@
 {
   this.rotation=angle;
+  return this;
 }

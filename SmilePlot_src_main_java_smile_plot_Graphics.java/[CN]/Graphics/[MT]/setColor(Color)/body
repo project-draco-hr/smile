@@ -1,3 +1,4 @@
 {
   g2d.setColor(color);
+  return this;
 }

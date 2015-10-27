@@ -42,4 +42,5 @@
     }
     axisLabel.setFont(axisLabelFont);
   }
+  return this;
 }

@@ -7,4 +7,5 @@
   }
   tournamentSize=size;
   tournamentProbability=p;
+  return this;
 }

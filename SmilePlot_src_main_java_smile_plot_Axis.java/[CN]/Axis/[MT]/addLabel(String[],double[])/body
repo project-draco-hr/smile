@@ -11,4 +11,5 @@
   setSlice();
   initGridLines();
   initGridLabels();
+  return this;
 }

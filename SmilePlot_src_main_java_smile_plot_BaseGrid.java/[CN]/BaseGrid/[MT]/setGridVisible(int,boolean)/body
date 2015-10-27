@@ -1,3 +1,4 @@
 {
   axis[i].setGridVisible(v);
+  return this;
 }

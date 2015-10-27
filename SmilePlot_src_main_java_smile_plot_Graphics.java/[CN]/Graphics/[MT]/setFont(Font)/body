@@ -1,3 +1,4 @@
 {
   g2d.setFont(font);
+  return this;
 }

@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid maximum number of iterations: " + maxIter);
   }
   this.maxIter=maxIter;
+  return this;
 }

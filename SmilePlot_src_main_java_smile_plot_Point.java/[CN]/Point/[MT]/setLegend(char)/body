@@ -1,3 +1,4 @@
 {
   this.legend=legend;
+  return this;
 }

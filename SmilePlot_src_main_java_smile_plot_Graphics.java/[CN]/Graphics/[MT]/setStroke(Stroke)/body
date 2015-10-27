@@ -1,3 +1,4 @@
 {
   g2d.setStroke(stroke);
+  return this;
 }

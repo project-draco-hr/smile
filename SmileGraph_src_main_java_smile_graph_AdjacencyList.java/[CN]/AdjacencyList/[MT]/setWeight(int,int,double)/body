@@ -3,7 +3,7 @@
     for (    Edge edge : graph[source]) {
       if (edge.v2 == target) {
         edge.weight=weight;
-        return;
+        return this;
       }
     }
   }
@@ -11,9 +11,10 @@
     for (    Edge edge : graph[source]) {
       if ((edge.v1 == source && edge.v2 == target) || (edge.v2 == source && edge.v1 == target)) {
         edge.weight=weight;
-        return;
+        return this;
       }
     }
   }
   addEdge(source,target,weight);
+  return this;
 }

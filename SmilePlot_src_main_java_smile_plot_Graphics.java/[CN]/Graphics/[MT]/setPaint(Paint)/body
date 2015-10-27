@@ -1,3 +1,4 @@
 {
   g2d.setPaint(paint);
+  return this;
 }

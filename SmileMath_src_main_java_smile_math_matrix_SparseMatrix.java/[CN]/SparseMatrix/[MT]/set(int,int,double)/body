@@ -5,8 +5,8 @@
   for (int k=colIndex[j]; k < colIndex[j + 1]; k++) {
     if (rowIndex[k] == i) {
       this.x[k]=x;
-      return;
+      return this;
     }
   }
-  throw new IllegalArgumentException("SparseMatrix does not support chnage zero values to non-zeros.");
+  throw new IllegalArgumentException("SparseMatrix does not support changing zero values to non-zeros.");
 }

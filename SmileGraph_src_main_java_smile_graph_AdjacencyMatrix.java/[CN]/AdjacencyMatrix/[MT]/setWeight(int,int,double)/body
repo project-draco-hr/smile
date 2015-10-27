@@ -3,4 +3,5 @@
   if (!digraph) {
     graph[target][source]=weight;
   }
+  return this;
 }

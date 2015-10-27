@@ -6,4 +6,5 @@
     }
   }
   updateSampleFont();
+  return this;
 }

@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid number of random selected features for splitting: " + M);
   }
   this.M=M;
+  return this;
 }

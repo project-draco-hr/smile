@@ -8,4 +8,5 @@
   }
   getFontSizeTextField().setText(sizeString);
   updateSampleFont();
+  return this;
 }

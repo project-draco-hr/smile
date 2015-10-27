@@ -5,4 +5,5 @@
   for (int i=0; i < axisLabels.length; i++) {
     axis[i].setAxisLabel(axisLabels[i]);
   }
+  return this;
 }

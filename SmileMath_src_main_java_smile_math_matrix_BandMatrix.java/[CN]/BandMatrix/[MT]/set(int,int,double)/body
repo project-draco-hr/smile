@@ -1,3 +1,4 @@
 {
   A[i][j - i + m1]=x;
+  return this;
 }

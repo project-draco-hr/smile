@@ -1,3 +1,4 @@
 {
   gridVisible=v;
+  return this;
 }

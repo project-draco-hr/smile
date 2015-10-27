@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid number of iterations: " + iters);
   }
   this.iters=iters;
+  return this;
 }

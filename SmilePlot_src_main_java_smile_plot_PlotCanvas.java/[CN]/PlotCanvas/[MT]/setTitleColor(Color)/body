@@ -1,3 +1,4 @@
 {
   this.titleColor=color;
+  return this;
 }

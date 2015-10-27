@@ -1,3 +1,4 @@
 {
   axis[i].setAxisLabel(axisLabel);
+  return this;
 }

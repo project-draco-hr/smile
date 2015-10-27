@@ -3,4 +3,5 @@
     throw new IllegalArgumentException("Invalid learning rate: " + eta);
   }
   this.eta=eta;
+  return this;
 }

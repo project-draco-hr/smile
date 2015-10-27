@@ -4,4 +4,5 @@
     setAxisLabel(getAxisLabel());
   }
   init();
+  return this;
 }

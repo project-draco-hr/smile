@@ -1,4 +1,5 @@
 {
   baseGrid.setAxisLabel(axis,label);
   repaint();
+  return this;
 }

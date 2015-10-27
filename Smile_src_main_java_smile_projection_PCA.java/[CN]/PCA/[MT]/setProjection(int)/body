@@ -11,4 +11,5 @@
   }
   pmu=new double[p];
   Math.ax(projection,mu,pmu);
+  return this;
 }
