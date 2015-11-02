@@ -1,0 +1,6 @@
+{
+  A=new double[rows][cols];
+  for (int i=0; i < rows; i++) {
+    Arrays.fill(A[i],value);
+  }
+}

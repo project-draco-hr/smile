@@ -1,0 +1,5 @@
+{
+  for (int i=0; i < ncols() && i < nrows() && i < diag.length; i++) {
+    set(i,i,diag[i]);
+  }
+}
