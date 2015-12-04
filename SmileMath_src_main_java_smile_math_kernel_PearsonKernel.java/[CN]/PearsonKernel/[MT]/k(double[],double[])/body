@@ -8,6 +8,6 @@
     yy+=y[i] * y[i];
     xy+=x[i] * y[i];
   }
-  double m=constant * java.lang.Math.sqrt(-2.0 * xy + xx + yy);
-  return 1.0 / java.lang.Math.pow(1.0 + m * m,omega);
+  double m=constant * Math.sqrt(-2.0 * xy + xx + yy);
+  return 1.0 / Math.pow(1.0 + m * m,omega);
 }
