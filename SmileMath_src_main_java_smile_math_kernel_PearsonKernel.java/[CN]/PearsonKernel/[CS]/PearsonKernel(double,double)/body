@@ -1,0 +1,4 @@
+{
+  this.omega=omega;
+  this.sigma=sigma;
+}
