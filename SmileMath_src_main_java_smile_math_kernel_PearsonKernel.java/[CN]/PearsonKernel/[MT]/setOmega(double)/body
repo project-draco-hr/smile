@@ -1,0 +1,4 @@
+{
+  this.omega=omega;
+  this.constant=2 * Math.sqrt(Math.pow(2,(1 / omega)) - 1) / sigma;
+}

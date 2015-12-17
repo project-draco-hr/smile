@@ -18,6 +18,15 @@ if (count[i] > 0) {
 }
 }
 break;
+case CLASSIFICATION_ERROR:
+impurity=0;
+for (int i=0; i < count.length; i++) {
+if (count[i] > 0) {
+impurity=Math.max(impurity,count[i] / (double)n);
+}
+}
+impurity=Math.abs(1 - impurity);
+break;
 }
 return impurity;
 }
