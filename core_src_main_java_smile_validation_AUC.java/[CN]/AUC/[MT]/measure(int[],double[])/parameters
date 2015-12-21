@@ -1,2 +1,2 @@
 int[] truth
-double[] prediction
+double[] probability
