@@ -10,8 +10,6 @@
       posteriori[i]+=pos[i];
     }
   }
-  for (int i=0; i < k; i++) {
-    posteriori[i]/=trees.size();
-  }
+  Math.unitize1(posteriori);
   return Math.whichMax(y);
 }

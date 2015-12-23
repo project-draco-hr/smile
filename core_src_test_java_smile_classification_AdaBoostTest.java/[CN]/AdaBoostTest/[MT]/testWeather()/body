@@ -15,7 +15,7 @@
       AdaBoost forest=new AdaBoost(weather.attributes(),trainx,trainy,200,4);
       if (y[loocv.test[i]] != forest.predict(x[loocv.test[i]]))       error++;
     }
-    System.out.println("Decision Tree error = " + error);
+    System.out.println("AdaBoost error = " + error);
   }
  catch (  Exception ex) {
     System.err.println(ex);
