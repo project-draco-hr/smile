@@ -13,9 +13,7 @@
     variables[i]=i;
   }
   if (M < p) {
-synchronized (RegressionTree.class) {
-      Math.permutate(variables);
-    }
+    random.permutate(variables);
     for (int j=0; j < M; j++) {
       Node split=findBestSplit(n,sum,variables[j]);
       if (split.splitScore > node.splitScore) {

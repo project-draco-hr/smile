@@ -63,7 +63,11 @@
       count[y[i]]+=samples[i];
     }
   }
-  root=new Node(Math.whichMax(count));
+  double[] posteriori=new double[k];
+  for (int i=0; i < k; i++) {
+    posteriori[i]=(double)count[i] / n;
+  }
+  root=new Node(Math.whichMax(count),posteriori);
   TrainNode trainRoot=new TrainNode(root,x,y,samples);
   if (trainRoot.findBestSplit()) {
     nextSplits.add(trainRoot);

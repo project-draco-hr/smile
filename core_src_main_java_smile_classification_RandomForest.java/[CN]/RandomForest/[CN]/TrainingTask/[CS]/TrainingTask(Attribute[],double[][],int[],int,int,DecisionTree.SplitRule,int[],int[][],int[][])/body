@@ -2,7 +2,10 @@
   this.attributes=attributes;
   this.x=x;
   this.y=y;
-  this.order=order;
   this.M=M;
+  this.J=J;
+  this.rule=rule;
+  this.classWeight=classWeight;
+  this.order=order;
   this.prediction=prediction;
 }

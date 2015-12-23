@@ -1,3 +1,3 @@
 {
-  this(attributes,x,y,J,null,null,rule);
+  this(attributes,x,y,J,rule,null,null);
 }

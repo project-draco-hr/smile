@@ -44,8 +44,22 @@
     node.splitScore=0.0;
     return false;
   }
-  node.trueChild=new Node(node.trueChildOutput);
-  node.falseChild=new Node(node.falseChildOutput);
+  double[] trueChildPosteriori=new double[k];
+  double[] falseChildPosteriori=new double[k];
+  for (int i=0; i < n; i++) {
+    if (trueSamples[i] > 0) {
+      trueChildPosteriori[y[i]]+=trueSamples[i];
+    }
+    if (falseSamples[i] > 0) {
+      falseChildPosteriori[y[i]]+=falseSamples[i];
+    }
+  }
+  for (int i=0; i < k; i++) {
+    trueChildPosteriori[i]/=tc;
+    falseChildPosteriori[i]/=fc;
+  }
+  node.trueChild=new Node(node.trueChildOutput,trueChildPosteriori);
+  node.falseChild=new Node(node.falseChildOutput,falseChildPosteriori);
   TrainNode trueChild=new TrainNode(node.trueChild,x,y,trueSamples);
   if (trueChild.findBestSplit()) {
     if (nextSplits != null) {

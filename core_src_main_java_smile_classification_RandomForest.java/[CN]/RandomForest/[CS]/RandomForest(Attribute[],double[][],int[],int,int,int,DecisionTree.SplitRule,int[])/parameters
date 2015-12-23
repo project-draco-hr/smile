@@ -1,0 +1,8 @@
+Attribute[] attributes
+double[][] x
+int[] y
+int T
+int M
+int J
+DecisionTree.SplitRule rule
+int[] classWeight
