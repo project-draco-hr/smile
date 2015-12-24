@@ -2,15 +2,22 @@
   if (x.length != y.length) {
     throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
   }
-  if (M <= 0 || M > x[0].length) {
-    throw new IllegalArgumentException("Invalid number of variables to split on at a node of the tree: " + M);
+  if (J < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + J);
   }
-  if (samples == null) {
-    throw new IllegalArgumentException("Sampling array is null.");
+  int[] labels=Math.unique(y);
+  Arrays.sort(labels);
+  for (int i=0; i < labels.length; i++) {
+    if (labels[i] < 0) {
+      throw new IllegalArgumentException("Negative class label: " + labels[i]);
+    }
+    if (i > 0 && labels[i] - labels[i - 1] > 1) {
+      throw new IllegalArgumentException("Missing class: " + labels[i] + 1);
+    }
   }
-  this.k=Math.max(y) + 1;
+  k=labels.length;
   if (k < 2) {
-    throw new IllegalArgumentException("Only one class or negative class labels.");
+    throw new IllegalArgumentException("Only one class.");
   }
   if (attributes == null) {
     int p=x[0].length;
@@ -23,12 +30,38 @@
   this.M=M;
   this.J=J;
   this.rule=rule;
-  this.order=order;
   importance=new double[attributes.length];
+  if (order != null) {
+    this.order=order;
+  }
+ else {
+    int n=x.length;
+    int p=x[0].length;
+    double[] a=new double[n];
+    this.order=new int[p][];
+    for (int j=0; j < p; j++) {
+      if (attributes[j] instanceof NumericAttribute) {
+        for (int i=0; i < n; i++) {
+          a[i]=x[i][j];
+        }
+        this.order[j]=QuickSort.sort(a);
+      }
+    }
+  }
+  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<TrainNode>();
   int n=y.length;
   int[] count=new int[k];
-  for (int i=0; i < n; i++) {
-    count[y[i]]+=samples[i];
+  if (samples == null) {
+    samples=new int[n];
+    for (int i=0; i < n; i++) {
+      samples[i]=1;
+      count[y[i]]++;
+    }
+  }
+ else {
+    for (int i=0; i < n; i++) {
+      count[y[i]]+=samples[i];
+    }
   }
   double[] posteriori=new double[k];
   for (int i=0; i < k; i++) {
@@ -37,6 +70,13 @@
   root=new Node(Math.whichMax(count),posteriori);
   TrainNode trainRoot=new TrainNode(root,x,y,samples);
   if (trainRoot.findBestSplit()) {
-    trainRoot.split(null);
+    nextSplits.add(trainRoot);
+  }
+  for (int leaves=1; leaves < this.J; leaves++) {
+    TrainNode node=nextSplits.poll();
+    if (node == null) {
+      break;
+    }
+    node.split(nextSplits);
   }
 }

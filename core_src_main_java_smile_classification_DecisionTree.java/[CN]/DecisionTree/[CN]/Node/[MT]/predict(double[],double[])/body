@@ -1,8 +1,6 @@
 {
   if (trueChild == null && falseChild == null) {
-    for (int i=0; i < posteriori.length; i++) {
-      posteriori[i]=this.posteriori[i];
-    }
+    System.arraycopy(this.posteriori,0,posteriori,0,k);
     return output;
   }
  else {
