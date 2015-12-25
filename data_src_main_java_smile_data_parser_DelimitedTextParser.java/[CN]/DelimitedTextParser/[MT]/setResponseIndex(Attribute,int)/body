@@ -4,4 +4,5 @@
   }
   this.response=response;
   this.responseIndex=index;
+  return this;
 }

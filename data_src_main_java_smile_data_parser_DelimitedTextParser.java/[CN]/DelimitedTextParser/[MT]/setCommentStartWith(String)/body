@@ -1,3 +1,4 @@
 {
   this.comment=comment;
+  return this;
 }

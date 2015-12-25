@@ -19,8 +19,8 @@
       if (tokens.length != 3) {
         throw new ParseException("Invalid number of tokens.",nrow);
       }
-      int d=Integer.valueOf(tokens[0]) - arrayStartingIndex;
-      int w=Integer.valueOf(tokens[1]) - arrayStartingIndex;
+      int d=Integer.valueOf(tokens[0]) - arrayIndexStartBase;
+      int w=Integer.valueOf(tokens[1]) - arrayIndexStartBase;
       double c=Double.valueOf(tokens[2]);
       sparse.set(d,w,c);
       line=reader.readLine();
