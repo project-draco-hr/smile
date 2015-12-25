@@ -3,7 +3,7 @@
   ArffParser parser=new ArffParser();
   parser.setResponseIndex(8);
   try {
-    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/regression/kin8nm.arff"));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/regression/kin8nm.arff"));
     double[] y=data.toArray(new double[data.size()]);
     double[][] x=data.toArray(new double[data.size()][]);
     int[] perm=Math.permutate(x.length);

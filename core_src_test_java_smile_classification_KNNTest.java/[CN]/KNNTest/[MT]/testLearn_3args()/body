@@ -3,7 +3,7 @@
   ArffParser arffParser=new ArffParser();
   arffParser.setResponseIndex(4);
   try {
-    AttributeDataset iris=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/iris.arff"));
+    AttributeDataset iris=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/iris.arff"));
     double[][] x=iris.toArray(new double[0][]);
     int[] y=iris.toArray(new int[0]);
     KNN<double[]> knn=KNN.learn(x,y,1);

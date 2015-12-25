@@ -1,8 +1,7 @@
 {
   long start=System.currentTimeMillis();
   try {
-    InputStream stream=this.getClass().getResourceAsStream("/smile/data/neighbor/index.noun");
-    BufferedReader input=new BufferedReader(new InputStreamReader(stream));
+    BufferedReader input=smile.data.parser.IOUtils.getDataReader("neighbor/index.noun");
     String line=input.readLine();
     while (line != null) {
       if (!line.startsWith(" ")) {

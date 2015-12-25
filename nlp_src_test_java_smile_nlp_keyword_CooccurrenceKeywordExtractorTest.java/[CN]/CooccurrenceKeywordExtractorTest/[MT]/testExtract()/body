@@ -1,6 +1,6 @@
 {
   System.out.println("extract");
-  Scanner scanner=new Scanner(this.getClass().getResourceAsStream("/smile/data/text/turing.txt"));
+  Scanner scanner=new Scanner(smile.data.parser.IOUtils.getDataReader("text/turing.txt"));
   String text=scanner.useDelimiter("\\Z").next();
   scanner.close();
   CooccurrenceKeywordExtractor instance=new CooccurrenceKeywordExtractor();

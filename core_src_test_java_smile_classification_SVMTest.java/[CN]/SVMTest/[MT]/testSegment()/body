@@ -3,8 +3,8 @@
   ArffParser parser=new ArffParser();
   parser.setResponseIndex(19);
   try {
-    AttributeDataset train=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-challenge.arff"));
-    AttributeDataset test=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/segment-test.arff"));
+    AttributeDataset train=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/segment-challenge.arff"));
+    AttributeDataset test=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/segment-test.arff"));
     System.out.println(train.size() + " " + test.size());
     double[][] x=train.toArray(new double[0][]);
     int[] y=train.toArray(new int[0]);

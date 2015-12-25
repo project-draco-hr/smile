@@ -2,7 +2,7 @@
   System.out.println("string");
   try {
     ArffParser arffParser=new ArffParser();
-    AttributeDataset string=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/string.arff"));
+    AttributeDataset string=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/string.arff"));
     double[][] x=string.toArray(new double[string.size()][]);
     for (    Attribute attribute : string.attributes()) {
       assertEquals(Attribute.Type.STRING,attribute.type);

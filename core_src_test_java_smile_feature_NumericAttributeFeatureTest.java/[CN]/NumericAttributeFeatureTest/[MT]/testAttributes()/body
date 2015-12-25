@@ -3,7 +3,7 @@
   DelimitedTextParser parser=new DelimitedTextParser();
   parser.setResponseIndex(new NominalAttribute("class"),0);
   try {
-    AttributeDataset data=parser.parse("USPS Train",this.getClass().getResourceAsStream("/smile/data/usps/zip.train"));
+    AttributeDataset data=parser.parse("USPS Train",smile.data.parser.IOUtils.getDataFile("usps/zip.train"));
     double[][] x=data.toArray(new double[data.size()][]);
     NumericAttributeFeature naf=new NumericAttributeFeature(data.attributes(),NumericAttributeFeature.Scaling.LOGARITHM);
     Attribute[] attributes=naf.attributes();

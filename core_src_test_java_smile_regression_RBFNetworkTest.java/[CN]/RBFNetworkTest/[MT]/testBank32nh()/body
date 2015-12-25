@@ -3,7 +3,7 @@
   ArffParser parser=new ArffParser();
   parser.setResponseIndex(31);
   try {
-    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/regression/bank32nh.arff"));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/regression/bank32nh.arff"));
     double[] datay=data.toArray(new double[data.size()]);
     double[][] datax=data.toArray(new double[data.size()][]);
     Math.normalize(datax);

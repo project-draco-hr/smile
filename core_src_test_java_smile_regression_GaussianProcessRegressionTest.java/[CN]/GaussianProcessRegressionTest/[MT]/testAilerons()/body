@@ -3,7 +3,7 @@
   ArffParser parser=new ArffParser();
   parser.setResponseIndex(40);
   try {
-    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/regression/ailerons.arff"));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/regression/ailerons.arff"));
     double[][] x=data.toArray(new double[data.size()][]);
     Math.normalize(x);
     double[] y=data.toArray(new double[data.size()]);

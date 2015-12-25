@@ -2,7 +2,7 @@
   System.out.println("ROBUST STANDARDIZATION");
   ArffParser parser=new ArffParser();
   try {
-    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream("/smile/data/weka/regression/abalone.arff"));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/regression/abalone.arff"));
     double[][] x=data.toArray(new double[data.size()][]);
     NumericAttributeFeature naf=new NumericAttributeFeature(data.attributes(),x);
     Attribute[] attributes=naf.attributes();

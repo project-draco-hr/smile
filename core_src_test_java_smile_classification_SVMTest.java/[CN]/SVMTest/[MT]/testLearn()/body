@@ -3,7 +3,7 @@
   ArffParser arffParser=new ArffParser();
   arffParser.setResponseIndex(4);
   try {
-    AttributeDataset iris=arffParser.parse(this.getClass().getResourceAsStream("/smile/data/weka/iris.arff"));
+    AttributeDataset iris=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/iris.arff"));
     double[][] x=iris.toArray(new double[iris.size()][]);
     int[] y=iris.toArray(new int[iris.size()]);
     SVM<double[]> svm=new SVM<double[]>(new LinearKernel(),10.0,Math.max(y) + 1,SVM.Multiclass.ONE_VS_ALL);
