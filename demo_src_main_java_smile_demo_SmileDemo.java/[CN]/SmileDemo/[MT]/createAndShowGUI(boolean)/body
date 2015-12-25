@@ -18,7 +18,8 @@
   JFrame frame=new JFrame("Smile Demo");
   frame.setSize(new Dimension(1000,1000));
   frame.setLocationRelativeTo(null);
-  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  if (exitOnClose)   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ else   frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   frame.add(new SmileDemo());
   frame.pack();
   frame.setVisible(true);
