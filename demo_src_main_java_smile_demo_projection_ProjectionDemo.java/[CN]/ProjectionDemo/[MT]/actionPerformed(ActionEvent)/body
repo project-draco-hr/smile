@@ -20,7 +20,7 @@
         parser.setResponseIndex(new NominalAttribute("class"),4);
       }
       try {
-        dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],this.getClass().getResourceAsStream(datasource[datasetIndex]));
+        dataset[datasetIndex]=parser.parse(datasetName[datasetIndex],smile.data.parser.IOUtils.getDataFile(datasource[datasetIndex]));
       }
  catch (      Exception ex) {
         JOptionPane.showMessageDialog(null,"Failed to load dataset.","ERROR",JOptionPane.ERROR_MESSAGE);
