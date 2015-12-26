@@ -19,7 +19,7 @@
         features[i]=attribute;
       }
  else {
-        features[i]=new NumericAttribute(attribute.name + "_" + scaling,attribute.description,attribute.weight);
+        features[i]=new NumericAttribute(attribute.getName() + "_" + scaling,attribute.getDescription(),attribute.getWeight());
       }
       map[i++]=j;
     }

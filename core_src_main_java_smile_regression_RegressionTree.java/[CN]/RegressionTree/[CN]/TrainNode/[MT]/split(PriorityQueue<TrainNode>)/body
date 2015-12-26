@@ -7,7 +7,7 @@
   int fc=0;
   int[] trueSamples=new int[n];
   int[] falseSamples=new int[n];
-  if (attributes[node.splitFeature].type == Attribute.Type.NOMINAL) {
+  if (attributes[node.splitFeature].getType() == Attribute.Type.NOMINAL) {
     for (int i=0; i < n; i++) {
       if (samples[i] > 0) {
         if (x[i][node.splitFeature] == node.splitValue) {
@@ -21,7 +21,7 @@
       }
     }
   }
- else   if (attributes[node.splitFeature].type == Attribute.Type.NUMERIC) {
+ else   if (attributes[node.splitFeature].getType() == Attribute.Type.NUMERIC) {
     for (int i=0; i < n; i++) {
       if (samples[i] > 0) {
         if (x[i][node.splitFeature] <= node.splitValue) {
@@ -36,7 +36,7 @@
     }
   }
  else {
-    throw new IllegalStateException("Unsupported attribute type: " + attributes[node.splitFeature].type);
+    throw new IllegalStateException("Unsupported attribute type: " + attributes[node.splitFeature].getType());
   }
   if (tc == 0 || fc == 0) {
     node.splitFeature=-1;

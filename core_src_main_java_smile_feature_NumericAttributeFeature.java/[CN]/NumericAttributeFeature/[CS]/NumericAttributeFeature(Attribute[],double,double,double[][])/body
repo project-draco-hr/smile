@@ -30,7 +30,7 @@
   for (int i=0, j=0; j < attributes.length; j++) {
     Attribute attribute=attributes[j];
     if (attribute instanceof NumericAttribute) {
-      features[i]=new NumericAttribute(attribute.name + "_" + scaling,attribute.description,attribute.weight);
+      features[i]=new NumericAttribute(attribute.getName() + "_" + scaling,attribute.getDescription(),attribute.getWeight());
       for (int k=0; k < n; k++) {
         x[k]=data[k][j];
       }

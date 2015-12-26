@@ -32,7 +32,7 @@
           attributes[i++]=new NumericAttribute(s[j]);
         }
  else {
-switch (response.type) {
+switch (response.getType()) {
 case NOMINAL:
             response=new NominalAttribute(s[j]);
           break;

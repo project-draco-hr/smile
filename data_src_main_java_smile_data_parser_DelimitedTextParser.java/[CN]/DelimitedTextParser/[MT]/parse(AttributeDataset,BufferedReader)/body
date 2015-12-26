@@ -10,10 +10,6 @@
   String line=null;
   boolean firstLine=true;
   while ((line=reader.readLine()) != null) {
-    if (hasColumnNames && firstLine) {
-      firstLine=false;
-      continue;
-    }
     if (line.isEmpty()) {
       continue;
     }
@@ -23,6 +19,19 @@
     String[] s=line.split(delimiter,0);
     if (s.length != n) {
       throw new ParseException(String.format("%d columns, expected %d",s.length,n),s.length);
+    }
+    if (hasColumnNames && firstLine) {
+      firstLine=false;
+      for (int i=hasRowNames ? 1 : 0, k=0; i < s.length; i++) {
+        if (i == responseIndex) {
+          response.setName(s[i]);
+        }
+ else {
+          attributes[k].setName(s[i]);
+          k++;
+        }
+      }
+      continue;
     }
     String rowName=hasRowNames ? s[0] : null;
     double[] x=new double[attributes.length];
