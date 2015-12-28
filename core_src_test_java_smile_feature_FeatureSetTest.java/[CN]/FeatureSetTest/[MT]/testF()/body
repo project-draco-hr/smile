@@ -13,8 +13,8 @@
     assertEquals(data.getDescription(),dataset.getDescription());
     Attribute[] attributes=features.attributes();
     for (int i=0; i < attributes.length; i++) {
-      assertEquals(attributes[i].name,dataset.attributes()[i].name);
-      assertEquals(attributes[i].type,dataset.attributes()[i].type);
+      assertEquals(attributes[i].getName(),dataset.attributes()[i].getName());
+      assertEquals(attributes[i].getType(),dataset.attributes()[i].getType());
     }
   }
  catch (  Exception ex) {

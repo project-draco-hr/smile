@@ -45,8 +45,7 @@
       }
     }
   }
-  Random random=new Random(Thread.currentThread().getId() * System.currentTimeMillis());
-  int[] index=random.permutate(n);
+  int[] index=Math.permutate(n);
   for (int i=0; i < n; i++) {
     if (weight == null) {
       process(x[index[i]],y[index[i]]);

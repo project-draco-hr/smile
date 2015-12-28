@@ -1,5 +1,3 @@
 {
-synchronized (random) {
-    return random.permutate(n);
-  }
+  return random.get().permutate(n);
 }

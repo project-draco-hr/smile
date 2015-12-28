@@ -1,5 +1,3 @@
 {
-synchronized (random) {
-    return random.nextDouble(lo,hi);
-  }
+  return random.get().nextDouble(lo,hi);
 }

@@ -1,6 +1,4 @@
 {
   int w=hi - lo;
-synchronized (random) {
-    return lo + random.nextInt(w);
-  }
+  return lo + random.get().nextInt(w);
 }

@@ -1,7 +1,5 @@
 {
   double[] x=new double[n];
-synchronized (random) {
-    random.nextDoubles(x,lo,hi);
-  }
+  random.get().nextDoubles(x,lo,hi);
   return x;
 }
