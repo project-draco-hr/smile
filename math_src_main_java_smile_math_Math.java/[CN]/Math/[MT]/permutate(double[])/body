@@ -1,3 +1,5 @@
 {
-  random.permutate(x);
+synchronized (random) {
+    random.permutate(x);
+  }
 }

@@ -1,3 +1,5 @@
 {
-  return random.nextInt(n);
+synchronized (random) {
+    return random.nextInt(n);
+  }
 }
