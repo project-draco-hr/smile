@@ -6,9 +6,9 @@
     AttributeDataset weather=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/weather.nominal.arff"));
     double[][] x=weather.toArray(new double[weather.size()][]);
     int[] y=weather.toArray(new int[weather.size()]);
-    assertEquals(Attribute.Type.NOMINAL,weather.response().type);
+    assertEquals(Attribute.Type.NOMINAL,weather.response().getType());
     for (    Attribute attribute : weather.attributes()) {
-      assertEquals(Attribute.Type.NOMINAL,attribute.type);
+      assertEquals(Attribute.Type.NOMINAL,attribute.getType());
     }
     assertEquals(14,weather.size());
     assertEquals(4,weather.attributes().length);

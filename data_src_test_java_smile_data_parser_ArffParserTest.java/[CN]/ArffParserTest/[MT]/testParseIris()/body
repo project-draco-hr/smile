@@ -6,9 +6,9 @@
     AttributeDataset iris=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/iris.arff"));
     double[][] x=iris.toArray(new double[iris.size()][]);
     int[] y=iris.toArray(new int[iris.size()]);
-    assertEquals(Attribute.Type.NOMINAL,iris.response().type);
+    assertEquals(Attribute.Type.NOMINAL,iris.response().getType());
     for (    Attribute attribute : iris.attributes()) {
-      assertEquals(Attribute.Type.NUMERIC,attribute.type);
+      assertEquals(Attribute.Type.NUMERIC,attribute.getType());
     }
     assertEquals(150,iris.size());
     assertEquals(4,iris.attributes().length);

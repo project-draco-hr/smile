@@ -5,7 +5,7 @@
     AttributeDataset string=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/string.arff"));
     double[][] x=string.toArray(new double[string.size()][]);
     for (    Attribute attribute : string.attributes()) {
-      assertEquals(Attribute.Type.STRING,attribute.type);
+      assertEquals(Attribute.Type.STRING,attribute.getType());
     }
     Attribute[] attributes=string.attributes();
     assertEquals(5,string.size());
