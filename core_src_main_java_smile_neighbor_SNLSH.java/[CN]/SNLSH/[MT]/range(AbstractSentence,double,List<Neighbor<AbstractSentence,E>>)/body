@@ -7,10 +7,9 @@
   for (  int index : candidates) {
     double distance=HammingDistance.d(fpq,signs.get(index));
     if (distance <= radius) {
-      if (keys.get(index).line.equals(q.line) && identicalExcluded) {
-        continue;
+      if (keys.get(index).line != q.line || !identicalExcluded) {
+        neighbors.add(new Neighbor<AbstractSentence,E>(keys.get(index),data.get(index),index,distance));
       }
-      neighbors.add(new Neighbor<AbstractSentence,E>(keys.get(index),data.get(index),index,distance));
     }
   }
 }

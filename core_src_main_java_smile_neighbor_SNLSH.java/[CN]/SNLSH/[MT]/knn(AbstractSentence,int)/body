@@ -13,7 +13,7 @@
   int hit=0;
   for (  int index : candidates) {
     AbstractSentence key=keys.get(index);
-    if (q.line.equals(key.line) && identicalExcluded) {
+    if (q.line == key.line && identicalExcluded) {
       continue;
     }
     long sign=signs.get(index);

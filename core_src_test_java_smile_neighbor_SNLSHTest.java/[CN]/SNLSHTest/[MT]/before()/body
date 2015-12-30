@@ -1,6 +1,6 @@
 {
-  trainData=loadData("/smile/data/msrp/msr_paraphrase_train.txt");
-  testData=loadData("/smile/data/msrp/msr_paraphrase_test.txt");
+  trainData=loadData("msrp/msr_paraphrase_train.txt");
+  testData=loadData("msrp/msr_paraphrase_test.txt");
   signCache=new HashMap<String,Long>();
   for (  Sentence sentence : trainData) {
     long sign=simhash64(sentence.tokens);

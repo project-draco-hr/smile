@@ -202,4 +202,6 @@
   category.add(algorithm);
   algorithm=new DefaultMutableTreeNode(new SurfaceDemo());
   category.add(algorithm);
+  algorithm=new DefaultMutableTreeNode(new SparseMatrixPlotDemo());
+  category.add(algorithm);
 }

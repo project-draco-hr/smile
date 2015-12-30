@@ -16,10 +16,9 @@
       if (bin != null) {
         for (        HashEntry e : bin) {
           if (e.bucket == bucket) {
-            if (q == e.key && identicalExcluded) {
-              continue;
+            if (q != e.key || identicalExcluded) {
+              candidates.add(e.index);
             }
-            candidates.add(e.index);
           }
         }
       }
