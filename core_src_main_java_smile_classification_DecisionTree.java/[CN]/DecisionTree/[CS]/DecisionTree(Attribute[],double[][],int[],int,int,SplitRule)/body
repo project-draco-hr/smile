@@ -1,0 +1,3 @@
+{
+  this(attributes,x,y,maxNodes,nodeSize,x[0].length,rule,null,null);
+}

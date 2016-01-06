@@ -2,6 +2,7 @@
   if (posteriori.length != k) {
     throw new IllegalArgumentException(String.format("Invalid posteriori vector size: %d, expected: %d",posteriori.length,k));
   }
+  Arrays.fill(posteriori,0.0);
   int[] y=new int[k];
   double[] pos=new double[k];
   for (  DecisionTree tree : trees) {

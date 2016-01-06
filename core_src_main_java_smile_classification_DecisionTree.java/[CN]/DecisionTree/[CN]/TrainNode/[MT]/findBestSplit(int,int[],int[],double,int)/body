@@ -12,7 +12,7 @@
     for (int l=0; l < m; l++) {
       int tc=Math.sum(trueCount[l]);
       int fc=n - tc;
-      if (tc == 0 || fc == 0) {
+      if (tc < nodeSize || fc < nodeSize) {
         continue;
       }
       for (int q=0; q < k; q++) {
@@ -44,7 +44,7 @@
         }
         int tc=Math.sum(trueCount);
         int fc=n - tc;
-        if (tc == 0 || fc == 0) {
+        if (tc < nodeSize || fc < nodeSize) {
           prevx=x[i][j];
           prevy=y[i];
           trueCount[y[i]]+=samples[i];

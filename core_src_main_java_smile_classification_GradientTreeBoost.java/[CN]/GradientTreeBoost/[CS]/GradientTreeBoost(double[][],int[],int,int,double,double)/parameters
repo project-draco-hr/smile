@@ -1,6 +1,6 @@
 double[][] x
 int[] y
-int T
-int J
+int ntrees
+int maxNodes
 double shrinkage
 double f

@@ -18,7 +18,8 @@
       AdaBoost forest=new AdaBoost(iris.attributes(),trainx,trainy,200);
       if (y[loocv.test[i]] != forest.predict(x[loocv.test[i]]))       error++;
     }
-    System.out.println("Decision Tree error = " + error);
+    System.out.println("AdaBoost error = " + error);
+    assertEquals(0,error);
   }
  catch (  Exception ex) {
     System.err.println(ex);

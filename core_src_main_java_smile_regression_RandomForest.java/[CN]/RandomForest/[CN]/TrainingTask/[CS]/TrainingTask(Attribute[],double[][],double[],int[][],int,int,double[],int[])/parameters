@@ -1,8 +1,0 @@
-Attribute[] attributes
-double[][] x
-double[] y
-int[][] order
-int M
-int S
-double[] prediction
-int[] oob

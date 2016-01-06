@@ -46,6 +46,7 @@
     for (int i=importance.length; i-- > 0; ) {
       System.out.format("%s importance is %.4f\n",train.attributes()[index[i]],importance[i]);
     }
+    assertTrue(error <= 150);
   }
  catch (  Exception ex) {
     System.err.println(ex);

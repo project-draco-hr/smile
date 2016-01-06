@@ -1,0 +1,10 @@
+Attribute[] attributes
+double[][] x
+int[] y
+int maxNodes
+int nodeSize
+int mtry
+DecisionTree.SplitRule rule
+int[] classWeight
+int[][] order
+int[][] prediction

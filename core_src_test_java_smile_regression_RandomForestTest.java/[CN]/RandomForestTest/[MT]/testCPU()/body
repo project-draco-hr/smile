@@ -21,7 +21,7 @@
       testx[i - m]=datax[index[i]];
       testy[i - m]=datay[index[i]];
     }
-    RandomForest forest=new RandomForest(data.attributes(),trainx,trainy,100,trainx[0].length / 3,5);
+    RandomForest forest=new RandomForest(data.attributes(),trainx,trainy,100,trainx[0].length / 3,5,n);
     System.out.format("RMSE = %.4f\n",Validation.test(forest,testx,testy));
     double[] rmse=forest.test(testx,testy);
     for (int i=1; i <= rmse.length; i++) {

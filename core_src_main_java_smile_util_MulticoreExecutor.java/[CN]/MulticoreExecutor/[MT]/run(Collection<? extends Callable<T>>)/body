@@ -1,4 +1,5 @@
 {
+  createThreadPool();
   List<T> results=new ArrayList<T>();
   if (threads == null) {
     for (    Callable<T> task : tasks) {

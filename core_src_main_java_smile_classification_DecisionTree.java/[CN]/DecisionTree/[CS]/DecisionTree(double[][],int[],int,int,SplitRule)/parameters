@@ -1,0 +1,5 @@
+double[][] x
+int[] y
+int maxNodes
+int nodeSize
+SplitRule rule

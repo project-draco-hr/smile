@@ -2,7 +2,7 @@ Attribute[] attributes
 double[][] x
 double[] y
 Loss loss
-int T
-int J
+int ntrees
+int maxNodes
 double shrinkage
 double f

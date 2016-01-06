@@ -1,3 +1,3 @@
 {
-  return new RandomForest(attributes,x,y,T,M,S);
+  return new RandomForest(attributes,x,y,ntrees,maxNodes,nodeSize,mtry);
 }

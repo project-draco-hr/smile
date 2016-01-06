@@ -16,8 +16,8 @@
     }
   }
   this.loss=loss;
-  this.T=T;
-  this.J=J;
+  this.ntrees=ntrees;
+  this.maxNodes=maxNodes;
   this.shrinkage=shrinkage;
   this.f=f;
   int n=x.length;
@@ -56,8 +56,8 @@
     }
   }
   int[][] order=SmileUtils.sort(attributes,x);
-  trees=new RegressionTree[T];
-  for (int m=0; m < T; m++) {
+  trees=new RegressionTree[ntrees];
+  for (int m=0; m < ntrees; m++) {
     Arrays.fill(samples,0);
     Math.permutate(perm);
     for (int i=0; i < N; i++) {
@@ -66,7 +66,7 @@
     if (loss == Loss.Huber) {
       output=new HuberNodeOutput(residual,response,0.9);
     }
-    trees[m]=new RegressionTree(attributes,x,response,J,order,samples,output);
+    trees[m]=new RegressionTree(attributes,x,response,maxNodes,5,x[0].length,order,samples,output);
     for (int i=0; i < n; i++) {
       residual[i]-=shrinkage * trees[m].predict(x[i]);
       if (loss == Loss.LeastAbsoluteDeviation) {

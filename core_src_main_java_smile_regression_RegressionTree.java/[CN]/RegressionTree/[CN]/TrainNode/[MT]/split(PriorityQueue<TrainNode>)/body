@@ -38,7 +38,7 @@
  else {
     throw new IllegalStateException("Unsupported attribute type: " + attributes[node.splitFeature].getType());
   }
-  if (tc == 0 || fc == 0) {
+  if (tc < nodeSize || fc < nodeSize) {
     node.splitFeature=-1;
     node.splitValue=Double.NaN;
     node.splitScore=0.0;
@@ -47,7 +47,7 @@
   node.trueChild=new Node(node.trueChildOutput);
   node.falseChild=new Node(node.falseChildOutput);
   trueChild=new TrainNode(node.trueChild,x,y,trueSamples);
-  if (tc > S && trueChild.findBestSplit()) {
+  if (tc > nodeSize && trueChild.findBestSplit()) {
     if (nextSplits != null) {
       nextSplits.add(trueChild);
     }
@@ -56,7 +56,7 @@
     }
   }
   falseChild=new TrainNode(node.falseChild,x,y,falseSamples);
-  if (fc > S && falseChild.findBestSplit()) {
+  if (fc > nodeSize && falseChild.findBestSplit()) {
     if (nextSplits != null) {
       nextSplits.add(falseChild);
     }

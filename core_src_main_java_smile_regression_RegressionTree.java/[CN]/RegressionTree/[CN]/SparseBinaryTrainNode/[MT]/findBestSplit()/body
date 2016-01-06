@@ -27,7 +27,7 @@
   for (int i=0; i < p; ++i) {
     double tc=(double)trueCount[i];
     double fc=n - tc;
-    if ((tc < 2) || (fc < 2)) {
+    if (tc < nodeSize || fc < nodeSize) {
       continue;
     }
     double trueMean=trueSum[i] / tc;

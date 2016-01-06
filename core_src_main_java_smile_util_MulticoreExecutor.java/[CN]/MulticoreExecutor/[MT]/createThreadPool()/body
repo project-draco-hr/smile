@@ -1,0 +1,23 @@
+{
+  if (nprocs == -1) {
+    int n=-1;
+    try {
+      String env=System.getProperty("smile.threads");
+      if (env != null) {
+        n=Integer.parseInt(env);
+      }
+    }
+ catch (    Exception ex) {
+      System.err.println(ex);
+    }
+    if (n < 1) {
+      nprocs=Runtime.getRuntime().availableProcessors();
+    }
+ else {
+      nprocs=n;
+    }
+    if (nprocs > 1) {
+      threads=(ThreadPoolExecutor)Executors.newFixedThreadPool(nprocs,new SimpleDeamonThreadFactory());
+    }
+  }
+}

@@ -1,4 +1,4 @@
 Attribute[] attributes
 double[][] x
 int[] y
-int J
+int maxNodes

@@ -1,4 +1,4 @@
 {
-  test("CPU","/smile/data/weka/cpu.arff",6);
-  test("autoMPG","/smile/data/weka/regression/autoMpg.arff",7);
+  test("CPU","weka/cpu.arff",6);
+  test("autoMPG","weka/regression/autoMpg.arff",7);
 }

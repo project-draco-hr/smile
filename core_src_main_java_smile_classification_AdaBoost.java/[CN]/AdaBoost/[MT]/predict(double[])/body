@@ -1,16 +1,7 @@
 {
-  if (k == 2) {
-    double y=0.0;
-    for (int i=0; i < trees.length; i++) {
-      y+=alpha[i] * trees[i].predict(x);
-    }
-    return y > 0 ? 1 : 0;
+  double[] y=new double[k];
+  for (int i=0; i < trees.length; i++) {
+    y[trees[i].predict(x)]+=alpha[i];
   }
- else {
-    double[] y=new double[k];
-    for (int i=0; i < trees.length; i++) {
-      y[trees[i].predict(x)]+=alpha[i];
-    }
-    return Math.whichMax(y);
-  }
+  return Math.whichMax(y);
 }

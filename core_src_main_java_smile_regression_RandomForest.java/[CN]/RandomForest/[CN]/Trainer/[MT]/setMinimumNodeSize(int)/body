@@ -1,7 +1,0 @@
-{
-  if (S <= 0) {
-    throw new IllegalArgumentException("Invalid minimum size of leaf nodes: " + S);
-  }
-  this.S=S;
-  return this;
-}

@@ -1,0 +1,4 @@
+double[][] x
+double[] y
+int maxNodes
+int nodeSize

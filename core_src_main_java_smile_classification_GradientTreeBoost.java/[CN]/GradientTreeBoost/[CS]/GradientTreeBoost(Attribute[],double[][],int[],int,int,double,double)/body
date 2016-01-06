@@ -2,6 +2,12 @@
   if (x.length != y.length) {
     throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
   }
+  if (ntrees < 1) {
+    throw new IllegalArgumentException("Invalid number of trees: " + ntrees);
+  }
+  if (maxNodes < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + maxNodes);
+  }
   if (shrinkage <= 0 || shrinkage > 1) {
     throw new IllegalArgumentException("Invalid shrinkage: " + shrinkage);
   }
@@ -15,8 +21,8 @@
       attributes[i]=new NumericAttribute("V" + (i + 1));
     }
   }
-  this.T=T;
-  this.J=J;
+  this.ntrees=ntrees;
+  this.maxNodes=maxNodes;
   this.shrinkage=shrinkage;
   this.f=f;
   this.k=Math.max(y) + 1;

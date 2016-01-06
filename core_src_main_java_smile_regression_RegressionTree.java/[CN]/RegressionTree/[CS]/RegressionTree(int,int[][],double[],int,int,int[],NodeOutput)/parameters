@@ -1,0 +1,7 @@
+int numFeatures
+int[][] x
+double[] y
+int maxNodes
+int nodeSize
+int[] samples
+NodeOutput output

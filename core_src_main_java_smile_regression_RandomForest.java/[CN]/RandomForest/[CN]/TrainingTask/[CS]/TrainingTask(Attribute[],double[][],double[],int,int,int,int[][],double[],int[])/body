@@ -1,0 +1,11 @@
+{
+  this.attributes=attributes;
+  this.x=x;
+  this.y=y;
+  this.order=order;
+  this.mtry=mtry;
+  this.nodeSize=nodeSize;
+  this.maxNodes=maxNodes;
+  this.prediction=prediction;
+  this.oob=oob;
+}

@@ -17,11 +17,16 @@
     return false;
   }
   int n=0;
+  for (  int s : samples) {
+    n+=s;
+  }
+  if (n <= nodeSize) {
+    return false;
+  }
   int[] count=new int[k];
   int[] falseCount=new int[k];
   for (int i=0; i < N; i++) {
     if (samples[i] > 0) {
-      n+=samples[i];
       count[y[i]]+=samples[i];
     }
   }
@@ -31,9 +36,9 @@
   for (int i=0; i < p; i++) {
     variables[i]=i;
   }
-  if (M < p) {
+  if (mtry < p) {
     Math.permutate(variables);
-    for (int j=0; j < M; j++) {
+    for (int j=0; j < mtry; j++) {
       Node split=findBestSplit(n,count,falseCount,impurity,variables[j]);
       if (split.splitScore > node.splitScore) {
         node.splitFeature=split.splitFeature;
@@ -45,8 +50,8 @@
     }
   }
  else {
-    List<SplitTask> tasks=new ArrayList<SplitTask>(M);
-    for (int j=0; j < M; j++) {
+    List<SplitTask> tasks=new ArrayList<SplitTask>(mtry);
+    for (int j=0; j < mtry; j++) {
       tasks.add(new SplitTask(n,count,impurity,variables[j]));
     }
     try {
@@ -61,7 +66,7 @@
       }
     }
  catch (    Exception ex) {
-      for (int j=0; j < M; j++) {
+      for (int j=0; j < mtry; j++) {
         Node split=findBestSplit(n,count,falseCount,impurity,variables[j]);
         if (split.splitScore > node.splitScore) {
           node.splitFeature=split.splitFeature;

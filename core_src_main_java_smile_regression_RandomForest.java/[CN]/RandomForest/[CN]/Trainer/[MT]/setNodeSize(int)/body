@@ -1,0 +1,7 @@
+{
+  if (nodeSize < 1) {
+    throw new IllegalArgumentException("Invalid minimum size of leaf nodes: " + nodeSize);
+  }
+  this.nodeSize=nodeSize;
+  return this;
+}

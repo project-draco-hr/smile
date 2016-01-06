@@ -1,26 +1,25 @@
 {
+  if (ntrees < 1) {
+    throw new IllegalArgumentException("Invalid new model size: " + ntrees);
+  }
   if (k == 2) {
-    if (T > trees.length) {
+    if (ntrees > trees.length) {
       throw new IllegalArgumentException("The new model size is larger than the current size.");
     }
-    if (T <= 0) {
-      throw new IllegalArgumentException("Invalid new model size: " + T);
-    }
-    if (T < trees.length) {
-      trees=Arrays.copyOf(trees,T);
+    if (ntrees < trees.length) {
+      trees=Arrays.copyOf(trees,ntrees);
+      this.ntrees=ntrees;
     }
   }
  else {
-    if (T > forest[0].length) {
+    if (ntrees > forest[0].length) {
       throw new IllegalArgumentException("The new model size is larger than the current one.");
     }
-    if (T <= 0) {
-      throw new IllegalArgumentException("Invalid new model size: " + T);
-    }
-    if (T < forest[0].length) {
+    if (ntrees < forest[0].length) {
       for (int i=0; i < forest.length; i++) {
-        forest[i]=Arrays.copyOf(forest[i],T);
+        forest[i]=Arrays.copyOf(forest[i],ntrees);
       }
+      this.ntrees=ntrees;
     }
   }
 }

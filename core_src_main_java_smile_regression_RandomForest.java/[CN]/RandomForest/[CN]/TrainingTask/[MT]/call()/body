@@ -4,7 +4,7 @@
   for (int i=0; i < n; i++) {
     samples[Math.randomInt(n)]++;
   }
-  RegressionTree tree=new RegressionTree(attributes,x,y,M,S,order,samples);
+  RegressionTree tree=new RegressionTree(attributes,x,y,maxNodes,nodeSize,mtry,order,samples,null);
   for (int i=0; i < n; i++) {
     if (samples[i] == 0) {
       double pred=tree.predict(x[i]);

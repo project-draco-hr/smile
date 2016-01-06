@@ -1,7 +1,7 @@
 {
   super(attributes);
-  if (T < 1) {
-    throw new IllegalArgumentException("Invalid number of trees: " + T);
+  if (ntrees < 1) {
+    throw new IllegalArgumentException("Invalid number of trees: " + ntrees);
   }
-  this.T=T;
+  this.ntrees=ntrees;
 }

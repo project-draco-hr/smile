@@ -1,7 +1,7 @@
 {
-  if (M < 1) {
-    throw new IllegalArgumentException("Invalid number of random selected features for splitting: " + M);
+  if (mtry < 1) {
+    throw new IllegalArgumentException("Invalid number of random selected features for splitting: " + mtry);
   }
-  this.M=M;
+  this.mtry=mtry;
   return this;
 }

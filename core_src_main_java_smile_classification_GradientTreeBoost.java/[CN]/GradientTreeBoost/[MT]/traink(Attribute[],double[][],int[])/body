@@ -5,7 +5,7 @@
   double[][] p=new double[k][n];
   double[][] response=new double[k][n];
   int[][] order=SmileUtils.sort(attributes,x);
-  forest=new RegressionTree[k][T];
+  forest=new RegressionTree[k][ntrees];
   RegressionTree.NodeOutput[] output=new LKNodeOutput[k];
   for (int i=0; i < k; i++) {
     output[i]=new LKNodeOutput(response[i]);
@@ -15,7 +15,7 @@
   for (int i=0; i < n; i++) {
     perm[i]=i;
   }
-  for (int m=0; m < T; m++) {
+  for (int m=0; m < ntrees; m++) {
     for (int i=0; i < n; i++) {
       double max=Double.NEGATIVE_INFINITY;
       for (int j=0; j < k; j++) {
@@ -47,7 +47,7 @@
       for (int i=0; i < N; i++) {
         samples[perm[i]]=1;
       }
-      forest[j][m]=new RegressionTree(attributes,x,response[j],J,order,samples,output[j]);
+      forest[j][m]=new RegressionTree(attributes,x,response[j],maxNodes,5,x[0].length,order,samples,output[j]);
       for (int i=0; i < n; i++) {
         h[j][i]+=shrinkage * forest[j][m].predict(x[i]);
       }

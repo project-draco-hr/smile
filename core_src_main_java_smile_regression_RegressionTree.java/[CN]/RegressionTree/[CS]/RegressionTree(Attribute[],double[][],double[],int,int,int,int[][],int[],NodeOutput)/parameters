@@ -1,0 +1,9 @@
+Attribute[] attributes
+double[][] x
+double[] y
+int maxNodes
+int nodeSize
+int mtry
+int[][] order
+int[] samples
+NodeOutput output

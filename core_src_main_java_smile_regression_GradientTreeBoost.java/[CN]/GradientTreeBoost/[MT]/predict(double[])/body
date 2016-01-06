@@ -1,6 +1,6 @@
 {
   double y=b;
-  for (int i=0; i < T; i++) {
+  for (int i=0; i < ntrees; i++) {
     y+=shrinkage * trees[i].predict(x);
   }
   return y;

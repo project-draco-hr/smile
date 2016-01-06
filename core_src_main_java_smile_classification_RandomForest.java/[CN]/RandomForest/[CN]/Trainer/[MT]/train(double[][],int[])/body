@@ -1,8 +1,3 @@
 {
-  if (M < 0) {
-    return new RandomForest(attributes,x,y,T);
-  }
- else {
-    return new RandomForest(attributes,x,y,T,M);
-  }
+  return new RandomForest(attributes,x,y,ntrees,maxNodes,nodeSize,mtry,rule,null);
 }

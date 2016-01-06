@@ -1,11 +1,12 @@
 {
-  if (T > trees.length) {
+  if (ntrees > trees.length) {
     throw new IllegalArgumentException("The new model size is larger than the current size.");
   }
-  if (T <= 0) {
-    throw new IllegalArgumentException("Invalid new model size: " + T);
+  if (ntrees < 1) {
+    throw new IllegalArgumentException("Invalid new model size: " + ntrees);
   }
-  if (T < trees.length) {
-    trees=Arrays.copyOf(trees,T);
+  if (ntrees < trees.length) {
+    trees=Arrays.copyOf(trees,ntrees);
+    this.ntrees=ntrees;
   }
 }

@@ -1,12 +1,12 @@
 {
-  if (T > trees.size()) {
+  if (ntrees > trees.size()) {
     throw new IllegalArgumentException("The new model size is larger than the current size.");
   }
-  if (T <= 0) {
-    throw new IllegalArgumentException("Invalid new model size: " + T);
+  if (ntrees <= 0) {
+    throw new IllegalArgumentException("Invalid new model size: " + ntrees);
   }
-  List<RegressionTree> model=new ArrayList<RegressionTree>(T);
-  for (int i=0; i < T; i++) {
+  List<RegressionTree> model=new ArrayList<RegressionTree>(ntrees);
+  for (int i=0; i < ntrees; i++) {
     model.add(trees.get(i));
   }
   trees=model;

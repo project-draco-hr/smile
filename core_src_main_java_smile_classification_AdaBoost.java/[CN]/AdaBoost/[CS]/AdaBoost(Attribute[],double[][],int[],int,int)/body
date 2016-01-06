@@ -2,11 +2,11 @@
   if (x.length != y.length) {
     throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
   }
-  if (T < 1) {
-    throw new IllegalArgumentException("Invlaid number of trees: " + T);
+  if (maxNodes < 1) {
+    throw new IllegalArgumentException("Invalid number of trees: " + maxNodes);
   }
-  if (J < 2) {
-    throw new IllegalArgumentException("Invalid maximum leaves: " + J);
+  if (maxNodes < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + maxNodes);
   }
   int[] labels=Math.unique(y);
   Arrays.sort(labels);
@@ -39,10 +39,10 @@
   }
   double guess=1.0 / k;
   double b=Math.log(k - 1);
-  trees=new DecisionTree[T];
-  alpha=new double[T];
-  error=new double[T];
-  for (int t=0; t < T; t++) {
+  trees=new DecisionTree[ntrees];
+  alpha=new double[ntrees];
+  error=new double[ntrees];
+  for (int t=0; t < ntrees; t++) {
     double W=Math.sum(w);
     for (int i=0; i < n; i++) {
       w[i]/=W;
@@ -52,7 +52,7 @@
     for (    int s : rand) {
       samples[s]++;
     }
-    trees[t]=new DecisionTree(attributes,x,y,J,DecisionTree.SplitRule.GINI,samples,order);
+    trees[t]=new DecisionTree(attributes,x,y,maxNodes,1,x[0].length,DecisionTree.SplitRule.GINI,samples,order);
     for (int i=0; i < n; i++) {
       err[i]=trees[t].predict(x[i]) != y[i];
     }

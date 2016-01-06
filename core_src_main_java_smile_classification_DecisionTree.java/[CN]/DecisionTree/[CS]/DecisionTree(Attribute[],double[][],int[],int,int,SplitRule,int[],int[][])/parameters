@@ -1,8 +1,0 @@
-Attribute[] attributes
-double[][] x
-int[] y
-int M
-int J
-SplitRule rule
-int[] samples
-int[][] order

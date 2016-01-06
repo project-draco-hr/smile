@@ -4,7 +4,7 @@
   }
   if (k == 2) {
     double y=b;
-    for (int i=0; i < T; i++) {
+    for (int i=0; i < ntrees; i++) {
       y+=shrinkage * trees[i].predict(x);
     }
     posteriori[0]=1.0 / (1.0 + Math.exp(2 * y));
@@ -21,7 +21,7 @@
     int y=-1;
     for (int j=0; j < k; j++) {
       posteriori[j]=0.0;
-      for (int i=0; i < T; i++) {
+      for (int i=0; i < ntrees; i++) {
         posteriori[j]+=shrinkage * forest[j][i].predict(x);
       }
       if (posteriori[j] > max) {

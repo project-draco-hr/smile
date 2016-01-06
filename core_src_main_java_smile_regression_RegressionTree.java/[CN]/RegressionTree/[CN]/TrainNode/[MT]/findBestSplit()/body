@@ -3,7 +3,7 @@
   for (  int s : samples) {
     n+=s;
   }
-  if (n <= S) {
+  if (n <= nodeSize) {
     return false;
   }
   double sum=node.output * n;
@@ -12,9 +12,9 @@
   for (int i=0; i < p; i++) {
     variables[i]=i;
   }
-  if (M < p) {
+  if (mtry < p) {
     Math.permutate(variables);
-    for (int j=0; j < M; j++) {
+    for (int j=0; j < mtry; j++) {
       Node split=findBestSplit(n,sum,variables[j]);
       if (split.splitScore > node.splitScore) {
         node.splitFeature=split.splitFeature;
@@ -26,8 +26,8 @@
     }
   }
  else {
-    List<SplitTask> tasks=new ArrayList<SplitTask>(M);
-    for (int j=0; j < M; j++) {
+    List<SplitTask> tasks=new ArrayList<SplitTask>(mtry);
+    for (int j=0; j < mtry; j++) {
       tasks.add(new SplitTask(n,sum,variables[j]));
     }
     try {
@@ -42,7 +42,7 @@
       }
     }
  catch (    Exception ex) {
-      for (int j=0; j < M; j++) {
+      for (int j=0; j < mtry; j++) {
         Node split=findBestSplit(n,sum,variables[j]);
         if (split.splitScore > node.splitScore) {
           node.splitFeature=split.splitFeature;

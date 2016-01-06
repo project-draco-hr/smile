@@ -3,7 +3,7 @@
   ArffParser parser=new ArffParser();
   parser.setResponseIndex(response);
   try {
-    AttributeDataset data=parser.parse(this.getClass().getResourceAsStream(url));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile(url));
     double[] datay=data.toArray(new double[data.size()]);
     double[][] datax=data.toArray(new double[data.size()][]);
     int n=datax.length;
@@ -16,7 +16,7 @@
       double[] trainy=Math.slice(datay,cv.train[i]);
       double[][] testx=Math.slice(datax,cv.test[i]);
       double[] testy=Math.slice(datay,cv.test[i]);
-      RandomForest forest=new RandomForest(data.attributes(),trainx,trainy,200,trainx[0].length / 3,5);
+      RandomForest forest=new RandomForest(data.attributes(),trainx,trainy,200,trainx[0].length / 3,5,n);
       System.out.format("OOB error rate = %.4f\n",forest.error());
       for (int j=0; j < testx.length; j++) {
         double r=testy[j] - forest.predict(testx[j]);

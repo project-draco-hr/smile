@@ -1,0 +1,75 @@
+{
+  if (x.length != y.length) {
+    throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));
+  }
+  if (mtry < 1 || mtry > x[0].length) {
+    throw new IllegalArgumentException("Invalid number of variables to split on at a node of the tree: " + mtry);
+  }
+  if (maxNodes < 2) {
+    throw new IllegalArgumentException("Invalid maximum leaves: " + maxNodes);
+  }
+  if (nodeSize < 2) {
+    throw new IllegalArgumentException("Invalid minimum size of leaf nodes: " + nodeSize);
+  }
+  if (attributes == null) {
+    int p=x[0].length;
+    attributes=new Attribute[p];
+    for (int i=0; i < p; i++) {
+      attributes[i]=new NumericAttribute("V" + (i + 1));
+    }
+  }
+  this.attributes=attributes;
+  this.maxNodes=maxNodes;
+  this.nodeSize=nodeSize;
+  this.mtry=mtry;
+  importance=new double[attributes.length];
+  if (order != null) {
+    this.order=order;
+  }
+ else {
+    int n=x.length;
+    int p=x[0].length;
+    double[] a=new double[n];
+    this.order=new int[p][];
+    for (int j=0; j < p; j++) {
+      if (attributes[j] instanceof NumericAttribute) {
+        for (int i=0; i < n; i++) {
+          a[i]=x[i][j];
+        }
+        this.order[j]=QuickSort.sort(a);
+      }
+    }
+  }
+  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<TrainNode>();
+  int n=0;
+  double sum=0.0;
+  if (samples == null) {
+    n=y.length;
+    samples=new int[n];
+    for (int i=0; i < n; i++) {
+      samples[i]=1;
+      sum+=y[i];
+    }
+  }
+ else {
+    for (int i=0; i < y.length; i++) {
+      n+=samples[i];
+      sum+=samples[i] * y[i];
+    }
+  }
+  root=new Node(sum / n);
+  TrainNode trainRoot=new TrainNode(root,x,y,samples);
+  if (trainRoot.findBestSplit()) {
+    nextSplits.add(trainRoot);
+  }
+  for (int leaves=1; leaves < this.maxNodes; leaves++) {
+    TrainNode node=nextSplits.poll();
+    if (node == null) {
+      break;
+    }
+    node.split(nextSplits);
+  }
+  if (output != null) {
+    trainRoot.calculateOutput(output);
+  }
+}

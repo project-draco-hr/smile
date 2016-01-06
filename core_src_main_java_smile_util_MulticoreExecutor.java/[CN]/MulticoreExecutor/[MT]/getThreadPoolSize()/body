@@ -1,3 +1,4 @@
 {
+  createThreadPool();
   return nprocs;
 }

@@ -1,7 +1,0 @@
-Attribute[] attributes
-double[][] x
-double[] y
-int M
-int S
-int[][] order
-int[] samples

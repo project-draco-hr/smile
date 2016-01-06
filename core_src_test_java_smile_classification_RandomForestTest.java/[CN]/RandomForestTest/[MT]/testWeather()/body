@@ -16,6 +16,7 @@
       if (y[loocv.test[i]] != forest.predict(x[loocv.test[i]]))       error++;
     }
     System.out.println("Random Forest error = " + error);
+    assertTrue(error <= 7);
   }
  catch (  Exception ex) {
     System.err.println(ex);

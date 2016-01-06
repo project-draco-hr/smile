@@ -1,7 +1,0 @@
-Attribute[] attributes
-double[][] x
-double[] y
-int J
-int[][] order
-int[] samples
-NodeOutput output

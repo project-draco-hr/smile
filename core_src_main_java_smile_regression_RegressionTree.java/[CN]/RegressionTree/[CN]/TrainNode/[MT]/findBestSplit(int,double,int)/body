@@ -16,7 +16,7 @@
     for (int k=0; k < m; k++) {
       double tc=(double)trueCount[k];
       double fc=n - tc;
-      if (tc == 0 || fc == 0) {
+      if (tc < nodeSize || fc < nodeSize) {
         continue;
       }
       double trueMean=trueSum[k] / tc;
@@ -44,7 +44,7 @@
           continue;
         }
         double falseCount=n - trueCount;
-        if (trueCount == 0 || falseCount == 0) {
+        if (trueCount < nodeSize || falseCount < nodeSize) {
           prevx=x[i][j];
           trueSum+=samples[i] * y[i];
           trueCount+=samples[i];

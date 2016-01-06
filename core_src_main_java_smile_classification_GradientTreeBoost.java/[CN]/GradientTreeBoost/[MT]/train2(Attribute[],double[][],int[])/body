@@ -20,13 +20,13 @@
   }
   int[][] order=SmileUtils.sort(attributes,x);
   RegressionTree.NodeOutput output=new L2NodeOutput(response);
-  trees=new RegressionTree[T];
+  trees=new RegressionTree[ntrees];
   int[] perm=new int[n];
   int[] samples=new int[n];
   for (int i=0; i < n; i++) {
     perm[i]=i;
   }
-  for (int m=0; m < T; m++) {
+  for (int m=0; m < ntrees; m++) {
     Arrays.fill(samples,0);
     Math.permutate(perm);
     for (int i=0; i < N; i++) {
@@ -35,7 +35,7 @@
     for (int i=0; i < n; i++) {
       response[i]=2.0 * y[i] / (1 + Math.exp(2 * y[i] * h[i]));
     }
-    trees[m]=new RegressionTree(attributes,x,response,J,order,samples,output);
+    trees[m]=new RegressionTree(attributes,x,response,maxNodes,5,x[0].length,order,samples,output);
     for (int i=0; i < n; i++) {
       h[i]+=shrinkage * trees[m].predict(x[i]);
     }

@@ -25,7 +25,7 @@
   node.trueChild=new Node(node.trueChildOutput);
   node.falseChild=new Node(node.falseChildOutput);
   trueChild=new SparseBinaryTrainNode(node.trueChild,x,y,trueSamples);
-  if (tc > S && trueChild.findBestSplit()) {
+  if (tc > nodeSize && trueChild.findBestSplit()) {
     if (nextSplits != null) {
       nextSplits.add(trueChild);
     }
@@ -34,7 +34,7 @@
     }
   }
   falseChild=new SparseBinaryTrainNode(node.falseChild,x,y,falseSamples);
-  if (fc > S && falseChild.findBestSplit()) {
+  if (fc > nodeSize && falseChild.findBestSplit()) {
     if (nextSplits != null) {
       nextSplits.add(falseChild);
     }

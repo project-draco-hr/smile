@@ -1,2 +1,2 @@
 int numFeatures
-int J
+int maxNodes

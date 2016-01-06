@@ -27,7 +27,7 @@
     for (int i=0; i < attributes.length; i++) {
       attributes[i]=new NominalAttribute("V" + i,values);
     }
-    DecisionTree tree=new DecisionTree(attributes,x,y,350,DecisionTree.SplitRule.ENTROPY);
+    DecisionTree tree=new DecisionTree(attributes,x,y,350,2,DecisionTree.SplitRule.ENTROPY);
     int error=0;
     for (int i=0; i < testx.length; i++) {
       if (tree.predict(testx[i]) != testy[i]) {
@@ -40,7 +40,7 @@
     for (int i=importance.length; i-- > 0; ) {
       System.out.format("%s importance is %.4f\n",train.attributes()[index[i]],importance[i]);
     }
-    assertEquals(337,error);
+    assertEquals(329,error);
   }
  catch (  Exception ex) {
     System.err.println(ex);

@@ -1,6 +1,6 @@
 {
-  if (J < 2) {
-    throw new IllegalArgumentException("Invalid number of leaf nodes: " + J);
+  if (maxNodes < 2) {
+    throw new IllegalArgumentException("Invalid maximum number of leaf nodes: " + maxNodes);
   }
-  this.J=J;
+  this.maxNodes=maxNodes;
 }

@@ -1,0 +1,3 @@
+{
+  this(numFeatures,x,y,maxNodes,nodeSize,null,null);
+}
