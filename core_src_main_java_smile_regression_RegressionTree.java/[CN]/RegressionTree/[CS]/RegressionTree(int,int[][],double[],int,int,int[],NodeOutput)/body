@@ -11,6 +11,7 @@
   this.maxNodes=maxNodes;
   this.nodeSize=nodeSize;
   this.numFeatures=numFeatures;
+  this.mtry=numFeatures;
   importance=new double[numFeatures];
   PriorityQueue<SparseBinaryTrainNode> nextSplits=new PriorityQueue<SparseBinaryTrainNode>();
   int n=0;
