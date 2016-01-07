@@ -51,7 +51,7 @@
   }
  catch (  Exception ex) {
     System.err.println(ex);
-    trees=new ArrayList<DecisionTree>(ntrees);
+    trees=new ArrayList<Tree>(ntrees);
     for (int i=0; i < ntrees; i++) {
       trees.add(tasks.get(i).call());
     }
@@ -70,8 +70,8 @@
     error/=m;
   }
   importance=new double[attributes.length];
-  for (  DecisionTree tree : trees) {
-    double[] imp=tree.importance();
+  for (  Tree tree : trees) {
+    double[] imp=tree.tree.importance();
     for (int i=0; i < imp.length; i++) {
       importance[i]+=imp[i];
     }

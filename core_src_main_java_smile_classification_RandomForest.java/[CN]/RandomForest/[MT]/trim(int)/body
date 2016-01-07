@@ -5,7 +5,7 @@
   if (ntrees <= 0) {
     throw new IllegalArgumentException("Invalid new model size: " + ntrees);
   }
-  List<DecisionTree> model=new ArrayList<DecisionTree>(ntrees);
+  List<Tree> model=new ArrayList<Tree>(ntrees);
   for (int i=0; i < ntrees; i++) {
     model.add(trees.get(i));
   }

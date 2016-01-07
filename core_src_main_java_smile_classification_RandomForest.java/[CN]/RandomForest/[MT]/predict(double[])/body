@@ -1,7 +1,7 @@
 {
-  int[] y=new int[k];
-  for (  DecisionTree tree : trees) {
-    y[tree.predict(x)]++;
+  double[] y=new double[k];
+  for (  Tree tree : trees) {
+    y[tree.tree.predict(x)]+=tree.weight;
   }
   return Math.whichMax(y);
 }

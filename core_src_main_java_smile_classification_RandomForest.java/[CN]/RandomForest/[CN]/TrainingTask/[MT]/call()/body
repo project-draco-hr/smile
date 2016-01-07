@@ -6,13 +6,24 @@
     samples[xi]+=classWeight[y[xi]];
   }
   DecisionTree tree=new DecisionTree(attributes,x,y,maxNodes,nodeSize,mtry,rule,samples,order);
+  int oob=0;
+  int correct=0;
   for (int i=0; i < n; i++) {
     if (samples[i] == 0) {
+      oob++;
       int p=tree.predict(x[i]);
+      if (p == y[i])       correct++;
 synchronized (prediction[i]) {
         prediction[i][p]++;
       }
     }
   }
-  return tree;
+  double accuracy=1.0;
+  if (oob != 0) {
+    accuracy=(double)correct / oob;
+  }
+ else {
+    System.err.println("Random forest has a tree trained without OOB samples.");
+  }
+  return new Tree(tree,accuracy);
 }
