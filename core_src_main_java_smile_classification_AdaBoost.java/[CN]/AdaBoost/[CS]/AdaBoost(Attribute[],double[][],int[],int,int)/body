@@ -39,6 +39,7 @@
   }
   double guess=1.0 / k;
   double b=Math.log(k - 1);
+  int failures=0;
   trees=new DecisionTree[ntrees];
   alpha=new double[ntrees];
   error=new double[ntrees];
@@ -63,12 +64,19 @@
       }
     }
     if (1 - e <= guess) {
-      System.err.format("Weak classifier %d makes %.2f%% weighted error\n",t,100 * e);
-      trees=Arrays.copyOf(trees,t);
-      alpha=Arrays.copyOf(alpha,t);
-      error=Arrays.copyOf(error,t);
-      break;
+      System.err.format("Skip the weak classifier %d makes %.2f%% weighted error\n",t,100 * e);
+      if (++failures > 3) {
+        trees=Arrays.copyOf(trees,t);
+        alpha=Arrays.copyOf(alpha,t);
+        error=Arrays.copyOf(error,t);
+        break;
+      }
+ else {
+        t--;
+        continue;
+      }
     }
+ else     failures=0;
     error[t]=e;
     alpha[t]=Math.log((1 - e) / Math.max(1E-10,e)) + b;
     double a=Math.exp(alpha[t]);
