@@ -2,7 +2,7 @@
   System.out.println("parse");
   try {
     SparseMatrixParser parser=new SparseMatrixParser();
-    SparseMatrix data=parser.parse(smile.data.parser.IOUtils.getDataFile("matrix/08blocks.txt"));
+    SparseMatrix data=parser.parse(smile.data.parser.IOUtils.getTestDataFile("matrix/08blocks.txt"));
     assertEquals(592,data.size());
     assertEquals(300,data.nrows());
     assertEquals(300,data.ncols());

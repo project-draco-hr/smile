@@ -2,7 +2,7 @@
   System.out.println("glass");
   LibsvmParser parser=new LibsvmParser();
   try {
-    SparseDataset train=parser.parse("Glass",smile.data.parser.IOUtils.getDataFile("libsvm/glass.txt"));
+    SparseDataset train=parser.parse("Glass",smile.data.parser.IOUtils.getTestDataFile("libsvm/glass.txt"));
     double[][] x=train.toArray();
     int[] y=train.toArray(new int[train.size()]);
     assertEquals(214,train.size());

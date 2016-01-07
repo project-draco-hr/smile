@@ -3,7 +3,7 @@
   try {
     ArffParser arffParser=new ArffParser();
     arffParser.setResponseIndex(4);
-    AttributeDataset weather=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/weather.nominal.arff"));
+    AttributeDataset weather=arffParser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/weather.nominal.arff"));
     double[][] x=weather.toArray(new double[weather.size()][]);
     int[] y=weather.toArray(new int[weather.size()]);
     assertEquals(Attribute.Type.NOMINAL,weather.response().getType());

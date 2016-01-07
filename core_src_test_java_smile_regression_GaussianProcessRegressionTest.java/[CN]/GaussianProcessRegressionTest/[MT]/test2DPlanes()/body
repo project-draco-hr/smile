@@ -3,7 +3,7 @@
   ArffParser parser=new ArffParser();
   parser.setResponseIndex(10);
   try {
-    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/regression/2dplanes.arff"));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/regression/2dplanes.arff"));
     double[][] x=data.toArray(new double[data.size()][]);
     double[] y=data.toArray(new double[data.size()]);
     int[] perm=Math.permutate(x.length);

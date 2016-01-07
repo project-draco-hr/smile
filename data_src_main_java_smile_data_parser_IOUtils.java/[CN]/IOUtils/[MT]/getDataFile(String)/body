@@ -1,3 +1,0 @@
-{
-  return new java.io.File(getDataPath(path));
-}

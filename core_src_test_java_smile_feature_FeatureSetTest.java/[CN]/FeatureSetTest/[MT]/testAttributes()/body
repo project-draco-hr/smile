@@ -2,7 +2,7 @@
   System.out.println("attributes");
   try {
     ArffParser parser=new ArffParser();
-    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getDataFile("weka/regression/abalone.arff"));
+    AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/regression/abalone.arff"));
     double[][] x=data.toArray(new double[data.size()][]);
     FeatureSet<double[]> features=new FeatureSet<double[]>();
     features.add(new Nominal2Binary(data.attributes()));

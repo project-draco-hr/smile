@@ -2,7 +2,7 @@
   System.out.println("sparse");
   try {
     ArffParser arffParser=new ArffParser();
-    AttributeDataset sparse=arffParser.parse(smile.data.parser.IOUtils.getDataFile("weka/sparse.arff"));
+    AttributeDataset sparse=arffParser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/sparse.arff"));
     double[][] x=sparse.toArray(new double[sparse.size()][]);
     assertEquals(2,sparse.size());
     assertEquals(5,sparse.attributes().length);
