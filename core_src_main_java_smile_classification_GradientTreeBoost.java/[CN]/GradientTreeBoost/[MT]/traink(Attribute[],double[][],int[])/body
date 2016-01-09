@@ -1,6 +1,9 @@
 {
   int n=x.length;
-  int N=(int)Math.round(n * subsample);
+  int[] nc=new int[k];
+  for (int i=0; i < n; i++) {
+    nc[y[i]]++;
+  }
   double[][] h=new double[k][n];
   double[][] p=new double[k][n];
   double[][] response=new double[k][n];
@@ -44,8 +47,16 @@
       }
       Arrays.fill(samples,0);
       Math.permutate(perm);
-      for (int i=0; i < N; i++) {
-        samples[perm[i]]=1;
+      for (int l=0; l < k; l++) {
+        int subj=(int)Math.round(nc[l] * subsample);
+        int count=0;
+        for (int i=0; i < n && count < subj; i++) {
+          int xi=perm[i];
+          if (y[xi] == l) {
+            samples[xi]=1;
+            count++;
+          }
+        }
       }
       forest[j][m]=new RegressionTree(attributes,x,response[j],maxNodes,5,x[0].length,order,samples,output[j]);
       for (int i=0; i < n; i++) {
