@@ -5,6 +5,7 @@
   this.mtry=mtry;
   this.nodeSize=nodeSize;
   this.maxNodes=maxNodes;
+  this.subsample=subsample;
   this.rule=rule;
   this.classWeight=classWeight;
   this.order=order;

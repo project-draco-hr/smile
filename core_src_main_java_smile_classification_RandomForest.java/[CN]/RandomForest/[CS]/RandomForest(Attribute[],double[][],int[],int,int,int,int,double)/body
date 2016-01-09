@@ -1,0 +1,3 @@
+{
+  this(attributes,x,y,ntrees,x.length,1,mtry,subsample,DecisionTree.SplitRule.GINI);
+}

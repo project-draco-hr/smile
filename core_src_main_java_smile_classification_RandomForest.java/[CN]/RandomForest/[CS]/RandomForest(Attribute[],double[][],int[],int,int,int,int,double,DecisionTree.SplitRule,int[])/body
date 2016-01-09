@@ -44,7 +44,7 @@
   int[][] order=SmileUtils.sort(attributes,x);
   List<TrainingTask> tasks=new ArrayList<TrainingTask>();
   for (int i=0; i < ntrees; i++) {
-    tasks.add(new TrainingTask(attributes,x,y,maxNodes,nodeSize,mtry,rule,classWeight,order,prediction));
+    tasks.add(new TrainingTask(attributes,x,y,maxNodes,nodeSize,mtry,subsample,rule,classWeight,order,prediction));
   }
   try {
     trees=MulticoreExecutor.run(tasks);

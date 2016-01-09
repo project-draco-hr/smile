@@ -1,9 +1,22 @@
 {
   int n=x.length;
   int[] samples=new int[n];
-  for (int i=0; i < n; i++) {
-    int xi=Math.randomInt(n);
-    samples[xi]+=classWeight[y[xi]];
+  if (subsample == 1.0) {
+    for (int i=0; i < n; i++) {
+      int xi=Math.randomInt(n);
+      samples[xi]+=classWeight[y[xi]];
+    }
+  }
+ else {
+    int[] perm=new int[n];
+    for (int i=0; i < n; i++) {
+      perm[i]=i;
+    }
+    Math.permutate(perm);
+    int m=(int)(n * 0.632);
+    for (int i=0; i < m; i++) {
+      samples[perm[i]]+=classWeight[y[perm[i]]];
+    }
   }
   DecisionTree tree=new DecisionTree(attributes,x,y,maxNodes,nodeSize,mtry,rule,samples,order);
   int oob=0;
