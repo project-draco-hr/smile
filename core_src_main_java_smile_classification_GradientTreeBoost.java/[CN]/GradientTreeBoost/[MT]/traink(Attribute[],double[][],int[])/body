@@ -1,6 +1,6 @@
 {
   int n=x.length;
-  int N=(int)Math.round(n * f);
+  int N=(int)Math.round(n * subsample);
   double[][] h=new double[k][n];
   double[][] p=new double[k][n];
   double[][] response=new double[k][n];

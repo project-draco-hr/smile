@@ -11,8 +11,8 @@
   if (shrinkage <= 0 || shrinkage > 1) {
     throw new IllegalArgumentException("Invalid shrinkage: " + shrinkage);
   }
-  if (f <= 0 || f > 1) {
-    throw new IllegalArgumentException("Invalid sampling fraction: " + f);
+  if (subsample <= 0 || subsample > 1) {
+    throw new IllegalArgumentException("Invalid sampling fraction: " + subsample);
   }
   if (attributes == null) {
     int p=x[0].length;
@@ -24,7 +24,7 @@
   this.ntrees=ntrees;
   this.maxNodes=maxNodes;
   this.shrinkage=shrinkage;
-  this.f=f;
+  this.subsample=subsample;
   this.k=Math.max(y) + 1;
   if (k < 2) {
     throw new IllegalArgumentException("Only one class or negative class labels.");

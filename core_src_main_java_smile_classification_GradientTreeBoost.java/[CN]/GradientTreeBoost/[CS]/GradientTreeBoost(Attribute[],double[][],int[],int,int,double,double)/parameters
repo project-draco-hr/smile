@@ -4,4 +4,4 @@ int[] y
 int ntrees
 int maxNodes
 double shrinkage
-double f
+double subsample

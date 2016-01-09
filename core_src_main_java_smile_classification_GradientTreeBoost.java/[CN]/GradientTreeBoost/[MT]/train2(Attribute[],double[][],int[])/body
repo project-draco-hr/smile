@@ -1,6 +1,6 @@
 {
   int n=x.length;
-  int N=(int)Math.round(n * f);
+  int N=(int)Math.round(n * subsample);
   int[] y2=new int[n];
   for (int i=0; i < n; i++) {
     if (y[i] == 1) {

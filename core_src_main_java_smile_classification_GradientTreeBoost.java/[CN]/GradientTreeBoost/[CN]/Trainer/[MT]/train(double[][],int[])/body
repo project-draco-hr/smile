@@ -1,3 +1,3 @@
 {
-  return new GradientTreeBoost(attributes,x,y,ntrees,maxNodes,shrinkage,f);
+  return new GradientTreeBoost(attributes,x,y,ntrees,maxNodes,shrinkage,subsample);
 }

@@ -1,7 +1,7 @@
 {
-  if (f <= 0 || f > 1) {
-    throw new IllegalArgumentException("Invalid sampling fraction: " + f);
+  if (subsample <= 0 || subsample > 1) {
+    throw new IllegalArgumentException("Invalid sampling fraction: " + subsample);
   }
-  this.f=f;
+  this.subsample=subsample;
   return this;
 }
