@@ -1,0 +1,3 @@
+{
+  this(attributes,x,y,ntrees,maxNodes,nodeSize,x[0].length / 3);
+}

@@ -1,0 +1,8 @@
+Attribute[] attributes
+double[][] x
+double[] y
+int ntrees
+int maxNodes
+int nodeSize
+int mtry
+double subsample

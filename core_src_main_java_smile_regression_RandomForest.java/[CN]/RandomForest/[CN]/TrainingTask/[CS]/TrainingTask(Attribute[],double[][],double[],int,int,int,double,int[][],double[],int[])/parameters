@@ -4,6 +4,7 @@ double[] y
 int maxNodes
 int nodeSize
 int mtry
+double subsample
 int[][] order
 double[] prediction
 int[] oob

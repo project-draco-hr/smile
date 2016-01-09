@@ -1,6 +1,6 @@
 {
   if (subsample <= 0 || subsample > 1) {
-    throw new IllegalArgumentException("Invalid sampling rating: " + subsample);
+    throw new IllegalArgumentException("Invalid sampling rate: " + subsample);
   }
   this.subsample=subsample;
   return this;

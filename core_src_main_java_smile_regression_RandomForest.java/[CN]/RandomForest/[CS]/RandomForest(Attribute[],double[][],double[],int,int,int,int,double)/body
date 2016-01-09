@@ -8,28 +8,14 @@
   if (mtry < 1 || mtry > x[0].length) {
     throw new IllegalArgumentException("Invalid number of variables to split on at a node of the tree: " + mtry);
   }
-  if (nodeSize < 1) {
+  if (nodeSize < 2) {
     throw new IllegalArgumentException("Invalid minimum size of leaves: " + nodeSize);
   }
   if (maxNodes < 2) {
     throw new IllegalArgumentException("Invalid maximum number of leaves: " + maxNodes);
   }
   if (subsample <= 0 || subsample > 1) {
-    throw new IllegalArgumentException("Invalid sampling rating: " + subsample);
-  }
-  int[] labels=Math.unique(y);
-  Arrays.sort(labels);
-  for (int i=0; i < labels.length; i++) {
-    if (labels[i] < 0) {
-      throw new IllegalArgumentException("Negative class label: " + labels[i]);
-    }
-    if (i > 0 && labels[i] - labels[i - 1] > 1) {
-      throw new IllegalArgumentException("Missing class: " + labels[i] + 1);
-    }
-  }
-  k=labels.length;
-  if (k < 2) {
-    throw new IllegalArgumentException("Only one class.");
+    throw new IllegalArgumentException("Invalid sampling rate: " + subsample);
   }
   if (attributes == null) {
     int p=x[0].length;
@@ -38,43 +24,38 @@
       attributes[i]=new NumericAttribute("V" + (i + 1));
     }
   }
-  if (classWeight == null) {
-    classWeight=new int[k];
-    for (int i=0; i < k; i++)     classWeight[i]=1;
-  }
   int n=x.length;
-  int[][] prediction=new int[n][k];
+  double[] prediction=new double[n];
+  int[] oob=new int[n];
   int[][] order=SmileUtils.sort(attributes,x);
   List<TrainingTask> tasks=new ArrayList<TrainingTask>();
   for (int i=0; i < ntrees; i++) {
-    tasks.add(new TrainingTask(attributes,x,y,maxNodes,nodeSize,mtry,subsample,rule,classWeight,order,prediction));
+    tasks.add(new TrainingTask(attributes,x,y,maxNodes,nodeSize,mtry,subsample,order,prediction,oob));
   }
   try {
     trees=MulticoreExecutor.run(tasks);
   }
  catch (  Exception ex) {
-    System.err.println(ex);
-    trees=new ArrayList<Tree>(ntrees);
+    ex.printStackTrace();
+    trees=new ArrayList<RegressionTree>(ntrees);
     for (int i=0; i < ntrees; i++) {
       trees.add(tasks.get(i).call());
     }
   }
   int m=0;
   for (int i=0; i < n; i++) {
-    int pred=Math.whichMax(prediction[i]);
-    if (prediction[i][pred] > 0) {
+    if (oob[i] > 0) {
       m++;
-      if (pred != y[i]) {
-        error++;
-      }
+      double pred=prediction[i] / oob[i];
+      error+=Math.sqr(pred - y[i]);
     }
   }
   if (m > 0) {
-    error/=m;
+    error=Math.sqrt(error / m);
   }
   importance=new double[attributes.length];
-  for (  Tree tree : trees) {
-    double[] imp=tree.tree.importance();
+  for (  RegressionTree tree : trees) {
+    double[] imp=tree.importance();
     for (int i=0; i < imp.length; i++) {
       importance[i]+=imp[i];
     }
