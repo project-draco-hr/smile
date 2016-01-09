@@ -1,0 +1,4 @@
+{
+  if (beta <= 0.0)   throw new IllegalArgumentException("Negative beta");
+  this.beta2=beta * beta;
+}
