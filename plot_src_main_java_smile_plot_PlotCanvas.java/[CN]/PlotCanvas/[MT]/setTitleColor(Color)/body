@@ -1,4 +1,5 @@
 {
   this.titleColor=color;
+  repaint();
   return this;
 }
