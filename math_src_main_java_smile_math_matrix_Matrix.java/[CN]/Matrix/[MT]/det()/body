@@ -9,7 +9,7 @@
   }
  else {
     if (lu == null) {
-      LU();
+      lu();
     }
   }
   return det;

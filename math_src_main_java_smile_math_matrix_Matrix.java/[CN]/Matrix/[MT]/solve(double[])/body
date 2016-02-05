@@ -4,11 +4,11 @@
       cholesky().solve(b);
     }
  else {
-      LU().solve(b);
+      lu().solve(b);
     }
   }
  else {
-    QR().solve(b);
+    qr().solve(b);
   }
   return b;
 }
