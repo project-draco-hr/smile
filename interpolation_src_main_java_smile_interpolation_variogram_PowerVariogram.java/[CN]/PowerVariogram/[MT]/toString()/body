@@ -1,0 +1,3 @@
+{
+  return String.format("Power Variogram (range = %.4f, sill = %.4f, nugget effect = %.4f)",alpha,beta,nugget);
+}
