@@ -1,0 +1,3 @@
+{
+  return String.format("Gaussian Radial Basis (r0 = %.4f)",r0);
+}

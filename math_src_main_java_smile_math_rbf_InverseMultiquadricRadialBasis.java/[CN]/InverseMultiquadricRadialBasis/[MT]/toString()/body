@@ -1,0 +1,3 @@
+{
+  return String.format("Inverse Multi-quadric Radial Basis (r0^2 = %.4f)",r02);
+}

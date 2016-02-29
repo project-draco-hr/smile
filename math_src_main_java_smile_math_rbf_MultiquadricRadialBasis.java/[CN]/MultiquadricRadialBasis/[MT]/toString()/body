@@ -1,0 +1,3 @@
+{
+  return String.format("Multiquadric Radial Basis (r0 = %.4f)",r02);
+}
