@@ -16,7 +16,7 @@
     }
   }
   if (rnm <= 0.0) {
-    System.err.println("Lanczos method was unable to find a starting vector within range.");
+    logger.error("Lanczos method was unable to find a starting vector within range.");
     return -1;
   }
   if (step > 0) {

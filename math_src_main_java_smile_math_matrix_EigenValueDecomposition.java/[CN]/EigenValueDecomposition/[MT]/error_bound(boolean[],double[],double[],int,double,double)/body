@@ -35,20 +35,12 @@
       }
     }
   }
-  System.out.format("Lancozs method found %3d converged eigenvalues of the %3d-by-%-3d matrix",neig,step + 1,step + 1);
-  if (neig == 0) {
-    System.out.println(".");
-  }
- else {
-    System.out.print(": (");
+  logger.info("Lancozs method found {} converged eigenvalues of the {}-by-{} matrix",neig,step + 1,step + 1);
+  if (neig != 0) {
+    logger.info("ritz: {}",ritz);
     for (int i=0, n=0; i <= step; i++) {
       if (bnd[i] <= 16.0 * Math.EPSILON * Math.abs(ritz[i])) {
-        if (++n == neig) {
-          System.out.format("%.4f).\n",ritz[i]);
-        }
- else {
-          System.out.format("%.4f, ",ritz[i]);
-        }
+        logger.info("ritz[{}] = ",i,ritz[i]);
       }
     }
   }

@@ -36,7 +36,7 @@
       dx=0.5 * (xh - xl);
       rts=xl + dx;
       if (xl == rts) {
-        System.out.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g\n",iter,rts,dx);
+        logger.info(String.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g",iter,rts,dx));
         return rts;
       }
     }
@@ -46,15 +46,15 @@
       double temp=rts;
       rts-=dx;
       if (temp == rts) {
-        System.out.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g\n",iter,rts,dx);
+        logger.info(String.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g",iter,rts,dx));
         return rts;
       }
     }
     if (iter % 10 == 0) {
-      System.out.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g\n",iter,rts,dx);
+      logger.info(String.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g",iter,rts,dx));
     }
     if (abs(dx) < tol) {
-      System.out.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g\n",iter,rts,dx);
+      logger.info(String.format("Newton-Raphson: the root after %3d iterations: %.5g, error = %.5g",iter,rts,dx));
       return rts;
     }
     f=func.f(rts);
@@ -66,6 +66,6 @@
       xh=rts;
     }
   }
-  System.err.println("Newton-Raphson method exceeded the maximum number of iterations.");
+  logger.error("Newton-Raphson method exceeded the maximum number of iterations.");
   return rts;
 }

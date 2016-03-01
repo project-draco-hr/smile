@@ -17,14 +17,14 @@
     lambda=ax(A,v,z,p);
     double eps=Math.abs(lambda - l);
     if (iter % 10 == 0) {
-      System.out.format("Largest eigenvalue after %3d power iterations: %.5f\n",iter,lambda + p);
+      logger.trace(String.format("Largest eigenvalue after %3d power iterations: %.5f\n",iter,lambda + p));
     }
     if (eps < tol) {
-      System.out.format("Largest eigenvalue after %3d power iterations: %.5f\n",iter,lambda + p);
+      logger.info(String.format("Largest eigenvalue after %3d power iterations: %.5f\n",iter,lambda + p));
       return lambda + p;
     }
   }
-  System.out.format("Largest eigenvalue after %3d power iterations: %.5f\n",maxIter,lambda + p);
-  System.err.println("Power iteration exceeded the maximum number of iterations.");
+  logger.info(String.format("Largest eigenvalue after %3d power iterations: %.5f\n",maxIter,lambda + p));
+  logger.error("Power iteration exceeded the maximum number of iterations.");
   return lambda + p;
 }

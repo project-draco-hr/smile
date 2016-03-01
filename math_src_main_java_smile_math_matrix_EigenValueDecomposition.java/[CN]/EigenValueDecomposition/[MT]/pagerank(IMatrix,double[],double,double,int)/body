@@ -22,13 +22,13 @@
       p[i]=q;
     }
     if (iter % 10 == 0) {
-      System.out.format("PageRank residual after %3d power iterations: %.7f\n",iter,delta);
+      logger.info(String.format("PageRank residual after %3d power iterations: %.7f\n",iter,delta));
     }
     if (delta < tol) {
-      System.out.format("PageRank residual after %3d power iterations: %.7f\n",iter,delta);
+      logger.info(String.format("PageRank residual after %3d power iterations: %.7f\n",iter,delta));
       return p;
     }
   }
-  System.err.println("PageRank iteration exceeded the maximum number of iterations.");
+  logger.error("PageRank iteration exceeded the maximum number of iterations.");
   return p;
 }

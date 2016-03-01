@@ -98,10 +98,10 @@
       }
     }
     if (iter % 10 == 0) {
-      System.out.format("BCG: the error after %3d iterations: %.5g\n",iter,err);
+      logger.info(String.format("BCG: the error after %3d iterations: %.5g",iter,err));
     }
     if (err <= tol) {
-      System.out.format("BCG: the error after %3d iterations: %.5g\n",iter,err);
+      logger.info(String.format("BCG: the error after %3d iterations: %.5g",iter,err));
       break;
     }
   }

@@ -6,7 +6,7 @@
       ois.close();
     }
  catch (    Exception ex) {
-      System.err.println(ex);
+      logger.error("Failed to load /smile/nlp/pos/hmmpostagger.model",ex);
     }
   }
   return DEFAULT_TAGGER;

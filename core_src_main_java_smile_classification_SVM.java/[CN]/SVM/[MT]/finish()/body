@@ -11,7 +11,7 @@
       MulticoreExecutor.run(tasks);
     }
  catch (    Exception e) {
-      System.err.println(e.getMessage());
+      logger.error("Failed to train SVM on multi-core",e);
     }
   }
 }

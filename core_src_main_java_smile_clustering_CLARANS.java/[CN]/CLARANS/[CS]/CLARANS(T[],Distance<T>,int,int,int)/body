@@ -31,7 +31,7 @@
     MulticoreExecutor.run(tasks);
   }
  catch (  Exception e) {
-    System.err.println(e.getMessage());
+    logger.error("Failed to run CLARANS on multi-core",e);
     for (    CLARANSTask task : tasks) {
       task.call();
     }

@@ -5,7 +5,7 @@
     newValue=doc.getText(0,doc.getLength());
   }
  catch (  BadLocationException ex) {
-    System.err.println(ex);
+    logger.error("update(DocumentEvent) exception",ex);
   }
   if (newValue.length() > 0) {
     int index=targetList.getNextMatch(newValue,0,Position.Bias.Forward);

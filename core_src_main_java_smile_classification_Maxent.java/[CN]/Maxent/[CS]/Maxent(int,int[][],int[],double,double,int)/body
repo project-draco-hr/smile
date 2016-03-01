@@ -37,7 +37,7 @@
       L=-Math.min(func,5,w,tol,maxIter);
     }
  catch (    Exception ex) {
-      System.err.println(ex);
+      logger.error("Failed to minimize binary objective function of Maximum Entropy Classifier",ex);
     }
   }
  else {
@@ -48,7 +48,7 @@
       L=-Math.min(func,5,w,tol,maxIter);
     }
  catch (    Exception ex) {
-      System.err.println(ex);
+      logger.error("Failed to minimize multi-class objective function of Maximum Entropy Classifier",ex);
     }
     W=new double[k][p + 1];
     for (int i=0, m=0; i < k; i++) {

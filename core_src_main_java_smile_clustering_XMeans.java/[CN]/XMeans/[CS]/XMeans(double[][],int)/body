@@ -22,7 +22,7 @@
     wcss[0]+=Math.squaredDistance(data[i],centroids[0]);
   }
   distortion=wcss[0];
-  System.out.format("X-Means distortion with %d clusters: %.5f\n",k,distortion);
+  logger.info(String.format("X-Means distortion with %d clusters: %.5f",k,distortion));
   BBDTree bbd=new BBDTree(data);
   while (k < kmax) {
     ArrayList<double[]> centers=new ArrayList<double[]>();
@@ -30,7 +30,7 @@
     KMeans[] kmeans=new KMeans[k];
     for (int i=0; i < k; i++) {
       if (size[i] < 25) {
-        System.out.format("Cluster %3d\ttoo small to split: %d samples\n",i,size[i]);
+        logger.info("Cluster {} too small to split: {} samples",i,size[i]);
         continue;
       }
       double[][] subset=new double[size[i]][];
@@ -43,7 +43,7 @@
       double newBIC=bic(2,size[i],d,kmeans[i].distortion,kmeans[i].size);
       double oldBIC=bic(size[i],d,wcss[i]);
       score[i]=newBIC - oldBIC;
-      System.out.format("Cluster %3d\tBIC: %.5f\tBIC after split: %.5f\timprovement: %.5f\n",i,oldBIC,newBIC,score[i]);
+      logger.info(String.format("Cluster %3d\tBIC: %.5f\tBIC after split: %.5f\timprovement: %.5f",i,oldBIC,newBIC,score[i]));
     }
     int[] index=QuickSort.sort(score);
     for (int i=0; i < k; i++) {
@@ -55,7 +55,7 @@
     for (int i=k; --i >= 0; ) {
       if (score[i] > 0) {
         if (centers.size() + i - m + 1 < kmax) {
-          System.out.format("Split cluster %d...\n",index[i]);
+          logger.info("Split cluster {}",index[i]);
           centers.add(kmeans[index[i]].centroids[0]);
           centers.add(kmeans[index[i]].centroids[1]);
         }
@@ -95,6 +95,6 @@
     for (int i=0; i < n; i++) {
       wcss[y[i]]+=Math.squaredDistance(data[i],centroids[y[i]]);
     }
-    System.out.format("X-Means distortion with %d clusters: %.5f\n",k,distortion);
+    logger.info(String.format("X-Means distortion with %d clusters: %.5f",k,distortion));
   }
 }

@@ -57,9 +57,10 @@ synchronized (prediction[i]) {
   double accuracy=1.0;
   if (oob != 0) {
     accuracy=(double)correct / oob;
+    logger.info("Random forest tree OOB accuracy: {}%",accuracy);
   }
  else {
-    System.err.println("Random forest has a tree trained without OOB samples.");
+    logger.error("Random forest has a tree trained without OOB samples.");
   }
   return new Tree(tree,accuracy);
 }

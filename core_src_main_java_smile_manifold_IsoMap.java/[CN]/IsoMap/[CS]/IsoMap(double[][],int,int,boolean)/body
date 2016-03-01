@@ -38,7 +38,7 @@
         n=cc[i].length;
       }
     }
-    System.out.format("IsoMap: %d connected components, largest one has %d samples.\n",cc.length,n);
+    logger.info("IsoMap: {} connected components, largest one has {} samples.",cc.length,n);
     index=cc[component];
     graph=graph.subgraph(index);
   }

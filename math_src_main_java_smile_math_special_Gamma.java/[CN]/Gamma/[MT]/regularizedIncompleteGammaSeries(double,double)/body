@@ -21,7 +21,7 @@
     if (i >= INCOMPLETE_GAMMA_MAX_ITERATIONS) {
       check=false;
       igf=sum * Math.exp(-x + acopy * Math.log(x) - loggamma);
-      System.err.println("Maximum number of iterations wes exceeded");
+      logger.error("Gamma.regularizedIncompleteGammaSeries: Maximum number of iterations wes exceeded");
     }
   }
   return igf;

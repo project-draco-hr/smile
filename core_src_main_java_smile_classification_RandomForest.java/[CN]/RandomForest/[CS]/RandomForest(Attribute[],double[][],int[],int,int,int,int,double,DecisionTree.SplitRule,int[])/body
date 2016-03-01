@@ -53,7 +53,7 @@
     trees=MulticoreExecutor.run(tasks);
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    logger.error("Failed to train random forest on multi-core",ex);
     trees=new ArrayList<Tree>(ntrees);
     for (int i=0; i < ntrees; i++) {
       trees.add(tasks.get(i).call());

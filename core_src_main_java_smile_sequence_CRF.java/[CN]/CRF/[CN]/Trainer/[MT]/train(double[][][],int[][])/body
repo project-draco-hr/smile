@@ -20,7 +20,7 @@
       MulticoreExecutor.run(boostingTasks);
     }
  catch (    Exception e) {
-      System.err.println(e.getMessage());
+      logger.error("Failed to train CRF on multi-core",e);
     }
   }
   return crf;

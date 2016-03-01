@@ -5,7 +5,7 @@
   net.setWeightDecay(lambda);
   for (int i=1; i <= epochs; i++) {
     net.learn(x,y);
-    System.out.format("Neural network learning done epoch %d\n",i);
+    logger.info("Neural network learns epoch {}",i);
   }
   return net;
 }

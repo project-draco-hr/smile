@@ -24,7 +24,7 @@
     }
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    logger.error("Failed to run K-Means on multi-core",ex);
     for (int i=0; i < runs; i++) {
       KMeans kmeans=lloyd(data,k,maxIter);
       if (kmeans.distortion < best.distortion) {

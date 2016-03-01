@@ -5,7 +5,7 @@
       printer.print(printAttributes);
     }
  catch (    PrinterException ex) {
-      System.err.println(ex);
+      logger.error("Failed to print",ex);
       JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     }
   }

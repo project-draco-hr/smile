@@ -99,11 +99,11 @@
     pobj=Math.dot(z,z) + lambda * Math.norm1(w);
     dobj=Math.max(-0.25 * Math.dot(nu,nu) - Math.dot(nu,Y),dobj);
     if (ntiter % 10 == 0) {
-      System.out.format("LASSO: primal and dual objective function value after %3d iterations: %.5g\t%.5g\n",ntiter,pobj,dobj);
+      logger.info(String.format("LASSO: primal and dual objective function value after %3d iterations: %.5g\t%.5g\n",ntiter,pobj,dobj));
     }
     double gap=pobj - dobj;
     if (gap / dobj < tol) {
-      System.out.format("LASSO: primal and dual objective function value after %3d iterations: %.5g\t%.5g\n",ntiter,pobj,dobj);
+      logger.info(String.format("LASSO: primal and dual objective function value after %3d iterations: %.5g\t%.5g\n",ntiter,pobj,dobj));
       break;
     }
     if (s >= 0.5) {
@@ -165,7 +165,7 @@
       s=BETA * s;
     }
     if (lsiter == MAX_LS_ITER) {
-      System.err.println("LASSO: Too many iterations of line search.");
+      logger.error("LASSO: Too many iterations of line search.");
       break;
     }
     System.arraycopy(neww,0,w,0,p);
@@ -174,7 +174,7 @@
     System.arraycopy(newf[1],0,f[1],0,p);
   }
   if (ntiter == maxIter) {
-    System.err.println("LASSO: Too many iterations.");
+    logger.error("LASSO: Too many iterations.");
   }
   if (n > p) {
     for (int j=0; j < p; j++) {

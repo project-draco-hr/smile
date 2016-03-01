@@ -20,7 +20,7 @@
       }
     }
  catch (    Exception e) {
-      System.err.println(e.getMessage());
+      logger.error("Failed to run FPGrowth on multi-core",e);
     }
     return n;
   }

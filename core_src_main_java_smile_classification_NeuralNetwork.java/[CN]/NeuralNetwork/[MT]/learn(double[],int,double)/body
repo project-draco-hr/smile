@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Invalid weight: " + weight);
   }
   if (weight == 0.0) {
-    System.out.println("Ignore the training instance with zero weight.");
+    logger.info("Ignore the training instance with zero weight.");
     return;
   }
   if (y < 0) {

@@ -19,7 +19,7 @@
         classification=false;
       }
  catch (      NumberFormatException ex) {
-        System.err.println(ex);
+        logger.error("Failed to parse {}",tokens[0],ex);
         throw new NumberFormatException("Unrecognized response variable value: " + tokens[0]);
       }
     }

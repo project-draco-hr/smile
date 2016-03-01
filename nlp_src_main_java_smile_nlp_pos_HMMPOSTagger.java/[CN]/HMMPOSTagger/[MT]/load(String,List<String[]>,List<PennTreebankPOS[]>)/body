@@ -42,7 +42,7 @@
       reader.close();
     }
  catch (    Exception e) {
-      System.err.println(e);
+      logger.error("Failed to load training data {}",file,e);
     }
   }
 }

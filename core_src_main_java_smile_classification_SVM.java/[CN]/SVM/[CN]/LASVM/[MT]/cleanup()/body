@@ -10,5 +10,5 @@
       }
     }
   }
-  System.out.format("%d support vectors, %d bounded\n",nsv,nbsv);
+  logger.info("{} support vectors, {} bounded\n",nsv,nbsv);
 }

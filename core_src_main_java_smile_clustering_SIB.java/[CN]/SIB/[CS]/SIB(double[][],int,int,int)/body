@@ -24,7 +24,7 @@
     }
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    logger.error("Failed to run Sequential Information Bottleneck on multi-core",ex);
     best=new SIB(data,k,maxIter);
     for (int i=1; i < runs; i++) {
       SIB sib=new SIB(data,k,maxIter);

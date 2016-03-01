@@ -31,7 +31,7 @@
         n=cc[i].length;
       }
     }
-    System.out.format("Laplacian Eigenmap: %d connected components, largest one has %d samples.\n",cc.length,n);
+    logger.info("Laplacian Eigenmap: {} connected components, largest one has {} samples.",cc.length,n);
     index=cc[component];
     graph=graph.subgraph(index);
   }

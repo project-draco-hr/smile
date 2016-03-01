@@ -1,8 +1,11 @@
 {
+  logger.info("SVM finializes the training by reprocess.");
   for (int count=1; smo(null,null,epsgr); count++) {
     if (count % 1000 == 0) {
+      logger.info("finishing {} reprocess iterations.");
     }
   }
+  logger.info("SVM finished the reprocess.");
   Iterator<SupportVector> iter=sv.iterator();
   while (iter.hasNext()) {
     SupportVector v=iter.next();

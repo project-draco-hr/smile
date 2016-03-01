@@ -6,7 +6,7 @@
     MulticoreExecutor.run(tasks);
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    logger.error("Failed to run Genetic Algorithm on multi-core",ex);
     for (    Task task : tasks) {
       task.call();
     }
@@ -37,7 +37,7 @@
       MulticoreExecutor.run(tasks);
     }
  catch (    Exception ex) {
-      System.err.println(ex);
+      logger.error("Failed to run Genetic Algorithm on multi-core",ex);
       for (      Task task : tasks) {
         task.call();
       }
@@ -49,7 +49,7 @@
       avg+=ch.fitness();
     }
     avg/=size;
-    System.out.format("Genetic Algorithm: generation %d, best fitness %g, average fitness %g\n",g,best.fitness(),avg);
+    logger.info(String.format("Genetic Algorithm: generation %d, best fitness %g, average fitness %g",g,best.fitness(),avg));
   }
   return best;
 }

@@ -15,7 +15,7 @@
   double diag=1.0;
   double[] g=new double[n];
   double f=func.f(x,g);
-  System.out.format("L-BFGS: initial function value: %.5g\n",f);
+  logger.info(String.format("L-BFGS: initial function value: %.5g",f));
   double sum=0.0;
   for (int i=0; i < n; i++) {
     xi[i]=-g[i];
@@ -39,7 +39,7 @@
       }
     }
     if (test < TOLX) {
-      System.out.format("L-BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      logger.info(String.format("L-BFGS: the function value after %3d iterations: %.5g",iter,f));
       return f;
     }
     test=0.0;
@@ -51,11 +51,11 @@
       }
     }
     if (test < gtol) {
-      System.out.format("L-BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      logger.info(String.format("L-BFGS: the function value after %3d iterations: %.5g",iter,f));
       return f;
     }
     if (iter % 10 == 0) {
-      System.out.format("L-BFGS: the function value after %3d iterations: %.5g\n",iter,f);
+      logger.info(String.format("L-BFGS: the function value after %3d iterations: %.5g",iter,f));
     }
     double ys=dot(y[k],s[k]);
     double yy=dot(y[k],y[k]);

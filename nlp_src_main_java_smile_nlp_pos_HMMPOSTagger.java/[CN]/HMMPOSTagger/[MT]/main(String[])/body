@@ -14,6 +14,6 @@
     oos.close();
   }
  catch (  Exception ex) {
-    System.err.println(ex);
+    logger.error("Failed to save HMM POS model",ex);
   }
 }

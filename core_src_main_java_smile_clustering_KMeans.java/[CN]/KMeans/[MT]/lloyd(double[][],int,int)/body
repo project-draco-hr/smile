@@ -59,7 +59,7 @@
         }
       }
  catch (      Exception ex) {
-        System.err.println(ex);
+        logger.error("Failed to run K-Means on multi-core",ex);
         wcss=Double.NaN;
       }
     }

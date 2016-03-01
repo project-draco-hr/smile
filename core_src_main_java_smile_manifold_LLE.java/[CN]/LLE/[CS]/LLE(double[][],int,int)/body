@@ -3,7 +3,7 @@
   int D=data[0].length;
   double tol=0.0;
   if (k > D) {
-    System.out.println("LLE: regularization will be used since K > D.");
+    logger.info("LLE: regularization will be used since K > D.");
     tol=1E-3;
   }
   KNNSearch<double[],double[]> knn=null;
@@ -47,7 +47,7 @@
         n=cc[i].length;
       }
     }
-    System.out.format("LLE: %d connected components, largest one has %d samples.\n",cc.length,n);
+    logger.info("LLE: {} connected components, largest one has {} samples.",cc.length,n);
     index=cc[component];
     graph=graph.subgraph(index);
     for (int i=0; i < index.length; i++) {

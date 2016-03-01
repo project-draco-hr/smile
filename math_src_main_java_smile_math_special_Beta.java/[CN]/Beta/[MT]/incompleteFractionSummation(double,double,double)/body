@@ -46,7 +46,7 @@
     }
     if (i > MAXITER) {
       test=false;
-      System.err.println("Maximum number of iterations wes exceeded");
+      logger.error("Beta.incompleteFractionSummation: Maximum number of iterations wes exceeded");
     }
   }
   return h;

@@ -10,7 +10,7 @@
   }
  else {
     button.setText(altText);
-    System.err.println("Resource not found: " + imgLocation);
+    logger.error("Resource not found: {}",imgLocation);
   }
   return button;
 }

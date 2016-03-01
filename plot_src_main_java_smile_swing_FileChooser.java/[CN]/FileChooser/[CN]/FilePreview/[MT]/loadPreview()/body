@@ -9,7 +9,7 @@
       img=ImageIO.read(file);
     }
  catch (    IOException ex) {
-      System.err.println(ex);
+      logger.error("Failed to read image {}",file,ex);
     }
   }
  else {
@@ -31,7 +31,7 @@
       }
     }
  catch (    IOException ex) {
-      System.err.println(ex);
+      logger.error("Failed to read file {}",file,ex);
     }
   }
 }

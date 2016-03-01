@@ -41,7 +41,7 @@
       MulticoreExecutor.run(tasks);
     }
  catch (    Exception ex) {
-      System.err.println(ex);
+      logger.error("Failed to run DENCLUE on multi-core",ex);
       for (      DENCLUEThread task : tasks) {
         task.call();
       }
