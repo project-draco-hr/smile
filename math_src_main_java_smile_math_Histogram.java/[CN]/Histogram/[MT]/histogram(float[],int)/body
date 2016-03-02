@@ -1,6 +1,6 @@
 {
   if (k <= 1) {
-    throw new IllegalArgumentException("Invlaid number of bins: " + k);
+    throw new IllegalArgumentException("Invalid number of bins: " + k);
   }
   float min=Math.min(data);
   float max=Math.max(data);

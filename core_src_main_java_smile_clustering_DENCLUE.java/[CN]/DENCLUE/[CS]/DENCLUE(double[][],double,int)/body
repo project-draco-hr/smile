@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Invalid standard deviation of Gaussian kernel: " + sigma);
   }
   if (m <= 0) {
-    throw new IllegalArgumentException("Invlaid number of selected samples: " + m);
+    throw new IllegalArgumentException("Invalid number of selected samples: " + m);
   }
   if (m < 10) {
     throw new IllegalArgumentException("The number of selected samples is too small: " + m);

@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Invalid population size: " + size);
   }
   if (generation <= 0) {
-    throw new IllegalArgumentException("Invlid number of generations to go: " + generation);
+    throw new IllegalArgumentException("Invalid number of generations to go: " + generation);
   }
   if (x.length != y.length) {
     throw new IllegalArgumentException(String.format("The sizes of X and Y don't match: %d != %d",x.length,y.length));

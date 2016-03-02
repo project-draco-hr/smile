@@ -1,6 +1,6 @@
 {
   if (r <= 0.0) {
-    throw new IllegalArgumentException("Invlaid scaling parameter: " + r);
+    throw new IllegalArgumentException("Invalid scaling parameter: " + r);
   }
   int k=centers.length;
   KMeans kmeans=new KMeans(x,k,10);

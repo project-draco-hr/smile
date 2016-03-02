@@ -1,6 +1,6 @@
 {
   if (generation <= 0) {
-    throw new IllegalArgumentException("Invlid number of generations to go: " + generation);
+    throw new IllegalArgumentException("Invalid number of generations to go: " + generation);
   }
   try {
     MulticoreExecutor.run(tasks);
