@@ -22,7 +22,7 @@
       edge.weight/=(M[edge.v1] * M[edge.v2]);
     }
   }
-  int[][] cc=graph.dfs();
+  int[][] cc=graph.bfs();
   if (cc.length == 1) {
     index=new int[n];
     for (int i=0; i < n; i++) {
