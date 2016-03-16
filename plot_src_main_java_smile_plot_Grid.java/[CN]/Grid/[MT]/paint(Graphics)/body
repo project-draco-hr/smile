@@ -3,8 +3,10 @@
   g.setColor(getColor());
   for (int i=0; i < data.length; i++) {
     for (int j=0; j < data[i].length - 1; j++) {
+      if (drawNodes)       g.drawPoint('o',data[i][j]);
       g.drawLine(data[i][j],data[i][j + 1]);
     }
+    if (drawNodes)     g.drawPoint('o',data[i][data[i].length - 1]);
   }
   for (int i=0; i < data.length - 1; i++) {
     for (int j=0; j < data[i].length; j++) {

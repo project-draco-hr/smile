@@ -19,7 +19,7 @@
   }
   PlotCanvas canvas=new PlotCanvas(lowerBound,upperBound);
   Grid grid=new Grid(data);
-  grid.setID(id);
+  if (id != null)   grid.setID(id);
   canvas.add(grid);
   return canvas;
 }
