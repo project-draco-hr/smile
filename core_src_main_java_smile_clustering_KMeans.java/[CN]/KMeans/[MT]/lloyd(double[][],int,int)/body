@@ -11,7 +11,7 @@
   double distortion=Double.MAX_VALUE;
   int[] size=new int[k];
   double[][] centroids=new double[k][d];
-  int[] y=seed(data,k,DistanceMethod.EUCLIDEAN_MISSING_VALUES);
+  int[] y=seed(data,k,ClusteringDistance.EUCLIDEAN_MISSING_VALUES);
   int np=MulticoreExecutor.getThreadPoolSize();
   List<LloydThread> tasks=null;
   if (n >= 1000 && np >= 2) {

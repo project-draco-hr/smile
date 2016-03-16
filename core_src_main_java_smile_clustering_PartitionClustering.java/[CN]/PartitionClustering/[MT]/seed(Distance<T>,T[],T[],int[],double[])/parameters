@@ -1,5 +1,0 @@
-Distance<T> distance
-T[] data
-T[] medoids
-int[] y
-double[] d

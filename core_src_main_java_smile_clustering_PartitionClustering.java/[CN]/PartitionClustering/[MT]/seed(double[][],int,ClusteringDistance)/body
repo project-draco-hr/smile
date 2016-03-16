@@ -1,0 +1,58 @@
+{
+  int n=data.length;
+  int[] y=new int[n];
+  double[] centroid=data[Math.randomInt(n)];
+  double[] d=new double[n];
+  for (int i=0; i < n; i++) {
+    d[i]=Double.MAX_VALUE;
+  }
+  for (int j=1; j < k; j++) {
+    for (int i=0; i < n; i++) {
+      double dist=0.0;
+switch (distance) {
+case EUCLIDEAN:
+        dist=Math.squaredDistance(data[i],centroid);
+      break;
+case EUCLIDEAN_MISSING_VALUES:
+    dist=squaredDistance(data[i],centroid);
+  break;
+case JENSEN_SHANNON_DIVERGENCE:
+dist=Math.JensenShannonDivergence(data[i],centroid);
+break;
+}
+if (dist < d[i]) {
+d[i]=dist;
+y[i]=j - 1;
+}
+}
+double cutoff=Math.random() * Math.sum(d);
+double cost=0.0;
+int index=0;
+for (; index < n; index++) {
+cost+=d[index];
+if (cost >= cutoff) {
+break;
+}
+}
+centroid=data[index];
+}
+for (int i=0; i < n; i++) {
+double dist=0.0;
+switch (distance) {
+case EUCLIDEAN:
+dist=Math.squaredDistance(data[i],centroid);
+break;
+case EUCLIDEAN_MISSING_VALUES:
+dist=squaredDistance(data[i],centroid);
+break;
+case JENSEN_SHANNON_DIVERGENCE:
+dist=Math.JensenShannonDivergence(data[i],centroid);
+break;
+}
+if (dist < d[i]) {
+d[i]=dist;
+y[i]=k - 1;
+}
+}
+return y;
+}
