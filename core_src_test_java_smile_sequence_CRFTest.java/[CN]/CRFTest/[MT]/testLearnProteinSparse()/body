@@ -4,8 +4,8 @@
   IntDataset test=load("/smile/data/sequence/sparse.protein.11.test");
   CRF.Trainer trainer=new CRF.Trainer(train.p,train.k);
   trainer.setLearningRate(0.3);
-  trainer.setMaximumLeafNodes(100);
-  trainer.setNumIterations(100);
+  trainer.setMaxNodes(100);
+  trainer.setNumTrees(100);
   CRF crf=trainer.train(train.x,train.y);
   int error=0;
   int n=0;
