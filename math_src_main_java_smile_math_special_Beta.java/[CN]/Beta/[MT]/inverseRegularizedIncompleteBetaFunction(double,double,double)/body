@@ -34,7 +34,7 @@
       x=1. - Math.pow(beta * w * (1. - p),1. / beta);
     }
   }
-  afac=-Gamma.logGamma(alpha) - Gamma.logGamma(beta) + Gamma.logGamma(alpha + beta);
+  afac=-Gamma.lgamma(alpha) - Gamma.lgamma(beta) + Gamma.lgamma(alpha + beta);
   for (int j=0; j < 10; j++) {
     if (x == 0. || x == 1.) {
       return x;

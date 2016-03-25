@@ -8,7 +8,7 @@
   double acopy=a;
   double sum=1.0 / a;
   double incr=sum;
-  double loggamma=logGamma(a);
+  double loggamma=lgamma(a);
   while (check) {
     ++i;
     ++a;

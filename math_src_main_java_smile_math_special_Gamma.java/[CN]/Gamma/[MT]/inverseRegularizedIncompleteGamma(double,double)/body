@@ -7,7 +7,7 @@
   double lna1=0.0;
   double afac=0.0;
   double a1=a - 1;
-  double gln=logGamma(a);
+  double gln=lgamma(a);
   if (p >= 1.) {
     return Math.max(100.,a + 100. * Math.sqrt(a));
   }

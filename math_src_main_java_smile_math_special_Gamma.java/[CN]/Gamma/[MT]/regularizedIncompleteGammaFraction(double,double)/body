@@ -6,7 +6,7 @@
   double ii=0.0;
   double igf=0.0;
   boolean check=true;
-  double loggamma=logGamma(a);
+  double loggamma=lgamma(a);
   double numer=0.0;
   double incr=0.0;
   double denom=x - a + 1.0;
