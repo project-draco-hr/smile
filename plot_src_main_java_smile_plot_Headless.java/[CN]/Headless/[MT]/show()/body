@@ -1,0 +1,7 @@
+{
+  super.show();
+  addNotify();
+synchronized (super.getTreeLock()) {
+    super.validateTree();
+  }
+}

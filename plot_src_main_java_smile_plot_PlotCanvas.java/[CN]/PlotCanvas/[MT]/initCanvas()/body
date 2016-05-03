@@ -1,4 +1,8 @@
 {
+  GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+  if (ge.isHeadless()) {
+    setPreferredSize(new Dimension(1600,1200));
+  }
   setLayout(new BorderLayout());
   canvas=new MathCanvas();
   add(canvas,BorderLayout.CENTER);
