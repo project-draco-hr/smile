@@ -1,0 +1,12 @@
+{
+  text=text.trim();
+  text=java.text.Normalizer.normalize(text,java.text.Normalizer.Form.NFKC);
+  text=WHITESPACE.matcher(text).replaceAll(" ");
+  text=CONTROL_FORMAT_CHARS.matcher(text).replaceAll("");
+  text=LT_SIGNS.matcher(text).replaceAll("<");
+  text=GT_SIGNS.matcher(text).replaceAll(">");
+  text=DOUBLE_QUOTES.matcher(text).replaceAll("\"");
+  text=SINGLE_QUOTES.matcher(text).replaceAll("'");
+  text=DASHES.matcher(text).replaceAll("-");
+  return text;
+}
