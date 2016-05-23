@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize words with mixed numbers, letters, and punctuation");
+  String text="3M, L-3, BB&T, AutoZone, O'Reilly, Harley-Davidson, CH2M, A-Mark, " + "Quad/Graphics, Bloomin' Brands, B/E Aerospace, J.Crew, E*Trade.";
+  String[] expResult={"3M",",","L-3",",","BB&T",",","AutoZone",",","O'Reilly",",","Harley-Davidson",",","CH2M",",","A-Mark",",","Quad/Graphics",",","Bloomin","'","Brands",",","B/E","Aerospace",",","J.Crew",",","E","*","Trade","."};
+  SimpleTokenizer instance=new SimpleTokenizer();
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}

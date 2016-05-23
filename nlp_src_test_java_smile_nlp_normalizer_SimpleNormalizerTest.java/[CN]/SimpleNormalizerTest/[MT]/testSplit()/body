@@ -1,0 +1,7 @@
+{
+  System.out.println("normalize text");
+  String text="\tTHE BIG RIPOFF\n\n" + "Mr. John B. Smith bought cheapsite.com for 1.5 million dollars,\n\r" + "i.e. he paid far too much for it.\n\n"+ "Did he mind?\n\r"+ "   \t     \n"+ "Adam Jones Jr. thinks \u201Che\u0301\u201D didn\u2019t.    \n\r\n"+ "......\n"+ "In any case, this isn't true... Well, with a probability of .9 it isn't. ";
+  String expected="THE BIG RIPOFF " + "Mr. John B. Smith bought cheapsite.com for 1.5 million dollars, " + "i.e. he paid far too much for it. "+ "Did he mind? "+ "Adam Jones Jr. thinks \"h??\" didn't. "+ "...... "+ "In any case, this isn't true... Well, with a probability of .9 it isn't.";
+  String result=SimpleNormalizer.getInstance().normalize(text);
+  assertEquals(expected,result);
+}

@@ -1,0 +1,11 @@
+{
+  text=text.trim();
+  if (!java.text.Normalizer.isNormalized(text,java.text.Normalizer.Form.NFKC)) {
+    text=java.text.Normalizer.normalize(text,java.text.Normalizer.Form.NFKC);
+  }
+  text=WHITESPACE.matcher(text).replaceAll(" ");
+  text=CONTROL_FORMAT_CHARS.matcher(text).replaceAll("");
+  text=DOUBLE_QUOTES.matcher(text).replaceAll("\"");
+  text=SINGLE_QUOTES.matcher(text).replaceAll("'");
+  return text;
+}

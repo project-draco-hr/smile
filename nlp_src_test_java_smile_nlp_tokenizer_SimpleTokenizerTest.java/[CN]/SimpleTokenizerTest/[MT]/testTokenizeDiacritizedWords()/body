@@ -1,0 +1,11 @@
+{
+  System.out.println("tokenize words with diacritized chars (both composite and combining)");
+  String text="The na??ve r??sum?? of Ra??l Ib????ez; re\u0301sume\u0301.";
+  String[] expResult={"The","na??ve","r??sum??","of","Ra??l","Ib????ez",";","re\u0301sume\u0301","."};
+  SimpleTokenizer instance=new SimpleTokenizer();
+  String[] result=instance.split(text);
+  assertEquals(expResult.length,result.length);
+  for (int i=0; i < result.length; i++) {
+    assertEquals(expResult[i],result[i]);
+  }
+}
