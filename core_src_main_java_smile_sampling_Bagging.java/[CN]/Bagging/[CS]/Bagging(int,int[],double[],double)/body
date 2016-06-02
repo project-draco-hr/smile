@@ -1,0 +1,58 @@
+{
+  int n=y.length;
+  int[] sampling=new int[n];
+  if (subsample == 1.0) {
+    for (int l=0; l < k; l++) {
+      int nj=0;
+      ArrayList<Integer> cj=new ArrayList<Integer>();
+      for (int i=0; i < n; i++) {
+        if (y[i] == l) {
+          cj.add(i);
+          nj++;
+        }
+      }
+      nj/=classWeight[l];
+      for (int i=0; i < nj; i++) {
+        int xi=smile.math.Math.randomInt(nj);
+        sampling[cj.get(xi)]+=1;
+      }
+    }
+  }
+ else {
+    int[] perm=new int[n];
+    for (int i=0; i < n; i++) {
+      perm[i]=i;
+    }
+    Math.permutate(perm);
+    int[] nc=new int[k];
+    for (int i=0; i < n; i++) {
+      nc[y[i]]++;
+    }
+    for (int l=0; l < k; l++) {
+      int subj=(int)Math.round(nc[l] * subsample / classWeight[l]);
+      int count=0;
+      for (int i=0; i < n && count < subj; i++) {
+        int xi=perm[i];
+        if (y[xi] == l) {
+          sampling[xi]+=1;
+          count++;
+        }
+      }
+    }
+  }
+  int m=0;
+  for (  int s : sampling) {
+    if (s != 0) {
+      m++;
+      size+=s;
+    }
+  }
+  this.samples=new int[m][2];
+  for (int i=0, l=0; i < n; i++) {
+    if (sampling[i] > 0) {
+      samples[l][0]=i;
+      samples[l][1]=sampling[i];
+      l++;
+    }
+  }
+}

@@ -1,0 +1,4 @@
+int k
+int[] y
+double[] classWeight
+double subsample
