@@ -1,5 +1,0 @@
-smile.math.distance.Distance distance
-T[] data
-T[] medoids
-int[] y
-double[] d
