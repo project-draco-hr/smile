@@ -17,8 +17,21 @@
     svd.solve(y,w1);
   }
  else {
-    qr=new QRDecomposition(X,true);
-    qr.solve(y,w1);
+    try {
+      qr=new QRDecomposition(X,true);
+      qr.solve(y,w1);
+    }
+ catch (    RuntimeException e) {
+      logger.warn("Matrix is not of full rank, try SVD instead");
+      SVD=true;
+      Arrays.fill(w1,0.0);
+      for (int i=0; i < n; i++) {
+        System.arraycopy(x[i],0,X[i],0,p);
+        X[i][p]=1.0;
+      }
+      svd=SingularValueDecomposition.decompose(X);
+      svd.solve(y,w1);
+    }
   }
   b=w1[p];
   w=new double[p];
