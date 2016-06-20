@@ -6,7 +6,7 @@
     AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/cpu.arff"));
     double[] y=data.toArray(new double[data.size()]);
     double[][] x=data.toArray(new double[data.size()][]);
-    Math.normalize(x);
+    Math.standardize(x);
     RBFNetwork.Trainer<double[]> trainer=new RBFNetwork.Trainer<double[]>(new EuclideanDistance());
     trainer.setNumCenters(20);
     double[] rmse=Validation.bootstrap(100,trainer,x,y);

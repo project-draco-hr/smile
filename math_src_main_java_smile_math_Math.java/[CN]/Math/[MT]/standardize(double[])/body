@@ -1,8 +1,9 @@
 {
   double mu=mean(x);
   double sigma=sd(x);
-  if (sigma <= 0) {
-    throw new IllegalArgumentException("array has variance of 0.");
+  if (isZero(sigma)) {
+    logger.warn("array has variance of 0.");
+    return;
   }
   for (int i=0; i < x.length; i++) {
     x[i]=(x[i] - mu) / sigma;

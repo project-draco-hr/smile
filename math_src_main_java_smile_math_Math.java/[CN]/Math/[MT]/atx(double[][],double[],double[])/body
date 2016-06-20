@@ -1,13 +1,9 @@
 {
-  if (A.length != x.length) {
-    throw new IllegalArgumentException(String.format("Array dimensions do not match for matrix multiplication: %d x %d vs 1 x %d",A.length,A[0].length,x.length));
-  }
-  if (A[0].length != y.length) {
-    throw new IllegalArgumentException(String.format("Array dimensions do not match"));
-  }
+  int n=min(A[0].length,y.length);
+  int p=min(A.length,x.length);
   Arrays.fill(y,0.0);
-  for (int i=0; i < y.length; i++) {
-    for (int k=0; k < x.length; k++) {
+  for (int i=0; i < n; i++) {
+    for (int k=0; k < p; k++) {
       y[i]+=x[k] * A[k][i];
     }
   }

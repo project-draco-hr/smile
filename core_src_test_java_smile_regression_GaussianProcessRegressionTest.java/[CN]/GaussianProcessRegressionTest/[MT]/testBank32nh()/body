@@ -6,7 +6,7 @@
     AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/regression/bank32nh.arff"));
     double[] y=data.toArray(new double[data.size()]);
     double[][] x=data.toArray(new double[data.size()][]);
-    Math.normalize(x);
+    Math.standardize(x);
     int[] perm=Math.permutate(x.length);
     double[][] datax=new double[4000][];
     double[] datay=new double[datax.length];

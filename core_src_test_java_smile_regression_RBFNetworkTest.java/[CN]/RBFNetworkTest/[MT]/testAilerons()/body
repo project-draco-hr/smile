@@ -5,7 +5,7 @@
   try {
     AttributeDataset data=parser.parse(smile.data.parser.IOUtils.getTestDataFile("weka/regression/ailerons.arff"));
     double[][] datax=data.toArray(new double[data.size()][]);
-    Math.normalize(datax);
+    Math.standardize(datax);
     double[] datay=data.toArray(new double[data.size()]);
     for (int i=0; i < datay.length; i++) {
       datay[i]*=10000;

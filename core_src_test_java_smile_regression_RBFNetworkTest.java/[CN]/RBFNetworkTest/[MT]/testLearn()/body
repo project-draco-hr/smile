@@ -1,6 +1,6 @@
 {
   System.out.println("learn");
-  Math.normalize(longley);
+  Math.standardize(longley);
   int n=longley.length;
   LOOCV loocv=new LOOCV(n);
   double rss=0.0;
