@@ -1,6 +1,7 @@
 {
   if (value == null) {
     setText("");
+    return;
   }
   int[] data=(int[])value;
   StringBuilder builder=new StringBuilder();

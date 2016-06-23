@@ -1,6 +1,7 @@
 {
   if (value == null) {
     setText("");
+    return;
   }
   float[] data=(float[])value;
   StringBuilder builder=new StringBuilder();

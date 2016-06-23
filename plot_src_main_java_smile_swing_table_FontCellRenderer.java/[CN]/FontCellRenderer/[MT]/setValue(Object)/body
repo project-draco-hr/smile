@@ -1,6 +1,7 @@
 {
   if (value == null) {
     setText("");
+    return;
   }
   Font font=(Font)value;
   setFont(font);
