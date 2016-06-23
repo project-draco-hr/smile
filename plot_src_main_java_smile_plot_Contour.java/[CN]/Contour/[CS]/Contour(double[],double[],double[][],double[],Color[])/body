@@ -1,9 +1,9 @@
 {
   if (x.length != z[0].length) {
-    throw new IllegalArgumentException("The dimensions of x and z don't match.");
+    throw new IllegalArgumentException(DIMENSIONS_XZ_DONT_MATCH);
   }
   if (y.length != z.length) {
-    throw new IllegalArgumentException("The dimensions of y and z don't match.");
+    throw new IllegalArgumentException(DIMENSIONS_YZ_DONT_MATCH);
   }
   if (levels.length != colors.length) {
     throw new IllegalArgumentException("The number of levels and colors don't match.");

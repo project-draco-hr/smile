@@ -7,6 +7,6 @@
     data[j]=Math.random() - 0.5;
   }
   PlotCanvas canvas=BarPlot.plot(data,labels);
-  canvas.setTitle("Bar Plot");
+  canvas.setTitle(BAR_PLOT);
   add(canvas);
 }

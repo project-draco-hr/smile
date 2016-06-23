@@ -1,6 +1,6 @@
 {
   if (ntrees < 1) {
-    throw new IllegalArgumentException("Invalid number of trees: " + ntrees);
+    throw new IllegalArgumentException(INVALID_NUMBER_OF_TREES + ntrees);
   }
   this.ntrees=ntrees;
 }
