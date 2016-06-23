@@ -1,6 +1,6 @@
 {
   if (value == null) {
-    setText("");
+    setText("[]");
     return;
   }
   int[] data=(int[])value;
