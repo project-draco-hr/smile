@@ -1,6 +1,7 @@
 {
   if (value == null) {
     setText("");
+    return;
   }
   double[] data=(double[])value;
   StringBuilder builder=new StringBuilder();
