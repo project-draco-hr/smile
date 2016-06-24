@@ -23,7 +23,7 @@
         rss+=r * r;
       }
     }
-    System.out.format("10-CV RMSE = %.4f \t AbsoluteDeviation = %.4f\n",Math.sqrt(rss / n),ad / n);
+    System.out.format("10-CV RMSE = %.4f \t AbsoluteDeviation = %.4f%n",Math.sqrt(rss / n),ad / n);
   }
  catch (  Exception ex) {
     System.err.println(ex);

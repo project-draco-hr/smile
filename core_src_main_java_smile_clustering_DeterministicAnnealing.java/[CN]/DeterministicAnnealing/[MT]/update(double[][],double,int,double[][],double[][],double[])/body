@@ -81,6 +81,6 @@
     newDistortion=D - T * H;
     iter++;
   }
-  logger.info(String.format("Deterministic Annealing clustering entropy after %3d iterations at temperature %.4f and k = %d: %.5f (soft distortion = %.5f )\n",iter,T,k / 2,H,D));
+  logger.info(String.format("Deterministic Annealing clustering entropy after %3d iterations at temperature %.4f and k = %d: %.5f (soft distortion = %.5f )%n",iter,T,k / 2,H,D));
   return currentDistortion;
 }

@@ -7,5 +7,5 @@
     neighbors.clear();
   }
   double time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("Cover tree string search: %.2fs\n",time);
+  System.out.format("Cover tree string search: %.2fs%n",time);
 }
