@@ -2,7 +2,7 @@
   cc[v]=id;
   Queue<Integer> queue=new LinkedList<Integer>();
   queue.offer(v);
-  while (queue.size() > 0) {
+  while (!queue.isEmpty()) {
     int t=queue.poll();
     for (    Edge edge : graph[t]) {
       int i=edge.v2;

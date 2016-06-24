@@ -6,7 +6,7 @@
   ArrayList<DistanceNode> zeroSet=new ArrayList<DistanceNode>();
   double d=distance.d(root.getObject(),q);
   currentCoverSet.add(new DistanceNode(d,root));
-  while (currentCoverSet.size() > 0) {
+  while (!currentCoverSet.isEmpty()) {
     ArrayList<DistanceNode> nextCoverSet=new ArrayList<DistanceNode>();
     for (int i=0; i < currentCoverSet.size(); i++) {
       DistanceNode par=currentCoverSet.get(i);
