@@ -19,7 +19,7 @@
         error++;
       }
     }
-    System.out.format("Segment error rate = %.2f%%\n",100.0 * error / testx.length);
+    System.out.format("Segment error rate = %.2f%%%n",100.0 * error / testx.length);
     assertTrue(error < 70);
   }
  catch (  Exception ex) {

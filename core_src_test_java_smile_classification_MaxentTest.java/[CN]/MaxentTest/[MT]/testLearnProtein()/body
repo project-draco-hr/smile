@@ -9,7 +9,7 @@
       error++;
     }
   }
-  System.out.format("Protein error is %d of %d\n",error,test.x.length);
-  System.out.format("Protein error rate = %.2f%%\n",100.0 * error / test.x.length);
+  System.out.format("Protein error is %d of %d%n",error,test.x.length);
+  System.out.format("Protein error rate = %.2f%%%n",100.0 * error / test.x.length);
   assertEquals(1338,error);
 }

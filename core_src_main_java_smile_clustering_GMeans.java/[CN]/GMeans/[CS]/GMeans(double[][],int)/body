@@ -98,6 +98,6 @@
         distortion=newDistortion;
       }
     }
-    logger.info(String.format("G-Means distortion with %d clusters: %.5f\n",k,distortion));
+    logger.info(String.format("G-Means distortion with %d clusters: %.5f%n",k,distortion));
   }
 }

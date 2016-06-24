@@ -35,7 +35,7 @@
       NaiveBayes bayes=new NaiveBayes(priori,condprob);
       if (y[loocv.test[l]] != bayes.predict(x[loocv.test[l]]))       error++;
     }
-    System.out.format("Iris error rate = %.2f%%\n",100.0 * error / x.length);
+    System.out.format("Iris error rate = %.2f%%%n",100.0 * error / x.length);
     assertEquals(5,error);
   }
  catch (  Exception ex) {

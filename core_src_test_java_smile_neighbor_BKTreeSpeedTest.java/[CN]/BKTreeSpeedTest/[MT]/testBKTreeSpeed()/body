@@ -7,26 +7,26 @@
     neighbors.clear();
   }
   double time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("BK-tree range 1 search: %.2fs\n",time);
+  System.out.format("BK-tree range 1 search: %.2fs%n",time);
   start=System.currentTimeMillis();
   for (int i=1000; i < 1100; i++) {
     bktree.range(words.get(i),2,neighbors);
     neighbors.clear();
   }
   time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("BK-tree range 2 search: %.2fs\n",time);
+  System.out.format("BK-tree range 2 search: %.2fs%n",time);
   start=System.currentTimeMillis();
   for (int i=1000; i < 1100; i++) {
     bktree.range(words.get(i),3,neighbors);
     neighbors.clear();
   }
   time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("BK-tree range 3 search: %.2fs\n",time);
+  System.out.format("BK-tree range 3 search: %.2fs%n",time);
   start=System.currentTimeMillis();
   for (int i=1000; i < 1100; i++) {
     bktree.range(words.get(i),4,neighbors);
     neighbors.clear();
   }
   time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("BK-tree range 4 search: %.2fs\n",time);
+  System.out.format("BK-tree range 4 search: %.2fs%n",time);
 }
