@@ -22,5 +22,5 @@
       }
     }
   }
-  return new Datum<double[]>(x,y);
+  return new Datum<>(x,y);
 }

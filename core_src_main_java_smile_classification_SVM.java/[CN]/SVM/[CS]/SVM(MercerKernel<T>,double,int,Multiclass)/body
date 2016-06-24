@@ -9,13 +9,13 @@
   this.k=k;
   this.strategy=strategy;
   if (strategy == Multiclass.ONE_VS_ALL) {
-    svms=new ArrayList<LASVM>(k);
+    svms=new ArrayList<>(k);
     for (int i=0; i < k; i++) {
       svms.add(new LASVM(C,C));
     }
   }
  else {
-    svms=new ArrayList<LASVM>(k * (k - 1) / 2);
+    svms=new ArrayList<>(k * (k - 1) / 2);
     for (int i=0; i < k; i++) {
       for (int j=i + 1; j < k; j++) {
         svms.add(new LASVM(C,C));

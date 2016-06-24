@@ -1,6 +1,6 @@
 {
-  Set<T> union=new HashSet<T>();
-  Set<T> intersection=new HashSet<T>();
+  Set<T> union=new HashSet<>();
+  Set<T> intersection=new HashSet<>();
   for (int i=0; i < b.length; i++)   union.add(b[i]);
   for (int i=0; i < a.length; i++)   intersection.add(a[i]);
   intersection.retainAll(union);

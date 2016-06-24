@@ -7,7 +7,7 @@
     double[] y=data.toArray(new double[data.size()]);
     double[][] x=data.toArray(new double[data.size()][]);
     Math.standardize(x);
-    RBFNetwork.Trainer<double[]> trainer=new RBFNetwork.Trainer<double[]>(new EuclideanDistance());
+    RBFNetwork.Trainer<double[]> trainer=new RBFNetwork.Trainer<>(new EuclideanDistance());
     trainer.setNumCenters(20);
     RegressionMeasure[] measures={new RMSE(),new AbsoluteDeviation()};
     double[] results=Validation.loocv(trainer,x,y,measures);

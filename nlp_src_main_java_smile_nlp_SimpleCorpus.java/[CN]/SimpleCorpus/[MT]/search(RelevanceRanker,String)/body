@@ -2,7 +2,7 @@
   if (invertedFile.containsKey(term)) {
     List<SimpleText> hits=invertedFile.get(term);
     int n=hits.size();
-    ArrayList<Relevance> rank=new ArrayList<Relevance>(n);
+    ArrayList<Relevance> rank=new ArrayList<>(n);
     for (    SimpleText doc : hits) {
       int tf=doc.tf(term);
       rank.add(new Relevance(doc,ranker.rank(this,doc,term,tf,n)));

@@ -7,6 +7,6 @@
     }
     b[i]=Math.random(0,w);
   }
-  LinkedList<Item> list=new LinkedList<Item>();
+  LinkedList<Item> list=new LinkedList<>();
   table=(LinkedList<Item>[])java.lang.reflect.Array.newInstance(list.getClass(),H);
 }

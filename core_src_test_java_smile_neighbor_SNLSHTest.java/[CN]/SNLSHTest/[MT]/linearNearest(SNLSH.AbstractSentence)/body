@@ -13,5 +13,5 @@
       minKey=sentence;
     }
   }
-  return new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(minKey,minKey,0,minDist);
+  return new Neighbor<>(minKey,minKey,0,minDist);
 }

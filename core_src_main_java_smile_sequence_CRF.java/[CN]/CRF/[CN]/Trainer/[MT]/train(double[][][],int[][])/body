@@ -6,11 +6,11 @@
     scaling[i]=new double[sequences[i].length];
     trellis[i]=crf.getTrellis(sequences[i]);
   }
-  List<GradientTask> gradientTasks=new ArrayList<GradientTask>();
+  List<GradientTask> gradientTasks=new ArrayList<>();
   for (int i=0; i < sequences.length; i++) {
     gradientTasks.add(new GradientTask(crf,trellis[i],scaling[i],labels[i]));
   }
-  List<BoostingTask> boostingTasks=new ArrayList<BoostingTask>();
+  List<BoostingTask> boostingTasks=new ArrayList<>();
   for (int i=0; i < numClasses; i++) {
     boostingTasks.add(new BoostingTask(crf.potentials[i],trellis,i));
   }

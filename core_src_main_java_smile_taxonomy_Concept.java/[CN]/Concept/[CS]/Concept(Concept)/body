@@ -4,7 +4,7 @@
   }
   this.parent=parent;
   if (parent.children == null) {
-    parent.children=new ArrayList<Concept>();
+    parent.children=new ArrayList<>();
   }
   parent.children.add(this);
   taxonomy=parent.taxonomy;

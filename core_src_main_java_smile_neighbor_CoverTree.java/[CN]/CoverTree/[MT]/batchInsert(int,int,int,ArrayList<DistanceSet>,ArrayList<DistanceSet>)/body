@@ -7,7 +7,7 @@
     double maxDist=max(pointSet);
     int nextScale=Math.min(maxScale - 1,getScale(maxDist));
     if (nextScale == Integer.MIN_VALUE) {
-      ArrayList<Node> children=new ArrayList<Node>();
+      ArrayList<Node> children=new ArrayList<>();
       Node leaf=newLeaf(p);
       children.add(leaf);
       while (!pointSet.isEmpty()) {
@@ -24,7 +24,7 @@
       return node;
     }
  else {
-      ArrayList<DistanceSet> far=new ArrayList<DistanceSet>();
+      ArrayList<DistanceSet> far=new ArrayList<>();
       split(pointSet,far,maxScale);
       Node child=batchInsert(p,nextScale,topScale,pointSet,consumedSet);
       if (pointSet.isEmpty()) {
@@ -32,10 +32,10 @@
         return child;
       }
  else {
-        ArrayList<Node> children=new ArrayList<Node>();
+        ArrayList<Node> children=new ArrayList<>();
         children.add(child);
-        ArrayList<DistanceSet> newPointSet=new ArrayList<DistanceSet>();
-        ArrayList<DistanceSet> newConsumedSet=new ArrayList<DistanceSet>();
+        ArrayList<DistanceSet> newPointSet=new ArrayList<>();
+        ArrayList<DistanceSet> newConsumedSet=new ArrayList<>();
         while (!pointSet.isEmpty()) {
           DistanceSet set=pointSet.get(pointSet.size() - 1);
           pointSet.remove(pointSet.size() - 1);

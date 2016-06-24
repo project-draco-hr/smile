@@ -8,7 +8,7 @@
     taxonomy.concepts.put(keyword,this);
   }
   if (synset == null) {
-    synset=new TreeSet<String>();
+    synset=new TreeSet<>();
   }
   synset.addAll(keywords);
 }

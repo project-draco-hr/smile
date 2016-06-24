@@ -23,7 +23,7 @@
       double[] trainy=Math.slice(datay,cv.train[i]);
       double[][] testx=Math.slice(datax,cv.test[i]);
       double[] testy=Math.slice(datay,cv.test[i]);
-      GaussianProcessRegression<double[]> rkhs=new GaussianProcessRegression<double[]>(trainx,trainy,new GaussianKernel(38.63),0.1);
+      GaussianProcessRegression<double[]> rkhs=new GaussianProcessRegression<>(trainx,trainy,new GaussianKernel(38.63),0.1);
       KMeans kmeans=new KMeans(trainx,30,10);
       double[][] centers=kmeans.centroids();
       double r0=0.0;
@@ -34,7 +34,7 @@
       }
       r0/=(2 * centers.length);
       System.out.println("Kernel width = " + r0);
-      GaussianProcessRegression<double[]> sparse30=new GaussianProcessRegression<double[]>(trainx,trainy,centers,new GaussianKernel(r0),0.1);
+      GaussianProcessRegression<double[]> sparse30=new GaussianProcessRegression<>(trainx,trainy,centers,new GaussianKernel(r0),0.1);
       for (int j=0; j < testx.length; j++) {
         double r=testy[j] - rkhs.predict(testx[j]);
         rss+=r * r;

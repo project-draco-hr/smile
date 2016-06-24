@@ -14,7 +14,7 @@
       int[] trainy=Math.slice(y,loocv.train[i]);
       double[][] centers=new double[10][];
       RadialBasisFunction[] basis=SmileUtils.learnGaussianRadialBasis(trainx,centers,5.0);
-      RBFNetwork<double[]> rbf=new RBFNetwork<double[]>(trainx,trainy,new EuclideanDistance(),basis,centers);
+      RBFNetwork<double[]> rbf=new RBFNetwork<>(trainx,trainy,new EuclideanDistance(),basis,centers);
       if (y[loocv.test[i]] != rbf.predict(x[loocv.test[i]]))       error++;
     }
     System.out.println("RBF network error = " + error);

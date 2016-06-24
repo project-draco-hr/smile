@@ -38,7 +38,7 @@
     }
   }
  else {
-    List<String> attributeValues=new ArrayList<String>();
+    List<String> attributeValues=new ArrayList<>();
     tokenizer.pushBack();
     if (tokenizer.nextToken() != '{') {
       throw new ParseException("{ expected at beginning of enumeration",tokenizer.lineno());

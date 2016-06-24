@@ -1,5 +1,5 @@
 {
-  List<Sentence> data=new ArrayList<Sentence>();
+  List<Sentence> data=new ArrayList<>();
   List<String> lines=IOUtils.readLines(IOUtils.getTestDataReader(path));
   for (  String line : lines) {
     List<String> s=tokenize(line,"\t");

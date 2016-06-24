@@ -3,7 +3,7 @@
   StreamTokenizer tokenizer=new StreamTokenizer(r);
   ArffParser parser=new ArffParser();
   parser.initTokenizer(tokenizer);
-  List<Attribute> attributes=new ArrayList<Attribute>();
+  List<Attribute> attributes=new ArrayList<>();
   parser.readHeader(tokenizer,attributes);
   return attributes.toArray(new Attribute[attributes.size()]);
 }

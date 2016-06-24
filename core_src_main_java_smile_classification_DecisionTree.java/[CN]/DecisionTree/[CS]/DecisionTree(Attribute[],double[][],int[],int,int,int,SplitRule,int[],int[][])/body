@@ -55,7 +55,7 @@
       }
     }
   }
-  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<TrainNode>();
+  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<>();
   int n=y.length;
   int[] count=new int[k];
   if (samples == null) {

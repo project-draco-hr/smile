@@ -1,5 +1,5 @@
 {
-  LinkedList<Concept> path=new LinkedList<Concept>();
+  LinkedList<Concept> path=new LinkedList<>();
   Concept node=this;
   while (node != null) {
     path.add(node);

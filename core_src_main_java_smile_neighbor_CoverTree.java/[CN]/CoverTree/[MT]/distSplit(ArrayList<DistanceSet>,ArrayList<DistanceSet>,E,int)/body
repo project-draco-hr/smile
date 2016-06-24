@@ -1,6 +1,6 @@
 {
   double fmax=getCoverRadius(maxScale);
-  ArrayList<DistanceSet> newSet=new ArrayList<DistanceSet>();
+  ArrayList<DistanceSet> newSet=new ArrayList<>();
   for (int i=0; i < pointSet.size(); i++) {
     DistanceSet n=pointSet.get(i);
     double newDist=distance.d(newPoint,n.getObject());

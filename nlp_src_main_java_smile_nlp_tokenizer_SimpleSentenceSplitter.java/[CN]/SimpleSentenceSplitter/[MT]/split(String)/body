@@ -1,5 +1,5 @@
 {
-  ArrayList<String> sentences=new ArrayList<String>();
+  ArrayList<String> sentences=new ArrayList<>();
   int len=0;
   text=REGEX_CARRIAGE_RETURN.matcher(text).replaceAll(" ");
   text=text.replace('\031',' ');

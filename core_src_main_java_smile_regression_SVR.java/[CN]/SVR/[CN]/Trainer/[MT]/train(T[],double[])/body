@@ -1,4 +1,4 @@
 {
-  SVR<T> svr=new SVR<T>(x,y,kernel,eps,C,tol);
+  SVR<T> svr=new SVR<>(x,y,kernel,eps,C,tol);
   return svr;
 }

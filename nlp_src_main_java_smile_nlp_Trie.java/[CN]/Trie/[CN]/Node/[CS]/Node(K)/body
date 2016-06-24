@@ -1,5 +1,5 @@
 {
   this.key=key;
   this.value=null;
-  this.children=new LinkedList<Node>();
+  this.children=new LinkedList<>();
 }

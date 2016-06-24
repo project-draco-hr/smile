@@ -1,5 +1,5 @@
 {
-  HashMap<Integer,Neuron> hash=new HashMap<Integer,Neuron>();
+  HashMap<Integer,Neuron> hash=new HashMap<>();
   Neuron[] neurons=new Neuron[nodes.size()];
   int i=0;
   for (  Node node : nodes) {

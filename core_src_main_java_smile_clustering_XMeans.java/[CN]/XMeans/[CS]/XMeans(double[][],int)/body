@@ -25,7 +25,7 @@
   logger.info(String.format("X-Means distortion with %d clusters: %.5f",k,distortion));
   BBDTree bbd=new BBDTree(data);
   while (k < kmax) {
-    ArrayList<double[]> centers=new ArrayList<double[]>();
+    ArrayList<double[]> centers=new ArrayList<>();
     double[] score=new double[k];
     KMeans[] kmeans=new KMeans[k];
     for (int i=0; i < k; i++) {

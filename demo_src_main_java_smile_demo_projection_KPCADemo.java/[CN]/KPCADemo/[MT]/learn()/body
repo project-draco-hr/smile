@@ -65,7 +65,7 @@
   }
   plot.setTitle("PCA");
   pane.add(plot);
-  KPCA<double[]> kpca=new KPCA<double[]>(data,new GaussianKernel(gamma[datasetIndex]),2);
+  KPCA<double[]> kpca=new KPCA<>(data,new GaussianKernel(gamma[datasetIndex]),2);
   y=kpca.getCoordinates();
   plot=new PlotCanvas(Math.colMin(y),Math.colMax(y));
   if (names != null) {
@@ -83,7 +83,7 @@
   plot.setTitle("KPCA");
   pane.add(plot);
   clock=System.currentTimeMillis();
-  kpca=new KPCA<double[]>(data,new GaussianKernel(gamma[datasetIndex]),3);
+  kpca=new KPCA<>(data,new GaussianKernel(gamma[datasetIndex]),3);
   System.out.format("Learn KPCA from %d samples in %dms\n",data.length,System.currentTimeMillis() - clock);
   y=kpca.getCoordinates();
   plot=new PlotCanvas(Math.colMin(y),Math.colMax(y));

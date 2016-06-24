@@ -1,7 +1,7 @@
 {
   System.out.println("cover tree");
   long start=System.currentTimeMillis();
-  List<Neighbor<String,String>> neighbors=new ArrayList<Neighbor<String,String>>();
+  List<Neighbor<String,String>> neighbors=new ArrayList<>();
   for (int i=1000; i < 1100; i++) {
     cover.range(words.get(i),1,neighbors);
     neighbors.clear();

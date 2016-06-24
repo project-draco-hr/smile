@@ -1,3 +1,3 @@
 {
-  this(data,new CoverTree<T>(data,distance),minPts,radius);
+  this(data,new CoverTree<>(data,distance),minPts,radius);
 }

@@ -4,7 +4,7 @@
     return;
   }
   if (children == null) {
-    children=new ArrayList<Node>();
+    children=new ArrayList<>();
   }
   while (children.size() <= d) {
     children.add(null);

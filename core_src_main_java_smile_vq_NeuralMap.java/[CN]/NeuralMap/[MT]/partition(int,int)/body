@@ -1,5 +1,5 @@
 {
-  List<Neuron> data=new ArrayList<Neuron>();
+  List<Neuron> data=new ArrayList<>();
   for (  Neuron neuron : neurons) {
     neuron.y=OUTLIER;
     if (neuron.n >= minPts) {

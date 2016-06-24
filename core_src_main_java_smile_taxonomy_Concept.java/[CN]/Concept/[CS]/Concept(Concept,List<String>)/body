@@ -3,10 +3,10 @@
     throw new NullPointerException("Parent concept cannot be null.");
   }
   this.parent=parent;
-  synset=new TreeSet<String>();
+  synset=new TreeSet<>();
   synset.addAll(keywords);
   if (parent.children == null) {
-    parent.children=new ArrayList<Concept>();
+    parent.children=new ArrayList<>();
   }
   parent.children.add(this);
   taxonomy=parent.taxonomy;

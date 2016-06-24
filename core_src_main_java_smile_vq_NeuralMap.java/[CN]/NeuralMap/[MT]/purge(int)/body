@@ -1,5 +1,5 @@
 {
-  List<Neuron> outliers=new ArrayList<Neuron>();
+  List<Neuron> outliers=new ArrayList<>();
   for (  Neuron neuron : neurons) {
     if (neuron.n < minPts) {
       outliers.add(neuron);
