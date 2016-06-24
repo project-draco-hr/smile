@@ -24,6 +24,6 @@
       }
     }
   }
-  System.out.format("Multinomial error = %d of %d\n",error,total);
+  System.out.format("Multinomial error = %d of %d%n",error,total);
   assertTrue(error < 265);
 }

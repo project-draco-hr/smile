@@ -22,15 +22,15 @@
       testy[i - m]=datay[index[i]];
     }
     RandomForest forest=new RandomForest(data.attributes(),trainx,trainy,100,n,5,trainx[0].length / 3);
-    System.out.format("RMSE = %.4f\n",Validation.test(forest,testx,testy));
+    System.out.format("RMSE = %.4f%n",Validation.test(forest,testx,testy));
     double[] rmse=forest.test(testx,testy);
     for (int i=1; i <= rmse.length; i++) {
-      System.out.format("%d trees RMSE = %.4f\n",i,rmse[i - 1]);
+      System.out.format("%d trees RMSE = %.4f%n",i,rmse[i - 1]);
     }
     double[] importance=forest.importance();
     index=QuickSort.sort(importance);
     for (int i=importance.length; i-- > 0; ) {
-      System.out.format("%s importance is %.4f\n",data.attributes()[index[i]],importance[i]);
+      System.out.format("%s importance is %.4f%n",data.attributes()[index[i]],importance[i]);
     }
   }
  catch (  Exception ex) {

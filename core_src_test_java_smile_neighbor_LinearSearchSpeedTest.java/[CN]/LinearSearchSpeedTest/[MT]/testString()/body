@@ -17,7 +17,7 @@
     System.err.println(e);
   }
   double time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("Loading string data: %.2fs\n",time);
+  System.out.format("Loading string data: %.2fs%n",time);
   String[] data=words.toArray(new String[words.size()]);
   LinearSearch<String> naive=new LinearSearch<String>(data,new EditDistance(50,true));
   start=System.currentTimeMillis();
@@ -27,5 +27,5 @@
     neighbors.clear();
   }
   time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("Linear string search: %.2fs\n",time);
+  System.out.format("Linear string search: %.2fs%n",time);
 }

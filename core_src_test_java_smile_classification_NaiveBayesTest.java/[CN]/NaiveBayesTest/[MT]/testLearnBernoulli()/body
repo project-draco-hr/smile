@@ -24,6 +24,6 @@
       }
     }
   }
-  System.out.format("Bernoulli error = %d of %d\n",error,total);
+  System.out.format("Bernoulli error = %d of %d%n",error,total);
   assertTrue(error < 270);
 }

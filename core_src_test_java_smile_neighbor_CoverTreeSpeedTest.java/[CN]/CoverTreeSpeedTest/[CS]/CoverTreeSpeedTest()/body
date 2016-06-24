@@ -12,9 +12,9 @@
     System.err.println(ex);
   }
   double time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("Loading data: %.2fs\n",time);
+  System.out.format("Loading data: %.2fs%n",time);
   start=System.currentTimeMillis();
   coverTree=new CoverTree<double[]>(x,new EuclideanDistance());
   time=(System.currentTimeMillis() - start) / 1000.0;
-  System.out.format("Building cover tree: %.2fs\n",time);
+  System.out.format("Building cover tree: %.2fs%n",time);
 }
