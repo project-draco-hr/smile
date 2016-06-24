@@ -7,7 +7,7 @@
   }
   double g=y;
   DoubleArrayList kcache=new DoubleArrayList(sv.size() + 1);
-  if (sv.size() > 0) {
+  if (!sv.isEmpty()) {
     for (    SupportVector v : sv) {
       if (v != null) {
         if (v.x == x) {

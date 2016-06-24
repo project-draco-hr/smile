@@ -22,7 +22,7 @@
     heap.add(d);
     emptyHeap=false;
   }
-  while (currentCoverSet.size() > 0) {
+  while (!currentCoverSet.isEmpty()) {
     ArrayList<DistanceNode> nextCoverSet=new ArrayList<DistanceNode>();
     for (int i=0; i < currentCoverSet.size(); i++) {
       DistanceNode par=currentCoverSet.get(i);

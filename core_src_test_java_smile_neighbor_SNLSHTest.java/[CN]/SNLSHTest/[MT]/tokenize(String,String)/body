@@ -1,11 +1,11 @@
 {
   List<String> tokens=new LinkedList<String>();
-  if (line == null || line.length() == 0) {
+  if (line == null || line.isEmpty()) {
     throw new IllegalArgumentException("Line should not be blank!");
   }
   String[] ss=line.split(regex);
   for (  String s : ss) {
-    if (s == null || s.length() == 0) {
+    if (s == null || s.isEmpty()) {
       continue;
     }
     tokens.add(s);
