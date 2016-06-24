@@ -45,11 +45,11 @@
       iter.remove();
       if (edge.a != s1) {
         edge.a.edges.remove(edge);
-        if (edge.a.edges.size() == 0)         nodes.remove(edge.a);
+        if (edge.a.edges.isEmpty())         nodes.remove(edge.a);
       }
  else {
         edge.b.edges.remove(edge);
-        if (edge.b.edges.size() == 0)         nodes.remove(edge.b);
+        if (edge.b.edges.isEmpty())         nodes.remove(edge.b);
       }
     }
   }
