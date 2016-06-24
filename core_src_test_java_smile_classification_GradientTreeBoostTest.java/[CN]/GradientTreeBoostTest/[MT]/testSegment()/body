@@ -16,7 +16,7 @@
         error++;
       }
     }
-    System.out.format("Gradient Tree Boost error rate = %.2f%%\n",100.0 * error / testx.length);
+    System.out.format("Gradient Tree Boost error rate = %.2f%%%n",100.0 * error / testx.length);
   }
  catch (  Exception ex) {
     System.err.println(ex);

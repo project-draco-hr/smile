@@ -1,12 +1,9 @@
 {
   System.out.println("npara");
   MultivariateGaussianDistribution instance=new MultivariateGaussianDistribution(mu,1.0);
-  instance.rand();
   assertEquals(4,instance.npara());
   instance=new MultivariateGaussianDistribution(mu,sigma[0]);
-  instance.rand();
   assertEquals(6,instance.npara());
   instance=new MultivariateGaussianDistribution(mu,sigma);
-  instance.rand();
   assertEquals(9,instance.npara());
 }

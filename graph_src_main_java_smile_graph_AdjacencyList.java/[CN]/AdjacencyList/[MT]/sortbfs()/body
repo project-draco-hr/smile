@@ -16,7 +16,7 @@
       queue.offer(i);
     }
   }
-  for (int i=0; queue.size() > 0; i++) {
+  for (int i=0; !queue.isEmpty(); i++) {
     int t=queue.poll();
     ts[i]=t;
     for (    Edge edge : graph[t]) {

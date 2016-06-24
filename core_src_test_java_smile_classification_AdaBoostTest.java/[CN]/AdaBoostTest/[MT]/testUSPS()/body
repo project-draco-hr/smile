@@ -23,7 +23,7 @@
       }
     }
     System.out.println("AdaBoost error = " + error);
-    System.out.format("USPS error rate = %.2f%%\n",100.0 * error / testx.length);
+    System.out.format("USPS error rate = %.2f%%%n",100.0 * error / testx.length);
     assertTrue(error <= 25);
   }
  catch (  Exception ex) {

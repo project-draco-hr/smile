@@ -11,6 +11,6 @@
       double r=y[loocv.test[i]] - ridge.predict(longley[loocv.test[i]]);
       rss+=r * r;
     }
-    System.out.format("LOOCV MSE with lambda %.2f = %.3f\n",0.01 * lambda,rss / n);
+    System.out.format("LOOCV MSE with lambda %.2f = %.3f%n",0.01 * lambda,rss / n);
   }
 }

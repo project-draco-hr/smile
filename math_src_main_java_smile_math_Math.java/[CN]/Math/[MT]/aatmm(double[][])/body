@@ -1,13 +1,6 @@
 {
   int m=A.length;
-  int n=A[0].length;
   double[][] C=new double[m][m];
-  for (int i=0; i < m; i++) {
-    for (int j=0; j < m; j++) {
-      for (int k=0; k < n; k++) {
-        C[i][j]+=A[i][k] * A[j][k];
-      }
-    }
-  }
+  aatmm(A,C);
   return C;
 }

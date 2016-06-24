@@ -1,6 +1,5 @@
 {
   System.out.println("entropy");
   MultivariateGaussianDistribution instance=new MultivariateGaussianDistribution(mu,sigma);
-  instance.rand();
   assertEquals(2.954971,instance.entropy(),1E-6);
 }

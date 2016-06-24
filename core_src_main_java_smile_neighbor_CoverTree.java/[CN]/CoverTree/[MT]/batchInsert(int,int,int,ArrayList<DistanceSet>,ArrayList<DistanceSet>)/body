@@ -10,7 +10,7 @@
       ArrayList<Node> children=new ArrayList<Node>();
       Node leaf=newLeaf(p);
       children.add(leaf);
-      while (pointSet.size() > 0) {
+      while (!pointSet.isEmpty()) {
         DistanceSet set=pointSet.get(pointSet.size() - 1);
         pointSet.remove(pointSet.size() - 1);
         leaf=newLeaf(set.idx);
