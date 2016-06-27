@@ -1,6 +1,6 @@
 {
   if (lowerBound.length != dimension || upperBound.length != dimension) {
-    throw new IllegalArgumentException("Bound size don't match the dimension.");
+    throw new IllegalArgumentException(BOUND_SIZE_DON_T_MATCH_THE_DIMENSION);
   }
   boolean extend=false;
   for (int i=0; i < lowerBound.length; i++) {

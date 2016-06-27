@@ -3,16 +3,16 @@
     try {
       clusterNumber=Integer.parseInt(clusterNumberField.getText().trim());
       if (clusterNumber < 2) {
-        JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumber,"Error",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumber,ERROR,JOptionPane.ERROR_MESSAGE);
         return;
       }
       if (clusterNumber > dataset[datasetIndex].length / 2) {
-        JOptionPane.showMessageDialog(this,"Too large K: " + clusterNumber,"Error",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Too large K: " + clusterNumber,ERROR,JOptionPane.ERROR_MESSAGE);
         return;
       }
     }
  catch (    Exception ex) {
-      JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumberField.getText(),"Error",JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this,"Invalid K: " + clusterNumberField.getText(),ERROR,JOptionPane.ERROR_MESSAGE);
       return;
     }
     Thread thread=new Thread(this);
