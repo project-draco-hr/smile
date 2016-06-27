@@ -20,7 +20,7 @@
       }
     }
   }
-  Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,-1,Double.MAX_VALUE);
+  Neighbor<double[],E> neighbor=new Neighbor<>(null,null,-1,Double.MAX_VALUE);
   int[] cand=candidates.toArray();
   Arrays.sort(cand);
   int prev=-1;

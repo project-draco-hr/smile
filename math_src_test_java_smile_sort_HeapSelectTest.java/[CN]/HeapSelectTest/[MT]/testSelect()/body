@@ -1,6 +1,6 @@
 {
   System.out.println("HeapSelect");
-  HeapSelect<Integer> instance=new HeapSelect<Integer>(new Integer[10]);
+  HeapSelect<Integer> instance=new HeapSelect<>(new Integer[10]);
   for (int i=0; i < 1000; i++) {
     instance.add(i);
     if (i > 10) {
@@ -9,7 +9,7 @@
       }
     }
   }
-  instance=new HeapSelect<Integer>(new Integer[10]);
+  instance=new HeapSelect<>(new Integer[10]);
   for (int i=0; i < 1000; i++) {
     instance.add(1000 - i);
     if (i >= 9) {

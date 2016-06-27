@@ -1,5 +1,5 @@
 {
-  Collection<Edge> set=new LinkedList<Edge>();
+  Collection<Edge> set=new LinkedList<>();
   if (digraph) {
     for (    Edge edge : graph[source]) {
       if (edge.v2 == target) {

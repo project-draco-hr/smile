@@ -3,7 +3,7 @@
     throw new ParseException("premature end of line",tokenizer.lineno());
   }
   if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
-    throw new ParseException("premature end of file",tokenizer.lineno());
+    throw new ParseException(PREMATURE_END_OF_FILE,tokenizer.lineno());
   }
  else   if ((tokenizer.ttype == '\'') || (tokenizer.ttype == '"')) {
     tokenizer.ttype=StreamTokenizer.TT_WORD;

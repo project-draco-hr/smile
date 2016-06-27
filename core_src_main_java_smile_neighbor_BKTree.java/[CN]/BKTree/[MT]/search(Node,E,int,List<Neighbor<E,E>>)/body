@@ -2,7 +2,7 @@
   int d=(int)distance.d(node.object,q);
   if (d <= k) {
     if (node.object != q || !identicalExcluded) {
-      neighbors.add(new Neighbor<E,E>(node.object,node.object,node.index,d));
+      neighbors.add(new Neighbor<>(node.object,node.object,node.index,d));
     }
   }
   if (node.children != null) {

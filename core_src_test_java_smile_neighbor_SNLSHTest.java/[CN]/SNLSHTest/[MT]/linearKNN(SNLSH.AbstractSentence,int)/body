@@ -1,7 +1,7 @@
 {
   @SuppressWarnings("unchecked") Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[] neighbors=(Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>[])Array.newInstance(Neighbor.class,k);
-  HeapSelect<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> heap=new HeapSelect<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>(neighbors);
-  Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> neighbor=new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(null,null,0,Double.MAX_VALUE);
+  HeapSelect<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> heap=new HeapSelect<>(neighbors);
+  Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> neighbor=new Neighbor<>(null,null,0,Double.MAX_VALUE);
   for (int i=0; i < k; i++) {
     heap.add(neighbor);
   }
@@ -14,7 +14,7 @@
     long sign2=signCache.get(sentence.line);
     double distance=HammingDistance.d(sign1,sign2);
     if (distance < heap.peek().distance) {
-      heap.add(new Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>(sentence,sentence,0,distance));
+      heap.add(new Neighbor<>(sentence,sentence,0,distance));
       hit++;
     }
   }

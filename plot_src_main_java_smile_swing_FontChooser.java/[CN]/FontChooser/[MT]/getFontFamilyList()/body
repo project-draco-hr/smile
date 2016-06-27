@@ -1,6 +1,6 @@
 {
   if (fontNameList == null) {
-    fontNameList=new JList<String>(getFontFamilies());
+    fontNameList=new JList<>(getFontFamilies());
     fontNameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     fontNameList.addListSelectionListener(new ListSelectionHandler(getFontFamilyTextField()));
     fontNameList.setSelectedIndex(0);

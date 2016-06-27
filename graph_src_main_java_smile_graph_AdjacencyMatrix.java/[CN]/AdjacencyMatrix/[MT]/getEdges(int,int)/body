@@ -1,5 +1,5 @@
 {
-  Collection<Edge> set=new LinkedList<Edge>();
+  Collection<Edge> set=new LinkedList<>();
   Edge edge=getEdge(source,target);
   if (edge != null) {
     set.add(edge);

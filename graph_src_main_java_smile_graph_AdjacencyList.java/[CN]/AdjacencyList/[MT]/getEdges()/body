@@ -1,5 +1,5 @@
 {
-  Collection<Edge> set=new HashSet<Edge>();
+  Collection<Edge> set=new HashSet<>();
   for (int i=0; i < n; i++) {
     set.addAll(graph[i]);
   }

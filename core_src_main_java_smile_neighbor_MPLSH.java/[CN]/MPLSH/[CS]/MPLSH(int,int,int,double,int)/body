@@ -19,13 +19,13 @@
   this.k=k;
   this.r=r;
   this.H=H;
-  keys=new ArrayList<double[]>();
-  data=new ArrayList<E>();
+  keys=new ArrayList<>();
+  data=new ArrayList<>();
   c=new int[k];
   for (int i=0; i < c.length; i++) {
     c[i]=Math.randomInt(P);
   }
-  hash=new ArrayList<Hash>(L);
+  hash=new ArrayList<>(L);
   for (int i=0; i < L; i++) {
     hash.add(new Hash());
   }

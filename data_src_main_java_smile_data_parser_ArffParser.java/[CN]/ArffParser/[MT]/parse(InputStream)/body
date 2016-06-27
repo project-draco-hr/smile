@@ -2,7 +2,7 @@
   try (Reader r=new BufferedReader(new InputStreamReader(stream))){
     StreamTokenizer tokenizer=new StreamTokenizer(r);
     initTokenizer(tokenizer);
-    List<Attribute> attributes=new ArrayList<Attribute>();
+    List<Attribute> attributes=new ArrayList<>();
     String relationName=readHeader(tokenizer,attributes);
     if (attributes.isEmpty()) {
       throw new IOException("no header information available");

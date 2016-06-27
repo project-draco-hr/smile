@@ -1,6 +1,6 @@
 {
-  ArrayList<DistanceSet> pointSet=new ArrayList<DistanceSet>();
-  ArrayList<DistanceSet> consumedSet=new ArrayList<DistanceSet>();
+  ArrayList<DistanceSet> pointSet=new ArrayList<>();
+  ArrayList<DistanceSet> consumedSet=new ArrayList<>();
   E point=data[0];
   int idx=0;
   double maxDist=-1;

@@ -1,4 +1,4 @@
 {
-  components=new ArrayList<Component>();
+  components=new ArrayList<>();
   components.addAll(mixture);
 }

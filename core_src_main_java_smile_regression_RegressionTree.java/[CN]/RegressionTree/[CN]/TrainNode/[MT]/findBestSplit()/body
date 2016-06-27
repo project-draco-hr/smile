@@ -26,7 +26,7 @@
     }
   }
  else {
-    List<SplitTask> tasks=new ArrayList<SplitTask>(mtry);
+    List<SplitTask> tasks=new ArrayList<>(mtry);
     for (int j=0; j < mtry; j++) {
       tasks.add(new SplitTask(n,sum,variables[j]));
     }

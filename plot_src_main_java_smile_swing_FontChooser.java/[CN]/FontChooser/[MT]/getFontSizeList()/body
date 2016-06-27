@@ -1,6 +1,6 @@
 {
   if (fontSizeList == null) {
-    fontSizeList=new JList<String>(this.fontSizeStrings);
+    fontSizeList=new JList<>(this.fontSizeStrings);
     fontSizeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     fontSizeList.addListSelectionListener(new ListSelectionHandler(getFontSizeTextField()));
     fontSizeList.setSelectedIndex(0);

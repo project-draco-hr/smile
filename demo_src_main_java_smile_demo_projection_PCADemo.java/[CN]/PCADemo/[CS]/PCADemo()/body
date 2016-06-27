@@ -1,5 +1,5 @@
 {
-  corBox=new JComboBox<String>();
+  corBox=new JComboBox<>();
   corBox.addItem("Covariance");
   corBox.addItem("Correlation");
   corBox.setSelectedIndex(0);

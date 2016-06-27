@@ -1,5 +1,5 @@
 {
-  List<String> filteredArgs=new ArrayList<String>();
+  List<String> filteredArgs=new ArrayList<>();
   for (  String arg : args) {
     filteredArgs.add(arg);
     Parameter param=parameters.get(arg);

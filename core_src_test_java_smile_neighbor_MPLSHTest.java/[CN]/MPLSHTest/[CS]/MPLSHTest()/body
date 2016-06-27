@@ -10,8 +10,8 @@
  catch (  Exception ex) {
     System.err.println(ex);
   }
-  naive=new LinearSearch<double[]>(x,new EuclideanDistance());
-  lsh=new MPLSH<double[]>(256,100,3,4.0);
+  naive=new LinearSearch<>(x,new EuclideanDistance());
+  lsh=new MPLSH<>(256,100,3,4.0);
   for (  double[] xi : x) {
     lsh.put(xi,xi);
   }

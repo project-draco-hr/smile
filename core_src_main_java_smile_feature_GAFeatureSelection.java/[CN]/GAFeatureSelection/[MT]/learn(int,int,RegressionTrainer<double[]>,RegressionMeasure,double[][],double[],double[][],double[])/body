@@ -17,7 +17,7 @@
   for (int i=0; i < size; i++) {
     seeds[i]=new BitString(p,fitness,crossover,crossoverRate,mutationRate);
   }
-  GeneticAlgorithm<BitString> ga=new GeneticAlgorithm<BitString>(seeds,selection);
+  GeneticAlgorithm<BitString> ga=new GeneticAlgorithm<>(seeds,selection);
   ga.evolve(generation);
   return seeds;
 }

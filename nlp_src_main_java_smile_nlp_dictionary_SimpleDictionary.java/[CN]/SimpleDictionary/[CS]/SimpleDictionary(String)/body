@@ -1,5 +1,5 @@
 {
-  dict=new HashSet<String>();
+  dict=new HashSet<>();
   File file=new File(resource);
   try (BufferedReader input=file.exists() ? new BufferedReader(new FileReader(resource)) : new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(resource)))){
     String line=null;

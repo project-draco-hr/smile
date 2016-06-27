@@ -1,5 +1,5 @@
 {
-  List<Neighbor<T,T>> neighbors=new ArrayList<Neighbor<T,T>>();
+  List<Neighbor<T,T>> neighbors=new ArrayList<>();
   nns.range(x,radius,neighbors);
   if (neighbors.isEmpty()) {
     return OUTLIER;

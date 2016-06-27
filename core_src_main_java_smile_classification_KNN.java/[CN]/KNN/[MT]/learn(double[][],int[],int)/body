@@ -7,10 +7,10 @@
   }
   KNNSearch<double[],double[]> knn=null;
   if (x[0].length < 10) {
-    knn=new KDTree<double[]>(x,x);
+    knn=new KDTree<>(x,x);
   }
  else {
-    knn=new CoverTree<double[]>(x,new EuclideanDistance());
+    knn=new CoverTree<>(x,new EuclideanDistance());
   }
-  return new KNN<double[]>(knn,y,k);
+  return new KNN<>(knn,y,k);
 }

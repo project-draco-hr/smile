@@ -23,7 +23,7 @@
       words[words.length - 2]=words[words.length - 2] + ".";
     }
   }
-  ArrayList<String> result=new ArrayList<String>();
+  ArrayList<String> result=new ArrayList<>();
   for (  String token : words) {
     if (!token.isEmpty()) {
       result.add(token);

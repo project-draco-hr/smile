@@ -4,6 +4,6 @@
     data[i]=new double[10];
     for (int j=0; j < data[i].length; j++)     data[i][j]=Math.random();
   }
-  coverTree=new CoverTree<double[]>(data,new EuclideanDistance());
-  naive=new LinearSearch<double[]>(data,new EuclideanDistance());
+  coverTree=new CoverTree<>(data,new EuclideanDistance());
+  naive=new LinearSearch<>(data,new EuclideanDistance());
 }

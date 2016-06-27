@@ -15,11 +15,11 @@
     size[y[i]]++;
   }
   double[] px=new double[n];
-  ArrayList<ArrayList<Integer>> neighbors=new ArrayList<ArrayList<Integer>>();
+  ArrayList<ArrayList<Integer>> neighbors=new ArrayList<>();
   for (int i=0; i < n; i++) {
-    ArrayList<Neighbor<T,T>> list=new ArrayList<Neighbor<T,T>>();
+    ArrayList<Neighbor<T,T>> list=new ArrayList<>();
     nns.range(data[i],radius,list);
-    ArrayList<Integer> neighbor=new ArrayList<Integer>(list.size());
+    ArrayList<Integer> neighbor=new ArrayList<>(list.size());
     neighbors.add(neighbor);
     for (    Neighbor<T,T> nt : list) {
       neighbor.add(nt.index);

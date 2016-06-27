@@ -1,5 +1,5 @@
 {
-  List<String> tokens=new LinkedList<String>();
+  List<String> tokens=new LinkedList<>();
   if (line == null || line.isEmpty()) {
     throw new IllegalArgumentException("Line should not be blank!");
   }

@@ -1,14 +1,14 @@
 {
   if (fptree == T0) {
     int nprocs=MulticoreExecutor.getThreadPoolSize();
-    List<List<HeaderTableItem>> headers=new ArrayList<List<HeaderTableItem>>();
+    List<List<HeaderTableItem>> headers=new ArrayList<>();
     for (int i=0; i < 2 * nprocs; i++) {
-      headers.add(new ArrayList<HeaderTableItem>());
+      headers.add(new ArrayList<>());
     }
     for (int i=fptree.headerTable.length; i-- > 0; ) {
       headers.get(i % headers.size()).add(fptree.headerTable[i]);
     }
-    List<FPGrowthTask> tasks=new ArrayList<FPGrowthTask>();
+    List<FPGrowthTask> tasks=new ArrayList<>();
     for (int i=0; i < headers.size(); i++) {
       tasks.add(new FPGrowthTask(headers.get(i),out,list,ttree));
     }

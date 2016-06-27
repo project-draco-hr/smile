@@ -1,6 +1,6 @@
 {
   int hit=0;
-  HeapSelect<Neighbor> heap=new HeapSelect<Neighbor>(neighbors);
+  HeapSelect<Neighbor> heap=new HeapSelect<>(neighbors);
   for (int i=0; i < hash.length; i++) {
     int bucket=hash[i].hash(x);
     LinkedList<Hash.Item> bin=hash[i].table[bucket % H];

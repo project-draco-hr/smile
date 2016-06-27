@@ -14,7 +14,7 @@
     System.err.println(e);
   }
   String[] data=words.toArray(new String[1]);
-  bktree=new BKTree<String>(new EditDistance(50,true));
+  bktree=new BKTree<>(new EditDistance(50,true));
   bktree.add(data);
-  naive=new LinearSearch<String>(data,new EditDistance(50,true));
+  naive=new LinearSearch<>(data,new EditDistance(50,true));
 }
