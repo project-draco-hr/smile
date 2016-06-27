@@ -1,5 +1,5 @@
 {
-  List<String> keywords=new ArrayList<String>();
+  List<String> keywords=new ArrayList<>();
   while (c != null) {
     if (c.synset != null) {
       keywords.addAll(c.synset);

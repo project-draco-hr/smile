@@ -1,5 +1,5 @@
 {
-  HashSet<String> hash=new HashSet<String>(Arrays.asList(x));
+  HashSet<String> hash=new HashSet<>(Arrays.asList(x));
   String[] y=new String[hash.size()];
   Iterator<String> keys=hash.iterator();
   for (int i=0; i < y.length; i++) {

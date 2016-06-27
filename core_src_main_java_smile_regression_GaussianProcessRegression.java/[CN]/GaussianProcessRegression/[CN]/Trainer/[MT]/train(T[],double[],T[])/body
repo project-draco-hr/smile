@@ -1,3 +1,3 @@
 {
-  return new GaussianProcessRegression<T>(x,y,t,kernel,lambda);
+  return new GaussianProcessRegression<>(x,y,t,kernel,lambda);
 }

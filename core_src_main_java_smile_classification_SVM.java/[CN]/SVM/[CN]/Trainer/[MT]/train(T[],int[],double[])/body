@@ -1,14 +1,14 @@
 {
   SVM<T> svm=null;
   if (k == 2) {
-    svm=new SVM<T>(kernel,Cp,Cn);
+    svm=new SVM<>(kernel,Cp,Cn);
   }
  else {
     if (this.weight == null) {
-      svm=new SVM<T>(kernel,Cp,k,strategy);
+      svm=new SVM<>(kernel,Cp,k,strategy);
     }
  else {
-      svm=new SVM<T>(kernel,Cp,this.weight,strategy);
+      svm=new SVM<>(kernel,Cp,this.weight,strategy);
     }
   }
   svm.setTolerance(tol);

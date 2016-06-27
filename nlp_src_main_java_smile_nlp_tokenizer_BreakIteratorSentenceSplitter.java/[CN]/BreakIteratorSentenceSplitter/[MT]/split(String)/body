@@ -1,6 +1,6 @@
 {
   boundary.setText(text);
-  ArrayList<String> sentences=new ArrayList<String>();
+  ArrayList<String> sentences=new ArrayList<>();
   int start=boundary.first();
   for (int end=boundary.next(); end != BreakIterator.DONE; start=end, end=boundary.next()) {
     sentences.add(text.substring(start,end).trim());

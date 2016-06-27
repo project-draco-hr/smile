@@ -1,5 +1,5 @@
 {
-  List<ItemSet> list=new ArrayList<ItemSet>();
+  List<ItemSet> list=new ArrayList<>();
   learn(null,list,null);
   return list;
 }

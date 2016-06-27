@@ -13,7 +13,7 @@
     }
   }
  else {
-    List<FTask> tasks=new ArrayList<FTask>(m + 1);
+    List<FTask> tasks=new ArrayList<>(m + 1);
     int step=n / m;
     if (step < 100)     step=100;
     int start=0;

@@ -1,5 +1,5 @@
 {
-  components=new ArrayList<Component>();
+  components=new ArrayList<>();
   components.addAll(mixture);
   double sum=0.0;
   for (  Component component : mixture) {

@@ -21,7 +21,7 @@
   for (int i=0; i < k; i++) {
     range[i]=pz[i].prh.length;
   }
-  PriorityQueue<Probe> heap=new PriorityQueue<Probe>();
+  PriorityQueue<Probe> heap=new PriorityQueue<>();
   heap.add(new Probe(range));
   heap.peek().setProb(pz);
   double pr=heap.peek().prob;

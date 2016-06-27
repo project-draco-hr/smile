@@ -10,7 +10,7 @@
     }
     double distance=Math.distance(q,key);
     if (distance <= radius) {
-      neighbors.add(new Neighbor<double[],E>(key,data.get(index),index,distance));
+      neighbors.add(new Neighbor<>(key,data.get(index),index,distance));
     }
   }
 }

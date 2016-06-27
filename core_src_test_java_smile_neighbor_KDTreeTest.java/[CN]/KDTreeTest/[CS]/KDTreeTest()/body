@@ -4,6 +4,6 @@
     data[i]=new double[10];
     for (int j=0; j < data[i].length; j++)     data[i][j]=Math.random();
   }
-  kdtree=new KDTree<double[]>(data,data);
-  naive=new LinearSearch<double[]>(data,new EuclideanDistance());
+  kdtree=new KDTree<>(data,data);
+  naive=new LinearSearch<>(data,new EuclideanDistance());
 }

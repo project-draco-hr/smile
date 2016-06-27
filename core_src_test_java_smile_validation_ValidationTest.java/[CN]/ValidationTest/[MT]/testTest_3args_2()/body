@@ -24,7 +24,7 @@
     }
     double[][] centers=new double[20][];
     RadialBasisFunction[] rbf=SmileUtils.learnGaussianRadialBasis(x,centers,2);
-    RBFNetwork<double[]> rkhs=new RBFNetwork<double[]>(x,y,new EuclideanDistance(),rbf,centers);
+    RBFNetwork<double[]> rkhs=new RBFNetwork<>(x,y,new EuclideanDistance(),rbf,centers);
     double rmse=Validation.test(rkhs,testx,testy);
     System.out.println("RMSE = " + rmse);
   }

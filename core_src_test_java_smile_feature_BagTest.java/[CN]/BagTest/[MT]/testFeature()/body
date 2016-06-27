@@ -11,7 +11,7 @@
     System.err.println(ex);
   }
   String[] feature={"outstanding","wonderfully","wasted","lame","awful","poorly","ridiculous","waste","worst","bland","unfunny","stupid","dull","fantastic","laughable","mess","pointless","terrific","memorable","superb","boring","badly","subtle","terrible","excellent","perfectly","masterpiece","realistic","flaws"};
-  Bag<String> bag=new Bag<String>(feature);
+  Bag<String> bag=new Bag<>(feature);
   double[][] x=new double[text.length][];
   for (int i=0; i < text.length; i++) {
     x[i]=bag.feature(text[i]);

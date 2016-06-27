@@ -9,7 +9,7 @@
   for (int i=0; i < n; i++) {
     double[][] trainx=Math.slice(longley,loocv.train[i]);
     double[] trainy=Math.slice(y,loocv.train[i]);
-    GaussianProcessRegression<double[]> rkhs=new GaussianProcessRegression<double[]>(trainx,trainy,new GaussianKernel(8.0),0.2);
+    GaussianProcessRegression<double[]> rkhs=new GaussianProcessRegression<>(trainx,trainy,new GaussianKernel(8.0),0.2);
     double r=y[loocv.test[i]] - rkhs.predict(longley[loocv.test[i]]);
     rss+=r * r;
   }

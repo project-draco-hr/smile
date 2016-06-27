@@ -1,5 +1,5 @@
 {
-  HashSet<Integer> hash=new HashSet<Integer>();
+  HashSet<Integer> hash=new HashSet<>();
   for (int i=0; i < x.length; i++) {
     hash.add(x[i]);
   }

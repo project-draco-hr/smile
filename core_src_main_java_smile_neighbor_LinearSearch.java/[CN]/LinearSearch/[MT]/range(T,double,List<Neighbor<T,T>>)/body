@@ -8,7 +8,7 @@
     }
     double d=distance.d(q,data[i]);
     if (d <= radius) {
-      neighbors.add(new SimpleNeighbor<T>(data[i],i,d));
+      neighbors.add(new SimpleNeighbor<>(data[i],i,d));
     }
   }
 }

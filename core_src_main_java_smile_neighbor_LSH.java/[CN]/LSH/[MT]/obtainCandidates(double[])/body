@@ -1,5 +1,5 @@
 {
-  Set<Integer> candidates=new LinkedHashSet<Integer>();
+  Set<Integer> candidates=new LinkedHashSet<>();
   for (  Hash h : hash) {
     BucketEntry bucket=h.get(q);
     if (bucket != null) {

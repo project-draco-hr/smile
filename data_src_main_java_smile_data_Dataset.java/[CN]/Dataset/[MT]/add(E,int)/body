@@ -5,5 +5,5 @@
   if (response.getType() != Attribute.Type.NOMINAL) {
     throw new IllegalArgumentException(RESPONSE_NOT_NOMINAL);
   }
-  add(new Datum<E>(x,y));
+  add(new Datum<>(x,y));
 }

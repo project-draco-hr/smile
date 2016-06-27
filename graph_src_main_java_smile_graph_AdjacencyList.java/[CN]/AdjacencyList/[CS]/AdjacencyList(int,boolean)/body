@@ -1,10 +1,10 @@
 {
   this.n=n;
   this.digraph=digraph;
-  LinkedList<Edge> list=new LinkedList<Edge>();
+  LinkedList<Edge> list=new LinkedList<>();
   graph=(LinkedList<Edge>[])java.lang.reflect.Array.newInstance(list.getClass(),n);
   graph[0]=list;
   for (int i=1; i < n; i++) {
-    graph[i]=new LinkedList<Edge>();
+    graph[i]=new LinkedList<>();
   }
 }

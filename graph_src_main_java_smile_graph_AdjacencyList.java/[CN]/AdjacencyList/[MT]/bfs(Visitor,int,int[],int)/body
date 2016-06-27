@@ -1,7 +1,7 @@
 {
   visitor.visit(v);
   cc[v]=id;
-  Queue<Integer> queue=new LinkedList<Integer>();
+  Queue<Integer> queue=new LinkedList<>();
   queue.offer(v);
   while (!queue.isEmpty()) {
     int t=queue.poll();

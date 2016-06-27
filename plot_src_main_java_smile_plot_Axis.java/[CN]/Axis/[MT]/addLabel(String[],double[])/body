@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Label size and location size don't match.");
   }
   if (labels == null) {
-    labels=new HashMap<String,Double>();
+    labels=new HashMap<>();
   }
   for (int i=0; i < label.length; i++) {
     labels.put(label[i],location[i]);

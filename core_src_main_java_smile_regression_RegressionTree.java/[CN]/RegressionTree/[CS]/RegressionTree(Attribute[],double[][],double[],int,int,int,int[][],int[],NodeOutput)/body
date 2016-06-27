@@ -40,7 +40,7 @@
       }
     }
   }
-  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<TrainNode>();
+  PriorityQueue<TrainNode> nextSplits=new PriorityQueue<>();
   int n=0;
   double sum=0.0;
   if (samples == null) {

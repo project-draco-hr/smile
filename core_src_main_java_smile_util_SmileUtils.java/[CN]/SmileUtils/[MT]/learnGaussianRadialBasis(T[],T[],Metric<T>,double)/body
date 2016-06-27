@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Invalid scaling parameter: " + r);
   }
   int k=centers.length;
-  CLARANS<T> clarans=new CLARANS<T>(x,distance,k,Math.min(100,(int)Math.round(0.01 * k * (x.length - k))));
+  CLARANS<T> clarans=new CLARANS<>(x,distance,k,Math.min(100,(int)Math.round(0.01 * k * (x.length - k))));
   System.arraycopy(clarans.medoids(),0,centers,0,k);
   int n=x.length;
   int[] y=clarans.getClusterLabel();

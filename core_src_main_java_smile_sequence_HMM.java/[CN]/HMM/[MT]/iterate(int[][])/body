@@ -1,5 +1,5 @@
 {
-  HMM<O> hmm=new HMM<O>(numStates,numSymbols);
+  HMM<O> hmm=new HMM<>(numStates,numSymbols);
   hmm.symbols=symbols;
   double gamma[][][]=new double[sequences.length][][];
   double aijNum[][]=new double[numStates][numStates];

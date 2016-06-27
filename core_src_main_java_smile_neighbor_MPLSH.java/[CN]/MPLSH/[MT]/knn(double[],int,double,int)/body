@@ -26,9 +26,9 @@
   }
   int[] cand=candidates.toArray();
   Arrays.sort(cand);
-  Neighbor<double[],E> neighbor=new Neighbor<double[],E>(null,null,0,Double.MAX_VALUE);
+  Neighbor<double[],E> neighbor=new Neighbor<>(null,null,0,Double.MAX_VALUE);
   @SuppressWarnings("unchecked") Neighbor<double[],E>[] neighbors=(Neighbor<double[],E>[])java.lang.reflect.Array.newInstance(neighbor.getClass(),k);
-  HeapSelect<Neighbor<double[],E>> heap=new HeapSelect<Neighbor<double[],E>>(neighbors);
+  HeapSelect<Neighbor<double[],E>> heap=new HeapSelect<>(neighbors);
   for (int i=0; i < k; i++) {
     heap.add(neighbor);
   }
@@ -43,7 +43,7 @@
     double[] key=keys.get(index);
     double dist=Math.distance(q,key);
     if (dist < heap.peek().distance) {
-      heap.add(new Neighbor<double[],E>(key,data.get(index),index,dist));
+      heap.add(new Neighbor<>(key,data.get(index),index,dist));
       hit++;
     }
   }

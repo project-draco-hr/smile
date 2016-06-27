@@ -19,15 +19,15 @@
   this.k=k;
   this.w=w;
   this.H=H;
-  keys=new ArrayList<double[]>();
-  data=new ArrayList<E>();
+  keys=new ArrayList<>();
+  data=new ArrayList<>();
   r1=new int[k];
   r2=new int[k];
   for (int i=0; i < k; i++) {
     r1[i]=Math.randomInt(MAX_HASH_RND);
     r2[i]=Math.randomInt(MAX_HASH_RND);
   }
-  hash=new ArrayList<Hash>(L);
+  hash=new ArrayList<>(L);
   for (int i=0; i < L; i++) {
     hash.add(new Hash());
   }

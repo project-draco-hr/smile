@@ -1,5 +1,5 @@
 {
-  ArrayList<String> bag=new ArrayList<String>();
+  ArrayList<String> bag=new ArrayList<>();
   for (  String sentence : splitter.split(body)) {
     String[] tokens=tokenizer.split(sentence);
     for (int i=0; i < tokens.length; i++) {
@@ -51,7 +51,7 @@
   for (  String term : doc.unique()) {
     List<SimpleText> hit=invertedFile.get(term);
     if (hit == null) {
-      hit=new ArrayList<SimpleText>();
+      hit=new ArrayList<>();
       invertedFile.put(term,hit);
     }
     hit.add(doc);

@@ -5,5 +5,5 @@
   if (response.getType() != Attribute.Type.NUMERIC) {
     throw new IllegalArgumentException(RESPONSE_NOT_NUMERIC);
   }
-  add(new Datum<E>(x,y));
+  add(new Datum<>(x,y));
 }

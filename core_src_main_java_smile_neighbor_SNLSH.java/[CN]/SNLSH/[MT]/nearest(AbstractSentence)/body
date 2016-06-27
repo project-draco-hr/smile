@@ -3,5 +3,5 @@
   if (ns.length > 0) {
     return ns[0];
   }
-  return new Neighbor<AbstractSentence,E>(null,null,-1,Double.MAX_VALUE);
+  return new Neighbor<>(null,null,-1,Double.MAX_VALUE);
 }
