@@ -10,6 +10,6 @@
  catch (  Exception ex) {
     System.err.println(ex);
   }
-  naive=new LinearSearch<double[]>(x,new EuclideanDistance());
-  lsh=new LSH<double[]>(x,x);
+  naive=new LinearSearch<>(x,new EuclideanDistance());
+  lsh=new LSH<>(x,x);
 }

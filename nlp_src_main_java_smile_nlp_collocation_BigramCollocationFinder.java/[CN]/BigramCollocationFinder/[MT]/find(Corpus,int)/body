@@ -1,6 +1,6 @@
 {
   BigramCollocation[] bigrams=new BigramCollocation[k];
-  HeapSelect<BigramCollocation> heap=new HeapSelect<BigramCollocation>(bigrams);
+  HeapSelect<BigramCollocation> heap=new HeapSelect<>(bigrams);
   Iterator<Bigram> iterator=corpus.getBigrams();
   while (iterator.hasNext()) {
     Bigram bigram=iterator.next();

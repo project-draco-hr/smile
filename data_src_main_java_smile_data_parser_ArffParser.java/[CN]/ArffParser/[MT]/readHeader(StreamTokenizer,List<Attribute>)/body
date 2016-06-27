@@ -3,7 +3,7 @@
   attributes.clear();
   getFirstToken(tokenizer);
   if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
-    throw new ParseException("premature end of file",tokenizer.lineno());
+    throw new ParseException(PREMATURE_END_OF_FILE,tokenizer.lineno());
   }
   if (ARFF_RELATION.equalsIgnoreCase(tokenizer.sval)) {
     getNextToken(tokenizer);
@@ -15,7 +15,7 @@
   }
   getFirstToken(tokenizer);
   if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
-    throw new ParseException("premature end of file",tokenizer.lineno());
+    throw new ParseException(PREMATURE_END_OF_FILE,tokenizer.lineno());
   }
   while (ARFF_ATTRIBUTE.equalsIgnoreCase(tokenizer.sval)) {
     attributes.add(parseAttribute(tokenizer));

@@ -38,7 +38,7 @@
     }
   }
  else {
-    List<String> attributeValues=new ArrayList<String>();
+    List<String> attributeValues=new ArrayList<>();
     tokenizer.pushBack();
     if (tokenizer.nextToken() != '{') {
       throw new ParseException("{ expected at beginning of enumeration",tokenizer.lineno());
@@ -60,7 +60,7 @@
   getLastToken(tokenizer,false);
   getFirstToken(tokenizer);
   if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
-    throw new ParseException("premature end of file",tokenizer.lineno());
+    throw new ParseException(PREMATURE_END_OF_FILE,tokenizer.lineno());
   }
   return attribute;
 }

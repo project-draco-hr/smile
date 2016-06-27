@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Invalid p = " + p);
   }
   double cutoff=chisq.quantile(p);
-  ArrayList<BigramCollocation> bigrams=new ArrayList<BigramCollocation>();
+  ArrayList<BigramCollocation> bigrams=new ArrayList<>();
   Iterator<Bigram> iterator=corpus.getBigrams();
   while (iterator.hasNext()) {
     Bigram bigram=iterator.next();

@@ -22,9 +22,9 @@
   this.y=y;
   this.k=k;
   if (distance instanceof Metric) {
-    knn=new CoverTree<T>(x,(Metric<T>)distance);
+    knn=new CoverTree<>(x,(Metric<T>)distance);
   }
  else {
-    knn=new LinearSearch<T>(x,distance);
+    knn=new LinearSearch<>(x,distance);
   }
 }

@@ -1,6 +1,6 @@
 {
   System.out.println("string");
-  List<String> words=new ArrayList<String>();
+  List<String> words=new ArrayList<>();
   long start=System.currentTimeMillis();
   try {
     BufferedReader input=smile.data.parser.IOUtils.getTestDataReader("neighbor/index.noun");
@@ -19,9 +19,9 @@
   double time=(System.currentTimeMillis() - start) / 1000.0;
   System.out.format("Loading string data: %.2fs%n",time);
   String[] data=words.toArray(new String[words.size()]);
-  LinearSearch<String> naive=new LinearSearch<String>(data,new EditDistance(50,true));
+  LinearSearch<String> naive=new LinearSearch<>(data,new EditDistance(50,true));
   start=System.currentTimeMillis();
-  List<Neighbor<String,String>> neighbors=new ArrayList<Neighbor<String,String>>();
+  List<Neighbor<String,String>> neighbors=new ArrayList<>();
   for (int i=1000; i < 1100; i++) {
     naive.range(words.get(i),1,neighbors);
     neighbors.clear();

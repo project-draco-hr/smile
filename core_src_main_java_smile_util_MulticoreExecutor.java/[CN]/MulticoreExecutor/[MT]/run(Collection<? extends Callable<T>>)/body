@@ -1,6 +1,6 @@
 {
   createThreadPool();
-  List<T> results=new ArrayList<T>();
+  List<T> results=new ArrayList<>();
   if (threads == null) {
     for (    Callable<T> task : tasks) {
       results.add(task.call());

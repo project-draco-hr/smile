@@ -2,12 +2,12 @@
   if (radius <= 0.0) {
     throw new IllegalArgumentException("Invalid radius: " + radius);
   }
-  ArrayList<DistanceNode> currentCoverSet=new ArrayList<DistanceNode>();
-  ArrayList<DistanceNode> zeroSet=new ArrayList<DistanceNode>();
+  ArrayList<DistanceNode> currentCoverSet=new ArrayList<>();
+  ArrayList<DistanceNode> zeroSet=new ArrayList<>();
   double d=distance.d(root.getObject(),q);
   currentCoverSet.add(new DistanceNode(d,root));
   while (!currentCoverSet.isEmpty()) {
-    ArrayList<DistanceNode> nextCoverSet=new ArrayList<DistanceNode>();
+    ArrayList<DistanceNode> nextCoverSet=new ArrayList<>();
     for (int i=0; i < currentCoverSet.size(); i++) {
       DistanceNode par=currentCoverSet.get(i);
       Node parent=currentCoverSet.get(i).node;
@@ -34,7 +34,7 @@
   for (int i=0; i < zeroSet.size(); i++) {
     DistanceNode ds=zeroSet.get(i);
     if (!identicalExcluded || ds.node.getObject() != q) {
-      neighbors.add(new Neighbor<E,E>(ds.node.getObject(),ds.node.getObject(),ds.node.idx,ds.dist));
+      neighbors.add(new Neighbor<>(ds.node.getObject(),ds.node.getObject(),ds.node.idx,ds.dist));
     }
   }
 }

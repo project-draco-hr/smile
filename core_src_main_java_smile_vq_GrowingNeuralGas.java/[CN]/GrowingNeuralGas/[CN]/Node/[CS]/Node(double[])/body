@@ -1,5 +1,5 @@
 {
   this.w=w;
-  edges=new LinkedList<Edge>();
+  edges=new LinkedList<>();
   id=m++;
 }

@@ -1,7 +1,7 @@
 {
   System.out.println("range");
-  List<Neighbor<String,String>> n1=new ArrayList<Neighbor<String,String>>();
-  List<Neighbor<String,String>> n2=new ArrayList<Neighbor<String,String>>();
+  List<Neighbor<String,String>> n1=new ArrayList<>();
+  List<Neighbor<String,String>> n2=new ArrayList<>();
   for (int i=1000; i < 1100; i++) {
     bktree.range(words.get(i),1,n1);
     naive.range(words.get(i),1,n2);

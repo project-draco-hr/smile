@@ -3,7 +3,7 @@
   startButton=new JButton("Start");
   startButton.setActionCommand("startButton");
   startButton.addActionListener(this);
-  Hashtable<Integer,JLabel> logNLabelTable=new Hashtable<Integer,JLabel>();
+  Hashtable<Integer,JLabel> logNLabelTable=new Hashtable<>();
   for (int i=3; i <= 7; i++) {
     logNLabelTable.put(new Integer(i),new JLabel(String.valueOf(i)));
   }
@@ -12,7 +12,7 @@
   logNSlider.setMajorTickSpacing(1);
   logNSlider.setPaintTicks(true);
   logNSlider.setPaintLabels(true);
-  Hashtable<Integer,JLabel> dimensionLabelTable=new Hashtable<Integer,JLabel>();
+  Hashtable<Integer,JLabel> dimensionLabelTable=new Hashtable<>();
   dimensionLabelTable.put(new Integer(2),new JLabel(String.valueOf(2)));
   for (int i=20; i <= 120; i+=20) {
     dimensionLabelTable.put(new Integer(i),new JLabel(String.valueOf(i)));

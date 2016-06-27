@@ -1,6 +1,6 @@
 {
   SNLSH<SNLSH.AbstractSentence> lsh=createLSH(toyData);
-  List<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> ns=new ArrayList<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>>();
+  List<Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence>> ns=new ArrayList<>();
   lsh.range(new Sentence(texts[0]),10,ns);
   System.out.println("-------test range begin-------");
   for (  Neighbor<SNLSH.AbstractSentence,SNLSH.AbstractSentence> n : ns) {

@@ -30,7 +30,7 @@
         x[j]=Double.valueOf(tokens[j + start]);
       }
     }
-    Datum<double[]> datum=new Datum<double[]>(x);
+    Datum<double[]> datum=new Datum<>(x);
     datum.name=tokens[0];
     if (start == 2) {
       datum.description=tokens[1];

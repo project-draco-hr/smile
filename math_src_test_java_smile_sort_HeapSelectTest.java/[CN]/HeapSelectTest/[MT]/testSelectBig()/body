@@ -1,6 +1,6 @@
 {
   System.out.println("HeapSelect Big");
-  HeapSelect<Double> instance=new HeapSelect<Double>(new Double[10]);
+  HeapSelect<Double> instance=new HeapSelect<>(new Double[10]);
   for (int i=0; i < 100000000; i++) {
     instance.add(Math.random());
   }

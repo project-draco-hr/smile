@@ -5,8 +5,8 @@
   long fpq=simhash64(q.tokens);
   Set<Integer> candidates=obtainCandidates(q.tokens);
   Neighbor<AbstractSentence,E>[] neighbors=(Neighbor<AbstractSentence,E>[])Array.newInstance(Neighbor.class,k);
-  HeapSelect<Neighbor<AbstractSentence,E>> heap=new HeapSelect<Neighbor<AbstractSentence,E>>(neighbors);
-  Neighbor<AbstractSentence,E> neighbor=new Neighbor<AbstractSentence,E>(null,null,0,Double.MAX_VALUE);
+  HeapSelect<Neighbor<AbstractSentence,E>> heap=new HeapSelect<>(neighbors);
+  Neighbor<AbstractSentence,E> neighbor=new Neighbor<>(null,null,0,Double.MAX_VALUE);
   for (int i=0; i < k; i++) {
     heap.add(neighbor);
   }
@@ -19,7 +19,7 @@
     long sign=signs.get(index);
     double distance=HammingDistance.d(fpq,sign);
     if (distance < heap.peek().distance) {
-      heap.add(new Neighbor<AbstractSentence,E>(keys.get(index),data.get(index),index,distance));
+      heap.add(new Neighbor<>(keys.get(index),data.get(index),index,distance));
       hit++;
     }
   }

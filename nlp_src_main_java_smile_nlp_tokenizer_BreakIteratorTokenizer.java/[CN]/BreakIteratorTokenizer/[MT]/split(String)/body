@@ -1,6 +1,6 @@
 {
   boundary.setText(text);
-  ArrayList<String> words=new ArrayList<String>();
+  ArrayList<String> words=new ArrayList<>();
   int start=boundary.first();
   int end=boundary.next();
   while (end != BreakIterator.DONE) {

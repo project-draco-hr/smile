@@ -5,7 +5,7 @@
   int nrows=size();
   if (i >= nrows) {
     for (int k=nrows; k <= i; k++) {
-      data.add(new Datum<SparseArray>(new SparseArray()));
+      data.add(new Datum<>(new SparseArray()));
     }
   }
   if (j >= ncols()) {

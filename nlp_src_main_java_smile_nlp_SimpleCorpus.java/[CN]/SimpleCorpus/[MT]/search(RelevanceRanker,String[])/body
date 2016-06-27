@@ -1,5 +1,5 @@
 {
-  Set<SimpleText> hits=new HashSet<SimpleText>();
+  Set<SimpleText> hits=new HashSet<>();
   for (int i=0; i < terms.length; i++) {
     if (invertedFile.containsKey(terms[i])) {
       hits.addAll(invertedFile.get(terms[i]));
@@ -9,7 +9,7 @@
   if (n == 0) {
     return Collections.emptyIterator();
   }
-  ArrayList<Relevance> rank=new ArrayList<Relevance>(n);
+  ArrayList<Relevance> rank=new ArrayList<>(n);
   for (  SimpleText doc : hits) {
     double r=0.0;
     for (int i=0; i < terms.length; i++) {

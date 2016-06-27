@@ -1,6 +1,6 @@
 {
-  List<String[]> sentences=new ArrayList<String[]>();
-  List<PennTreebankPOS[]> labels=new ArrayList<PennTreebankPOS[]>();
+  List<String[]> sentences=new ArrayList<>();
+  List<PennTreebankPOS[]> labels=new ArrayList<>();
   load("D:\\sourceforge\\corpora\\PennTreebank\\PennTreebank2\\TAGGED\\POS\\WSJ",sentences,labels);
   load("D:\\sourceforge\\corpora\\PennTreebank\\PennTreebank2\\TAGGED\\POS\\BROWN",sentences,labels);
   String[][] x=sentences.toArray(new String[sentences.size()][]);

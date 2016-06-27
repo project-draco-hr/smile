@@ -11,7 +11,7 @@
     int[] testy=test.toArray(new int[test.size()]);
     double[][] centers=new double[200][];
     RadialBasisFunction basis=SmileUtils.learnGaussianRadialBasis(x,centers);
-    RBFNetwork<double[]> rbf=new RBFNetwork<double[]>(x,y,new EuclideanDistance(),new GaussianRadialBasis(8.0),centers);
+    RBFNetwork<double[]> rbf=new RBFNetwork<>(x,y,new EuclideanDistance(),new GaussianRadialBasis(8.0),centers);
     int error=0;
     for (int i=0; i < testx.length; i++) {
       if (rbf.predict(testx[i]) != testy[i]) {

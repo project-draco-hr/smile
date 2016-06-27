@@ -1,6 +1,6 @@
 {
   if (children == null) {
-    children=new HashMap<Integer,Node>();
+    children=new HashMap<>();
   }
   Node child=children.get(itemset[index]);
   if (child != null) {

@@ -8,7 +8,7 @@
     double distance=HammingDistance.d(fpq,signs.get(index));
     if (distance <= radius) {
       if (keys.get(index).line != q.line || !identicalExcluded) {
-        neighbors.add(new Neighbor<AbstractSentence,E>(keys.get(index),data.get(index),index,distance));
+        neighbors.add(new Neighbor<>(keys.get(index),data.get(index),index,distance));
       }
     }
   }

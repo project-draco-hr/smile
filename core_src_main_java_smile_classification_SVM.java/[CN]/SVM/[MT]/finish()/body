@@ -3,7 +3,7 @@
     svm.finish();
   }
  else {
-    List<ProcessTask> tasks=new ArrayList<ProcessTask>(svms.size());
+    List<ProcessTask> tasks=new ArrayList<>(svms.size());
     for (    LASVM s : svms) {
       tasks.add(new ProcessTask(s));
     }

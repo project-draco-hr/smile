@@ -1,6 +1,6 @@
 {
   if (labels == null) {
-    labels=new HashMap<String,Double>();
+    labels=new HashMap<>();
   }
   labels.put(label,location);
   setSlice();

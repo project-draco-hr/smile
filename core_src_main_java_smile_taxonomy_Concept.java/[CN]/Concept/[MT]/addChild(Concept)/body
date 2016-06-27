@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("Concepts are not from the same taxonomy.");
   }
   if (children == null) {
-    children=new ArrayList<Concept>();
+    children=new ArrayList<>();
   }
   children.add(concept);
   concept.parent=this;

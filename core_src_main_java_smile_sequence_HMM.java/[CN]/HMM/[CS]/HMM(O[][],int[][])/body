@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("The number of observation sequences and that of label sequences are different.");
   }
   int index=0;
-  symbols=new HashMap<O,Integer>();
+  symbols=new HashMap<>();
   for (int i=0; i < observations.length; i++) {
     if (observations[i].length != labels[i].length) {
       throw new IllegalArgumentException(String.format("The length of observation sequence %d and that of corresponding label sequence are different.",i));

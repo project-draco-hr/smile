@@ -1,9 +1,9 @@
 {
   if (response == null) {
-    throw new IllegalArgumentException("The dataset has no response values.");
+    throw new IllegalArgumentException(DATASET_HAS_NO_RESPONSE);
   }
   if (response.getType() != Attribute.Type.NOMINAL) {
-    throw new IllegalArgumentException("The response variable is not nominal.");
+    throw new IllegalArgumentException(RESPONSE_NOT_NOMINAL);
   }
   int n=data.size();
   if (a.length < n) {
