@@ -1,0 +1,5 @@
+{
+  double fApB=y * alpha + beta;
+  if (fApB >= 0)   return exp(-fApB) / (1.0 + exp(-fApB));
+ else   return 1.0 / (1 + exp(fApB));
+}

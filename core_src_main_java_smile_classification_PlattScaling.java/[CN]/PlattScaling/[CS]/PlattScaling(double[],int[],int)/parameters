@@ -1,0 +1,3 @@
+double[] scores
+int[] y
+int maxIters
