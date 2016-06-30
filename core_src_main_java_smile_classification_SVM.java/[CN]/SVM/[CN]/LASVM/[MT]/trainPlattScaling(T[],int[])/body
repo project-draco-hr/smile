@@ -1,0 +1,8 @@
+{
+  int l=y.length;
+  double[] scores=new double[l];
+  for (int i=0; i < l; i++) {
+    scores[i]=predict(x[i]);
+  }
+  platt=new PlattScaling(scores,y);
+}

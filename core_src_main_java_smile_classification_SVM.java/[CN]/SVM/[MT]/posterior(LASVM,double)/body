@@ -1,0 +1,5 @@
+{
+  final double minProb=1e-7;
+  final double maxProb=1 - minProb;
+  return Math.min(Math.max(svm.platt.predict(y),minProb),maxProb);
+}
