@@ -1,6 +1,3 @@
 {
-  mt[0]=seed;
-  for (mti=1; mti < NN; mti++) {
-    mt[mti]=(MAGIC_FACTOR1 * (mt[mti - 1] ^ (mt[mti - 1] >>> 62)) + mti);
-  }
+  setSeed(seed);
 }

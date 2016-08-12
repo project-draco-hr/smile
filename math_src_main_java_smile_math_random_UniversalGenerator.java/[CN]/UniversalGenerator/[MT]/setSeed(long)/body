@@ -1,5 +1,6 @@
 {
   u=new double[97];
+  int ijkl=Math.abs((int)(seed % BIG_PRIME));
   int ij=ijkl / 30082;
   int kl=ijkl % 30082;
   if (ij < 0 || ij > 31328 || kl < 0 || kl > 30081) {
