@@ -1,0 +1,8 @@
+{
+  this(rows,cols);
+  GaussianDistribution g=new GaussianDistribution(mu,sigma);
+  int n=rows * cols;
+  for (int i=0; i < n; i++) {
+    A[i]=g.rand();
+  }
+}

@@ -5,7 +5,7 @@
     lu.solve(inv);
   }
  else {
-    QRDecomposition qr=new QRDecomposition(A,false);
+    QRDecomposition qr=new QRDecomposition(A);
     qr.solve(inv);
   }
   return inv;

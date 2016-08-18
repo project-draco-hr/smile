@@ -1,11 +1,11 @@
 {
-  int m=QR.length;
-  int n=QR[0].length;
+  int m=QR.nrows();
+  int n=QR.ncols();
   double[][] R=new double[m][n];
   for (int i=0; i < n; i++) {
     for (int j=0; j < n; j++) {
       if (i < j) {
-        R[i][j]=QR[i][j];
+        R[i][j]=QR.get(i,j);
       }
  else       if (i == j) {
         R[i][j]=Rdiagonal[i];

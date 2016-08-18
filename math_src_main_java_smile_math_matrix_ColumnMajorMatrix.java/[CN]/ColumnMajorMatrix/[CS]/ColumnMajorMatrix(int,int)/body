@@ -1,0 +1,5 @@
+{
+  this.nrows=rows;
+  this.ncols=cols;
+  A=new double[rows * cols];
+}

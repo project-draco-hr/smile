@@ -1,0 +1,4 @@
+{
+  this(rows,cols);
+  Arrays.fill(A,value);
+}

@@ -1,11 +1,11 @@
 {
-  int n=QR[0].length;
+  int n=QR.ncols();
   double[][] L=new double[n][];
   for (int i=0; i < n; i++) {
     L[i]=new double[i + 1];
     L[i][i]=Rdiagonal[i];
     for (int j=0; j < i; j++) {
-      L[i][j]=QR[j][i];
+      L[i][j]=QR.get(j,i);
     }
   }
   return CholeskyDecomposition.newInstance(L);

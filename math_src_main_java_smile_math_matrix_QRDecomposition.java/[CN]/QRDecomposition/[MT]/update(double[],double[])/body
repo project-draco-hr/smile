@@ -1,6 +1,6 @@
 {
-  int m=QR.length;
-  int n=QR[0].length;
+  int m=QR.nrows();
+  int n=QR.ncols();
   if (u.length != m || v.length != n) {
     throw new IllegalArgumentException("u.length = " + u.length + " v.length = "+ v.length);
   }
@@ -27,10 +27,10 @@
   }
   Rdiagonal[0]+=u[0] * v[0];
   for (int i=1; i < n; i++) {
-    QR[0][i]+=u[0] * v[i];
+    QR.set(0,i,QR.get(0,i) + u[0] * v[i]);
   }
   for (int i=0; i < k; i++) {
-    rotate(i,Rdiagonal[i],-QR[i + 1][i]);
+    rotate(i,Rdiagonal[i],-QR.get(i + 1,i));
   }
   for (int i=0; i < n; i++) {
     if (Rdiagonal[i] == 0.0) {

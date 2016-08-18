@@ -1,5 +1,5 @@
 {
-  int n=QR[0].length;
+  int n=QR.ncols();
   double c, fact, s, w, y;
   if (a == 0.0) {
     c=0.0;
@@ -16,15 +16,15 @@
     c=fact * s;
   }
   for (int j=i; j < n; j++) {
-    y=i == j ? Rdiagonal[i] : QR[i][j];
-    w=QR[i + 1][j];
-    QR[i][j]=c * y - s * w;
-    QR[i + 1][j]=s * y + c * w;
+    y=i == j ? Rdiagonal[i] : QR.get(i,j);
+    w=QR.get(i + 1,j);
+    QR.set(i,j,c * y - s * w);
+    QR.set(i + 1,j,s * y + c * w);
   }
   for (int j=0; j < n; j++) {
-    y=QR[i][j];
-    w=QR[i + 1][j];
-    QR[i][j]=c * y - s * w;
-    QR[i + 1][j]=s * y + c * w;
+    y=QR.get(i,j);
+    w=QR.get(i + 1,j);
+    QR.set(i,j,c * y - s * w);
+    QR.set(i + 1,j,s * y + c * w);
   }
 }

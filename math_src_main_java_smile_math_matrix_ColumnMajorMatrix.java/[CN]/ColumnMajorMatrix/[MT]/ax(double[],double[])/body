@@ -1,0 +1,10 @@
+{
+  int n=Math.min(nrows,y.length);
+  int p=Math.min(ncols,x.length);
+  Arrays.fill(y,0.0);
+  for (int k=0; k < p; k++) {
+    for (int i=0; i < n; i++) {
+      y[i]+=get(i,k) * x[k];
+    }
+  }
+}

@@ -27,6 +27,6 @@
       b[i]=y[i];
     }
   }
-  QRDecomposition qr=new QRDecomposition(G,true);
+  QRDecomposition qr=new QRDecomposition(G);
   qr.solve(b,w);
 }

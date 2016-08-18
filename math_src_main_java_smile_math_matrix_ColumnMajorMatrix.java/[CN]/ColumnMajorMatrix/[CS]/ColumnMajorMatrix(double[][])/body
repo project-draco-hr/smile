@@ -1,0 +1,8 @@
+{
+  this(A.length,A[0].length);
+  for (int i=0; i < nrows; i++) {
+    for (int j=0; j < ncols; j++) {
+      set(i,j,A[i][j]);
+    }
+  }
+}

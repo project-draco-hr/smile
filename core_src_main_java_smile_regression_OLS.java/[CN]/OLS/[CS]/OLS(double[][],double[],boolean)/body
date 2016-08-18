@@ -21,7 +21,7 @@
   }
  else {
     try {
-      qr=new QRDecomposition(X,true);
+      qr=new QRDecomposition(X);
       qr.solve(y,w1);
     }
  catch (    RuntimeException e) {

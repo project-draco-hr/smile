@@ -6,7 +6,7 @@
   }
  else {
     double[][] X=new double[A[0].length][B[0].length];
-    QRDecomposition qr=new QRDecomposition(A,false);
+    QRDecomposition qr=new QRDecomposition(A);
     qr.solve(B,X);
     return X;
   }

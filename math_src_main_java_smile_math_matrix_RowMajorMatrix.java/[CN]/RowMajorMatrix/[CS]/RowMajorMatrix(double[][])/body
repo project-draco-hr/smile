@@ -1,0 +1,8 @@
+{
+  this(A.length,A[0].length);
+  int pos=0;
+  for (int i=0; i < nrows; i++) {
+    System.arraycopy(A[i],0,this.A,pos,ncols);
+    pos+=ncols;
+  }
+}
