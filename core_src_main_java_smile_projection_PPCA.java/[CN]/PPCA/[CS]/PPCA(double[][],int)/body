@@ -34,7 +34,7 @@
   for (int i=0; i < k; i++) {
     M[i][i]+=noise;
   }
-  LUDecomposition lu=new LUDecomposition(M,true);
+  LUDecomposition lu=new LUDecomposition(M);
   double[][] Mi=lu.inverse();
   projection=Math.abtmm(Mi,loading);
   pmu=new double[projection.length];

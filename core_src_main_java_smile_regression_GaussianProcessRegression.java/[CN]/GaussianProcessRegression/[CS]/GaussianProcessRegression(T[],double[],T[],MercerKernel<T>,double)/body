@@ -26,6 +26,6 @@
   double[] b=new double[m];
   w=new double[m];
   Math.atx(G,y,b);
-  LUDecomposition lu=new LUDecomposition(K,true);
+  LUDecomposition lu=new LUDecomposition(K);
   lu.solve(b,w);
 }

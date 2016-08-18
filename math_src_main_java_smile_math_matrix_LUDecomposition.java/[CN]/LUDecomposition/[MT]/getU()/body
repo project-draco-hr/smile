@@ -1,11 +1,11 @@
 {
-  int m=LU.length;
-  int n=LU[0].length;
+  int m=LU.nrows();
+  int n=LU.ncols();
   double[][] U=new double[m][n];
   for (int i=0; i < n; i++) {
     for (int j=0; j < n; j++) {
       if (i <= j) {
-        U[i][j]=LU[i][j];
+        U[i][j]=LU.get(i,j);
       }
  else {
         U[i][j]=0.0;

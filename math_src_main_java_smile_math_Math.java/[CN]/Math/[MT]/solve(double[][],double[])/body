@@ -1,6 +1,6 @@
 {
   if (A.length == A[0].length) {
-    LUDecomposition lu=new LUDecomposition(A,true);
+    LUDecomposition lu=new LUDecomposition(A);
     lu.solve(b);
     return b;
   }

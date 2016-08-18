@@ -1,7 +1,7 @@
 {
-  int m=LU.length;
-  int n=LU[0].length;
-  if (B.length != m)   throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but B is %d x %d",LU.length,LU[0].length,B.length,B[0].length));
+  int m=LU.nrows();
+  int n=LU.ncols();
+  if (B.length != m)   throw new IllegalArgumentException(String.format("Row dimensions do not agree: A is %d x %d, but B is %d x %d",LU.nrows(),LU.ncols(),B.length,B[0].length));
   if (isSingular()) {
     throw new RuntimeException("Matrix is singular.");
   }
@@ -24,17 +24,17 @@
   for (int k=0; k < n; k++) {
     for (int i=k + 1; i < n; i++) {
       for (int j=0; j < nx; j++) {
-        X[i][j]-=X[k][j] * LU[i][k];
+        X[i][j]-=X[k][j] * LU.get(i,k);
       }
     }
   }
   for (int k=n - 1; k >= 0; k--) {
     for (int j=0; j < nx; j++) {
-      X[k][j]/=LU[k][k];
+      X[k][j]/=LU.get(k,k);
     }
     for (int i=0; i < k; i++) {
       for (int j=0; j < nx; j++) {
-        X[i][j]-=X[k][j] * LU[i][k];
+        X[i][j]-=X[k][j] * LU.get(i,k);
       }
     }
   }

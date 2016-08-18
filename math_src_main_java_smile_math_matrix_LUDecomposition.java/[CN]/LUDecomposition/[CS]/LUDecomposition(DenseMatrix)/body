@@ -1,30 +1,25 @@
 {
-  int m=A.length;
-  int n=A[0].length;
+  int m=A.nrows();
+  int n=A.ncols();
   LU=A;
-  if (!overwrite) {
-    LU=new double[m][n];
-    for (int i=0; i < m; i++)     System.arraycopy(A[i],0,LU[i],0,n);
-  }
   piv=new int[m];
   for (int i=0; i < m; i++) {
     piv[i]=i;
   }
   pivsign=1;
-  double[] LUrowi;
   double[] LUcolj=new double[m];
   for (int j=0; j < n; j++) {
     for (int i=0; i < m; i++) {
-      LUcolj[i]=LU[i][j];
+      LUcolj[i]=LU.get(i,j);
     }
     for (int i=0; i < m; i++) {
-      LUrowi=LU[i];
       int kmax=Math.min(i,j);
       double s=0.0;
       for (int k=0; k < kmax; k++) {
-        s+=LUrowi[k] * LUcolj[k];
+        s+=LU.get(i,k) * LUcolj[k];
       }
-      LUrowi[j]=LUcolj[i]-=s;
+      LUcolj[i]-=s;
+      LU.set(i,j,LUcolj[i]);
     }
     int p=j;
     for (int i=j + 1; i < m; i++) {
@@ -34,18 +29,18 @@
     }
     if (p != j) {
       for (int k=0; k < n; k++) {
-        double t=LU[p][k];
-        LU[p][k]=LU[j][k];
-        LU[j][k]=t;
+        double t=LU.get(p,k);
+        LU.set(p,k,LU.get(j,k));
+        LU.set(j,k,t);
       }
       int k=piv[p];
       piv[p]=piv[j];
       piv[j]=k;
       pivsign=-pivsign;
     }
-    if (j < m & LU[j][j] != 0.0) {
+    if (j < m & LU.get(j,j) != 0.0) {
       for (int i=j + 1; i < m; i++) {
-        LU[i][j]/=LU[j][j];
+        LU.div(i,j,LU.get(j,j));
       }
     }
   }

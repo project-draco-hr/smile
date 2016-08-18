@@ -1,7 +1,7 @@
 {
   double[][] inv=eye(A[0].length,A.length);
   if (A.length == A[0].length) {
-    LUDecomposition lu=new LUDecomposition(A,false);
+    LUDecomposition lu=new LUDecomposition(A);
     lu.solve(inv);
   }
  else {
