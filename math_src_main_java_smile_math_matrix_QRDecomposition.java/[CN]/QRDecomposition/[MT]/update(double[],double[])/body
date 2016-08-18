@@ -27,7 +27,7 @@
   }
   Rdiagonal[0]+=u[0] * v[0];
   for (int i=1; i < n; i++) {
-    QR.set(0,i,QR.get(0,i) + u[0] * v[i]);
+    QR.add(0,i,u[0] * v[i]);
   }
   for (int i=0; i < k; i++) {
     rotate(i,Rdiagonal[i],-QR.get(i + 1,i));

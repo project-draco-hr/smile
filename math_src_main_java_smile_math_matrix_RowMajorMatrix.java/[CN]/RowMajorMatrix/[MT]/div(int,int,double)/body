@@ -1,0 +1,4 @@
+{
+  A[i * ncols + j]/=x;
+  return this;
+}

@@ -1,0 +1,4 @@
+{
+  A[j * nrows + i]+=x;
+  return this;
+}

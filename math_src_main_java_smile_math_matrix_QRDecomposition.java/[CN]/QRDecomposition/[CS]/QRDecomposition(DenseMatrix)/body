@@ -13,9 +13,9 @@
         nrm=-nrm;
       }
       for (int i=k; i < m; i++) {
-        QR.set(i,k,QR.get(i,k) / nrm);
+        QR.div(i,k,nrm);
       }
-      QR.set(k,k,QR.get(k,k) + 1.0);
+      QR.add(k,k,1.0);
       for (int j=k + 1; j < n; j++) {
         double s=0.0;
         for (int i=k; i < m; i++) {
@@ -23,7 +23,7 @@
         }
         s=-s / QR.get(k,k);
         for (int i=k; i < m; i++) {
-          QR.set(i,j,QR.get(i,j) + s * QR.get(i,k));
+          QR.add(i,j,s * QR.get(i,k));
         }
       }
     }

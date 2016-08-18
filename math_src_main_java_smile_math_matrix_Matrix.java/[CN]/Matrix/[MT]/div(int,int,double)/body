@@ -1,0 +1,4 @@
+{
+  A[i][j]/=x;
+  return this;
+}
