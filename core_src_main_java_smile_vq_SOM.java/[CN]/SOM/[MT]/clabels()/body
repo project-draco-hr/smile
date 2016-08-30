@@ -1,9 +1,0 @@
-{
-  int[][] clabels=new int[height][width];
-  for (int i=0, l=0; i < height; i++) {
-    for (int j=0; j < width; j++) {
-      clabels[i][j]=y[i * width + j];
-    }
-  }
-  return clabels;
-}
