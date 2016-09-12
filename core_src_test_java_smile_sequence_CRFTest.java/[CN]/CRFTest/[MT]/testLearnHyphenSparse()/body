@@ -1,7 +1,7 @@
 {
   System.out.println("learn hyphen sparse");
-  IntDataset train=load("/smile/data/sequence/sparse.hyphen.6.train");
-  IntDataset test=load("/smile/data/sequence/sparse.hyphen.6.test");
+  IntDataset train=load("sequence/sparse.hyphen.6.train");
+  IntDataset test=load("sequence/sparse.hyphen.6.test");
   CRF.Trainer trainer=new CRF.Trainer(train.p,train.k);
   trainer.setLearningRate(1.0);
   trainer.setMaxNodes(100);
@@ -33,6 +33,6 @@
   System.out.format("Hypen error (forward-backward) rate = %.2f%%%n",100.0 * error / n);
   System.out.format("Hypen error (Viterbi) is %d of %d%n",viterbiError,n);
   System.out.format("Hypen error (Viterbi) rate = %.2f%%%n",100.0 * viterbiError / n);
-  assertEquals(461,error);
-  assertEquals(462,viterbiError);
+  assertEquals(470,error);
+  assertEquals(478,viterbiError);
 }

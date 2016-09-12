@@ -1,2 +1,3 @@
 {
+  smile.math.Math.setSeed(54217137L);
 }

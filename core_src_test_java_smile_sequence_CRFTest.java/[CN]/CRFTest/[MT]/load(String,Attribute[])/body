@@ -8,7 +8,7 @@
   ArrayList<double[]> seq=new ArrayList<>();
   ArrayList<Integer> label=new ArrayList<>();
   int id=1;
-  try (BufferedReader input=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(resource)))){
+  try (BufferedReader input=smile.data.parser.IOUtils.getTestDataReader(resource)){
     String[] words=input.readLine().split(" ");
     int nseq=Integer.parseInt(words[0]);
     k=Integer.parseInt(words[1]);
