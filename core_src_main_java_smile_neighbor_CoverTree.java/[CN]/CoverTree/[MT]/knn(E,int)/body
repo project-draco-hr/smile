@@ -10,6 +10,7 @@
   Neighbor<E,E> n1=new Neighbor<>(e,e,root.idx,d);
   @SuppressWarnings("unchecked") Neighbor<E,E>[] a1=(Neighbor<E,E>[])java.lang.reflect.Array.newInstance(n1.getClass(),1);
   if (root.children == null) {
+    a1[0]=n1;
     return a1;
   }
   ArrayList<DistanceNode> currentCoverSet=new ArrayList<>();
