@@ -3,7 +3,7 @@
   if (n < k) {
     heap[n++]=datum;
     if (n == k) {
-      heapify(heap);
+      sort(heap,k);
     }
   }
  else {

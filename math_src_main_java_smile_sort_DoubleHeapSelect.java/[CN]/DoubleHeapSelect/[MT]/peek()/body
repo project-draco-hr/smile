@@ -1,3 +1,4 @@
 {
+  if (n < k)   sort(heap,n);
   return heap[0];
 }
